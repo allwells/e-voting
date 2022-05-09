@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nav bar */
+#navbar-container {
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    position: fixed;
+    background-color: #fff9;
+    backdrop-filter: blur(7px);
+    box-shadow: 0px 30px 30px #fff9;
+}
+
+/* Hero background */
+.hero-background {
+    height: 100vh;
+    /* margin-top: 5.4rem; */
+    background-image: url("../../public/img/background-spot.svg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Login page */
+.login-container {
+    min-height: 90vh;
+}
+
+/* Footer */
+footer {
+    cursor: default;
+}
+
+@media only screen and (max-width: 375px) {
+
+#navbar-container .nav-contents {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+}

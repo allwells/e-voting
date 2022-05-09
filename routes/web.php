@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// HOME ROUTE
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+})->name("home");
+
+Route::group(['middleware' => 'guest'], function() {
+    // LOGIN ROUTE
+    Route::get('/login', 'App\Http\Controllers\Auth\LoginController@index')->name('login');
+    Route::post('/login', 'App\Http\Controllers\Auth\LoginController@store');
 });
