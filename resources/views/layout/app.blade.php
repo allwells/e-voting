@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="h-full" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class=" h-full @auth {{ auth()->user()->mode }}  @endauth"
+    lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <!-- Required meta tags -->
@@ -14,15 +15,28 @@
 
 </head>
 
-<body class="h-full">
-    {{-- Navbar --}}
-    <x-navbar />
+<body class="h-full bg-white @auth dark:bg-neutral-800 @endauth">
+    {{-- Navbar for authenticated users --}}
+    @auth
+        <div class="{{ auth()->user()->mode }} h-fit fixed w-full z-50">
+            <x-auth_nav />
+        </div>
+    @endauth
+
+    {{-- Navbar for non-authenticated users --}}
+    @guest
+        <x-navbar />
+    @endguest
 
     {{-- Main --}}
     @yield('content')
 
     {{-- Footer --}}
-    <x-footer />
+    @guest
+        <x-footer />
+    @endguest
+
+    <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
 </body>
 
 </html>
