@@ -110,13 +110,13 @@
                 <div class="relative ml-3">
                     <div>
                         <button type="button" id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart"
-                            class="flex text-neutral-400 ring-1 ring-neutral-700 bg-neutral-800 rounded-full dark:hover:text-neutral-50 focus:outline-none focus:ring-2 dark:focus:ring-offset-neutral-900"
+                            class="flex text-neutral-400 ring-1 dark:ring-0 ring-neutral-600 bg-neutral-800 rounded-full focus:outline-none focus:ring-2 dark:focus:ring-2 dark:focus:ring-offset-2 dark:focus:ring-offset-neutral-900"
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true">
 
                             <span class="sr-only">Open user menu</span>
 
                             <div class="relative w-10 h-10 overflow-hidden rounded-full">
-                                <svg class="absolute w-12 h-12 text-neutral-700 bg-neutral-300 transition duration-300 dark:text-neutral-500 dark:hover:text-neutral-50 -left-1"
+                                <svg class="absolute w-12 h-12 text-neutral-800 bg-neutral-400 transition duration-300 -left-1"
                                     fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                                         clip-rule="evenodd"></path>

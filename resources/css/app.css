@@ -43,8 +43,18 @@ footer {
 }
 
 /* User dashboard page*/
-.user-dashboard, .user-settings {
+.user-dashboard {
     margin-top: 5rem;
+}
+
+/* user settings page */
+.user-settings {
+    padding: 0 10%;
+    margin-top: 5rem;
+}
+
+.user-settings .coming-soon {
+    height: 70vh;
 }
 
 @media only screen and (max-width: 768px) {
@@ -64,5 +74,10 @@ footer {
     #navbar-container .nav-contents {
         padding-left: 5%;
         padding-right: 5%;
+    }
+
+    /* user settings page */
+    .user-settings {
+        padding: 0 3%;
     }
 }
