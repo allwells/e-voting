@@ -4,22 +4,41 @@
     <div class="flex items-center justify-center px-4 py-12 login-container sm:px-6 lg:px-8">
         <div class="w-full max-w-md space-y-8">
             <div>
-                <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900">Log in to your account</h2>
+                <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-800">Login</h2>
             </div>
-            <form class="mt-8 space-y-6" action="#" method="POST">
+            <form class="mt-8 space-y-6" action="{{ route('login') }}" method="POST">
+                @csrf
+
+                @if (session('status'))
+                    <div class="py-3 mb-3 text-center text-white bg-red-700 rounded">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
-                    <div>
-                        <label for="email-address" class="sr-only">Email address</label>
+                    <div class="mb-6">
+                        <label for="email-address" class="font-semibold text-gray-700">Email address</label>
                         <input id="email-address" name="email" type="email" autocomplete="email" required
-                            class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-600 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-sm"
-                            placeholder="Email address">
+                            class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border border-gray-200 rounded hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-sm">
+
+                        @error('email')
+                            <div class="text-red-600 text-md">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                    <div>
-                        <label for="password" class="sr-only">Password</label>
+
+                    <div class="mb-6">
+                        <label for="password" class="font-semibold text-gray-700">Password</label>
                         <input id="password" name="password" type="password" autocomplete="current-password" required
-                            class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-600 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-sm"
-                            placeholder="Password">
+                            class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border border-gray-200 rounded hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-sm">
+
+                        @error('password')
+                            <div class="text-red-600 text-md">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
 
@@ -27,12 +46,7 @@
                     <div class="flex items-center">
                         <input id="remember-me" name="remember-me" type="checkbox"
                             class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-600">
-                        <label for="remember-me" class="block ml-2 text-sm text-gray-900">Remember me</label>
-                    </div>
-
-                    <div class="text-sm">
-                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-600"> Forgot your password?
-                        </a>
+                        <label for="remember-me" class="block ml-2 text-sm text-gray-700">Remember me</label>
                     </div>
                 </div>
 
@@ -49,8 +63,14 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </span>
-                        Log In
+                        Login
                     </button>
+
+                    {{-- Link to sign up page --}}
+                    <div class="flex mt-3 text-sm">
+                        <span class="mr-1 text-gray-700">Don't have an account?</span>
+                        <a class="text-indigo-600 hover:underline" href="{{ route('register') }}">Sign up</a>
+                    </div>
                 </div>
             </form>
         </div>

@@ -1,9 +1,8 @@
 module.exports = {
-    purge:[
-        "./resources/views/**/*.blade.php"
-    ],
+    darkMode: 'class',
     content: [
         './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
         './resources/**/*.blade.php',
         './resources/**/*.js',
         './resources/**/*.vue',
@@ -15,5 +14,7 @@ module.exports = {
     variants: {
         extend: {},
     },
-    plugins: [],
+    plugins: [
+        require('flowbite/plugin'),
+    ],
 }

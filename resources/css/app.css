@@ -2,21 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 /* Nav bar */
 #navbar-container {
     top: 0;
     width: 100%;
-    z-index: 1000;
-    position: fixed;
-    background-color: #fff9;
     backdrop-filter: blur(7px);
-    box-shadow: 0px 30px 30px #fff9;
 }
 
 /* Hero background */
 .hero-background {
-    height: 100vh;
-    /* margin-top: 5.4rem; */
+    min-height: 90vh;
+    margin-top: 4.6rem;
     background-image: url("../../public/img/background-spot.svg");
     background-size: 100%;
     background-position: center;
@@ -28,15 +30,39 @@
     min-height: 90vh;
 }
 
+/* Sign up page */
+.signup-container {
+    min-height: 100vh;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+}
+
 /* Footer */
 footer {
     cursor: default;
 }
 
-@media only screen and (max-width: 375px) {
-
-#navbar-container .nav-contents {
-    padding-left: 5%;
-    padding-right: 5%;
+/* User dashboard page*/
+.user-dashboard, .user-settings {
+    margin-top: 5rem;
 }
+
+@media only screen and (max-width: 768px) {
+    /* Login page */
+    .login-container {
+        min-height: 100vh;
+    }
+
+    /* Sign up page */
+    .signup-container {
+        margin-top: 8rem;
+        margin-bottom: 5rem;
+    }
+}
+
+@media only screen and (max-width: 570px) {
+    #navbar-container .nav-contents {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
 }
