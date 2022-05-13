@@ -47,31 +47,6 @@
                             Dashboard
                         </a>
 
-
-                        <a href="{{ route('profile') }}"
-                            class="flex justify-center items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
-                            role="menuitem" tabindex="-1" id="user-menu-item-0">
-
-                            <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
-                                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            Profile
-                        </a>
-
-                        <a href="{{ route('settings') }}"
-                            class="flex justify-center items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
-                            role="menuitem" tabindex="-1" id="user-menu-item-1">
-
-                            <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
-                                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z">
-                                </path>
-                            </svg>
-                            Settings
-                        </a>
                         <a href="{{ route('dashboard') }}"
                             class="flex justify-center items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
                             aria-current="page">
@@ -216,35 +191,6 @@
                     </path>
                 </svg>
                 Dashboard
-            </a>
-
-            <div class="w-full border-b border-neutral-200 dark:border-neutral-800 mt-1"></div>
-
-            <a href="{{ route('profile') }}"
-                class="flex justify-start items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100"
-                role="menuitem" tabindex="-1" id="user-menu-item-0">
-
-                <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
-                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                        clip-rule="evenodd"></path>
-                </svg>
-                Profile
-            </a>
-
-            <div class="w-full border-b border-neutral-200 dark:border-neutral-800 mt-1"></div>
-
-            <a href="{{ route('settings') }}"
-                class="flex justify-start items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100"
-                role="menuitem" tabindex="-1" id="user-menu-item-1">
-
-                <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
-                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z">
-                    </path>
-                </svg>
-                Settings
             </a>
 
             <div class="w-full border-b border-neutral-200 dark:border-neutral-800 mt-1"></div>

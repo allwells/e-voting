@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     // PROFILE ROUTE
     Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
+    Route::post('/profile', 'App\Http\Controllers\ProfileController@store');
 
     // SETTINGS ROUTE
     Route::get('/settings', 'App\Http\Controllers\SettingsController@index')->name('settings');
