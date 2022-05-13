@@ -36,17 +36,30 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         <a href="{{ route('dashboard') }}"
-                            class="px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
-                            aria-current="page">Dashboard</a>
+                            class="flex justify-center items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
+                            aria-current="page">
+                            <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                                </path>
+                            </svg>
+                            Dashboard
+                        </a>
+
                         <a href="{{ route('dashboard') }}"
-                            class="px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
-                            aria-current="page">Register for election</a>
-                        <a href="{{ route('dashboard') }}"
-                            class="px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
-                            aria-current="page">Elections</a>
-                        <a href="{{ route('dashboard') }}"
-                            class="px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
-                            aria-current="page">Something</a>
+                            class="flex justify-center items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
+                            aria-current="page">
+
+                            <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
+                                </path>
+                            </svg>
+                            Elections
+                        </a>
                     </div>
                 </div>
             </div>
@@ -71,12 +84,14 @@
                 <!-- Profile dropdown -->
                 <div class="relative ml-3">
                     <div>
-                        <button type="button" id="dropdownBottomButton" data-dropdown-toggle="dropdownBottom"
-                            class="flex text-neutral-400 bg-neutral-800 rounded-full hover:text-neutral-500 dark:hover:text-neutral-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:ring-neutral-600"
+                        <button type="button" id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart"
+                            class="flex text-neutral-400 ring-1 dark:ring-0 ring-neutral-600 bg-neutral-800 rounded-full focus:outline-none focus:ring-2 dark:focus:ring-2 dark:focus:ring-offset-2 dark:focus:ring-offset-neutral-900"
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+
                             <span class="sr-only">Open user menu</span>
+
                             <div class="relative w-10 h-10 overflow-hidden rounded-full">
-                                <svg class="absolute w-12 h-12 text-neutral-300 transition duration-300 dark:text-neutral-500 dark:hover:text-neutral-50 -left-1"
+                                <svg class="absolute w-12 h-12 text-neutral-800 bg-neutral-400 transition duration-300 -left-1"
                                     fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                                         clip-rule="evenodd"></path>
@@ -85,7 +100,7 @@
                         </button>
 
                         <!-- Dropdown menu -->
-                        <div id="dropdownBottom"
+                        <div id="dropdownLeftStart"
                             class="absolute hidden py-1 mt-2 origin-top-right bg-white dark:bg-neutral-800 rounded-md shadow-lg ring-1 ring-neutral-800 dark:ring-neutral-700 ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="dropdownDefault" tabindex="-1">
 
@@ -101,6 +116,7 @@
                             <a href="{{ route('dashboard') }}"
                                 class="flex justify-start items-center align-middle px-4 py-2 dark:hover:bg-neutral-700 dark:text-neutral-100 mx-1 text-sm text-neutral-600 rounded-md hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900 transition duration-300"
                                 role="menuitem" tabindex="-1" id="user-menu-item-0">
+
                                 <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
                                     fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -114,18 +130,41 @@
                             <a href="{{ route('profile') }}"
                                 class="flex justify-start items-center align-middle px-4 py-2 dark:hover:bg-neutral-700 dark:text-neutral-100 mx-1 mt-1 text-sm text-neutral-600 rounded-md hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900 transition duration-300"
                                 role="menuitem" tabindex="-1" id="user-menu-item-0">
-                                Your Profile
+
+                                <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Profile
                             </a>
 
                             <a href="{{ route('settings') }}"
                                 class="flex justify-start items-center align-middle px-4 py-2 dark:hover:bg-neutral-700 dark:text-neutral-100 mx-1 mt-1 text-sm text-neutral-600 rounded-md hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900 transition duration-300"
                                 role="menuitem" tabindex="-1" id="user-menu-item-1">
+
+                                <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z">
+                                    </path>
+                                </svg>
                                 Settings
                             </a>
+
+                            <div class="w-full border-b border-neutral-200 dark:border-neutral-700 mt-1"></div>
 
                             <a href="{{ route('logout') }}"
                                 class="flex justify-start items-center align-middle px-4 py-2 dark:hover:bg-neutral-700 dark:text-neutral-100 mx-1 mt-1 text-sm text-neutral-600 rounded-md hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900 transition duration-300"
                                 role="menuitem" tabindex="-1" id="user-menu-item-2">
+
+                                <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                    </path>
+                                </svg>
                                 Log out
                             </a>
                         </div>
@@ -138,19 +177,35 @@
 
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="hidden" id="mobile-menu-2">
-        <div class="px-2 pt-2 pb-3 space-y-1">
+        <div class="px-2 pt-1 pb-1 space-y-1">
+
+            <div class="w-full border-b border-neutral-200 dark:border-neutral-800 mt-1"></div>
+
             <a href="{{ route('dashboard') }}"
-                class="block px-3 py-2 text-base font-medium text-neutral-700 rounded-md hover:bg-neutral-300 active:bg-neutral-400"
-                aria-current="page">Dashboard</a>
+                class="flex justify-start items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100"
+                aria-current="page">
+                <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                    </path>
+                </svg>
+                Dashboard
+            </a>
+
+            <div class="w-full border-b border-neutral-200 dark:border-neutral-800 mt-1"></div>
+
             <a href="{{ route('dashboard') }}"
-                class="block px-3 py-2 text-base font-medium text-neutral-700 rounded-md hover:bg-neutral-300 active:bg-neutral-400"
-                aria-current="page">Register for election</a>
-            <a href="{{ route('dashboard') }}"
-                class="block px-3 py-2 text-base font-medium text-neutral-700 rounded-md hover:bg-neutral-300 active:bg-neutral-400"
-                aria-current="page">Election</a>
-            <a href="{{ route('dashboard') }}"
-                class="block px-3 py-2 text-base font-medium text-neutral-700 rounded-md hover:bg-neutral-300 active:bg-neutral-400"
-                aria-current="page">Something</a>
+                class="flex justify-start items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100"
+                aria-current="page">
+
+                <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                </svg>
+                Elections
+            </a>
         </div>
     </div>
 </nav>
