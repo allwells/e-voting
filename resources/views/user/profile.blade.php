@@ -41,7 +41,7 @@
                         <label for="username"
                             class="block mb-2 text-sm font-semibold text-neutral-700 dark:text-neutral-300">Username</label>
                         <input name="username" type="text" id="username"
-                            class="bg-neutral-50 border hover:border-neutral-500 transition duration-300 border-neutral-300 text-neutral-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
+                            class="bg-neutral-200 border border-neutral-300 text-neutral-700 text-sm rounded-md block w-full p-2.5 cursor-not-allowed dark:bg-neutral-800 dark:border-neutral-600 dark:text-neutral-500"
                             value="{{ $user->username }}" disabled required>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                         <label for="email"
                             class="block mb-2 text-sm font-semibold text-neutral-700 dark:text-neutral-300">Email</label>
                         <input name="email" type="email" id="email"
-                            class="bg-neutral-50 border hover:border-neutral-500 transition duration-300 border-neutral-300 text-neutral-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-                            value="{{ $user->email }}" placeholder="Enter your full email" required>
+                            class="bg-neutral-200 border border-neutral-300 text-neutral-700 text-sm rounded-md block w-full p-2.5 cursor-not-allowed dark:bg-neutral-800 dark:border-neutral-600 dark:text-neutral-500"
+                            value="{{ $user->email }}" disabled required>
                     </div>
 
                     {{-- phone input --}}

@@ -3,43 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    /**
+     * Get page that user should see after logging or when user goes to '/dashboard' route.
+     *
+     * @return string, array<object>
+     */
     public function index()
     {
-        // User privileges
-        // $superuser_privilege = 'superuser';
-        // $admin_privilege = 'admin';
-        // $user_privilege = 'user';
-
-        // get user
+        // get logged in user
         $user = auth()->user();
+        $users = DB::table('users')->get();
+        $elections = DB::table('election')->get();
+        $admins = DB::table('users')->where('privilege', '=', 'admin');
 
-        // // check what role the authenticated user has
-        // switch ($user->privilege)
-        // {
-        //     case $superuser_privilege:
-        //         dd("{$user->name} has {$superuser_privilege} privileges");
-        //         break;
-
-        //     case $admin_privilege:
-        //         dd("{$user->name} has {$admin_privilege} privileges");
-        //         break;
-
-        //     case $user_privilege:
-        //         dd("{$user->name} has {$user_privilege} privileges");
-        //         break;
-
-        //     default:
-        //         dd("Who the hell is this??");
-        //         break;
-        // }
-
-        // return dashboard page
         return view('user.dashboard',
             [
-                'user' => $user
+                'user' => $user,
+                'users' => $users,
+                'admins' => $admins,
+                'elections' => $elections,
             ]
         );
     }
