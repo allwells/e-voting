@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    // ELECTION ROUTE
+    Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections');
+    Route::post('/elections', 'App\Http\Controllers\ElectionController@store');
+});
+
+Route::group(['middleware' => ['auth', 'superuser']], function() {
+    // USERS ROUTE
+    Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users');
+});
 
 Route::group(['middleware' => 'auth'], function() {
     // DASHBOARD ROUTE
@@ -24,6 +34,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     // SETTINGS ROUTE
     Route::get('/settings', 'App\Http\Controllers\SettingsController@index')->name('settings');
+    Route::post('/settings', 'App\Http\Controllers\SettingsController@store_theme')->name('settings.theme');
 
     // LOGOUT ROUTE
     Route::get('/logout', 'App\Http\Controllers\Auth\LogoutController@index')->name('logout');
@@ -31,13 +42,11 @@ Route::group(['middleware' => 'auth'], function() {
     // redirects to dashboard route
     Route::get('/', function() { return redirect()->route('dashboard'); });
     Route::get('/home', function() { return redirect()->route('dashboard'); });
-
 });
 
 Route::group(['middleware' => 'guest'], function() {
     // HOME ROUTE
     Route::get('/', function () { return view('home'); })->name("home");
-
 
     // LOGIN ROUTE
     Route::get('/login', 'App\Http\Controllers\Auth\LoginController@index')->name('login');

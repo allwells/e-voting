@@ -36,7 +36,6 @@ class ProfileController extends Controller
         // Update user
         User::where('id', auth()->user()->id)->update([
             'name' => $request->name,
-            'email' => $request->email,
             'phone' => $this->purify($request->phone),
             'dob' => $request->dob,
             'nationality' => $request->nationality,

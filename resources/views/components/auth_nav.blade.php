@@ -1,5 +1,5 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<nav id="navbar-container" class="bg-white dark:bg-neutral-900 border-b shadow-lg dark:border-neutral-700">
+<nav class="bg-white dark:bg-neutral-900 border-b shadow-lg dark:border-neutral-700">
     <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -47,7 +47,7 @@
                             Dashboard
                         </a>
 
-                        <a href="{{ route('dashboard') }}"
+                        <a href="{{ route('elections') }}"
                             class="flex justify-center items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
                             aria-current="page">
 
@@ -60,6 +60,22 @@
                             </svg>
                             Elections
                         </a>
+
+                        @if (auth()->user()->privilege == 'superuser')
+                            <a href="{{ route('users') }}"
+                                class="flex justify-center items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
+                                aria-current="page">
+
+                                <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                    </path>
+                                </svg>
+                                Users
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -90,13 +106,9 @@
 
                             <span class="sr-only">Open user menu</span>
 
-                            <div class="relative w-10 h-10 overflow-hidden rounded-full">
-                                <svg class="absolute w-12 h-12 text-neutral-800 bg-neutral-400 transition duration-300 -left-1"
-                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
+                            <div id="nav-profile-image"
+                                style="background-image: url('{{ asset('images/profile.jpg') }}');"
+                                class="relative w-10 h-10 rounded-full"></div>
                         </button>
 
                         <!-- Dropdown menu -->
@@ -195,7 +207,7 @@
 
             <div class="w-full border-b border-neutral-200 dark:border-neutral-800 mt-1"></div>
 
-            <a href="{{ route('dashboard') }}"
+            <a href="{{ route('elections') }}"
                 class="flex justify-start items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100"
                 aria-current="page">
 
@@ -206,6 +218,23 @@
                 </svg>
                 Elections
             </a>
+
+            @if (auth()->user()->privilege == 'superuser')
+                <div class="w-full border-b border-neutral-200 dark:border-neutral-800 mt-1"></div>
+
+                <a href="{{ route('users') }}"
+                    class="flex justify-start items-center px-3 py-2 text-sm font-medium text-neutral-700 transition duration-300 dark:text-neutral-300 dark:hover:bg-neutral-800 rounded-md hover:bg-neutral-100"
+                    aria-current="page">
+
+                    <svg class="flex-shrink-0 w-6 h-6 text-neutral-500 transition duration-300 mr-2 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                        </path>
+                    </svg>
+                    Users
+                </a>
+            @endif
         </div>
     </div>
 </nav>

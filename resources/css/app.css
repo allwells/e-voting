@@ -15,6 +15,13 @@ body {
     backdrop-filter: blur(7px);
 }
 
+/* nav bar profile image */
+div#nav-profile-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 /* Hero background */
 .hero-background {
     min-height: 90vh;
@@ -84,11 +91,7 @@ footer {
 /* user settings page */
 .user-settings {
     padding: 0 10%;
-    margin-top: 5rem;
-}
-
-.user-settings .coming-soon {
-    height: 70vh;
+    margin-top: 6rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -117,7 +120,7 @@ footer {
 
     /* user settings page */
     .user-settings {
-        padding: 0 3%;
+        padding: 0 6%;
     }
 }
 
@@ -127,6 +130,10 @@ footer {
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
+    }
+
+    .user-profile .profile-bg-image {
+        height: 8rem;
     }
 
     .user-profile .profile-image-container .details {
