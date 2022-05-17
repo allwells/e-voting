@@ -4,7 +4,7 @@
     <div class="user-dashboard mt-20 pb-10 px-4 sm:px-12 h-fit">
         <h1 class="text-neutral-800 text-md sm:text-3xl font-semibold dark:text-neutral-300">Dashboard</h1>
 
-        @if ($user->privilege == 'superuser')
+        @if ((auth() && auth()->user()->privilege == 'superuser') || (auth() && auth()->user()->privilege == 'admin'))
             <div class="flex flex-col sm:flex-row mt-4 gap-4">
                 <div
                     class="flex flex-col justify-center items-center w-full sm:w-2/6 py-6 px-6 bg-white rounded-xl border border-neutral-200 shadow-xl dark:bg-neutral-800 dark:border-neutral-700">
@@ -15,14 +15,16 @@
                     <span class="dark:text-neutral-500 cursor-default font-bold text-3xl">{{ $users->count() }}</span>
                 </div>
 
-                <div
-                    class="flex flex-col justify-center items-center w-full sm:w-2/6 py-6 px-6 bg-white rounded-xl border border-neutral-200 shadow-xl dark:bg-neutral-800 dark:border-neutral-700">
-                    <h5
-                        class="mb-2 cursor-default uppercase font-normal text-xs sm:text-sm tracking-tight text-neutral-700 dark:text-neutral-50">
-                        Total Admins
-                    </h5>
-                    <span class="dark:text-neutral-500 cursor-default font-bold text-3xl">{{ $admins->count() }}</span>
-                </div>
+                @if (auth() && auth()->user()->privilege == 'superuser')
+                    <div
+                        class="flex flex-col justify-center items-center w-full sm:w-2/6 py-6 px-6 bg-white rounded-xl border border-neutral-200 shadow-xl dark:bg-neutral-800 dark:border-neutral-700">
+                        <h5
+                            class="mb-2 cursor-default uppercase font-normal text-xs sm:text-sm tracking-tight text-neutral-700 dark:text-neutral-50">
+                            Total Admins
+                        </h5>
+                        <span class="dark:text-neutral-500 cursor-default font-bold text-3xl">{{ $admins->count() }}</span>
+                    </div>
+                @endif
 
                 <div
                     class="flex flex-col justify-center items-center w-full sm:w-2/6 py-6 px-6 bg-white rounded-xl border border-neutral-200 shadow-xl dark:bg-neutral-800 dark:border-neutral-700">

@@ -17,7 +17,7 @@ class DashboardController extends Controller
         // get logged in user
         $user = auth()->user();
         $users = DB::table('users')->get();
-        $elections = DB::table('election')->get();
+        $elections = DB::table('elections')->get();
         $admins = DB::table('users')->where('privilege', '=', 'admin');
 
         return view('user.dashboard',
