@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     // ELECTION ROUTE
     Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections');
+    Route::get('/elections/{election:id}', 'App\Http\Controllers\ElectionController@view_election')->name('elections.view');
 
     // SETTINGS ROUTE
     Route::get('/settings', 'App\Http\Controllers\SettingsController@index')->name('settings');

@@ -47,7 +47,7 @@
                 <ul role="list">
                     @foreach ($users as $user)
                         <li
-                            class="py-3 rounded-lg px-4 transition duration-300 bg-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 border-0 dark:bg-neutral-900 my-3">
+                            class="py-3 rounded-lg px-4 transition duration-300 shadow-lg bg-neutral-50 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:bg-neutral-900 my-3">
                             <div class="flex items-center space-x-4">
                                 <div class="flex-shrink-0">
                                     <img class="w-10 h-10 rounded-full" src="{{ asset('images/profile.jpg') }}"
@@ -103,22 +103,6 @@
                                 </div>
                             </div>
                         </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         {{-- <tr

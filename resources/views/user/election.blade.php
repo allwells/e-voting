@@ -270,7 +270,7 @@
 
                                     <div
                                         class="w-full flex flex-col sm:flex-row justify-end items-center gap-3 px-4 sm:px-6 py-6">
-                                        <a href="{{ route('elections') }}"
+                                        <a href="{{ route('elections.view', $election->id) }}"
                                             class="text-white px-6 shadow-lg justify-center sm:w-fit w-full font-semibold flex bg-indigo-700 border border-indigo-500 transition duration-300 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 rounded-md text-sm py-2.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
                                             View
                                             <svg class="w-5 h-5 ml-1 pt-0.5" fill="none" stroke="currentColor"
@@ -394,7 +394,7 @@
 
                                     <div
                                         class="w-full flex flex-col sm:flex-row justify-end items-center gap-3 px-4 sm:px-6 py-6">
-                                        <a href="{{ route('elections') }}"
+                                        <a href="{{ route('elections.view', $election->id) }}"
                                             class="text-white px-6 shadow-lg justify-center sm:w-fit w-full font-semibold flex bg-indigo-700 border border-indigo-500 transition duration-300 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 rounded-md text-sm py-2.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
                                             View
                                             <svg class="w-5 h-5 ml-1 pt-0.5" fill="none" stroke="currentColor"
@@ -519,7 +519,7 @@
 
                                     <div
                                         class="w-full flex flex-col sm:flex-row justify-end items-center gap-3 px-4 sm:px-6 py-6">
-                                        <a href="{{ route('elections') }}"
+                                        <a href="{{ route('elections.view', $election->id) }}"
                                             class="text-white px-6 shadow-lg justify-center sm:w-fit w-full font-semibold flex bg-indigo-700 border border-indigo-500 transition duration-300 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 rounded-md text-sm py-2.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
                                             View
                                             <svg class="w-5 h-5 ml-1 pt-0.5" fill="none" stroke="currentColor"
