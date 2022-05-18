@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Election;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class ElectionController extends Controller
     {
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
-        $election = DB::table('elections')->get();
+        $election = DB::table('elections')->orderBy('start_date')->get();
 
         return view('user.election',
             [
@@ -29,20 +30,42 @@ class ElectionController extends Controller
     }
 
     /**
-     * Get the page that the user should see when the user visits '/elections' route.
+     * Create a candidate and store in database
      *
-     * @return (string, array<object>)
+     * @param  Illuminate\Http\Request  $request
+     * @return function, string
      */
-    public function view_election(Election $election)
+    public function add_candidate(Request $request)
     {
-        return view('user.view_election', [ 'election' => $election ]);
+        if(auth() && auth()->user()->privilege == 'superuser' || auth() && auth()->user()->privilege == 'admin')
+        {
+            // validate candidate inputs
+            $this->validate($request, [
+                'name' => 'required|max:50',
+                'party' => 'max:50',
+                ]
+            );
+
+            // store candidate in database
+            Candidate::create([
+                'election_id' => (int)$request->election,
+                'name' => $request->name,
+                'party' => $request->party,
+                'image' => $request->image,
+                ]
+            );
+
+            return back();
+        } else {
+            return \redirect('/dashboard');
+        }
     }
 
     /**
      * Create an election and store in the database.
      *
      * @param  Illuminate\Http\Request  $request
-     * @return function
+     * @return function, string
      */
     public function store(Request $request)
     {

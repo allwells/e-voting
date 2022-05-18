@@ -15,9 +15,9 @@ class Candidate extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'candidate_name',
         'election_id',
-        'candidate_party',
-        'candidate_image',
+        'name',
+        'party',
+        'image',
     ];
 }
