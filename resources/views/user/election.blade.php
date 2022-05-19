@@ -140,13 +140,6 @@
                 </form>
             @endif
 
-
-
-
-
-
-
-
             <div id="accordion-flush" data-accordion="collapse" class="mt-12 gap-4 flex flex-col"
                 data-active-classes="bg-white dark:bg-neutral-900 text-neutral-700 dark:text-white"
                 data-inactive-classes="text-neutral-500 dark:text-neutral-400 dark:bg-neutral-700 dark:border-neutral-900">
@@ -250,38 +243,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-            {{-- Upcoming elections will display here --}}
-            {{-- <div class="upcoming-elections">
-                <h1 class="text-neutral-800 mt-8 text-sm sm:text-xl font-normal dark:text-neutral-300">
-                    Upcoming Elections
-                </h1>
-
-            </div> --}}
-
-            {{-- Opened elections will display here --}}
-            {{-- <div class="opened-elections">
-                <h1 class="text-neutral-800 mt-8 text-sm sm:text-xl font-normal dark:text-neutral-300">
-                    Opened Elections
-                </h1>
-            </div> --}}
-
-            {{-- closed elections will display here --}}
-            {{-- <div class="closed-elections">
-                <h1 class="text-neutral-800 mt-8 text-sm sm:text-xl font-normal dark:text-neutral-300">
-                    Closed Elections
-                </h1>
-            </div> --}}
         </div>
     </div>
 @endsection

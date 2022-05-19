@@ -4,9 +4,9 @@
     class="w-full flex flex-col items-center bg-white rounded-lg border shadow-xl dark:border-neutral-700 dark:bg-neutral-800">
     <div class="pt-2 px-2 z-20 w-full flex justify-end items-center">
         @if (auth()->user()->privilege == 'superuser' || auth()->user()->privilege == 'admin')
-            <button id="dropdownLeftButton" data-dropdown-toggle="dropdownLeft" data-dropdown-placement="left-start"
-                class="text-neutral-700 focus:outline-none font-medium text-sm p-1 my-1 rounded-full bg-transparent hover:bg-neutral-200 focus:ring-2 focus:ring-neutral-300 transition duration-300 text-center inline-flex items-center dark:text-neutral-400 dark:hover:bg-neutral-600 dark:focus:ring-neutral-500"
-                type="button">
+            <button type="button" id="dropdownLeftButton" data-dropdown-toggle="dropdownLeft"
+                data-dropdown-placement="left-start"
+                class="text-neutral-700 focus:outline-none font-medium text-sm p-1 my-1 rounded-full bg-transparent hover:bg-neutral-200 focus:ring-2 focus:ring-neutral-300 transition duration-300 text-center inline-flex items-center dark:text-neutral-400 dark:hover:bg-neutral-600 dark:focus:ring-neutral-500">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -16,10 +16,9 @@
             </button>
 
             <!-- Dropdown menu -->
-            <div id="dropdownLeft"
+            <div id="dropdownLeft" aria-labelledby="dropdownLeftButton"
                 class="z-30 hidden border dark:border-neutral-500 border-neutral-300 bg-white divide-y w-44 divide-neutral-100 rounded-md shadow-lg dark:bg-neutral-700">
-                <ul class="text-sm text-left text-neutral-700 dark:text-neutral-200"
-                    aria-labelledby="dropdownLeftButton">
+                <ul class="text-sm text-left text-neutral-700 dark:text-neutral-200">
 
                     {{-- Edit election menu button --}}
                     <li class="p-1.5">
