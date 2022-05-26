@@ -162,7 +162,7 @@
 
             <h2 id="accordion-flush-heading-1">
                 <button type="button"
-                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md sm:text-lg sm:p-3 text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
+                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md sm:text-md text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
                     data-accordion-target="#accordion-flush-body-1" aria-expanded="true"
                     aria-controls="accordion-flush-body-1">
                     <span>Upcoming Elections</span>
@@ -186,7 +186,7 @@
                         </div>
                     @else
                         <div
-                            class="flex flex-col items-center justify-center h-32 p-4 mt-4 text-center border border-dashed rounded-lg border-neutral-500 text-neutral-600 dark:text-neutral-500 ">
+                            class="flex flex-col items-center justify-center h-32 p-4 mt-4 text-center border border-dashed rounded-lg border-neutral-500 text-neutral-600 dark:text-neutral-500">
                             No upcoming election(s) at the moment.
                         </div>
                     @endif
@@ -195,7 +195,7 @@
 
             <h2 id="accordion-flush-heading-2">
                 <button type="button"
-                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md sm:text-lg sm:p-3 text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
+                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md sm:text-md text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
                     data-accordion-target="#accordion-flush-body-2" aria-expanded="false"
                     aria-controls="accordion-flush-body-2">
                     <span>Opened Elections</span>
@@ -212,14 +212,14 @@
                     @if ($elections->count() > 0)
                         <div class="flex flex-col items-start justify-center gap-4 mt-4 h-fit">
                             @foreach ($elections as $election)
-                                @if ($today->gt($election->start_date) && $today->lt($election->end_date))
+                                @if ($today->gt($election->start_date) && $today->lt($election->end_date) && $election->status == 'open')
                                     <x-election_card :election="$election" :today="$today" />
                                 @endif
                             @endforeach
                         </div>
                     @else
                         <div
-                            class="flex flex-col items-center justify-center h-32 p-4 mt-4 text-center border border-dashed rounded-lg border-neutral-500 text-neutral-600 dark:text-neutral-500 ">
+                            class="flex flex-col items-center justify-center h-32 p-4 mt-4 text-center border border-dashed rounded-lg border-neutral-500 text-neutral-600 dark:text-neutral-500">
                             No opened election(s) at the moment.
                         </div>
                     @endif
@@ -228,7 +228,7 @@
 
             <h2 id="accordion-flush-heading-3">
                 <button type="button"
-                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md sm:text-lg sm:p-3 text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
+                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md sm:text-md text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
                     data-accordion-target="#accordion-flush-body-3" aria-expanded="false"
                     aria-controls="accordion-flush-body-3">
                     <span>Closed Elections</span>
@@ -245,20 +245,19 @@
                     @if ($elections->count() > 0)
                         <div class="flex flex-col items-start justify-center gap-4 mt-4 h-fit">
                             @foreach ($elections as $election)
-                                @if ($today->gt($election->start_date) && $today->gt($election->end_date))
+                                @if (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
                                     <x-election_card :election="$election" :today="$today" />
                                 @endif
                             @endforeach
                         </div>
                     @else
                         <div
-                            class="flex flex-col items-center justify-center h-32 p-4 mt-4 text-center border border-dashed rounded-lg border-neutral-500 text-neutral-600 dark:text-neutral-500 ">
+                            class="flex flex-col items-center justify-center h-32 p-4 mt-4 text-center border border-dashed rounded-lg border-neutral-500 text-neutral-600 dark:text-neutral-500">
                             No previous election(s).
                         </div>
                     @endif
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
