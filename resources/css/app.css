@@ -12,7 +12,6 @@ body {
 #navbar-container {
     top: 0;
     width: 100%;
-    backdrop-filter: blur(7px);
 }
 
 /* nav bar profile image */
@@ -49,16 +48,12 @@ footer {
     cursor: default;
 }
 
-/* User dashboard page*/
-.user-dashboard {
-    margin-top: 5rem;
+/* User dashboard layout */
+#layout {
+    min-height: calc(100% - 2rem);
 }
 
 /* user profile page */
-.user-profile {
-    margin-top: 4rem;
-}
-
 .user-profile .profile-bg-image {
     height: 15rem;
     background-size: cover;
@@ -90,8 +85,7 @@ footer {
 
 /* user settings page */
 .user-settings {
-    padding: 0 10%;
-    margin-top: 6rem;
+    padding: 0 5%;
 }
 
 @media only screen and (max-width: 768px) {
@@ -106,10 +100,9 @@ footer {
         margin-bottom: 5rem;
     }
 
-
-.user-profile .profile-details form {
-    width: 95% !important;
-}
+    .user-profile .profile-details form {
+        width: 95% !important;
+    }
 }
 
 @media only screen and (max-width: 570px) {
