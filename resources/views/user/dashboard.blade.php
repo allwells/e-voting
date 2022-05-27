@@ -1,74 +1,118 @@
-@extends('layout.app')
+@extends('layout.layout')
 
-@section('content')
-    <div class="user-dashboard mt-20 pb-10 px-4 sm:px-12 h-fit">
-        <h1 class="text-neutral-800 text-md sm:text-3xl font-semibold dark:text-neutral-300">Dashboard</h1>
-
-        @if ($user->privilege == 'superuser')
-            <div class="flex flex-col sm:flex-row mt-4 gap-4">
-                <div
-                    class="flex flex-col justify-center items-center w-full sm:w-2/6 py-6 px-6 bg-white rounded-xl border border-neutral-200 shadow-xl dark:bg-neutral-800 dark:border-neutral-700">
-                    <h5
-                        class="mb-2 cursor-default uppercase font-normal text-xs sm:text-sm tracking-tight text-neutral-700 dark:text-neutral-50">
-                        Total Users
-                    </h5>
-                    <span class="dark:text-neutral-500 cursor-default font-bold text-3xl">{{ $users->count() }}</span>
-                </div>
-
-                <div
-                    class="flex flex-col justify-center items-center w-full sm:w-2/6 py-6 px-6 bg-white rounded-xl border border-neutral-200 shadow-xl dark:bg-neutral-800 dark:border-neutral-700">
-                    <h5
-                        class="mb-2 cursor-default uppercase font-normal text-xs sm:text-sm tracking-tight text-neutral-700 dark:text-neutral-50">
-                        Total Admins
-                    </h5>
-                    <span class="dark:text-neutral-500 cursor-default font-bold text-3xl">{{ $admins->count() }}</span>
-                </div>
-
-                <div
-                    class="flex flex-col justify-center items-center w-full sm:w-2/6 py-6 px-6 bg-white rounded-xl border border-neutral-200 shadow-xl dark:bg-neutral-800 dark:border-neutral-700">
-                    <h5
-                        class="mb-2 cursor-default uppercase font-normal text-xs sm:text-sm tracking-tight text-neutral-700 dark:text-neutral-50">
-                        Total Elections
-                    </h5>
-                    <span class="dark:text-neutral-500 cursor-default font-bold text-3xl">{{ $elections->count() }}</span>
-                </div>
+@section('views')
+    <div class="flex flex-col flex-wrap gap-4 p-6 sm:px-6 sm:py-8 sm:flex-row">
+        @if ((auth() && auth()->user()->privilege == 'superuser') || (auth() && auth()->user()->privilege == 'admin'))
+            <div
+                class="flex flex-col items-center justify-center w-full px-6 py-6 bg-white border shadow-xl md:w-2/6 rounded-xl border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
+                <h5
+                    class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
+                    Total Users
+                </h5>
+                <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $users->count() }}</span>
             </div>
-        @endif
 
-        <div class="mt-5 flex flex-col sm:flex-row gap-4">
-
-            <a href="{{ route('users') }}"
-                class="flex flex-row sm:flex-col justify-start sm:justify-center items-center hover:scale-105 transition duration-300 w-full sm:w-fit py-2 px-3 sm:py-6 sm:px-16 bg-white rounded-xl border border-neutral-200 shadow-xl dark:bg-neutral-800 dark:border-neutral-700">
-                <span
-                    class="bg-neutral-100 dark:bg-neutral-700 dark:border-neutral-600 p-3 mr-2 sm:mr-0 sm:mb-2 rounded-full border">
-                    <svg class="flex-shrink-0 w-8 h-8 text-neutral-800 dark:text-neutral-400" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                        </path>
-                    </svg>
-                </span>
-                <h5 class="mb-2 text-lg sm:text-2xl font-bold text-center text-neutral-700 dark:text-neutral-50">
+            <div
+                class="flex flex-col items-center justify-center w-full px-6 py-6 bg-white border shadow-xl md:w-2/6 rounded-xl border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
+                <h5
+                    class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
                     Users
                 </h5>
-            </a>
-
-            <a href="{{ route('elections') }}"
-                class="flex flex-row sm:flex-col justify-start sm:justify-center items-center hover:scale-105 transition duration-300 w-full sm:w-fit py-2 px-3 sm:py-6 sm:px-16 bg-white rounded-xl border border-neutral-200 shadow-xl dark:bg-neutral-800 dark:border-neutral-700">
                 <span
-                    class="bg-neutral-100 dark:bg-neutral-700 dark:border-neutral-600 p-3 mr-2 sm:mr-0 sm:mb-2 rounded-full border">
-                    <svg class="flex-shrink-0 w-8 h-8 text-neutral-800 dark:text-neutral-400" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
-                        </path>
-                    </svg>
-                </span>
-                <h5 class="mb-2 text-lg sm:text-2xl font-bold text-center text-neutral-700 dark:text-neutral-50">
-                    Elections
-                </h5>
-            </a>
+                    class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $users->count() - $admins->count() }}</span>
+            </div>
 
+            @if (auth() && auth()->user()->privilege == 'superuser')
+                <div
+                    class="flex flex-col items-center justify-center w-full px-6 py-6 bg-white border shadow-xl md:w-2/6 rounded-xl border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
+                    <h5
+                        class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
+                        Admins
+                    </h5>
+                    <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $admins->count() }}</span>
+                </div>
+            @endif
+        @endif
+
+        <div
+            class="flex flex-col items-center justify-center w-full px-6 py-6 bg-white border shadow-xl md:w-2/6 rounded-xl border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
+            <h5
+                class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
+                Total Elections
+            </h5>
+            <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $elections->count() }}</span>
+        </div>
+
+        <div
+            class="flex flex-col items-center justify-center w-full px-6 py-6 bg-white border shadow-xl md:w-2/6 rounded-xl border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
+            <h5
+                class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
+                Upcoming Elections
+            </h5>
+            <span
+                class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $upcoming_elections_all->count() }}</span>
+        </div>
+
+        <div
+            class="flex flex-col items-center justify-center w-full px-6 py-6 bg-white border shadow-xl md:w-2/6 rounded-xl border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
+            <h5
+                class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
+                Opened Elections
+            </h5>
+            <span
+                class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $opened_elections_all->count() }}</span>
+        </div>
+
+        <div
+            class="flex flex-col items-center justify-center w-full px-6 py-6 bg-white border shadow-xl md:w-2/6 rounded-xl border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
+            <h5
+                class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
+                Closed Elections
+            </h5>
+            <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $closed_elections->count() }}</span>
         </div>
     </div>
+
+    {{-- upcoming elections --}}
+    <h1 class="mx-6 mt-6 mb-4 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
+        Upcoming Election(s)
+    </h1>
+    @if ($upcoming_elections->count() > 0)
+        <div class="flex flex-col gap-6 p-2 mx-6 mb-6 border border-dashed border-neutral-400 dark:border-neutral-700">
+            @foreach ($upcoming_elections as $election)
+                <x-election_card :election="$election" :today="$today" />
+            @endforeach
+            <div @if (auth()->user()->mode === 'dark') id="pagination-dark" @endif class="mt-2">
+                {{ $upcoming_elections->links() }}
+            </div>
+        </div>
+    @else
+        <div
+            class="flex items-center justify-center h-32 mx-6 mb-6 text-center border border-dashed text-neutral-400 border-neutral-300 dark:border-neutral-700">
+            No upcoming elections.
+        </div>
+    @endif
+
+    {{-- Opened elections --}}
+    <h1 class="mx-6 mt-6 mb-4 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
+        Opened Election(s)
+    </h1>
+
+    @if ($opened_elections->count() > 0)
+        <div class="flex flex-col gap-6 p-2 mx-6 mb-6 border border-dashed border-neutral-400 dark:border-neutral-700">
+            @foreach ($opened_elections as $election)
+                <x-election_card :election="$election" :today="$today" />
+            @endforeach
+            <div @if (auth()->user()->mode === 'dark') id="pagination-dark" @endif class="mt-2">
+                {{ $opened_elections->links() }}
+            </div>
+        </div>
+    @else
+        <div
+            class="flex items-center justify-center h-32 mx-6 mb-6 text-center border border-dashed text-neutral-400 border-neutral-300 dark:border-neutral-700">
+            No opened elections.
+            <a href="{{ route('elections') }}" class="ml-1 text-blue-600 underline">Create new
+                election</a>
+        </div>
+    @endif
 @endsection

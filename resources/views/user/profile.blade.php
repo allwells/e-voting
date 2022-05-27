@@ -1,19 +1,19 @@
-@extends('layout.app')
+@extends('layout.layout')
 
-@section('content')
-    <div class="user-profile w-full pb-28">
+@section('views')
+    <div class="w-full -mt-1 user-profile">
         {{-- profile background image --}}
-        <div style="background-image: url('{{ asset('images/profile-bg.jpg') }}');" class="profile-bg-image w-full"></div>
+        <div style="background-image: url('{{ asset('images/profile-bg.jpg') }}');" class="w-full profile-bg-image"></div>
 
-        <div class="profile-image-container -mt-8 mb-6 lg:mb-12">
-            <div class="details gap-2 flex justify-start items-end">
+        <div class="mb-6 -mt-8 profile-image-container lg:mb-12">
+            <div class="flex items-end justify-start gap-2 details">
                 {{-- profile picture --}}
-                <div class="profile-img border-white border-4 dark:border-neutral-800"
+                <div class="border-4 border-white profile-img dark:border-neutral-800"
                     style="background-image: url('{{ asset('images/profile.jpg') }}');"></div>
 
                 {{-- name and email --}}
-                <div class="name pb-4">
-                    <h2 class="text-xl cursor-default font-bold text-neutral-800 dark:text-neutral-300">{{ $user->name }}
+                <div class="pb-4 name">
+                    <h2 class="text-xl font-bold cursor-default text-neutral-800 dark:text-neutral-300">{{ $user->name }}
                     </h2>
                     <span class="text-sm font-normal cursor-default text-neutral-500">{{ $user->email }}</span>
                 </div>
@@ -21,12 +21,12 @@
             </div>
         </div>
 
-        <div class="profile-details mb-10 flex justify-center">
+        <div class="flex justify-center mb-10 profile-details">
             <form action="{{ route('profile') }}" method="POST">
                 @csrf
 
                 {{-- name and username inputs --}}
-                <div class="form-input-group gap-4 mt-5 flex justify-center lg:flex-row flex-col">
+                <div class="flex flex-col justify-center gap-4 mt-5 form-input-group lg:flex-row">
                     {{-- name input --}}
                     <div class="lg:w-6/12 md:w-full">
                         <label for="name"
@@ -47,7 +47,7 @@
                 </div>
 
                 {{-- email and phone input --}}
-                <div class="form-input-group gap-4 mt-5 flex justify-center lg:flex-row flex-col">
+                <div class="flex flex-col justify-center gap-4 mt-5 form-input-group lg:flex-row">
                     {{-- email input --}}
                     <div class="lg:w-6/12 md:w-full">
                         <label for="email"
@@ -77,7 +77,7 @@
                 </div>
 
                 {{-- date of birth and nationality inputs --}}
-                <div class="form-input-group gap-4 mt-5 flex justify-center lg:flex-row flex-col">
+                <div class="flex flex-col justify-center gap-4 mt-5 form-input-group lg:flex-row">
                     {{-- date of birth input --}}
                     <div class="lg:w-6/12 md:w-full">
                         <label for="dob"
@@ -99,7 +99,7 @@
                 </div>
 
                 {{-- city and state inputs --}}
-                <div class="form-input-group gap-4 mt-5 flex justify-center lg:flex-row flex-col">
+                <div class="flex flex-col justify-center gap-4 mt-5 form-input-group lg:flex-row">
                     {{-- city input --}}
                     <div class="lg:w-6/12 md:w-full">
                         <label for="city"
@@ -120,7 +120,7 @@
                 </div>
 
                 {{-- zip code and country inputs --}}
-                <div class="form-input-group gap-4 mt-5 flex justify-center lg:flex-row flex-col">
+                <div class="flex flex-col justify-center gap-4 mt-5 form-input-group lg:flex-row">
                     {{-- zip code input --}}
                     <div class="lg:w-6/12 md:w-full">
                         <label for="code"

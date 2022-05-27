@@ -34,7 +34,9 @@ class SuperuserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->getUser()->privilege !== "superuser") {
+        $user = $this->auth->getUser()->privilege;
+
+        if ($user !== "superuser") {
             abort(403, 'Unauthorized action.');
         }
 

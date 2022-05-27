@@ -35,7 +35,9 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (($this->auth->getUser()->privilege !== 'admin') && ($this->auth->getUser()->privilege !== 'superuser')) {
+        $user = $this->auth->getUser()->privilege;
+
+        if ($user !== 'superuser' && $user !== 'admin') {
             abort(403, 'Unauthorized action.');
         }
 

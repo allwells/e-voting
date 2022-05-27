@@ -1,23 +1,23 @@
-@extends('layout.app')
+@extends('layout.layout')
 
-@section('content')
-    <div class="user-settings flex flex-col justify-start align-middle w-full">
+@section('views')
+    <div class="flex flex-col justify-start w-full mb-20 align-middle user-settings">
         <span
-            class="text-2xl lg:text-3xl capitalize text-neutral-800 dark:text-neutral-200 font-bold cursor-default text-left">
+            class="mt-4 text-2xl font-bold text-left capitalize cursor-default lg:text-3xl text-neutral-800 dark:text-neutral-200">
             Settings
         </span>
 
-        <div class="mt-4 flex flex-col justify-start items-start mb-28">
+        <div class="flex flex-col items-start justify-start mt-4 mb-28">
             {{-- Appearance --}}
             <div class="w-full">
                 <label for="appearance"
-                    class="block text-md md:text-lg font-semibold text-neutral-700 dark:text-neutral-200">
+                    class="block font-semibold text-md md:text-lg text-neutral-700 dark:text-neutral-200">
                     Appearance
                 </label>
 
                 {{-- Theme --}}
                 <div class="pt-2">
-                    <label for="theme" class="text-neutral-700 font-normal text-sm dark:text-neutral-200">
+                    <label for="theme" class="text-sm font-normal text-neutral-700 dark:text-neutral-200">
                         Theme
                     </label>
 
@@ -56,9 +56,9 @@
             </div>
 
             {{-- Change email --}}
-            <div class="mt-8 w-full md:w-1/2">
+            <div class="w-full mt-8 md:w-1/2">
                 <label for="change-email"
-                    class="block text-md md:text-lg font-semibold text-neutral-700 dark:text-neutral-200">
+                    class="block font-semibold text-md md:text-lg text-neutral-700 dark:text-neutral-200">
                     Change Email
                 </label>
 
@@ -67,12 +67,12 @@
 
                     <div class="-space-y-px rounded-md shadow-sm">
                         <div class="mb-6">
-                            <label for="email-address" class="text-neutral-700 font-normal text-sm dark:text-neutral-200">
+                            <label for="email-address" class="text-sm font-normal text-neutral-700 dark:text-neutral-200">
                                 Email address
                             </label>
                             <input id="email-address" name="email" type="email" autocomplete="email"
                                 value="{{ $user->email }}" required
-                                class="relative block w-full px-3 py-2 mt-1 text-neutral-700 dark:hover:border-neutral-400 transition hover:border-neutral-500 duration-300 border border-neutral-200 rounded-md focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-sm sm:text-md dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
+                                class="relative block w-full px-3 py-2 mt-1 text-sm transition duration-300 border rounded-md text-neutral-700 dark:hover:border-neutral-400 hover:border-neutral-500 border-neutral-200 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-md dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
                         </div>
                     </div>
 
@@ -93,9 +93,9 @@
 
 
             {{-- Change password --}}
-            <div class="mt-8 w-full md:w-1/2">
+            <div class="w-full mt-8 md:w-1/2">
                 <label for="change-password"
-                    class="block text-md md:text-lg font-semibold text-neutral-700 dark:text-neutral-200">
+                    class="block font-semibold text-md md:text-lg text-neutral-700 dark:text-neutral-200">
                     Change Password
                 </label>
 
@@ -106,38 +106,38 @@
                     <div class="-space-y-px rounded-md shadow-sm">
                         <div class="mb-4">
                             <label for="current_password"
-                                class="text-neutral-700 font-normal text-sm dark:text-neutral-200">
+                                class="text-sm font-normal text-neutral-700 dark:text-neutral-200">
                                 Current Password
                             </label>
 
                             <input id="current_password" name="current_password" type="current_password"
                                 placeholder="Enter your current password" required
-                                class="relative block w-full px-3 py-2 mt-1 text-neutral-700 dark:hover:border-neutral-400 transition hover:border-neutral-500 duration-300 border border-neutral-200 rounded-md focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-sm sm:text-md dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
+                                class="relative block w-full px-3 py-2 mt-1 text-sm transition duration-300 border rounded-md text-neutral-700 dark:hover:border-neutral-400 hover:border-neutral-500 border-neutral-200 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-md dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
                         </div>
                     </div>
 
                     {{-- new password input field --}}
                     <div class="-space-y-px rounded-md shadow-sm">
                         <div class="mb-4">
-                            <label for="password" class="text-neutral-700 font-normal text-sm dark:text-neutral-200">
+                            <label for="password" class="text-sm font-normal text-neutral-700 dark:text-neutral-200">
                                 New Password
                             </label>
 
                             <input id="password" name="password" type="password" placeholder="Enter a new password" required
-                                class="relative block w-full px-3 py-2 mt-1 text-neutral-700 dark:hover:border-neutral-400 transition hover:border-neutral-500 duration-300 border border-neutral-200 rounded-md focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-sm sm:text-md dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
+                                class="relative block w-full px-3 py-2 mt-1 text-sm transition duration-300 border rounded-md text-neutral-700 dark:hover:border-neutral-400 hover:border-neutral-500 border-neutral-200 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-md dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
                         </div>
                     </div>
 
                     {{-- password confirmation input field --}}
                     <div class="pb-2">
                         <label for="password-confirmation"
-                            class="text-neutral-700 font-normal text-sm dark:text-neutral-200">
+                            class="text-sm font-normal text-neutral-700 dark:text-neutral-200">
                             Confirm New Password
                         </label>
 
                         <input id="password_confirmation" name="password_confirmation" type="password"
                             placeholder="Confirm your new password" required
-                            class="relative block w-full px-3 py-2 mt-1 text-neutral-700 dark:hover:border-neutral-400 transition hover:border-neutral-500 duration-300 border border-neutral-200 rounded-md focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-sm sm:text-md dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
+                            class="relative block w-full px-3 py-2 mt-1 text-sm transition duration-300 border rounded-md text-neutral-700 dark:hover:border-neutral-400 hover:border-neutral-500 border-neutral-200 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-md dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
 
                         @error('password')
                             <div class="mt-3 text-red-600 text-md">

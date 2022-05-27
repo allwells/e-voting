@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Election extends Model
 {
@@ -20,4 +21,14 @@ class Election extends Model
         'start_date',
         'end_date',
     ];
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
+    public function votedBy(User $user)
+    {
+       return $this->likes->contains('user_id', $user->id);
+    }
 }

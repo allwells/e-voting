@@ -15,14 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth', 'admin']], function() {
     // ELECTION ROUTE
-    Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections');
     Route::post('/elections', 'App\Http\Controllers\ElectionController@store');
+    Route::post('/elections/{election:id}/close', 'App\Http\Controllers\ElectionController@close_election')->name('elections.close');
+    Route::delete('/elections/{election:id}', 'App\Http\Controllers\ElectionController@destroy')->name('elections.destroy');
+    Route::post('/elections/{election:id}', 'App\Http\Controllers\ElectionController@add_candidate')->name('elections.candidate');
 });
+
 
 Route::group(['middleware' => ['auth', 'superuser']], function() {
     // USERS ROUTE
     Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users');
 });
+
 
 Route::group(['middleware' => 'auth'], function() {
     // DASHBOARD ROUTE
@@ -31,6 +35,9 @@ Route::group(['middleware' => 'auth'], function() {
     // PROFILE ROUTE
     Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
     Route::post('/profile', 'App\Http\Controllers\ProfileController@store');
+
+    // ELECTION ROUTE
+    Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections');
 
     // SETTINGS ROUTE
     Route::get('/settings', 'App\Http\Controllers\SettingsController@index')->name('settings');
@@ -43,6 +50,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/', function() { return redirect()->route('dashboard'); });
     Route::get('/home', function() { return redirect()->route('dashboard'); });
 });
+
 
 Route::group(['middleware' => 'guest'], function() {
     // HOME ROUTE

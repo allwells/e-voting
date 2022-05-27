@@ -8,11 +8,35 @@ body {
     justify-content: space-between;
 }
 
+div#pagination-dark * {
+    color: #777 !important;
+}
+
+div#pagination-dark div span.relative.z-0.inline-flex.shadow-sm.rounded-md {
+    background-color: #833 !important;
+}
+
+div#pagination-dark a.relative.inline-flex.items-center {
+    outline: none !important;
+    color: #bbb !important;
+    font-weight: 600 !important;
+    border: 1px solid #404040 !important;
+    background-color: #262626 !important;
+}
+
+div#pagination-dark span.relative.inline-flex.items-center.px-4,
+div#pagination-dark span.relative.inline-flex.items-center.px-2 {
+    outline: none !important;
+    color: #777 !important;
+    font-weight: 600 !important;
+    border: 1px solid #404040 !important;
+    background-color: #1f1f1f !important;
+}
+
 /* Nav bar */
 #navbar-container {
     top: 0;
     width: 100%;
-    backdrop-filter: blur(7px);
 }
 
 /* nav bar profile image */
@@ -49,16 +73,12 @@ footer {
     cursor: default;
 }
 
-/* User dashboard page*/
-.user-dashboard {
-    margin-top: 5rem;
+/* User dashboard layout */
+#layout {
+    min-height: calc(100% - 2rem);
 }
 
 /* user profile page */
-.user-profile {
-    margin-top: 4rem;
-}
-
 .user-profile .profile-bg-image {
     height: 15rem;
     background-size: cover;
@@ -90,8 +110,13 @@ footer {
 
 /* user settings page */
 .user-settings {
-    padding: 0 10%;
-    margin-top: 6rem;
+    padding: 0 5%;
+}
+
+@media (min-width: 768px) {
+    .md\:w-2\/6 {
+        width: 31% !important;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -106,10 +131,9 @@ footer {
         margin-bottom: 5rem;
     }
 
-
-.user-profile .profile-details form {
-    width: 95% !important;
-}
+    .user-profile .profile-details form {
+        width: 95% !important;
+    }
 }
 
 @media only screen and (max-width: 570px) {
