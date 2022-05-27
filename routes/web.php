@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', function() { return redirect()->route('dashboard'); });
 });
 
+
 Route::group(['middleware' => 'guest'], function() {
     // HOME ROUTE
     Route::get('/', function () { return view('home'); })->name("home");
