@@ -1,12 +1,14 @@
 @extends('layout.layout')
 
 @section('views')
-    <div class="relative px-3 pt-6 pb-20 md:px-16 h-fit">
-        <h1 class="mb-4 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
-            Create Election
-        </h1>
+    <div class="relative px-3 pt-6 pb-20 md:px-6 h-fit">
 
-        {{-- <div class="w-full mt-8">
+        @if ((auth() && auth()->user()->privilege == 'superuser') || (auth() && auth()->user()->privilege == 'admin'))
+            <h1 class="mb-4 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
+                Create Election
+            </h1>
+
+            {{-- <div class="w-full mt-8">
             <div class="flex items-center justify-end w-full mb-4">
                 <button
                     class="flex justify-center w-full px-4 py-2 text-sm font-semibold text-white transition duration-300 bg-indigo-700 border border-indigo-500 rounded shadow-lg md:w-fit hover:bg-indigo-800 dark:bg-indigo-600 dark:hover:bg-indigo-700">
@@ -19,8 +21,6 @@
                 </button>
             </div> --}}
 
-        @if ((auth() && auth()->user()->privilege == 'superuser') || (auth() && auth()->user()->privilege == 'admin'))
-            {{-- <form action="{{ route('elections') }}" method="post" class="{{ $formVisibility ? "" : "hidden" }}"> --}}
             <form action="{{ route('elections') }}" method="post">
                 @csrf
 

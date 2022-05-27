@@ -85,7 +85,7 @@
     </div>
 
     <div
-        class="@if (auth() && auth()->user()->privilege != 'user') -mt-4 @else pt-4 @endif flex flex-col justify-between items-start px-4 sm:px-6 leading-normal w-full">
+        class="@if (auth() && auth()->user()->privilege != 'user') -mt-4 @else pt-4 @endif flex flex-col justify-between items-start px-4 lg:px-6 leading-normal w-full">
         {{-- Election title --}}
         <h5 class="mb-2 text-lg font-bold sm:text-2xl text-neutral-900 dark:text-white">
             {{ $election->title }}
@@ -98,7 +98,7 @@
         </p>
     </div>
 
-    <div class="flex flex-col items-start justify-between w-full gap-3 px-4 py-6 md:items-end md:flex-row md:px-6">
+    <div class="flex flex-col items-start justify-between w-full gap-3 p-4 lg:p-6 md:items-end md:flex-row">
         <div class="flex items-start justify-start flex-grow w-full md:w-fit">
             {{-- election start date --}}
             <div class="flex flex-col justify-start w-6/12 mr-1 gap-y-2 md:w-fit">

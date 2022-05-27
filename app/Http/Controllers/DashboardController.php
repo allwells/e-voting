@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,10 +19,13 @@ class DashboardController extends Controller
         $user = auth()->user();
         $users = DB::table('users')->get();
         $elections = DB::table('elections')->get();
-        $admins = DB::table('users')->where('privilege', '=', 'admin');
-        $upcoming_elections = DB::table('elections')->where('status', '=', '');
-        $opened_elections = DB::table('elections')->where('status', '=', 'open');
-        $closed_elections = DB::table('elections')->where('status', '=', 'closed');
+        $admins = DB::table('users')->where('privilege', '=', 'admin')->get();
+        $upcoming_elections = DB::table('elections')->where('status', '=', '')->paginate(3);
+        $opened_elections = DB::table('elections')->where('status', '=', 'open')->paginate(3);
+        $closed_elections = DB::table('elections')->where('status', '=', 'closed')->paginate(3);
+
+        $today = Carbon::now();
+        $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
         return view('user.dashboard',
             [
@@ -32,6 +36,7 @@ class DashboardController extends Controller
                 'upcoming_elections' => $upcoming_elections,
                 'opened_elections' => $opened_elections,
                 'closed_elections' => $closed_elections,
+                'today' => $today,
             ]
         );
     }
