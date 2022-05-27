@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('views')
-    <div class="flex flex-col justify-start w-full align-middle user-settings">
+    <div class="flex flex-col justify-start w-full mb-20 align-middle user-settings">
         <span
             class="mt-4 text-2xl font-bold text-left capitalize cursor-default lg:text-3xl text-neutral-800 dark:text-neutral-200">
             Settings

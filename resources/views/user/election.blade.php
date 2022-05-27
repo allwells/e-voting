@@ -1,15 +1,15 @@
 @extends('layout.layout')
 
 @section('views')
-    <div class="relative px-3 pt-6 pb-20 sm:px-14 md:px-16 h-fit">
-        <h1 class="mb-4 text-lg font-semibold cursor-default sm:text-2xl dark:text-neutral-200">
+    <div class="relative px-3 pt-6 pb-20 md:px-16 h-fit">
+        <h1 class="mb-4 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
             Create Election
         </h1>
 
         {{-- <div class="w-full mt-8">
             <div class="flex items-center justify-end w-full mb-4">
                 <button
-                    class="flex justify-center w-full px-4 py-2 text-sm font-semibold text-white transition duration-300 bg-indigo-700 border border-indigo-500 rounded shadow-lg sm:w-fit hover:bg-indigo-800 dark:bg-indigo-600 dark:hover:bg-indigo-700">
+                    class="flex justify-center w-full px-4 py-2 text-sm font-semibold text-white transition duration-300 bg-indigo-700 border border-indigo-500 rounded shadow-lg md:w-fit hover:bg-indigo-800 dark:bg-indigo-600 dark:hover:bg-indigo-700">
                     <svg class="w-5 h-5 mr-1 text-neutral-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -25,7 +25,7 @@
                 @csrf
 
                 {{-- election title and description inputs --}}
-                <div class="flex flex-col justify-center gap-4 form-input-group sm:flex-row">
+                <div class="flex flex-col justify-center gap-4 form-input-group md:flex-row">
 
                     {{-- election title input --}}
                     <div class="w-full md:w-6/12">
@@ -59,7 +59,7 @@
 
 
                 {{-- election start and end dates inputs --}}
-                <div class="flex flex-col justify-center gap-4 mt-6 form-input-group sm:flex-row">
+                <div class="flex flex-col justify-center gap-4 mt-6 form-input-group md:flex-row">
 
                     {{-- election start date and time input --}}
                     <div class="flex w-full gap-2 md:w-6/12">
@@ -140,7 +140,7 @@
                 {{-- submit button --}}
                 <div class="flex items-center justify-end w-full mt-4">
                     <button type="submit"
-                        class="text-white px-6 shadow-lg justify-center sm:w-fit w-full font-semibold flex bg-indigo-700 border border-indigo-500 transition duration-300 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 rounded-md text-sm py-2.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
+                        class="text-white px-6 shadow-lg justify-center md:w-fit w-full font-semibold flex bg-indigo-700 border border-indigo-500 transition duration-300 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 rounded-md text-sm py-2.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
                         <svg class="w-5 h-5 mr-1 text-neutral-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -152,7 +152,7 @@
             </form>
         @endif
 
-        <h1 class="mt-8 text-lg font-semibold cursor-default sm:text-2xl dark:text-neutral-200">
+        <h1 class="mt-8 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
             Elections
         </h1>
 
@@ -162,7 +162,7 @@
 
             <h2 id="accordion-flush-heading-1">
                 <button type="button"
-                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md sm:text-md text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
+                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md md:text-md text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
                     data-accordion-target="#accordion-flush-body-1" aria-expanded="true"
                     aria-controls="accordion-flush-body-1">
                     <span>Upcoming Elections</span>
@@ -195,7 +195,7 @@
 
             <h2 id="accordion-flush-heading-2">
                 <button type="button"
-                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md sm:text-md text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
+                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md md:text-md text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
                     data-accordion-target="#accordion-flush-body-2" aria-expanded="false"
                     aria-controls="accordion-flush-body-2">
                     <span>Opened Elections</span>
@@ -228,7 +228,7 @@
 
             <h2 id="accordion-flush-heading-3">
                 <button type="button"
-                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md sm:text-md text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
+                    class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-left border rounded-md md:text-md text-neutral-500 border-neutral-200 dark:border-neutral-700 dark:text-neutral-400 dark:bg-neutral-900"
                     data-accordion-target="#accordion-flush-body-3" aria-expanded="false"
                     aria-controls="accordion-flush-body-3">
                     <span>Closed Elections</span>

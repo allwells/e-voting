@@ -19,6 +19,9 @@ class DashboardController extends Controller
         $users = DB::table('users')->get();
         $elections = DB::table('elections')->get();
         $admins = DB::table('users')->where('privilege', '=', 'admin');
+        $upcoming_elections = DB::table('elections')->where('status', '=', '');
+        $opened_elections = DB::table('elections')->where('status', '=', 'open');
+        $closed_elections = DB::table('elections')->where('status', '=', 'closed');
 
         return view('user.dashboard',
             [
@@ -26,6 +29,9 @@ class DashboardController extends Controller
                 'users' => $users,
                 'admins' => $admins,
                 'elections' => $elections,
+                'upcoming_elections' => $upcoming_elections,
+                'opened_elections' => $opened_elections,
+                'closed_elections' => $closed_elections,
             ]
         );
     }

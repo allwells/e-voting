@@ -88,6 +88,12 @@ footer {
     padding: 0 5%;
 }
 
+@media (min-width: 768px) {
+    .md\:w-2\/6 {
+        width: 31% !important;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     /* Login page */
     .login-container {
