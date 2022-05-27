@@ -212,7 +212,7 @@
                     @if ($elections->count() > 0)
                         <div class="flex flex-col items-start justify-center gap-4 mt-4 h-fit">
                             @foreach ($elections as $election)
-                                @if ($today->gt($election->start_date) && $today->lt($election->end_date) && $election->status == 'open')
+                                @if ($today->gt($election->start_date) && $today->lt($election->end_date) && $election->status === 'open')
                                     <x-election_card :election="$election" :today="$today" />
                                 @endif
                             @endforeach
@@ -245,7 +245,7 @@
                     @if ($elections->count() > 0)
                         <div class="flex flex-col items-start justify-center gap-4 mt-4 h-fit">
                             @foreach ($elections as $election)
-                                @if (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
+                                @if (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status === 'closed')
                                     <x-election_card :election="$election" :today="$today" />
                                 @endif
                             @endforeach

@@ -21,6 +21,31 @@ class ElectionController extends Controller
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
         $election = DB::table('elections')->orderBy('start_date')->get();
 
+        foreach($election as $elections)
+        {
+            if($today->gt($elections->start_date) && $today->lt($elections->end_date) && $elections->status === '')
+            {
+                Election::where('status', $elections->status)->update([
+                    'status' => 'open',
+                ]);
+
+                return back();
+            }
+        }
+
+
+        foreach($election as $elections)
+        {
+            if($today->gt($elections->start_date) && $today->gt($elections->end_date) && $elections->status !== 'closed')
+            {
+                Election::where('status', $elections->status)->update([
+                    'status' => 'closed',
+                ]);
+
+                return back();
+            }
+        }
+
         return view('user.election',
             [
                 'elections' => $election,
@@ -37,28 +62,31 @@ class ElectionController extends Controller
      */
     public function add_candidate(Request $request)
     {
-        if(auth() && auth()->user()->privilege == 'superuser' || auth() && auth()->user()->privilege == 'admin')
+        // get user privilege
+        $user = auth()->user()->privilege;
+
+        if((auth() && $user !== 'superuser') && (auth() && $user !== 'admin'))
         {
-            // validate candidate inputs
-            $this->validate($request, [
-                'name' => 'required|max:50',
-                'party' => 'max:50',
-                ]
-            );
-
-            // store candidate in database
-            Candidate::create([
-                'election_id' => (int)$request->election,
-                'name' => $request->name,
-                'party' => $request->party,
-                'image' => $request->image,
-                ]
-            );
-
-            return back();
-        } else {
-            return \redirect('/dashboard');
+            return abort(403, 'Unauthorized action.');
         }
+
+        // validate candidate inputs
+        $this->validate($request, [
+            'name' => 'required|max:50',
+            'party' => 'max:50',
+            ]
+        );
+
+        // store candidate in database
+        Candidate::create([
+            'election_id' => (int)$request->election,
+            'name' => $request->name,
+            'party' => $request->party,
+            'image' => $request->image,
+            ]
+        );
+
+        return back();
     }
 
     /**
@@ -69,34 +97,60 @@ class ElectionController extends Controller
      */
     public function store(Request $request)
     {
-        if(auth() && auth()->user()->privilege == 'superuser' || auth() && auth()->user()->privilege == 'admin')
+        // get user privilege
+        $user = auth()->user()->privilege;
+
+        if((auth() && $user !== 'superuser') && (auth() && $user !== 'admin'))
         {
-            // validate election inputs
-            $this->validate($request, [
-                'title' => 'required|max:100',
-                'description' => 'required|max:250',
-                'start_date' => 'required',
-                'start_time' => 'required',
-                'end_date' => 'required',
-                'end_time' => 'required',
-                ]
-            );
-
-            $start_time = $request->start_time . ':00';
-            $end_time = $request->end_time . ':00';
-
-            // store election in database
-            Election::create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'start_date' => $request->start_date . ' ' . $start_time,
-                'end_date' => $request->end_date . ' ' . $end_time,
-                ]
-            );
-
-            return back();
-        } else {
-            return \redirect('/dashboard');
+            return abort(403, 'Unauthorized action.');
         }
+
+        // validate election inputs
+        $this->validate($request, [
+            'title' => 'required|max:100',
+            'description' => 'required|max:250',
+            'start_date' => 'required',
+            'start_time' => 'required',
+            'end_date' => 'required',
+            'end_time' => 'required',
+            ]
+        );
+
+        $start_time = $request->start_time . ':00';
+        $end_time = $request->end_time . ':00';
+
+        // store election in database
+        Election::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'start_date' => $request->start_date . ' ' . $start_time, // Concatinate election start time with start date
+            'end_date' => $request->end_date . ' ' . $end_time, // Concatinate election end time with end date
+            ]
+        );
+
+        return back();
+    }
+
+    public function close_election(Election $election)
+    {
+        Election::where('id', $election->id)->update([
+            'status' => 'closed',
+        ]);
+
+        return back();
+    }
+
+    public function destroy(Election $election)
+    {
+        $user = auth()->user()->privilege;
+
+        if((auth() && $user !== 'superuser') && (auth() && $user !== 'admin'))
+        {
+            return abort(403, 'Unauthorized action.');
+        }
+
+        $election->delete();
+
+        return back();
     }
 }
