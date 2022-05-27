@@ -2506,6 +2506,10 @@ footer {
     align-items: flex-start;
   }
 
+  .md\:items-end {
+    align-items: flex-end;
+  }
+
   .md\:gap-3 {
     gap: 0.75rem;
   }

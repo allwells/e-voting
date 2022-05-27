@@ -98,7 +98,7 @@
         </p>
     </div>
 
-    <div class="flex flex-col items-end justify-between w-full gap-3 px-4 py-6 md:items-start md:flex-row md:px-6">
+    <div class="flex flex-col items-start justify-between w-full gap-3 px-4 py-6 md:items-end md:flex-row md:px-6">
         <div class="flex items-start justify-start flex-grow w-full md:w-fit">
             {{-- election start date --}}
             <div class="flex flex-col justify-start w-6/12 mr-1 gap-y-2 md:w-fit">
