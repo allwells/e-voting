@@ -50,7 +50,7 @@
                 Upcoming Elections
             </h5>
             <span
-                class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $upcoming_elections->count() }}</span>
+                class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $upcoming_elections_all->count() }}</span>
         </div>
 
         <div
@@ -59,7 +59,8 @@
                 class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
                 Opened Elections
             </h5>
-            <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $opened_elections->count() }}</span>
+            <span
+                class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $opened_elections_all->count() }}</span>
         </div>
 
         <div
