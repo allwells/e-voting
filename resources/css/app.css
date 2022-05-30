@@ -12,10 +12,6 @@ div#pagination-dark * {
     color: #777 !important;
 }
 
-div#pagination-dark div span.relative.z-0.inline-flex.shadow-sm.rounded-md {
-    background-color: #833 !important;
-}
-
 div#pagination-dark a.relative.inline-flex.items-center {
     outline: none !important;
     color: #bbb !important;
@@ -111,6 +107,12 @@ footer {
 /* user settings page */
 .user-settings {
     padding: 0 5%;
+}
+
+@media (min-width: 1024px) {
+    .lg\:w-6\/12 {
+        width: 49% !important;
+    }
 }
 
 @media (min-width: 768px) {

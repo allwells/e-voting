@@ -1,7 +1,7 @@
 @props(['election' => $election, 'today' => $today])
 
 <div
-    class="flex flex-col items-center w-full bg-white border rounded-lg shadow-xl dark:border-neutral-700 dark:bg-neutral-800">
+    class="flex flex-col justify-start items-center w-full bg-white border rounded-lg shadow-xl dark:border-neutral-700 dark:bg-neutral-800">
     <div class="z-20 flex items-center justify-end w-full px-2 pt-2">
         @if ((auth() && auth()->user()->privilege == 'superuser') || (auth() && auth()->user()->privilege == 'admin'))
             <button type="button" id="dropdownLeftButton" data-dropdown-toggle="dropdownLeft-{{ $election->id }}"
@@ -93,7 +93,7 @@
 
         {{-- Election description --}}
         <p
-            class="text-sm font-light text-left sm:text-lg text-neutral-700 dark:text-neutral-400 line-clamp-3 md:line-clamp-2 lg:line-clamp-none">
+            class="text-sm font-light text-left sm:text-lg text-neutral-700 dark:text-neutral-400 line-clamp-3 md:line-clamp-2 lg:line-clamp-1">
             {{ $election->description }}
         </p>
     </div>
