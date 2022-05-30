@@ -1,7 +1,7 @@
 @props(['election' => $election, 'today' => $today])
 
 <button type="button" data-modal-toggle="medium-modal-{{ $election->id }}"
-    class="text-white px-3 shadow-lg justify-center md:w-fit w-full font-semibold flex bg-indigo-700 border border-indigo-500 transition duration-300 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 rounded text-xs py-1.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
+    class="text-white px-3 shadow-lg justify-center lg:w-full md:w-fit w-full font-semibold flex bg-indigo-700 border border-indigo-500 transition duration-300 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 rounded text-xs py-1.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
     More Details
     <svg class="w-4 h-4 ml-1 pt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">

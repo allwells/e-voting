@@ -102,7 +102,7 @@
     @endif
 
     {{-- Opened elections --}}
-    <h1 class="mx-6 mt-6 mb-2 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
+    <h1 class="mx-6 mt-16 mb-2 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
         Opened Election(s)
     </h1>
 
