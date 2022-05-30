@@ -40,7 +40,8 @@
                 class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
                 Total Elections
             </h5>
-            <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $elections->count() }}</span>
+            <span
+                class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $upcoming->count() + $opened->count() + $closed->count() }}</span>
         </div>
 
         <div
@@ -49,8 +50,7 @@
                 class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
                 Upcoming Elections
             </h5>
-            <span
-                class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $upcoming_elections_all->count() }}</span>
+            <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $upcoming->count() }}</span>
         </div>
 
         <div
@@ -59,8 +59,7 @@
                 class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
                 Opened Elections
             </h5>
-            <span
-                class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $opened_elections_all->count() }}</span>
+            <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $opened->count() }}</span>
         </div>
 
         <div
@@ -69,22 +68,31 @@
                 class="mb-2 text-xs font-normal tracking-tight text-center uppercase cursor-default md:text-sm text-neutral-700 dark:text-neutral-50">
                 Closed Elections
             </h5>
-            <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $closed_elections->count() }}</span>
+            <span class="text-3xl font-bold cursor-default dark:text-neutral-500">{{ $closed->count() }}</span>
         </div>
     </div>
 
     {{-- upcoming elections --}}
-    <h1 class="mx-6 mt-6 mb-4 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
+    <h1 class="mx-6 mt-6 mb-2 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
         Upcoming Election(s)
     </h1>
+
+    <div class="flex justify-end items-center mx-6 mb-4">
+        <span>
+            <a href="/elections#accordion-flush-heading-1" class="hover:underline text-indigo-500 text-right">
+                See more
+            </a>
+        </span>
+    </div>
+
     @if ($upcoming_elections->count() > 0)
-        <div class="flex flex-col gap-6 p-2 mx-6 mb-6 border border-dashed border-neutral-400 dark:border-neutral-700">
+        <div
+            class="flex flex-col gap-4 p-2 mx-6 mb-6 border border-dashed border-neutral-400 dark:border-neutral-700 lg:flex-row">
             @foreach ($upcoming_elections as $election)
-                <x-election_card :election="$election" :today="$today" />
+                <div class="lg:w-6/12">
+                    <x-election_card :election="$election" :today="$today" />
+                </div>
             @endforeach
-            <div @if (auth()->user()->mode === 'dark') id="pagination-dark" @endif class="mt-2">
-                {{ $upcoming_elections->links() }}
-            </div>
         </div>
     @else
         <div
@@ -94,18 +102,26 @@
     @endif
 
     {{-- Opened elections --}}
-    <h1 class="mx-6 mt-6 mb-4 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
+    <h1 class="mx-6 mt-6 mb-2 text-lg font-semibold cursor-default md:text-2xl dark:text-neutral-200">
         Opened Election(s)
     </h1>
 
+    <div class="flex justify-end items-center mx-6 mb-4">
+        <span>
+            <a href="/elections#accordion-flush-heading-2" class="hover:underline text-indigo-500 text-right">
+                See more
+            </a>
+        </span>
+    </div>
+
     @if ($opened_elections->count() > 0)
-        <div class="flex flex-col gap-6 p-2 mx-6 mb-6 border border-dashed border-neutral-400 dark:border-neutral-700">
+        <div
+            class="flex flex-col gap-4 p-2 mx-6 mb-6 border border-dashed border-neutral-400 dark:border-neutral-700 lg:flex-row">
             @foreach ($opened_elections as $election)
-                <x-election_card :election="$election" :today="$today" />
+                <div class="lg:w-6/12">
+                    <x-election_card :election="$election" :today="$today" />
+                </div>
             @endforeach
-            <div @if (auth()->user()->mode === 'dark') id="pagination-dark" @endif class="mt-2">
-                {{ $opened_elections->links() }}
-            </div>
         </div>
     @else
         <div

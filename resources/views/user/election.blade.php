@@ -176,18 +176,18 @@
             </h2>
             <div id="accordion-flush-body-1" class="mb-3" aria-labelledby="accordion-flush-heading-1">
                 <div class="py-0">
-                    @if ($elections->count() > 0)
-                        <div class="flex flex-col items-start justify-center gap-4 mt-4 h-fit">
-                            @foreach ($elections as $election)
-                                @if ($today->lt($election->start_date) && $today->lt($election->end_date))
+                    @if ($upcoming->count() > 0)
+                        <div class="flex flex-col gap-3 lg:flex-row flex-wrap">
+                            @foreach ($upcoming as $election)
+                                <div class="lg:w-6/12">
                                     <x-election_card :election="$election" :today="$today" />
-                                @endif
+                                </div>
                             @endforeach
                         </div>
                     @else
                         <div
-                            class="flex flex-col items-center justify-center h-32 p-4 mt-4 text-center border border-dashed rounded-lg border-neutral-500 text-neutral-600 dark:text-neutral-500">
-                            No upcoming election(s) at the moment.
+                            class="flex items-center justify-center h-32 text-center border border-dashed text-neutral-400 border-neutral-300 dark:border-neutral-700">
+                            No upcoming elections.
                         </div>
                     @endif
                 </div>
@@ -209,18 +209,18 @@
             </h2>
             <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
                 <div class="py-0">
-                    @if ($elections->count() > 0)
-                        <div class="flex flex-col items-start justify-center gap-4 mt-4 h-fit">
-                            @foreach ($elections as $election)
-                                @if ($today->gt($election->start_date) && $today->lt($election->end_date) && $election->status === 'open')
+                    @if ($opened->count() > 0)
+                        <div class="flex flex-col gap-3 lg:flex-row flex-wrap">
+                            @foreach ($opened as $election)
+                                <div class="lg:w-6/12">
                                     <x-election_card :election="$election" :today="$today" />
-                                @endif
+                                </div>
                             @endforeach
                         </div>
                     @else
                         <div
-                            class="flex flex-col items-center justify-center h-32 p-4 mt-4 text-center border border-dashed rounded-lg border-neutral-500 text-neutral-600 dark:text-neutral-500">
-                            No opened election(s) at the moment.
+                            class="flex items-center justify-center h-32 text-center border border-dashed text-neutral-400 border-neutral-300 dark:border-neutral-700">
+                            No opened elections.
                         </div>
                     @endif
                 </div>
@@ -242,18 +242,18 @@
             </h2>
             <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
                 <div class="py-0">
-                    @if ($elections->count() > 0)
-                        <div class="flex flex-col items-start justify-center gap-4 mt-4 h-fit">
-                            @foreach ($elections as $election)
-                                @if (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status === 'closed')
+                    @if ($closed->count() > 0)
+                        <div class="flex flex-col gap-3 lg:flex-row flex-wrap">
+                            @foreach ($closed as $election)
+                                <div class="lg:w-6/12">
                                     <x-election_card :election="$election" :today="$today" />
-                                @endif
+                                </div>
                             @endforeach
                         </div>
                     @else
                         <div
-                            class="flex flex-col items-center justify-center h-32 p-4 mt-4 text-center border border-dashed rounded-lg border-neutral-500 text-neutral-600 dark:text-neutral-500">
-                            No previous election(s).
+                            class="flex items-center justify-center h-32 text-center border border-dashed text-neutral-400 border-neutral-300 dark:border-neutral-700">
+                            No closed elections.
                         </div>
                     @endif
                 </div>

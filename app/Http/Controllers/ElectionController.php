@@ -19,37 +19,41 @@ class ElectionController extends Controller
     {
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
-        $election = DB::table('elections')->orderBy('start_date')->get();
 
-        foreach($election as $elections)
+        $upcoming = DB::table('elections')->where('status', '=', '')->where('start_date', '>', $today)->where('end_date', '>', $today)->get();
+        $opened = DB::table('elections')->where('status', '=', 'open')->where('start_date', '<', $today)->where('end_date', '>', $today)->get();
+        $closed = DB::table('elections')->where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
+
+        foreach($upcoming as $election)
         {
-            if($today->gt($elections->start_date) && $today->lt($elections->end_date) && $elections->status === '')
+            if($today->gt($election->start_date) && $today->lt($election->end_date))
             {
-                Election::where('status', $elections->status)->update([
-                    'status' => 'open',
-                ]);
-
-                return back();
+                Election::update([ 'status' => 'open' ]);
+            }
+            else if($today->gt($election->start_date) && $today->gt($election->end_date))
+            {
+                Election::update([ 'status' => 'closed' ]);
             }
         }
 
-
-        foreach($election as $elections)
+        foreach($opened as $election)
         {
-            if($today->gt($elections->start_date) && $today->gt($elections->end_date) && $elections->status !== 'closed')
+            if($today->gt($election->start_date) && $today->gt($election->end_date) && $election->status !== 'closed')
             {
-                Election::where('status', $elections->status)->update([
-                    'status' => 'closed',
-                ]);
-
-                return back();
+                Election::update([ 'status' => 'closed' ]);
+            }
+            else if($today->lt($election->start_date) && $today->lt($election->end_date))
+            {
+                Election::update([ 'status' => '' ]);
             }
         }
 
         return view('user.election',
             [
-                'elections' => $election,
                 'today' => $today,
+                'opened' => $opened,
+                'closed' => $closed,
+                'upcoming' => $upcoming,
             ]
         );
     }
