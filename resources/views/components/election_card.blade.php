@@ -93,7 +93,7 @@
 
         {{-- Election description --}}
         <p
-            class="text-sm font-light text-left sm:text-lg text-neutral-700 dark:text-neutral-400 line-clamp-3 md:line-clamp-2 lg:line-clamp-1">
+            class="text-sm font-light text-left sm:text-lg text-neutral-700 dark:text-neutral-400 line-clamp-2 lg:line-clamp-1">
             {{ $election->description }}
         </p>
     </div>
@@ -165,10 +165,11 @@
             </div>
         </div>
 
-        <div class="flex flex-col items-end justify-end w-full gap-2 md:w-fit md:flex-row md:gap-3">
+        <div
+            class="flex flex-col items-end justify-end w-full gap-2 lg:flex-col lg:w-6/12 md:w-fit md:flex-row md:gap-3">
             @if (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status === 'closed')
                 <a href="{{ route('elections') }}"
-                    class="text-white px-3 shadow-lg justify-center md:w-fit w-full font-semibold flex bg-indigo-700 border border-indigo-500 transition duration-300 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 rounded text-xs py-1.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
+                    class="text-white px-3 shadow-lg justify-center lg:w-full md:w-fit w-full font-semibold flex bg-indigo-700 border border-indigo-500 transition duration-300 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 rounded text-xs py-1.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
