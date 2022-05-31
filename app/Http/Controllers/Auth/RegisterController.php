@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller {
 
@@ -26,29 +28,50 @@ class RegisterController extends Controller {
      * @return string
      */
     public function store(Request $request) {
+
         // validate user input
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:50',
             'username' => 'required|max:50',
-            'email' => 'required|email|max:120',
-            'password' => 'required|confirmed',
-            ]
-        );
+            'email' => 'required|email|unique:users|max:120',
+            'password' => 'required|confirmed|min:6|max:18',
+        ]);
+
+
+        if(!$validator->passes()) {
+            return response()->json(['status' => 422, 'error' => $validator->errors()->toArray()]);
+        } else {
+            $values = [
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => \Hash::make($request->password),
+            ];
+
+            $query = DB::table('users')->insert($values);
+
+            if($query > 0)
+            {
+                // authenticate user and signs user in
+                auth()->attempt($request->only('email', 'password'));
+                return response()->json(['status' => 200, 'message' => 'Account created succefully!']);
+            }
+        }
 
         // store user in database
-        User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            ]
-        );
+        // User::create([
+        //     'name' => $request->name,
+        //     'username' => $request->username,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        //     ]
+        // );
 
         // authenticate user and signs user in
-        auth()->attempt($request->only('email', 'password'));
+        // auth()->attempt($request->only('email', 'password'));
 
         // redirect user
-        return redirect()->route('dashboard');
+        // return redirect()->route('dashboard');
 
     }
 }

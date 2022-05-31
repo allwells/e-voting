@@ -42,9 +42,10 @@ Route::group(['middleware' => 'auth'], function() {
     // SETTINGS ROUTE
     Route::get('/settings', 'App\Http\Controllers\SettingsController@index')->name('settings');
     Route::post('/settings', 'App\Http\Controllers\SettingsController@store_theme')->name('settings.theme');
+    Route::post('/settings/email', 'App\Http\Controllers\SettingsController@store_email')->name('settings.email');
 
     // LOGOUT ROUTE
-    Route::get('/logout', 'App\Http\Controllers\Auth\LogoutController@index')->name('logout');
+    Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController@index')->name('logout');
 
     // redirects to dashboard route
     Route::get('/', function() { return redirect()->route('dashboard'); });

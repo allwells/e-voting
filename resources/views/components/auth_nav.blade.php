@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <nav
     class="z-40 border-b shadow-lg border-neutral-300 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm dark:border-neutral-700">
-    <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="px-2 mx-auto sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <!-- Mobile menu button-->
@@ -28,58 +28,11 @@
                 {{-- logo --}}
                 <div class="flex items-center flex-shrink-0">
                     <a href="{{ route('home') }}"
-                        class="flex items-center justify-start text-3xl font-bold text-center w-fit">
+                        class="flex items-center justify-start text-3xl font-bold text-center dashboard-btn w-fit">
                         <span class="-mr-1 text-indigo-600">e</span>
                         <span class="text-neutral-800 dark:text-neutral-200">Voting</span>
                     </a>
                 </div>
-
-                {{-- nav items --}}
-                {{-- <div class="hidden sm:block sm:ml-6">
-                    <div class="flex space-x-4">
-                        <a href="{{ route('dashboard') }}"
-                            class="flex items-center justify-center px-3 py-2 text-sm font-medium transition duration-300 rounded-md text-neutral-700 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
-                            aria-current="page">
-                            <svg class="flex-shrink-0 w-6 h-6 mr-2 transition duration-300 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
-                                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
-                                </path>
-                            </svg>
-                            Dashboard
-                        </a>
-
-                        <a href="{{ route('elections') }}"
-                            class="flex items-center justify-center px-3 py-2 text-sm font-medium transition duration-300 rounded-md text-neutral-700 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
-                            aria-current="page">
-
-                            <svg class="flex-shrink-0 w-6 h-6 mr-2 transition duration-300 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
-                                </path>
-                            </svg>
-                            Elections
-                        </a>
-
-                        @if (auth()->user()->privilege == 'superuser')
-                            <a href="{{ route('users') }}"
-                                class="flex items-center justify-center px-3 py-2 text-sm font-medium transition duration-300 rounded-md text-neutral-700 dark:text-neutral-300 dark:active:ring-2 dark:active:ring-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 active:ring-2 active:ring-neutral-200 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900"
-                                aria-current="page">
-
-                                <svg class="flex-shrink-0 w-6 h-6 mr-2 transition duration-300 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                                    </path>
-                                </svg>
-                                Users
-                            </a>
-                        @endif
-                    </div>
-                </div> --}}
             </div>
 
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -128,7 +81,7 @@
                             </div>
 
                             <a href="{{ route('dashboard') }}"
-                                class="flex items-center justify-start px-4 py-2 mx-1 text-sm align-middle transition duration-300 rounded-md dark:hover:bg-neutral-700 dark:text-neutral-100 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900"
+                                class="flex items-center justify-start px-4 py-2 mx-1 text-sm align-middle transition duration-300 rounded-md dashboard-btn dark:hover:bg-neutral-700 dark:text-neutral-100 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900"
                                 role="menuitem" tabindex="-1" id="user-menu-item-0">
 
                                 <svg class="flex-shrink-0 w-6 h-6 mr-2 transition duration-300 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
@@ -142,7 +95,7 @@
                             </a>
 
                             <a href="{{ route('profile') }}"
-                                class="flex items-center justify-start px-4 py-2 mx-1 mt-1 text-sm align-middle transition duration-300 rounded-md dark:hover:bg-neutral-700 dark:text-neutral-100 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900"
+                                class="flex items-center justify-start px-4 py-2 mx-1 mt-1 text-sm align-middle transition duration-300 rounded-md profile-btn dark:hover:bg-neutral-700 dark:text-neutral-100 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900"
                                 role="menuitem" tabindex="-1" id="user-menu-item-0">
 
                                 <svg class="flex-shrink-0 w-6 h-6 mr-2 transition duration-300 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
@@ -154,7 +107,7 @@
                             </a>
 
                             <a href="{{ route('settings') }}"
-                                class="flex items-center justify-start px-4 py-2 mx-1 mt-1 text-sm align-middle transition duration-300 rounded-md dark:hover:bg-neutral-700 dark:text-neutral-100 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900"
+                                class="flex items-center justify-start px-4 py-2 mx-1 mt-1 text-sm align-middle transition duration-300 rounded-md settings-btn dark:hover:bg-neutral-700 dark:text-neutral-100 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900"
                                 role="menuitem" tabindex="-1" id="user-menu-item-1">
 
                                 <svg class="flex-shrink-0 w-6 h-6 mr-2 transition duration-300 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
@@ -168,19 +121,27 @@
 
                             <div class="w-full mt-1 border-b border-neutral-200 dark:border-neutral-700"></div>
 
-                            <a href="{{ route('logout') }}"
-                                class="flex items-center justify-start px-4 py-2 mx-1 mt-1 text-sm align-middle transition duration-300 rounded-md dark:hover:bg-neutral-700 dark:text-neutral-100 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900"
-                                role="menuitem" tabindex="-1" id="user-menu-item-2">
+                            <form id="logout-form" class="w-full" action="{{ route('logout') }}"
+                                method="post">
+                                @csrf
+                                <button class="w-full" tabindex="-1" type="submit" aria-disabled="true">
+                                    <span
+                                        class="flex items-center justify-start px-4 py-2 mx-1 mt-1 text-sm align-middle transition duration-300 rounded-md logout-btn dark:hover:bg-neutral-700 dark:text-neutral-100 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-900"
+                                        role="menuitem" tabindex="-1" id="user-menu-item-2">
 
-                                <svg class="flex-shrink-0 w-6 h-6 mr-2 transition duration-300 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                                    </path>
-                                </svg>
-                                Log out
-                            </a>
+                                        <svg class="flex-shrink-0 w-6 h-6 mr-2 transition duration-300 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                            </path>
+                                        </svg>
+                                        Logout
+                                    </span>
+
+                                </button>
+                            </form>
+
                         </div>
                     </div>
 
@@ -195,7 +156,7 @@
 
             <div class="w-full mt-1 border-b border-neutral-200 dark:border-neutral-800"></div>
 
-            <a href="{{ route('dashboard') }}"
+            <a id="dashboard-btn" href="{{ route('dashboard') }}"
                 class="flex items-center justify-start px-3 py-2 text-sm font-medium transition duration-300 rounded-md text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-neutral-100"
                 aria-current="page">
                 <svg class="flex-shrink-0 w-6 h-6 mr-2 transition duration-300 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
@@ -209,7 +170,7 @@
 
             <div class="w-full mt-1 border-b border-neutral-200 dark:border-neutral-800"></div>
 
-            <a href="{{ route('elections') }}"
+            <a id="elections-btn" href="{{ route('elections') }}"
                 class="flex items-center justify-start px-3 py-2 text-sm font-medium transition duration-300 rounded-md text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-neutral-100"
                 aria-current="page">
 
@@ -224,7 +185,7 @@
             @if (auth()->user()->privilege == 'superuser')
                 <div class="w-full mt-1 border-b border-neutral-200 dark:border-neutral-800"></div>
 
-                <a href="{{ route('users') }}"
+                <a id="users-btn" href="{{ route('users') }}"
                     class="flex items-center justify-start px-3 py-2 text-sm font-medium transition duration-300 rounded-md text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-neutral-100"
                     aria-current="page">
 

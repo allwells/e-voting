@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SettingsController extends Controller
 {
@@ -32,27 +33,40 @@ class SettingsController extends Controller
     public function store_theme(Request $request)
     {
         // Update theme for logged in user
-        User::where('id', auth()->user()->id)->update([
+        $query = User::where('id', auth()->user()->id)->update([
             'mode' => $request->input('theme'),
         ]);
 
-        return back();
+        if($query)
+        {
+            response()->json(['status' => 200, 'message' => 'Theme updated succefully!']);
+            return back();
+        }
+
     }
 
     /**
-     * Update theme('mode' column) in database.
+     * Update user email in database.
      *
      * @param  Illuminate\Http\Request  $request
      * @return function
      */
     public function store_email(Request $request)
     {
-        dd($request->email);
-        // // Update user email
-        // User::where('id', auth()->user()->id)->update([
-        //     'email' => $request->email,
-        // ]);
+        // Update user email
+        $emailExists = DB::table('users')->where('email', '=', $request->email)->get();
 
-        // return back();
+        if($emailExists->count() > 0) {
+            return response()->json(['status' => 409, 'error' => 'Email already exists!']);
+        }
+
+        $query = User::where('id', auth()->user()->id)->update([
+            'email' => $request->email,
+        ]);
+
+        if($query === 1)
+        {
+            return response()->json(['status' => 200, 'message' => 'Email updated succefully!']);
+        }
     }
 }

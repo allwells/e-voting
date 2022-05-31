@@ -1,4 +1,4 @@
-<nav id="navbar-container" class="w-full fixed z-50 h-auto py-5 border-b border-gray-100">
+<nav id="navbar-container" class="w-full fixed z-50 h-auto py-5 border-b border-gray-100 bg-white/70 backdrop-blur-sm">
     <div class="flex justify-between px-16 align-middle nav-contents">
 
         {{-- Logo section --}}
@@ -9,7 +9,7 @@
         {{-- login and register buttons --}}
 
         <div>
-            <x-button text='Login' link="{{ route('login') }}" variant="py-1 px-6 shadow-lg" />
+            <x-button text='Login' link="/login" variant="login-btn py-1 px-6 shadow-lg" />
         </div>
     </div>
 </nav>

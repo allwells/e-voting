@@ -1,12 +1,12 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="flex items-center justify-center px-4 py-12 login-container sm:px-6 lg:px-8">
+    <div id="page-content" class="flex items-center justify-center px-4 py-12 login-container sm:px-6 lg:px-8">
         <div class="w-full max-w-md space-y-8">
             <div>
                 <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-800">Login</h2>
             </div>
-            <form class="mt-8 space-y-6" action="{{ route('login') }}" method="POST">
+            <form id="login-form" class="mt-8 space-y-6" action="{{ route('login') }}" method="POST">
                 @csrf
 
                 @if (session('status'))
@@ -14,6 +14,8 @@
                         {{ session('status') }}
                     </div>
                 @endif
+
+                <div id='error-label' class="py-3 mb-3 text-center text-white bg-red-700 rounded hidden"></div>
 
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
@@ -52,7 +54,7 @@
 
                 <div>
                     <button type="submit"
-                        class="relative flex justify-center w-full px-4 py-2 text-sm font-bold text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                        class="login-submit-btn relative flex justify-center w-full px-4 py-2 text-sm font-bold text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <!-- Heroicon name: solid/lock-closed -->
                             <svg class="w-5 h-5 text-indigo-400 group-hover:text-indigo-400"
@@ -69,7 +71,8 @@
                     {{-- Link to sign up page --}}
                     <div class="flex mt-3 text-sm">
                         <span class="mr-1 text-gray-700">Don't have an account?</span>
-                        <a class="text-indigo-600 hover:underline" href="{{ route('register') }}">Sign up</a>
+                        <a class="signup-btn text-indigo-600 hover:underline" href="{{ route('register') }}">Sign
+                            up</a>
                     </div>
                 </div>
             </form>

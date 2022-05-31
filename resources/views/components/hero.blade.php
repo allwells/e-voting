@@ -19,9 +19,9 @@
             </div>
 
             <div class="flex justify-center py-6 mt-6 align-middle">
-                <x-button text="Get Started" link="{{ route('register') }}" variant="py-3 px-6 shadow-lg w-40" />
+                <x-button text="Get Started" link="{{ route('register') }}"
+                    variant="signup-btn py-3 px-6 shadow-lg w-40" />
             </div>
-
         </div>
     </main>
 </div>

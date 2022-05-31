@@ -77,13 +77,15 @@
         Upcoming Election(s)
     </h1>
 
-    <div class="flex justify-end items-center mx-6 mb-4">
-        <span>
-            <a href="/elections#accordion-flush-heading-1" class="hover:underline text-indigo-500 text-right">
-                See more
-            </a>
-        </span>
-    </div>
+    @if ($upcoming->count() > 2)
+        <div class="flex justify-end items-center mx-6 mb-4">
+            <span>
+                <a href="/elections#accordion-flush-heading-1" class="hover:underline text-indigo-500 text-right">
+                    See more
+                </a>
+            </span>
+        </div>
+    @endif
 
     @if ($upcoming_elections->count() > 0)
         <div
@@ -106,13 +108,15 @@
         Opened Election(s)
     </h1>
 
-    <div class="flex justify-end items-center mx-6 mb-4">
-        <span>
-            <a href="/elections#accordion-flush-heading-2" class="hover:underline text-indigo-500 text-right">
-                See more
-            </a>
-        </span>
-    </div>
+    @if ($opened->count() > 2)
+        <div class="flex justify-end items-center mx-6 mb-4">
+            <span>
+                <a href="/elections#accordion-flush-heading-2" class="hover:underline text-indigo-500 text-right">
+                    See more
+                </a>
+            </span>
+        </div>
+    @endif
 
     @if ($opened_elections->count() > 0)
         <div

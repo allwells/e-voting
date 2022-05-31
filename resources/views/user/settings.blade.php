@@ -21,7 +21,7 @@
                         Theme
                     </label>
 
-                    <form action="{{ route('settings.theme') }}" method="post">
+                    <form id="theme-form" action="{{ route('settings.theme') }}" method="post">
                         @csrf
 
                         {{-- Mode selection --}}
@@ -62,7 +62,7 @@
                     Change Email
                 </label>
 
-                <form class="px-1 space-y-2" action="{{ route('settings') }}" method="post">
+                <form id="email-form" class="px-1 space-y-2" action="{{ route('settings.email') }}" method="post">
                     @csrf
 
                     <div class="-space-y-px rounded-md shadow-sm">
@@ -73,6 +73,35 @@
                             <input id="email-address" name="email" type="email" autocomplete="email"
                                 value="{{ $user->email }}" required
                                 class="relative block w-full px-3 py-2 mt-1 text-sm transition duration-300 border rounded-md text-neutral-700 dark:hover:border-neutral-400 hover:border-neutral-500 border-neutral-200 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-md dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
+
+
+                            <div id="email-success-msg"
+                                class="items-center justify-between hidden w-full px-3 py-2 mt-2 font-normal text-left border rounded-md border-emerald-800 text-md text-neutral-800 bg-emerald-200/80 h-fit">
+                                <span id="email-success-message" class="text-emerald-800"></span>
+                                <span id="close-email-success-msg"
+                                    class="p-1 text-white transition duration-300 rounded-sm cursor-pointer bg-emerald-600/60 hover:bg-emerald-700/90">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
+
+                            <div id="email-error-msg"
+                                class="items-center justify-between hidden w-full px-3 py-2 mt-2 font-normal text-left border rounded-md border-rose-800 text-md text-neutral-800 bg-rose-200/80 h-fit">
+                                <span id="email-error-message" class="text-rose-800"></span>
+                                <span id="close-email-error-msg"
+                                    class="p-1 text-white transition duration-300 rounded-sm cursor-pointer bg-rose-600/60 hover:bg-rose-700/90">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
