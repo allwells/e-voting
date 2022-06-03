@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#candidate-card:hover > .vote-btn {
+    display: flex !important;
+}
+
+/* Nav bar */
+#navbar-container {
+    top: 0;
+    width: 100%;
+}
+
+/* nav bar profile image */
+div#nav-profile-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Hero background */
+.hero-background {
+    min-height: 90vh;
+    margin-top: 5.6rem;
+    background-image: url("../../public/images/background-spot.svg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Login page */
+.login-container {
+    min-height: 90vh;
+}
+
+/* Footer */
+footer {
+    cursor: default;
+}
+
+/* User dashboard layout */
+#layout {
+    min-height: calc(100% - 2rem);
+}
+
+/* user profile page */
+.user-profile .profile-bg-image {
+    height: 15rem;
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.user-profile .profile-image-container {
+    margin-left: 3%;
+}
+
+.user-profile .profile-image-container .profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.user-profile .profile-details {
+    width: 100%;
+    padding: 0 5%;
+}
+
+.user-profile .profile-details form {
+    width: 80%;
+}
+
+/* user settings page */
+.user-settings {
+    padding: 0 5%;
+}
+
+@media (min-width: 1024px) {
+    .lg\:w-6\/12 {
+        width: 49% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .md\:w-2\/6 {
+        width: 31% !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .vote-btn {
+        opacity: 1 !important;
+    }
+
+    .user-profile .profile-details form {
+        width: 95% !important;
+    }
+}
+
+@media only screen and (max-width: 570px) {
+    #navbar-container .nav-contents {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    /* user settings page */
+    .user-settings {
+        padding: 0 6%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .user-profile .profile-image-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .user-profile .profile-bg-image {
+        height: 8rem;
+    }
+
+    .user-profile .profile-image-container .details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}
