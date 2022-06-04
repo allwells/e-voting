@@ -10,12 +10,11 @@
                 @csrf
 
                 @if (session('status'))
-                    <div class="py-3 mb-3 text-center text-white bg-red-700">
+                    <div
+                        class="border-white items-center justify-start text-left px-3 text-md border-2 py-3 ring-1 ring-rose-300 cursor-default text-rose-800 font-normal bg-rose-200 h-fit w-full">
                         {{ session('status') }}
                     </div>
                 @endif
-
-                <div id='error-label' class="py-3 mb-3 text-center text-white bg-red-700 hidden"></div>
 
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">

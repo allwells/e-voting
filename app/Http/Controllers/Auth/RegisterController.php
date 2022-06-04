@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -27,20 +29,23 @@ class RegisterController extends Controller
 
         // validate user input
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:50',
-            'username' => 'required|max:50',
+            'fname' => 'required|max:50',
+            'lname' => 'max:50',
             'email' => 'required|email|unique:users|max:120',
+            'phone' => 'required|min:10|max:15',
+            'dob' => 'required',
             'password' => 'required|confirmed|min:6|max:18',
         ]);
-
 
         if(!$validator->passes()) {
             return response()->json(['status' => 422, 'error' => $validator->errors()->toArray()]);
         } else {
             $values = [
-                'name' => $request->name,
-                'username' => $request->username,
+                'fname' => $request->fname,
+                'lname' => $request->lname,
                 'email' => $request->email,
+                'phone' => $request->phone,
+                'dob' => $request->dob,
                 'password' => \Hash::make($request->password),
             ];
 
@@ -48,9 +53,7 @@ class RegisterController extends Controller
 
             if($query > 0)
             {
-                // authenticate user and signs user in
-                auth()->attempt($request->only('email', 'password'));
-                return response()->json(['status' => 200, 'message' => 'Account created succefully!']);
+                return response()->json(['status' => 200, 'message' => 'Account created successfully!']);
             }
         }
     }

@@ -13,6 +13,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// AUTHENTICATED USER ROUTE
+Route::group(['middleware' => 'auth'], function() {
+    // DASHBOARD ROUTE
+    Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
+
+    // RESULTS ROUTE
+    Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');
+
+    // LOGOUT ROUTE
+    Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController@index')->name('logout');
+
+    // redirects to dashboard route
+    Route::get('/', function() { return redirect()->route('dashboard'); });
+    Route::get('/home', function() { return redirect()->route('dashboard'); });
+});
+
+// ADMINS ROUTE
+Route::group(['middleware' => 'admin'], function() {});
+
+// USERS ROUTE
+Route::group(['middleware' => 'user'], function() {
+    // INFORMATION ROUTE
+    Route::get('/information', 'App\Http\Controllers\User\InformationController@index')->name('information');
+
+    // VOTER REGISTRATION ROUTE
+    Route::get('/registration', 'App\Http\Controllers\User\VoterRegistrationController@index')->name('voter.registration');
+
+    // VOTING ROUTE
+    Route::get('/voting', 'App\Http\Controllers\User\VotingAreaController@index')->name('voting');
+});
+
 // GUEST ROUTE
 Route::group(['middleware' => 'guest'], function() {
     // HOME ROUTE

@@ -7,20 +7,11 @@
             <div>
                 <h2 class="pt-6 text-2xl font-extrabold text-center text-gray-800">Sign up to vote</h2>
             </div>
-            <form id="signup-form" class="mt-8 space-y-8" action="{{ route('register') }}" method="POST">
+            <form id="register-form" class="mt-8 space-y-8" action="{{ route('register') }}" method="POST">
                 @csrf
 
                 <div id="success-msg"
-                    class="border-emerald-700 hidden items-center justify-between text-left px-3 text-md border-2 py-3 rounded-md text-neutral-800 font-semibold bg-emerald-300/90 h-fit w-full">
-                    <span id="success-message"></span>
-                    <span id="close-success-msg"
-                        class="p-1 rounded-full hover:bg-emerald-600 text-neutral-800 hover:text-white cursor-pointer">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                            </path>
-                        </svg>
-                    </span>
+                    class="border-white hidden items-center justify-start text-left px-3 text-md border-2 py-3 ring-1 ring-emerald-300 cursor-default text-emerald-800 font-normal bg-emerald-200 h-fit w-full">
                 </div>
 
                 <input type="hidden" name="remember" value="true">
@@ -29,7 +20,9 @@
                     <div class="flex gap-4 md:flex-row flex-col">
                         {{-- first name input field --}}
                         <div class="md:w-6/12 w-full">
-                            <label for="fname" class="font-semibold text-gray-700">First Name</label>
+                            <label for="fname" class="font-semibold text-gray-700">First Name
+                                <span class="text-rose-500">*</span>
+                            </label>
                             <input id="fname" name="fname" type="text"
                                 class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 h-14 border-gray-200 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-base"
                                 placeholder="Enter your first name" value="{{ old('fname') }}">
@@ -51,8 +44,10 @@
                     <div class="flex gap-4 md:flex-row flex-col">
                         {{-- Email input field --}}
                         <div class="md:w-6/12 w-full">
-                            <label for="email-address" class="font-semibold text-gray-700">Email</label>
-                            <input id="email-address" name="email" type="email"
+                            <label for="email" class="font-semibold text-gray-700">Email
+                                <span class="text-rose-500">*</span>
+                            </label>
+                            <input id="email" name="email" type="email"
                                 class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 h-14 border-gray-200 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-base"
                                 placeholder="Enter email address" value="{{ old('email') }}">
 
@@ -61,7 +56,9 @@
 
                         {{-- phone input field --}}
                         <div class="md:w-6/12 w-full">
-                            <label for="phone" class="font-semibold text-gray-700">Phone Number</label>
+                            <label for="phone" class="font-semibold text-gray-700">Phone Number
+                                <span class="text-rose-500">*</span>
+                            </label>
                             <input id="phone" name="phone" type="tel"
                                 class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 h-14 border-gray-200 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-base"
                                 placeholder="Enter your phone number" value="{{ old('phone') }}">
@@ -73,7 +70,9 @@
                     <div class="flex gap-4 md:flex-row flex-col">
                         {{-- date of birth input field --}}
                         <div class="md:w-6/12 w-full">
-                            <label for="dob" class="font-semibold text-gray-700">Date of Birth</label>
+                            <label for="dob" class="font-semibold text-gray-700">Date of Birth
+                                <span class="text-rose-500">*</span>
+                            </label>
                             <input id="dob" name="dob" type="date"
                                 class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 h-14 border-gray-200 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-base"
                                 placeholder="Date of Birth(dd-mm-yyyy)" value="{{ old('dob') }}">
@@ -83,7 +82,9 @@
 
                         {{-- password input field --}}
                         <div class="md:w-6/12 w-full">
-                            <label for="password" class="font-semibold text-gray-700">Password</label>
+                            <label for="password" class="font-semibold text-gray-700">Password
+                                <span class="text-rose-500">*</span>
+                            </label>
                             <input id="password" name="password" type="password"
                                 class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 h-14 border-gray-200 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-base"
                                 placeholder="Choose a password">
@@ -95,7 +96,9 @@
                     <div class="flex gap-4 md:flex-row flex-col">
                         {{-- password confirmation input field --}}
                         <div class="md:w-6/12 w-full">
-                            <label for="password-confirmation" class="font-semibold text-gray-700">Confirm Password</label>
+                            <label for="password-confirmation" class="font-semibold text-gray-700">Confirm Password
+                                <span class="text-rose-500">*</span>
+                            </label>
                             <input id="password-confirmation" name="password_confirmation" type="password"
                                 class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 h-14 border-gray-200 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 text-base"
                                 placeholder="Confirm your password">

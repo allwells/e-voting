@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="h-full bg-white @auth dark:bg-neutral-800 @endauth">
+<body class="h-full bg-neutral-100 @auth dark:bg-neutral-800 @endauth">
     {{-- Navbar for authenticated users --}}
     {{-- @auth
         <div class="{{ auth()->user()->mode }} h-fit fixed w-full z-50">
