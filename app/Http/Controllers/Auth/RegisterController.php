@@ -25,8 +25,8 @@ class RegisterController extends Controller
      * @param  Illuminate\Http\Request  $request
      * @return string
      */
-    public function store(Request $request) {
-
+    public function store(Request $request)
+    {
         // validate user input
         $validator = Validator::make($request->all(), [
             'fname' => 'required|max:50',

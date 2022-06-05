@@ -18,6 +18,10 @@ Route::group(['middleware' => 'auth'], function() {
     // DASHBOARD ROUTE
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
+    // ELECTIONS ROUTE
+    Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections');
+    Route::post('/elections', 'App\Http\Controllers\ElectionController@store');
+
     // RESULTS ROUTE
     Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');
 
@@ -30,7 +34,12 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 // ADMINS ROUTE
-Route::group(['middleware' => 'admin'], function() {});
+Route::group(['middleware' => 'admin'], function() {
+    // ADD CANDIDATE ROUTE
+    Route::get('/add-candidates', 'App\Http\Controllers\Admin\AddCandidateController@index')->name('candidates');
+    Route::post('/add-candidates', 'App\Http\Controllers\Admin\AddCandidateController@store');
+
+});
 
 // USERS ROUTE
 Route::group(['middleware' => 'user'], function() {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class=" h-full @auth {{ auth()->user()->mode }}  @endauth"
+<html class=" h-full @auth {{ auth()->user()->theme }}  @endauth"
     lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -20,14 +20,7 @@
 
 </head>
 
-<body class="h-full bg-neutral-100 @auth dark:bg-neutral-800 @endauth">
-    {{-- Navbar for authenticated users --}}
-    {{-- @auth
-        <div class="{{ auth()->user()->mode }} h-fit fixed w-full z-50">
-            <x-auth_nav />
-        </div>
-    @endauth --}}
-
+<body class="h-full bg-neutral-100 dark:bg-neutral-800">
     {{-- Navbar for non-authenticated users --}}
     @guest
         <x-navbar />

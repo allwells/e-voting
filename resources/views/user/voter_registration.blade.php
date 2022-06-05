@@ -8,7 +8,7 @@
                 Registration
             </h2>
             <div class="pb-6 mt-6 grow text-neutral-500 dark:text-neutral-200">
-                <form id="register-form" class="flex flex-col items-center justify-start mt-8 space-y-8"
+                <form id="voter-reg-form" class="flex flex-col items-center justify-start mt-8 space-y-8"
                     action="{{ route('register') }}" method="POST">
                     @csrf
 

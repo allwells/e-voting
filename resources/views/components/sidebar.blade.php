@@ -1,5 +1,5 @@
 <aside id="mobile-menu-2"
-    class="fixed w-72 hidden sm:flex flex-col z-50 border-t h-full px-2 pb-3 pt-0.5 top-0 bg-white shadow-xl dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300"
+    class="fixed w-72 hidden sm:flex flex-col z-50 h-full px-2 pb-3 pt-0.5 top-0 bg-white shadow-xl dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300"
     aria-label="Sidebar">
     <div class="flex flex-col items-start justify-start w-full h-full px-3 pt-2 sm:justify-between">
         <ul class="w-full space-y-2">
@@ -22,6 +22,44 @@
 
 
             @if (auth() && auth()->user()->privilege == 'admin')
+                <li>
+                    <a href="#"
+                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 information-btn hover:bg-neutral-200 dark:hover:bg-neutral-800">
+                        <svg class="flex-shrink-0 w-6 h-6 transition duration-75 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                            </path>
+                        </svg>
+                        <span class="flex-1 ml-3 text-sm whitespace-nowrap md:text-md">Candidate Details</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('candidates') }}"
+                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 information-btn hover:bg-neutral-200 dark:hover:bg-neutral-800">
+                        <svg class="flex-shrink-0 w-6 h-6 transition duration-75 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                            </path>
+                        </svg>
+                        <span class="flex-1 ml-3 text-sm whitespace-nowrap md:text-md">Add Candidate</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 information-btn hover:bg-neutral-200 dark:hover:bg-neutral-800">
+                        <svg class="flex-shrink-0 w-6 h-6 transition duration-75 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                            </path>
+                        </svg>
+                        <span class="flex-1 ml-3 text-sm whitespace-nowrap md:text-md">Register</span>
+                    </a>
+                </li>
             @endif
 
             @if (auth() && auth()->user()->privilege == 'user')
@@ -65,21 +103,33 @@
                         <span class="flex-1 ml-3 text-sm whitespace-nowrap md:text-md">Voting Area</span>
                     </a>
                 </li>
-
-
-                <li>
-                    <a href="{{ route('results') }}"
-                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 result-btn hover:bg-neutral-200 dark:hover:bg-neutral-800">
-                        <svg class="flex-shrink-0 w-6 h-6 transition duration-75 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
-                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
-                            </path>
-                        </svg>
-                        <span class="flex-1 ml-3 text-sm whitespace-nowrap md:text-md">Result</span>
-                    </a>
-                </li>
             @endif
+
+            <li>
+                <a href="{{ route('elections') }}"
+                    class="flex items-center h-12 p-2 text-base font-normal transition duration-300 information-btn hover:bg-neutral-200 dark:hover:bg-neutral-800">
+                    <svg class="flex-shrink-0 w-6 h-6 transition duration-75 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                        </path>
+                    </svg>
+                    <span class="flex-1 ml-3 text-sm whitespace-nowrap md:text-md">Elections</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('results') }}"
+                    class="flex items-center h-12 p-2 text-base font-normal transition duration-300 result-btn hover:bg-neutral-200 dark:hover:bg-neutral-800">
+                    <svg class="flex-shrink-0 w-6 h-6 transition duration-75 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
+                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                        </path>
+                    </svg>
+                    <span class="flex-1 ml-3 text-sm whitespace-nowrap md:text-md">Result</span>
+                </a>
+            </li>
         </ul>
 
         <span class="w-full">
