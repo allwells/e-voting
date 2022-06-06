@@ -105,7 +105,13 @@ $(document).ready(function () {
     creationForm('#create-election-form', '#election-message', '#election-success-msg');
 
     // Add candidates for election
-    creationForm('#add-candidates-form', 'candidate-message', 'candidate-success-msg');
+    creationForm('#add-candidates-form', '#candidate-message', '#candidate-success-msg');
+
+    // cast vote
+    creationForm('#voting-form', '#voting-message', '#voting-success-msg');
+
+    // close candidate creation notifications
+    closeNotification('#close-voting-success-msg', '#voting-success-msg');
 
     // close candidate creation notifications
     closeNotification('#close-candidate-success-msg', '#candidate-success-msg');

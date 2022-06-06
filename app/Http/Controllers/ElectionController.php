@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vote;
 use App\Models\Election;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -61,6 +63,32 @@ class ElectionController extends Controller
                 return response()->json(['status' => 200, 'message' => 'Election created successfully!']);
             }
         }
+
+        return back();
+    }
+
+    public function show(Request $request)
+    {
+        $votes = Vote::all();
+        $elections = Election::whereId((int) $request->election)->first();
+        $candidates = Candidate::where('election_id', (int) $request->election)->get();
+        $hasVoted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();
+
+        return view('show', [
+            'votes' => $votes,
+            'hasVoted' => $hasVoted,
+            'election' => $elections,
+            'candidates' => $candidates,
+        ]);
+    }
+
+    public function vote(Request $request)
+    {
+        Vote::create([
+            'user_id' => $request->user()->id,
+            'election_id' => (int) $request->election,
+            'candidate_id' => (int) $request->candidate,
+        ]);
 
         return back();
     }

@@ -8,8 +8,9 @@ body {
     justify-content: space-between;
 }
 
-#candidate-card:hover > .vote-btn {
-    display: flex !important;
+.candidate-card {
+    min-width: 25rem !important;
+    max-width: calc(50% - 2rem);
 }
 
 /* Nav bar */
@@ -83,6 +84,18 @@ footer {
 /* user settings page */
 .user-settings {
     padding: 0 5%;
+}
+
+@media only screen and (max-width: 1361px) {
+    .candidate-card {
+        min-width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .candidate-card {
+        min-width: 100% !important;
+    }
 }
 
 @media (min-width: 1024px) {

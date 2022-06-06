@@ -23,7 +23,7 @@
 
             @if (auth() && auth()->user()->privilege == 'admin')
                 <li>
-                    <a href="#"
+                    <a href="{{ route('candidate.details') }}"
                         class="flex items-center h-12 p-2 text-base font-normal transition duration-300 information-btn hover:bg-neutral-200 dark:hover:bg-neutral-800">
                         <svg class="flex-shrink-0 w-6 h-6 transition duration-75 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

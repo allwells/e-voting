@@ -25,22 +25,18 @@
             <div class="@if (auth() && auth()->user()->privilege == 'user') mt-10 @endif overflow-x-auto">
                 <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">
                     <thead
-                        class="text-xs uppercase text-neutral-700 bg-neutral-50 dark:bg-neutral-700 dark:text-neutral-400">
+                        class="text-xs uppercase border-t text-neutral-700 border-x border-neutral-200 bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-400">
                         <tr>
-                            <th scope="col" class="w-8 p-4 text-center">
-                                S/N
-                            </th>
-
                             <th scope="col" class="p-4 text-left">
                                 Title
                             </th>
 
-                            <th scope="col" class="p-4 text-left">
+                            <th scope="col" class="py-4 pl-4 text-left border-l border-neutral-200">
                                 Description
                             </th>
 
-                            <th scope="col" class="p-4 text-left">
-                                Type
+                            <th scope="col" class="p-4 text-left border-x border-neutral-200">
+                                Action
                             </th>
                         </tr>
                     </thead>
@@ -51,7 +47,7 @@
                             @endforeach
                         </tbody>
                     @else
-                        <tr class="text-lg text-center text-neutral-500">
+                        <tr class="text-lg text-center cursor-default text-neutral-500">
                             <td colspan="4" class="pt-10">
                                 No elections yet.
                             </td>
@@ -59,7 +55,6 @@
                     @endif
                 </table>
             </div>
-            {{-- {{ $elections->links() }} --}}
         </div>
     </div>
 @endsection

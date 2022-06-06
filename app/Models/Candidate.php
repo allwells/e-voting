@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Candidate extends Model
 {
@@ -20,4 +22,14 @@ class Candidate extends Model
         'party',
         'image',
     ];
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
+    public function votedBy(User $user)
+    {
+       return $this->votes->contains('user_id', $user->id);
+    }
 }

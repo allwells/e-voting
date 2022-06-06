@@ -20,7 +20,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     // ELECTIONS ROUTE
     Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections');
-    Route::post('/elections', 'App\Http\Controllers\ElectionController@store');
+    Route::get('/elections/{election:id}', 'App\Http\Controllers\ElectionController@show')->name('elections.view');
+    Route::post('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\ElectionController@vote')->name('elections.vote');
 
     // RESULTS ROUTE
     Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');
@@ -35,9 +36,15 @@ Route::group(['middleware' => 'auth'], function() {
 
 // ADMINS ROUTE
 Route::group(['middleware' => 'admin'], function() {
+    // ELECTIONS ROUTE
+    Route::post('/elections', 'App\Http\Controllers\ElectionController@store');
+
     // ADD CANDIDATE ROUTE
     Route::get('/add-candidates', 'App\Http\Controllers\Admin\AddCandidateController@index')->name('candidates');
     Route::post('/add-candidates', 'App\Http\Controllers\Admin\AddCandidateController@store');
+
+    // CANDIDATE DETAILS ROUTE
+    Route::get('/candidates', 'App\Http\Controllers\Admin\CandidateDetailsController@index')->name('candidate.details');
 
 });
 

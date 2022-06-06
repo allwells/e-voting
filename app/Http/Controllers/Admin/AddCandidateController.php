@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Election;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,11 @@ class AddCandidateController extends Controller
      */
     public function index()
     {
-        return view('admin.add_candidate');
+        $elections = Election::all();
+
+        return view('admin.add_candidate', [
+            'elections' => $elections,
+        ]);
     }
 
     /**
