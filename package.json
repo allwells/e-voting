@@ -8,7 +8,7 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "ui-commit": "git add . && git commit -am 'Update UI' && git push origin allwells"
+        "ui-commit": "git add . && git commit -am 'Update UI' && git push origin master"
     },
     "devDependencies": {
         "@tailwindcss/line-clamp": "^0.4.0",
