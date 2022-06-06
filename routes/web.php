@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     // RESULTS ROUTE
     Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');
+    Route::get('/results/{election:id}', 'App\Http\Controllers\ResultController@show')->name('results.view');
 
     // LOGOUT ROUTE
     Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController@index')->name('logout');
@@ -40,12 +41,8 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('/elections', 'App\Http\Controllers\ElectionController@store');
 
     // ADD CANDIDATE ROUTE
-    Route::get('/add-candidates', 'App\Http\Controllers\Admin\AddCandidateController@index')->name('candidates');
-    Route::post('/add-candidates', 'App\Http\Controllers\Admin\AddCandidateController@store');
-
-    // CANDIDATE DETAILS ROUTE
-    Route::get('/candidates', 'App\Http\Controllers\Admin\CandidateDetailsController@index')->name('candidate.details');
-
+    Route::get('/candidates', 'App\Http\Controllers\Admin\CandidateController@index')->name('candidates');
+    Route::post('/candidates', 'App\Http\Controllers\Admin\CandidateController@store');
 });
 
 // USERS ROUTE
@@ -55,9 +52,6 @@ Route::group(['middleware' => 'user'], function() {
 
     // VOTER REGISTRATION ROUTE
     Route::get('/registration', 'App\Http\Controllers\User\VoterRegistrationController@index')->name('voter.registration');
-
-    // VOTING ROUTE
-    Route::get('/voting', 'App\Http\Controllers\User\VotingAreaController@index')->name('voting');
 });
 
 // GUEST ROUTE

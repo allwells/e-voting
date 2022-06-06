@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Vote;
 use App\Models\Election;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class AddCandidateController extends Controller
+class CandidateController extends Controller
 {
-
-    /**
-     * Get the page that the user sees when the user goes to 'add-candidates' route
-     *
-     * @return function
-     */
     public function index()
     {
+        $votes = Vote::all();
         $elections = Election::all();
+        $candidates = Candidate::all();
 
-        return view('admin.add_candidate', [
+
+        return view('admin.candidates', [
+            'votes' => $votes,
             'elections' => $elections,
+            'candidates' => $candidates,
         ]);
     }
 

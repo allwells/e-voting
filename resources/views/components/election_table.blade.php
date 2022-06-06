@@ -11,7 +11,7 @@
         <div class="line-clamp-1">{{ $election->description }}</div>
     </td>
 
-    <td class="py-4 text-left capitalize cursor-default border-x border-neutral-200">
+    <td class="py-4 text-center capitalize cursor-default border-x border-neutral-200">
         <a href="{{ route('elections.view', $election->id) }}" type="submit" title="Enter Election"
             class="px-4 font-semibold text-indigo-600 capitalize bg-transparent border-0 outline-none hover:underline">
             Enter
