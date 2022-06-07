@@ -633,51 +633,6 @@ input[type="range"]::-ms-fill-lower {
   background: #3F83F8;
 }
 
-[data-tooltip-style^='light'] + .tooltip > .tooltip-arrow:before {
-  border-style: solid;
-  border-color: #E5E7EB;
-}
-
-[data-tooltip-style^='light'] + .tooltip[data-popper-placement^='top'] > .tooltip-arrow:before {
-  border-bottom-width: 1px;
-  border-right-width: 1px;
-}
-
-[data-tooltip-style^='light'] + .tooltip[data-popper-placement^='right'] > .tooltip-arrow:before {
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-}
-
-[data-tooltip-style^='light'] + .tooltip[data-popper-placement^='bottom'] > .tooltip-arrow:before {
-  border-top-width: 1px;
-  border-left-width: 1px;
-}
-
-[data-tooltip-style^='light'] + .tooltip[data-popper-placement^='left'] > .tooltip-arrow:before {
-  border-top-width: 1px;
-  border-right-width: 1px;
-}
-
-.tooltip[data-popper-placement^='top'] > .tooltip-arrow {
-  bottom: -4px;
-}
-
-.tooltip[data-popper-placement^='bottom'] > .tooltip-arrow {
-  top: -4px;
-}
-
-.tooltip[data-popper-placement^='left'] > .tooltip-arrow {
-  right: -4px;
-}
-
-.tooltip[data-popper-placement^='right'] > .tooltip-arrow {
-  left: -4px;
-}
-
-.tooltip.invisible > .tooltip-arrow:before {
-  visibility: hidden;
-}
-
 *, ::before, ::after {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
@@ -893,6 +848,9 @@ input[type="range"]::-ms-fill-lower {
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -964,8 +922,8 @@ input[type="range"]::-ms-fill-lower {
 .h-10 {
   height: 2.5rem;
 }
-.h-80 {
-  height: 20rem;
+.h-96 {
+  height: 24rem;
 }
 .min-h-full {
   min-height: 100%;
@@ -1214,10 +1172,6 @@ input[type="range"]::-ms-fill-lower {
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-.border-rose-700 {
-  --tw-border-opacity: 1;
-  border-color: rgb(190 18 60 / var(--tw-border-opacity));
 }
 .bg-indigo-600 {
   --tw-bg-opacity: 1;
@@ -1660,6 +1614,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/* Chart layout */
+#result-chart-canvas {
+    min-height: 25rem;
 }
 
 .candidate-card {
@@ -2253,6 +2212,11 @@ footer {
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 

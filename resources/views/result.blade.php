@@ -7,7 +7,7 @@
                 class="py-2 sm:py-3 text-white uppercase text-sm w-full px-2.5 shadow-xl -mt-9 bg-indigo-600 ring-1 ring-indigo-600 border-2 border-white cursor-default">
                 Results
             </h2>
-            <div class="flex-grow pb-5 mt-10 text-neutral-500 dark:text-neutral-200">
+            <div class="flex-grow pb-5 mt-10 text-neutral-500 dark:text-neutral-200 overflow-x-auto">
                 @if ($elections->count() > 0)
                     <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">
                         <thead

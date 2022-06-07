@@ -8,6 +8,11 @@ body {
     justify-content: space-between;
 }
 
+/* Chart layout */
+#result-chart-canvas {
+    min-height: 25rem;
+}
+
 .candidate-card {
     min-width: 25rem !important;
     max-width: calc(50% - 2rem);

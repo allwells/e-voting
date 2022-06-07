@@ -35,24 +35,22 @@ class ResultController extends Controller
 
     public function result_chart(Request $request)
     {
+        $election = Election::whereId((int) $request->election)->first();
         $candidates = Candidate::where('election_id', (int) $request->election)->get();
+        $values = Candidate::with('votes')->where('election_id', (int) $request->election)->get();
         $labels = [];
-        $count = [];
+        $votes = [];
 
         foreach ($candidates as $candidate){
             array_push($labels, $candidate->name);
         }
 
-        $values = Candidate::with('votes')->where('election_id', (int) $request->election)->get();
-
         foreach ($values as $item) {
-            array_push($count, $item->votes->count());
+            array_push($votes, $item->votes->count());
         }
 
-        $election = Election::whereId((int) $request->election)->first();
-
-        $chart = Chartisan::build()->labels($labels)->dataset($election->title, $count)->toJSON();
-        dd($chart);
-        // return $chart;
+        $chart = Chartisan::build()->labels($labels)->dataset("Votes", $votes)->toJSON();
+        // dd($chart);
+        return $chart;
     }
 }
