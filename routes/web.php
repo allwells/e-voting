@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function() {
     // RESULTS ROUTE
     Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');
     Route::get('/results/{election:id}', 'App\Http\Controllers\ResultController@show')->name('results.view');
+    Route::get('/results/{election:id}/chart', 'App\Http\Controllers\ResultController@result_chart')->name('results.chart');
 
     // LOGOUT ROUTE
     Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController@index')->name('logout');

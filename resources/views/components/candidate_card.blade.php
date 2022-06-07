@@ -30,7 +30,7 @@
     @if ($hasVoted || $candidate->votedBy(auth()->user()))
         <div class="w-full h-12">
             <button
-                class="w-full py-1 mt-1 text-sm font-semibold border-2 border-white shadow-lg sm:text-base text-neutral-500 bg-neutral-300 ring-1 ring-neutral-300"
+                class="w-full py-1 mt-1 text-sm font-semibold border-2 border-white sm:text-base text-neutral-500 bg-neutral-300 ring-1 ring-neutral-300"
                 disabled>
                 You have already paticipated!
             </button>

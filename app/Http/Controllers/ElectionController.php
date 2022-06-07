@@ -74,7 +74,7 @@ class ElectionController extends Controller
         $candidates = Candidate::where('election_id', (int) $request->election)->get();
         $hasVoted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();
 
-        return view('show', [
+        return view('show_elections', [
             'votes' => $votes,
             'hasVoted' => $hasVoted,
             'election' => $elections,
