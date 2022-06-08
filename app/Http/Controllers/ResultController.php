@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vote;
 use App\Models\Election;
+use Jorenvh\Share\Share;
 use App\Models\Candidate;
 use Chartisan\PHP\Chartisan;
 use Illuminate\Http\Request;
@@ -26,10 +27,20 @@ class ResultController extends Controller
         $candidates = Candidate::where('election_id', (int) $request->election)->get();
         $hasVoted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();
 
+        $share = \Share::page(
+            $request->url(),
+            "Results for $elections->title election.",
+        )
+        ->facebook()
+        ->twitter()
+        ->telegram()
+        ->whatsapp();
+
         return view('show_results', [
             'votes' => $votes,
             'election' => $elections,
             'candidates' => $candidates,
+            'share' => $share
         ]);
     }
 
@@ -49,8 +60,6 @@ class ResultController extends Controller
             array_push($votes, $item->votes->count());
         }
 
-        $chart = Chartisan::build()->labels($labels)->dataset("Votes", $votes)->toJSON();
-        // dd($chart);
-        return $chart;
+        return Chartisan::build()->labels($labels)->dataset("Votes", $votes)->toJSON();
     }
 }

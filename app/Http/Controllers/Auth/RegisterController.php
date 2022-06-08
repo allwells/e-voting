@@ -32,7 +32,7 @@ class RegisterController extends Controller
             'fname' => 'required|max:50',
             'lname' => 'max:50',
             'email' => 'required|email|unique:users|max:120',
-            'phone' => 'required|min:10|max:15',
+            'phone' => 'required|unique:users|min:10|max:15',
             'dob' => 'required',
             'password' => 'required|confirmed|min:6|max:18',
         ]);

@@ -8,6 +8,29 @@ body {
     justify-content: space-between;
 }
 
+#social-links ul {
+    gap: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+}
+
+
+#social-links ul a:hover{
+    color: #3958AA;
+}
+
+#active-dashboard *, #active-candidate *, #active-election *, #active-results *, #active-information * {
+    color: #fff !important;
+}
+
+#active-dashboard, #active-candidate, #active-election, #active-results, #active-information {
+    color: #fff !important;
+    font-weight: 700 !important;
+    background-color: #5850ec !important;
+    box-shadow: 2px 2px 25px #aaa !important;
+}
+
 /* Chart layout */
 #result-chart-canvas {
     min-height: 25rem;

@@ -1,5 +1,8 @@
 @extends('layout.layout')
 
+@section('title', 'Elections')
+@section('election-tab', 'active-election')
+
 @section('views')
     <div
         class="flex flex-col items-center justify-start @if (auth() && auth()->user()->privilege == 'admin') ) gap-16 @endif px-3 py-10 h-fit lg:px-40">

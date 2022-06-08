@@ -1050,6 +1050,9 @@ input[type="range"]::-ms-fill-lower {
 .gap-10 {
   gap: 2.5rem;
 }
+.gap-5 {
+  gap: 1.25rem;
+}
 .gap-y-16 {
   row-gap: 4rem;
 }
@@ -1214,13 +1217,17 @@ input[type="range"]::-ms-fill-lower {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
-.bg-blue-200 {
+.bg-blue-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(195 221 253 / var(--tw-bg-opacity));
+  background-color: rgb(225 239 254 / var(--tw-bg-opacity));
 }
 .bg-neutral-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(212 212 212 / var(--tw-bg-opacity));
+}
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(195 221 253 / var(--tw-bg-opacity));
 }
 .bg-rose-200 {
   --tw-bg-opacity: 1;
@@ -1563,13 +1570,17 @@ input[type="range"]::-ms-fill-lower {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(82 82 82 / var(--tw-ring-opacity));
 }
-.ring-blue-200 {
+.ring-blue-100 {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(195 221 253 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(225 239 254 / var(--tw-ring-opacity));
 }
 .ring-neutral-300 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(212 212 212 / var(--tw-ring-opacity));
+}
+.ring-blue-200 {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(195 221 253 / var(--tw-ring-opacity));
 }
 .ring-rose-300 {
   --tw-ring-opacity: 1;
@@ -1614,6 +1625,29 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#social-links ul {
+    gap: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+}
+
+
+#social-links ul a:hover{
+    color: #3958AA;
+}
+
+#active-dashboard *, #active-candidate *, #active-election *, #active-results *, #active-information * {
+    color: #fff !important;
+}
+
+#active-dashboard, #active-candidate, #active-election, #active-results, #active-information {
+    color: #fff !important;
+    font-weight: 700 !important;
+    background-color: #5850ec !important;
+    box-shadow: 2px 2px 25px #aaa !important;
 }
 
 /* Chart layout */

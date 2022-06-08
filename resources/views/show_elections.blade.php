@@ -1,5 +1,8 @@
 @extends('layout.layout')
 
+@section('title', "$election->title")
+@section('election-tab', 'active-election')
+
 @section('views')
     <div class="flex flex-col items-center justify-start gap-10 px-3 py-10 h-fit lg:px-24">
         <div class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 dark:bg-neutral-700">
@@ -10,7 +13,7 @@
 
             <div class="mt-4 text-sm cursor-default text-neutral-700 md:text-base">
                 <a href="{{ route('elections') }}" class="text-indigo-600 cursor-pointer hover:underline">
-                    Election
+                    Elections
                 </a>
                 /
                 <span class="text-neutral-400">Election Details</span>
@@ -23,7 +26,7 @@
 
                     @if ($election->type == 'close')
                         <span
-                            class="mt-2 flex w-fit items-center justify-center px-2 py-0.5 text-xs border-2 border-white text-blue-700 md:text-sm bg-blue-200 ring-1 ring-blue-200 dark:border-neutral-900">
+                            class="mt-2 flex w-full items-center justify-start px-2 py-0.5 text-xs border-2 border-white text-blue-700 md:text-sm bg-blue-100 ring-1 ring-blue-100 dark:border-neutral-900">
                             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

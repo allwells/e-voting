@@ -41,7 +41,8 @@ class LoginController extends Controller
             return back()->with('status', 'Invalid email or password!');
         }
 
-        // redirect user to dashboard
-        return redirect()->route('dashboard');
+        // redirect user to intented page
+        // return redirect()->route('dashboard');
+        return redirect()->intended('defaultpage');
     }
 }

@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Register')
+
 @section('content')
     <div class="flex items-center justify-center px-4 py-12 mt-10 h-fit signup-container sm:px-6 lg:px-8">
         <div class="w-full max-w-3xl space-y-8">

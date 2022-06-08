@@ -9,7 +9,7 @@
 
 
             <li>
-                <a href="{{ route('dashboard') }}"
+                <a href="{{ route('dashboard') }}" id="@yield('dashboard-tab')"
                     class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 dashboard-btn">
                     <svg class="text-indigo-600 transition duration-75 w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@
 
             @if (auth() && auth()->user()->privilege == 'admin')
                 <li>
-                    <a href="{{ route('candidates') }}"
+                    <a href="{{ route('candidates') }}" id="@yield('candidate-tab')"
                         class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 information-btn">
                         <svg class="flex-shrink-0 text-indigo-600 transition duration-75 w-7 h-7" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -36,8 +36,8 @@
                 </li>
 
                 {{-- <li>
-                    <a href="#"
-                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 information-btn">
+                    <a href="#" id="@yield('register-tab')"
+                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 register-btn">
                         <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -51,7 +51,7 @@
 
             @if (auth() && auth()->user()->privilege == 'user')
                 <li>
-                    <a href="{{ route('information') }}"
+                    <a href="{{ route('information') }}" id="@yield('information-tab')"
                         class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 information-btn">
                         <svg class="flex-shrink-0 text-indigo-600 transition duration-75 w-7 h-7" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +64,8 @@
 
 
                 {{-- <li>
-                    <a href="{{ route('voter.registration') }}" <svg
+                    <a href="{{ route('voter.registration') }}" id="@yield('voter-reg-tab')"
+                    <svg
                         class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 registration-btn">
                         <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -78,8 +79,8 @@
             @endif
 
             <li>
-                <a href="{{ route('elections') }}"
-                    class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 information-btn">
+                <a href="{{ route('elections') }}" id="@yield('election-tab')"
+                    class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 election-btn">
                     <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -91,7 +92,7 @@
             </li>
 
             <li>
-                <a href="{{ route('results') }}"
+                <a href="{{ route('results') }}" id="@yield('result-tab')"
                     class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 result-btn">
                     <svg class="flex-shrink-0 text-indigo-600 transition duration-75 w-7 h-7" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -105,9 +106,7 @@
         </ul>
 
         <span class="w-full">
-
-
-            <a href="#"
+            <a href="#" id="@yield('settings-tab')"
                 class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 settings-btn">
                 <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +119,6 @@
                 </svg>
                 <span class="flex-1 ml-3 text-sm whitespace-nowrap md:text-md">Settings</span>
             </a>
-
 
             <form id="logout-form" class="w-full mt-2" action="{{ route('logout') }}" method="post">
                 @csrf
