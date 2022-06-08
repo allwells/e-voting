@@ -42,7 +42,6 @@ class LoginController extends Controller
         }
 
         // redirect user to intented page
-        // return redirect()->route('dashboard');
-        return redirect()->intended('defaultpage');
+        return redirect()->intended('');
     }
 }
