@@ -1,20 +1,21 @@
 @extends('layout.layout')
 
 @section('title', 'Results')
-@section('result-tab', 'active-results')
+@section('results-tab', auth()->user()->theme == 'dark' ? 'active-dark-results' : 'active-results')
 
 @section('views')
     <div class="flex items-center justify-center px-3 py-10 h-fit lg:px-28">
-        <div class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 dark:bg-neutral-700">
+        <div
+            class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 border border-neutral-50 dark:bg-neutral-900 dark:border-neutral-700">
             <h2
-                class="py-2 sm:py-3 text-white uppercase text-sm w-full px-2.5 shadow-xl -mt-9 bg-indigo-600 ring-1 ring-indigo-600 border-2 border-white cursor-default">
+                class="py-2 sm:py-3 text-white font-bold uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 dark:border-neutral-900 border-2 border-white cursor-default">
                 Results
             </h2>
             <div class="flex-grow pb-10 mt-7 text-neutral-500 dark:text-neutral-200 overflow-x-auto">
                 @if ($closed_elections->count() > 0)
                     <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">
                         <thead
-                            class="text-xs uppercase text-neutral-700 border-neutral-200 bg-neutral-200 dark:bg-neutral-700 dark:text-neutral-400">
+                            class="text-xs uppercase text-neutral-700 border-neutral-200 dark:border-neutral-800 bg-neutral-200 dark:bg-neutral-800/50 dark:text-neutral-200">
                             <tr>
                                 <th scope="col" class="p-4 text-left">
                                     Title

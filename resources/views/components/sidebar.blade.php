@@ -1,16 +1,16 @@
 <aside id="mobile-menu-2"
-    class="fixed w-72 hidden sm:flex flex-col z-50 h-full px-2 pb-3 pt-0.5 top-0 bg-white shadow-xl dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300"
+    class="fixed w-72 hidden sm:flex flex-col z-50 h-full px-2 pb-3 pt-0.5 top-0 bg-white shadow-2xl dark:border-r dark:border-neutral-700 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300"
     aria-label="Sidebar">
     <div class="flex flex-col items-start justify-start w-full h-full px-3 pt-2 sm:justify-between">
         <ul class="w-full space-y-2">
-            <li class="flex items-center justify-end py-3 sm:justify-start">
+            <li class="flex items-center justify-end py-1 sm:py-3 px-4 sm:justify-start">
                 <x-logo />
             </li>
 
 
             <li>
                 <a href="{{ route('dashboard') }}" id="@yield('dashboard-tab')"
-                    class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 dashboard-btn">
+                    class="flex items-center h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200 dashboard-btn">
                     <svg class="text-indigo-600 transition duration-75 w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
@@ -24,7 +24,7 @@
             @if (auth() && auth()->user()->privilege == 'admin')
                 <li>
                     <a href="{{ route('candidates') }}" id="@yield('candidate-tab')"
-                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 information-btn">
+                        class="flex items-center h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200 information-btn">
                         <svg class="flex-shrink-0 text-indigo-600 transition duration-75 w-7 h-7" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -37,7 +37,7 @@
 
                 {{-- <li>
                     <a href="#" id="@yield('register-tab')"
-                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 register-btn">
+                        class="flex items-center h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200 register-btn">
                         <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -52,7 +52,7 @@
             @if (auth() && auth()->user()->privilege == 'user')
                 <li>
                     <a href="{{ route('information') }}" id="@yield('information-tab')"
-                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 information-btn">
+                        class="flex items-center h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200 information-btn">
                         <svg class="flex-shrink-0 text-indigo-600 transition duration-75 w-7 h-7" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -66,7 +66,7 @@
                 {{-- <li>
                     <a href="{{ route('voter.registration') }}" id="@yield('voter-reg-tab')"
                     <svg
-                        class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 registration-btn">
+                        class="flex items-center h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200 registration-btn">
                         <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -80,7 +80,7 @@
 
             <li>
                 <a href="{{ route('elections') }}" id="@yield('election-tab')"
-                    class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 election-btn">
+                    class="flex items-center h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200 election-btn">
                     <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -92,8 +92,8 @@
             </li>
 
             <li>
-                <a href="{{ route('results') }}" id="@yield('result-tab')"
-                    class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 result-btn">
+                <a href="{{ route('results') }}" id="@yield('results-tab')"
+                    class="flex items-center h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200 result-btn">
                     <svg class="flex-shrink-0 text-indigo-600 transition duration-75 w-7 h-7" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -107,7 +107,7 @@
 
         <span class="w-full">
             <a href="#" id="@yield('settings-tab')"
-                class="flex items-center h-12 p-2 text-base font-normal transition duration-300 dark:hover:bg-neutral-700 hover:bg-neutral-100 active:bg-neutral-200 settings-btn">
+                class="flex items-center h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200 settings-btn">
                 <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -124,7 +124,7 @@
                 @csrf
 
                 <button
-                    class="flex items-center justify-start w-full h-12 p-2 text-base font-normal transition duration-300"
+                    class="flex items-center justify-start w-full h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200"
                     tabindex="-1" type="submit" aria-disabled="true">
                     <span class="flex items-center justify-start w-full" role="menuitem" tabindex="-1"
                         id="user-menu-item-2">
@@ -139,7 +139,6 @@
                     </span>
                 </button>
             </form>
-
 
             {{-- <div class="py-5 cursor-default">
                 <span class="text-base font-semibold text-ellipsis">

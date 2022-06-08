@@ -1,22 +1,24 @@
 @extends('layout.layout')
 
 @section('title', "$election->title")
-@section('result-tab', 'active-results')
+@section('results-tab', auth()->user()->theme == 'dark' ? 'active-dark-results' : 'active-results')
 
 @section('views')
     <div class="flex flex-col items-center justify-start gap-10 px-3 py-10 h-fit lg:px-24">
-        <div class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 dark:bg-neutral-700">
+        <div
+            class="w-full min-h-full px-4 py-3 tracking-wide bg-white border border-neutral-50 dark:border-neutral-700 md:px-8 dark:bg-neutral-900">
             <h2
-                class="py-2 sm:py-3 text-white uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 border-2 border-white cursor-default">
-                Results Details
+                class="py-2 sm:py-3 text-white font-bold uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 dark:border-neutral-900 border-2 border-white cursor-default">
+                Result Details
             </h2>
 
-            <div class="mt-4 text-sm cursor-default text-neutral-700 md:text-base">
-                <a href="{{ route('results') }}" class="text-indigo-600 cursor-pointer hover:underline">
+            <div class="mt-4 text-sm cursor-default text-neutral-700 dark:text-neutral-500 md:text-base">
+                <a href="{{ route('results') }}"
+                    class="text-indigo-600 dark:text-indigo-500 cursor-pointer hover:underline">
                     Results
                 </a>
                 /
-                <span class="text-neutral-400">Result Details</span>
+                <span class="text-neutral-400 dark:text-neutral-500">Result Details</span>
             </div>
 
             <div class="pb-6 cursor-default grow text-neutral-700 dark:text-neutral-200">
@@ -26,12 +28,13 @@
                     </h1>
 
                     <!-- Chart's container -->
-                    <div id="result-chart-canvas" class="h-96">
+                    <div id="result-chart-canvas" class="h-96 dark:text-neutral-100 text-neutral-700">
                     </div>
                 </div>
 
-                <div class="h-fit text-neutral-700 flex justify-stretch mt-3 items-center w-full gap-5 text-3xl">
-                    <span class="text-lg">Share on social media:</span> {!! $share !!}
+                <div
+                    class="h-fit text-neutral-400 flex justify-stretch mt-3 sm:items-center w-full gap-2 sm:gap-5 sm:text-3xl sm:flex-row text-lg flex-col items-start">
+                    <span class="text-sm sm:text-lg">Share on social media:</span> {!! $share !!}
                 </div>
             </div>
         </div>
@@ -49,7 +52,7 @@
             url: "@chart('chart', $election->id)",
             hooks: new ChartisanHooks()
                 .responsive()
-                .colors(['#ECC94B'])
+                .colors(["#5850ec"])
                 .beginAtZero()
                 .legend({
                     position: 'bottom'

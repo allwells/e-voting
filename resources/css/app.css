@@ -34,6 +34,18 @@ body {
     box-shadow: 2px 2px 25px #aaa !important;
 }
 
+
+#active-dark-dashboard *, #active-dark-candidate *, #active-dark-election *, #active-dark-results *, #active-dark-information * {
+    color: #fff !important;
+}
+
+#active-dark-dashboard, #active-dark-candidate, #active-dark-election, #active-dark-results, #active-dark-information {
+    color: #fff !important;
+    font-weight: 700 !important;
+    background-color: #5850ec !important;
+    box-shadow: 2px 2px 25px #000 !important;
+}
+
 /* Chart layout */
 #result-chart-canvas {
     min-height: 25rem;

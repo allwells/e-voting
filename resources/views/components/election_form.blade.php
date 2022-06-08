@@ -3,7 +3,7 @@
         @csrf
 
         <div id="election-success-msg"
-            class="items-center justify-between hidden w-full px-3 py-3 font-normal text-left border-2 border-white cursor-default text-md ring-1 ring-emerald-300 text-emerald-800 bg-emerald-200 h-fit">
+            class="items-center justify-between hidden w-full px-3 py-3 font-normal text-left border-2 border-white dark:border-neutral-900 cursor-default text-md ring-1 ring-emerald-300 text-emerald-800 bg-emerald-200 h-fit">
             <span id="election-message"></span>
             <span id="close-election-success-msg"
                 class="p-1 text-white transition duration-300 rounded-sm cursor-pointer bg-emerald-600/60 hover:bg-emerald-700/90">
@@ -20,11 +20,11 @@
 
             {{-- election title input --}}
             <div class="w-full md:w-6/12">
-                <label for="title" class="text-sm font-semibold text-gray-700">Title
+                <label for="title" class="text-sm font-semibold text-gray-700 dark:text-neutral-200">Title
                     <span class="text-rose-500">*</span>
                 </label>
                 <input name="title" type="text" id="title"
-                    class="bg-white border-4 hover:border-neutral-500 transition duration-300 border-neutral-300 text-neutral-700 text-base focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
+                    class="bg-white border-4 hover:border-neutral-500 transition duration-300 border-neutral-300 text-neutral-700 text-base focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-neutral-500 dark:placeholder-neutral-300 dark:text-neutral-100 dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
                     placeholder="Enter election title" required>
 
                 @error('title')
@@ -36,11 +36,11 @@
 
             {{-- election description input --}}
             <div class="w-full md:w-6/12">
-                <label for="description" class="text-sm font-semibold text-gray-700">Description
+                <label for="description" class="text-sm font-semibold text-gray-700 dark:text-neutral-200">Description
                 </label>
 
                 <input name="description" type="text" id="description"
-                    class="bg-white border-4 hover:border-neutral-500 transition duration-300 border-neutral-300 text-neutral-700 text-base focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
+                    class="bg-white border-4 hover:border-neutral-500 transition duration-300 border-neutral-300 text-neutral-700 text-base focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-neutral-500 dark:placeholder-neutral-300 dark:text-neutral-100 dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
                     placeholder="Enter election description">
             </div>
         </div>
@@ -52,11 +52,13 @@
             {{-- election start date and time input --}}
             <div class="flex w-full gap-4 md:w-6/12">
                 <div class="w-6/12">
-                    <label for="start_date" class="text-sm font-semibold text-gray-700">Start Date
+                    <label for="start_date" class="text-sm font-semibold text-gray-700 dark:text-neutral-200">Start Date
                         <span class="text-rose-500">*</span>
                     </label>
+
+                    {{-- replace type="date" with type="datetime-local" --}}
                     <input name="start_date" type="date" id="start_date"
-                        class="block w-full p-3 text-sm transition duration-300 bg-white border-4 hover:border-neutral-500 border-neutral-300 text-neutral-700 focbase:ring-indigo-500 focus:border-indigo-500 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
+                        class="block w-full p-3 text-sm transition duration-300 bg-white border-4 hover:border-neutral-500 border-neutral-300 text-neutral-700 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-neutral-500 dark:placeholder-neutral-400 dark:text-neutral-100 dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
                         placeholder="YY-mm-dd" required>
 
                     @error('start_date')
@@ -67,11 +69,11 @@
                 </div>
 
                 <div class="w-6/12">
-                    <label for="start_time" class="text-sm font-semibold text-gray-700">Start Time
+                    <label for="start_time" class="text-sm font-semibold text-gray-700 dark:text-neutral-200">Start Time
                         <span class="text-rose-500">*</span>
                     </label>
                     <input name="start_time" type="time" id="start_time"
-                        class="block w-full p-3 text-sm transition duration-300 bg-white border-4 hover:border-neutral-500 border-neutral-300 text-neutral-700 focbase:ring-indigo-500 focus:border-indigo-500 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
+                        class="block w-full p-3 text-sm transition duration-300 bg-white border-4 hover:border-neutral-500 border-neutral-300 text-neutral-700 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-neutral-500 dark:placeholder-neutral-400 dark:text-neutral-100 dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
                         placeholder="HH:mm" required>
 
                     @error('start_time')
@@ -86,11 +88,13 @@
             {{-- election end date and time input --}}
             <div class="flex items-end justify-start w-full gap-4 md:w-6/12">
                 <div class="w-6/12">
-                    <label for="end_date" class="text-sm font-semibold text-gray-700">End Date
+                    <label for="end_date" class="text-sm font-semibold text-gray-700 dark:text-neutral-200">End Date
                         <span class="text-rose-500">*</span>
                     </label>
+
+                    {{-- replace type="date" with type="datetime-local" --}}
                     <input name="end_date" type="date" id="end_date"
-                        class="block w-full p-3 text-sm transition duration-300 bg-white border-4 hover:border-neutral-500 border-neutral-300 text-neutral-700 focbase:ring-indigo-500 focus:border-indigo-500 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
+                        class="block w-full p-3 text-sm transition duration-300 bg-white border-4 hover:border-neutral-500 border-neutral-300 text-neutral-700 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-neutral-500 dark:placeholder-neutral-400 dark:text-neutral-100 dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
                         placeholder="YY-mm-dd" required>
 
                     @error('end_date')
@@ -101,11 +105,11 @@
                 </div>
 
                 <div class="w-6/12">
-                    <label for="end_time" class="text-sm font-semibold text-gray-700">End Time
+                    <label for="end_time" class="text-sm font-semibold text-gray-700 dark:text-neutral-200">End Time
                         <span class="text-rose-500">*</span>
                     </label>
                     <input name="end_time" type="time" id="end_time"
-                        class="block w-full p-3 text-sm transition duration-300 bg-white border-4 hover:border-neutral-500 border-neutral-300 text-neutral-700 focbase:ring-indigo-500 focus:border-indigo-500 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
+                        class="block w-full p-3 text-sm transition duration-300 bg-white border-4 hover:border-neutral-500 border-neutral-300 text-neutral-700 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-neutral-500 dark:placeholder-neutral-400 dark:text-neutral-100 dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
                         placeholder="HH:mm" required>
 
                     @error('end_time')
@@ -122,11 +126,11 @@
 
             {{-- election type input --}}
             <div class="w-full md:w-6/12">
-                <label for="title" class="text-sm font-semibold text-gray-700">Election Type
+                <label for="title" class="text-sm font-semibold text-gray-700 dark:text-neutral-200">Election Type
                     <span class="text-rose-500">*</span>
                 </label>
                 <select name="type" type="combo" id="type"
-                    class="bg-white border-4 hover:border-neutral-500 transition duration-300 border-neutral-300 text-neutral-700 text-base focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
+                    class="bg-white border-4 hover:border-neutral-500 transition duration-300 border-neutral-300 text-neutral-700 text-base focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-neutral-500 dark:placeholder-neutral-300 dark:text-neutral-100 dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
                     required>
                     <option>-- Select election type --</option>
                     <option value="open">Open</option>
@@ -145,7 +149,7 @@
         {{-- create election button --}}
         <div class="flex items-center justify-center w-full mt-5 border lg:w-2/5 sm:w-3/5">
             <button type="submit"
-                class="w-full h-12 font-semibold text-white transition duration-300 bg-indigo-600 border-2 border-white shadow-xl signup-submit-btn ring-1 ring-indigo-600 hover:shadow-indigo-300 active:shadow-none">
+                class="w-full h-12 font-semibold text-white transition duration-300 bg-indigo-600 border-2 border-white shadow-xl signup-submit-btn ring-1 dark:hover:shadow-neutral-900 dark:border-neutral-900 dark:hover:bg-indigo-700 ring-indigo-600 hover:shadow-indigo-300 active:shadow-none">
                 Create Election
             </button>
         </div>

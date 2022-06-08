@@ -1,14 +1,15 @@
 @extends('layout.layout')
 
 @section('title', 'Candidates')
-@section('candidate-tab', 'active-candidate')
+@section('candidate-tab', auth()->user()->theme == 'dark' ? 'active-dark-candidate' : 'active-candidate')
 
 @section('views')
     <div class="flex flex-col items-center justify-start px-3 py-10 gap-y-16 h-fit lg:px-28">
         @if (auth() && auth()->user()->privilege == 'admin')
-            <div class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 dark:bg-neutral-700">
+            <div
+                class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 dark:bg-neutral-900 border border-neutral-50 dark:border-neutral-700">
                 <h2
-                    class="py-2 sm:py-3 text-white uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 border-2 border-white cursor-default">
+                    class="py-2 sm:py-3 text-white uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 border-2 border-white dark:border-neutral-800 font-bold cursor-default">
                     Candidates
                 </h2>
                 <div class="pb-6 mt-6 grow text-neutral-500 dark:text-neutral-200">
@@ -16,16 +17,17 @@
                 </div>
             </div>
 
-            <div class="w-full min-h-full p-4 tracking-wide bg-white md:px-8 dark:bg-neutral-700">
+            <div
+                class="w-full min-h-full p-4 tracking-wide bg-white md:px-8 dark:bg-neutral-900 border border-neutral-50 dark:border-neutral-700">
                 <h2
-                    class="py-2 sm:py-3 text-white uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-neutral-600 ring-1 ring-neutral-600 border-2 border-white cursor-default">
+                    class="py-2 sm:py-3 text-white font-bold uppercase text-sm w-full px-2.5 shadow-xl -mt-10 bg-neutral-600 dark:bg-neutral-700 dark:border-neutral-800 ring-1 ring-neutral-600 border-2 border-white cursor-default">
                     Candidate Details
                 </h2>
 
                 <div class="w-full min-h-full mt-10 tracking-wide dark:bg-neutral-700">
-                    <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">
+                    <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400 cursor-default">
                         <thead
-                            class="text-xs uppercase text-neutral-700 bg-neutral-50 dark:bg-neutral-700 dark:text-neutral-400">
+                            class="text-xs uppercase text-neutral-700 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-300">
                             <tr>
                                 <th scope="col" class="w-8 p-4 text-center">
                                     ID

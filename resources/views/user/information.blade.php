@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('title', 'Information')
-@section('information-tab', 'active-information')
+@section('information-tab', auth()->user()->theme == 'dark' ? 'active-dark-information' : 'active-information')
 
 @section('views')
     <div class="flex items-center justify-center px-3 py-10 h-fit lg:px-28">
