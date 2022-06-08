@@ -2,21 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Vote;
 use App\Models\Election;
 use Jorenvh\Share\Share;
 use App\Models\Candidate;
 use Chartisan\PHP\Chartisan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ResultController extends Controller
 {
     public function index()
     {
+        $today = Carbon::now();
+        $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
+
+        $upcoming_elections = DB::table('elections')->where('status', '=', '')->where('start_date', '>', $today)->where('end_date', '>', $today)->get();
+        $opened_elections = DB::table('elections')->where('status', '=', 'open')->where('start_date', '<', $today)->where('end_date', '>', $today)->get();
+        $closed_elections = DB::table('elections')->where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
+
         $elections = Election::all();
 
         return view('result', [
-            'elections' => $elections
+            'elections' => $elections,
+            'closed_elections' => $closed_elections,
         ]);
     }
 

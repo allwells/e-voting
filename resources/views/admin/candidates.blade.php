@@ -4,7 +4,7 @@
 @section('candidate-tab', 'active-candidate')
 
 @section('views')
-    <div class="flex flex-col items-center justify-start px-3 py-10 gap-y-16 h-fit lg:px-40">
+    <div class="flex flex-col items-center justify-start px-3 py-10 gap-y-16 h-fit lg:px-28">
         @if (auth() && auth()->user()->privilege == 'admin')
             <div class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 dark:bg-neutral-700">
                 <h2

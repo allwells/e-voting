@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Vote;
 use App\Models\Election;
 use App\Models\Candidate;
@@ -13,10 +14,12 @@ class ElectionController extends Controller
 {
     public function index()
     {
-        $elections = Election::all();
+        $today = Carbon::now();
+        $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
         return view('elections', [
-            'elections' => $elections
+            'today' => $today,
+            'elections' => Election::all()->sortBy('start_date')
         ]);
     }
 
@@ -69,6 +72,9 @@ class ElectionController extends Controller
 
     public function show(Request $request)
     {
+        $today = Carbon::now();
+        $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
+
         $votes = Vote::all();
         $elections = Election::whereId((int) $request->election)->first();
         $candidates = Candidate::where('election_id', (int) $request->election)->get();
@@ -76,6 +82,7 @@ class ElectionController extends Controller
 
         return view('show_elections', [
             'votes' => $votes,
+            'today' => $today,
             'hasVoted' => $hasVoted,
             'election' => $elections,
             'candidates' => $candidates,

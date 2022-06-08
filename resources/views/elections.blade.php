@@ -5,7 +5,7 @@
 
 @section('views')
     <div
-        class="flex flex-col items-center justify-start @if (auth() && auth()->user()->privilege == 'admin') ) gap-16 @endif px-3 py-10 h-fit lg:px-40">
+        class="flex flex-col items-center justify-start @if (auth() && auth()->user()->privilege == 'admin') ) gap-16 @endif px-3 py-10 h-fit lg:px-28">
         @if (auth() && auth()->user()->privilege == 'admin')
             <div class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 dark:bg-neutral-700">
                 <h2
@@ -46,6 +46,10 @@
                                 Description
                             </th>
 
+                            <th scope="col" class="py-4 pl-4 text-left border-l border-neutral-100">
+                                Status
+                            </th>
+
                             <th scope="col" class="p-4 text-left border-x border-neutral-100">
                                 Action
                             </th>
@@ -54,7 +58,7 @@
                     @if ($elections->count() > 0)
                         <tbody>
                             @foreach ($elections as $election)
-                                <x-election_table :election="$election" />
+                                <x-election_table :election="$election" :today="$today" />
                             @endforeach
                         </tbody>
                     @else
