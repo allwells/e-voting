@@ -1634,9 +1634,12 @@ body {
     justify-content: flex-end !important;
 }
 
+#social-links ul a {
+    transition-duration: 0.4s !important;
+}
 
 #social-links ul a:hover{
-    color: #3958AA;
+    color: #5850ec;
 }
 
 #active-dashboard *, #active-candidate *, #active-election *, #active-results *, #active-information * {
