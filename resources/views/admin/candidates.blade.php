@@ -24,7 +24,7 @@
                     Candidate Details
                 </h2>
 
-                <div class="w-full min-h-full mt-10 tracking-wide dark:bg-neutral-700">
+                <div class="w-full min-h-full mt-10 tracking-wide dark:bg-neutral-700 overflow-x-auto">
                     <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400 cursor-default">
                         <thead
                             class="text-xs uppercase text-neutral-700 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-300">

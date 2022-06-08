@@ -23,11 +23,11 @@ body {
     color: #5850ec;
 }
 
-#active-dashboard *, #active-candidate *, #active-election *, #active-results *, #active-information * {
+#active-dashboard *, #active-candidate *, #active-election *, #active-results *, #active-information *, #active-settings * {
     color: #fff !important;
 }
 
-#active-dashboard, #active-candidate, #active-election, #active-results, #active-information {
+#active-dashboard, #active-candidate, #active-election, #active-results, #active-information, #active-settings {
     color: #fff !important;
     font-weight: 700 !important;
     background-color: #5850ec !important;
@@ -35,11 +35,11 @@ body {
 }
 
 
-#active-dark-dashboard *, #active-dark-candidate *, #active-dark-election *, #active-dark-results *, #active-dark-information * {
+#active-dark-dashboard *, #active-dark-candidate *, #active-dark-election *, #active-dark-results *, #active-dark-information *, #active-dark-settings * {
     color: #fff !important;
 }
 
-#active-dark-dashboard, #active-dark-candidate, #active-dark-election, #active-dark-results, #active-dark-information {
+#active-dark-dashboard, #active-dark-candidate, #active-dark-election, #active-dark-results, #active-dark-information, #active-dark-settings {
     color: #fff !important;
     font-weight: 700 !important;
     background-color: #5850ec !important;

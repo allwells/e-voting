@@ -5,9 +5,10 @@
 
 @section('views')
     <div class="flex items-center justify-center px-3 py-10 h-fit lg:px-28">
-        <div class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 dark:bg-neutral-700">
+        <div
+            class="w-full min-h-full px-4 py-3 tracking-wide bg-white border border-neutral-50 dark:border-neutral-700 md:px-8 dark:bg-neutral-900">
             <h2
-                class="py-2 sm:py-3 text-white uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 border-2 border-white cursor-default">
+                class="py-2 sm:py-3 text-white uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 border-2 border-white dark:border-neutral-800 font-bold cursor-default">
                 User Manual
             </h2>
             <div class="pb-6 mt-6 grow text-neutral-500 dark:text-neutral-200">
@@ -16,7 +17,7 @@
 
                 <ol class="mt-2 ml-5 list-decimal">
                     <li>Voter Registration</li>
-                    <ul class="pl-5 mt-2 space-y-2 text-sm list-disc md:pl-9">
+                    <ul class="pl-5 mt-2 space-y-2 text-sm list-disc sm:text-base md:pl-9">
                         <li>For casting the vote, you need to first register yourself. For this registeration, the you will
                             be provided a voter registration form on this app.</li>
                         <li>As a voter, you can only register before the election is declared open by the admin.</li>
@@ -30,7 +31,7 @@
                     </ul>
 
                     <li class="mt-4">Voting Process</li>
-                    <ul class="pl-5 mt-2 space-y-2 text-sm list-disc md:pl-9">
+                    <ul class="pl-5 mt-2 space-y-2 text-sm list-disc sm:text-base md:pl-9">
                         <li>Overall, voting process is divided into 3 phases all of which will be initialized and terminated
                             by admin. Voters will participate in the voting process as listed below:</li>
                         <ol class="pl-4 mt-2 space-y-2 text-sm list-decimal">

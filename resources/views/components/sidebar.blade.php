@@ -106,7 +106,7 @@
         </ul>
 
         <span class="w-full">
-            <a href="#" id="@yield('settings-tab')"
+            <a href="{{ route('settings') }}" id="@yield('settings-tab')"
                 class="flex items-center h-12 py-2 px-3 text-base font-normal transition duration-300 dark:hover:bg-neutral-800/50 hover:bg-neutral-100 active:bg-neutral-200 settings-btn">
                 <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
