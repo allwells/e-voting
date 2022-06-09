@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="flex items-start justify-between overflow-y-auto bg-neutral-100 h-modal user-dashboard">
+    <div id="main-layout" class="flex items-start justify-between overflow-y-auto bg-neutral-100 h-modal user-dashboard">
         <x-sidebar />
         <x-mobile_menu />
 

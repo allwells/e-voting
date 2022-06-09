@@ -6,12 +6,10 @@
 @section('views')
     <div class="flex items-center justify-center px-3 py-10 h-fit lg:px-28">
         <div
-            class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 border border-neutral-50 dark:bg-neutral-900 dark:border-neutral-700">
-            <h2
-                class="py-2 sm:py-3 text-white font-bold uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 dark:border-neutral-900 border-2 border-white cursor-default">
-                Results
-            </h2>
-            <div class="flex-grow pb-10 mt-7 text-neutral-500 dark:text-neutral-200 overflow-x-auto">
+            class="w-full min-h-full px-0 py-3 tracking-wide bg-white border sm:px-4 md:px-8 border-neutral-100 dark:bg-neutral-900 dark:border-neutral-800 dark:ring-neutral-900 ring-1 ring-white">
+            <x-live_heading text="Results" />
+
+            <div class="flex-grow pb-10 overflow-x-auto mt-7 text-neutral-500 dark:text-neutral-200">
                 @if ($closed_elections->count() > 0)
                     <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">
                         <thead
@@ -25,7 +23,7 @@
                                     Description
                                 </th>
 
-                                <th scope="col" class="p-4 text-left border-neutral-200">
+                                <th scope="col" class="p-4 text-center border-neutral-200">
                                     Action
                                 </th>
                             </tr>

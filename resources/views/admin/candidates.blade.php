@@ -7,25 +7,22 @@
     <div class="flex flex-col items-center justify-start px-3 py-10 gap-y-16 h-fit lg:px-28">
         @if (auth() && auth()->user()->privilege == 'admin')
             <div
-                class="w-full min-h-full px-4 py-3 tracking-wide bg-white md:px-8 dark:bg-neutral-900 border border-neutral-50 dark:border-neutral-700">
-                <h2
-                    class="py-2 sm:py-3 text-white uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 border-2 border-white dark:border-neutral-800 font-bold cursor-default">
-                    Candidates
-                </h2>
-                <div class="pb-6 mt-6 grow text-neutral-500 dark:text-neutral-200">
+                class="w-full min-h-full py-3 tracking-wide bg-white border sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+                <x-live_heading text="Add Candidates" />
+
+                <div class="px-4 pb-6 mt-6 grow sm:px-0 text-neutral-500 dark:text-neutral-200">
                     <x-candidate_form :elections="$elections" />
                 </div>
             </div>
 
             <div
-                class="w-full min-h-full p-4 tracking-wide bg-white md:px-8 dark:bg-neutral-900 border border-neutral-50 dark:border-neutral-700">
-                <h2
-                    class="py-2 sm:py-3 text-white font-bold uppercase text-sm w-full px-2.5 shadow-xl -mt-10 bg-neutral-600 dark:bg-neutral-700 dark:border-neutral-800 ring-1 ring-neutral-600 border-2 border-white cursor-default">
-                    Candidate Details
-                </h2>
+                class="w-full min-h-full px-0 py-4 tracking-wide bg-white border md:px-8 dark:bg-neutral-900 border-neutral-100 dark:border-neutral-800 dark:ring-neutral-900 ring-1 ring-white">
+                <div class="md:mt-4 sm:-mt-1">
+                    <x-dead_heading text="Candidate Details" />
+                </div>
 
-                <div class="w-full min-h-full mt-10 tracking-wide dark:bg-neutral-700 overflow-x-auto">
-                    <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400 cursor-default">
+                <div class="w-full min-h-full mt-10 mb-8 overflow-x-auto tracking-wide dark:bg-neutral-800">
+                    <table class="w-full text-sm text-left cursor-default text-neutral-500 dark:text-neutral-400">
                         <thead
                             class="text-xs uppercase text-neutral-700 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-300">
                             <tr>

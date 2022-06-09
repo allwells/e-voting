@@ -97,6 +97,7 @@ function closeNotification(btnId, notificationId) {
     })
 }
 
+let showMenu = true;
 $(document).ready(function () {
     // create user account
     createAccount();
@@ -118,4 +119,27 @@ $(document).ready(function () {
 
     // close election creation notifications
     closeNotification('#close-election-success-msg', '#election-success-msg');
+
+    // mobile menu button
+    $(document).on('click', 'button.mobile-menu-btn', function(event) {
+        event.preventDefault();
+
+        if(showMenu) {
+            $(document).find('svg.open-menu-icon').css('display', 'none');
+            $(document).find('svg.close-menu-icon').css('display', 'block');
+
+            // open side menu
+            $(document).find('aside.sidebar-menu').css('display', 'block');
+
+            showMenu = !showMenu;
+        } else {
+            $(document).find('svg.open-menu-icon').css('display', 'block');
+            $(document).find('svg.close-menu-icon').css('display', 'none');
+
+            // close side menu
+            $(document).find('aside.sidebar-menu').css('display', 'none');
+
+            showMenu = !showMenu;
+        }
+    });
 });

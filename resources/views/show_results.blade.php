@@ -6,24 +6,14 @@
 @section('views')
     <div class="flex flex-col items-center justify-start gap-10 px-3 py-10 h-fit lg:px-24">
         <div
-            class="w-full min-h-full px-4 py-3 tracking-wide bg-white border border-neutral-50 dark:border-neutral-700 md:px-8 dark:bg-neutral-900">
-            <h2
-                class="py-2 sm:py-3 text-white font-bold uppercase text-sm w-full px-2.5 shadow-xl -mt-8 bg-indigo-600 ring-1 ring-indigo-600 dark:border-neutral-900 border-2 border-white cursor-default">
-                Result Details
-            </h2>
+            class="w-full min-h-full px-0 py-3 tracking-wide bg-white border sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+            <x-live_heading text="Result Details" />
 
-            <div class="mt-4 text-sm cursor-default text-neutral-700 dark:text-neutral-500 md:text-base">
-                <a href="{{ route('results') }}"
-                    class="text-indigo-600 dark:text-indigo-500 cursor-pointer hover:underline">
-                    Results
-                </a>
-                /
-                <span class="text-neutral-400 dark:text-neutral-500">Result Details</span>
-            </div>
+            <x-breadcrumbs previousPage="Results" currentPage="Result Details" link="results" />
 
-            <div class="pb-6 cursor-default grow text-neutral-700 dark:text-neutral-200">
-                <div class="w-full mt-10">
-                    <h1 class="text-neutral-700 dark:text-neutral-200 text-md md:text-2xl font-bold mb-5 uppercase">
+            <div class="px-4 pb-6 mt-2 cursor-default grow sm:px-0 text-neutral-700 dark:text-neutral-200">
+                <div class="w-full">
+                    <h1 class="mb-5 font-bold uppercase text-neutral-700 dark:text-neutral-200 text-md md:text-2xl">
                         Results for {{ $election->title }}
                     </h1>
 
@@ -33,7 +23,7 @@
                 </div>
 
                 <div
-                    class="h-fit text-neutral-400 flex justify-stretch mt-3 sm:items-center w-full gap-2 sm:gap-5 sm:text-3xl sm:flex-row text-lg flex-col items-start">
+                    class="flex flex-col items-start w-full gap-2 mt-3 text-lg h-fit text-neutral-400 justify-stretch sm:items-center sm:gap-5 sm:text-3xl sm:flex-row">
                     <span class="text-sm sm:text-lg">Share on social media:</span> {!! $share !!}
                 </div>
             </div>

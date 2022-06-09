@@ -12,7 +12,7 @@
 
     <td class="py-4 text-center capitalize cursor-default border-neutral-200">
         <a href="{{ route('results.view', $election->id) }}" type="submit" title="View results for this election"
-            class="pr-2 font-semibold text-indigo-600 capitalize bg-transparent border-0 outline-none hover:underline">
+            class="pr-2 font-semibold text-indigo-600 capitalize bg-transparent border-0 outline-none dark:text-indigo-500 hover:underline">
             View
         </a>
     </td>

@@ -30,6 +30,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     // SETTINGS ROUTE
     Route::get('/settings', 'App\Http\Controllers\SettingController@index')->name('settings');
+    Route::post('/settings/theme', 'App\Http\Controllers\SettingController@theme')->name('settings.theme');
+    Route::post('/settings/email', 'App\Http\Controllers\SettingController@change_email')->name('settings.email');
+    Route::post('/settings/password', 'App\Http\Controllers\SettingController@change_password')->name('settings.password');
 
     // LOGOUT ROUTE
     Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController@index')->name('logout');

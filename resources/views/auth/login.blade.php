@@ -13,7 +13,7 @@
 
                 @if (session('status'))
                     <div
-                        class="border-white items-center justify-start text-left px-3 text-md border-2 py-3 ring-1 ring-rose-300 cursor-default text-rose-800 font-normal bg-rose-200 h-fit w-full">
+                        class="items-center justify-start w-full px-3 py-3 font-normal text-left border-2 border-white cursor-default text-md ring-1 ring-rose-300 text-rose-800 bg-rose-200 h-fit">
                         {{ session('status') }}
                     </div>
                 @endif
@@ -23,8 +23,8 @@
                     <div class="mb-6">
                         <label for="email-address" class="font-semibold text-gray-700">Email</label>
                         <input id="email-address" name="email" type="email" autocomplete="email" required
-                            class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 h-14 border-gray-200 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-sm"
-                            placeholder="Enter your email address">
+                            class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 border-gray-200 h-14 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-sm"
+                            placeholder="Enter your email address" value="{{ old('email') }}">
 
                         @error('email')
                             <div class="text-red-600 text-md">
@@ -36,7 +36,7 @@
                     <div class="mb-6">
                         <label for="password" class="font-semibold text-gray-700">Password</label>
                         <input id="password" name="password" type="password" autocomplete="current-password" required
-                            class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 h-14 border-gray-200 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-sm"
+                            class="relative block w-full px-3 py-2 mt-1 text-gray-700 duration-300 border-4 border-gray-200 h-14 hover:border-gray-500 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10 sm:text-sm"
                             placeholder="Enter your password">
 
                         @error('password')
@@ -57,7 +57,7 @@
 
                 <div>
                     <button type="submit"
-                        class="login-submit-btn relative bg-white flex justify-center h-14 shadow-lg hover:shadow-indigo-300 transition duration-300 w-full items-center text-base font-bold text-indigo-600 border-4 border-indigo-600 focus:outline-none active:shadow-none">
+                        class="relative flex items-center justify-center w-full text-base font-bold text-indigo-600 transition duration-300 bg-white border-4 border-indigo-600 shadow-lg login-submit-btn h-14 hover:shadow-indigo-300 focus:outline-none active:shadow-none">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <!-- Heroicon name: solid/lock-closed -->
                             <svg class="w-6 h-6 text-indigo-600 group-hover:text-indigo-600"
@@ -74,7 +74,7 @@
                     {{-- Link to sign up page --}}
                     <div class="flex mt-6 text-sm">
                         <span class="mr-1 text-gray-700">Don't have an account?</span>
-                        <a class="signup-btn text-indigo-600 hover:underline" href="{{ route('register') }}">
+                        <a class="text-indigo-600 signup-btn hover:underline" href="{{ route('register') }}">
                             Register
                         </a>
                     </div>
