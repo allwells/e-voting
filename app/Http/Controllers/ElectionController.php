@@ -100,14 +100,13 @@ class ElectionController extends Controller
         return back();
     }
 
-    public function close(Request $request)
+    public function close(Election $election)
     {
-        dd($request);
-        // Election::where('id', $election->id)->update([
-        //     'status' => 'closed',
-        // ]);
+        Election::where('id', $election->id)->update([
+            'status' => 'closed',
+        ]);
 
-        // return back();
+        return back();
     }
 
     public function edit(Request $request)

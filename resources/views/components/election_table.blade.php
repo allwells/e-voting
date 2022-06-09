@@ -12,9 +12,9 @@
     </td>
 
     <td class="px-4 py-3 text-left border-l cursor-default border-neutral-200 dark:border-neutral-800/50">
-        @if ($today->lt($election->start_date) && $today->lt($election->end_date))
+        @if ($today->lt($election->start_date) && $today->lt($election->end_date) && !($election->status == 'closed'))
             <span class="text-xs font-semibold text-blue-600 uppercase">upcoming</span>
-        @elseif ($today->gt($election->start_date) && $today->gt($election->end_date))
+        @elseif (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
             <span class="text-xs font-semibold text-red-600 uppercase">ended</span>
         @else
             <span class="text-xs font-semibold text-green-600 uppercase">started</span>
@@ -63,7 +63,7 @@
                     @endif
 
 
-                    @if ($today->gt($election->start_date) && $today->lt($election->end_date))
+                    @if ($today->gt($election->start_date) && $today->lt($election->end_date) && !($election->status == 'closed'))
                         <div class="my-1"></div>
 
                         <li>

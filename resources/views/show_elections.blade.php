@@ -22,6 +22,16 @@
                         </svg>
                         This election has <strong class="mx-1">ended</strong>!
                     </span>
+                @elseif ($election->status == 'closed')
+                    <span
+                        class="mb-2 flex w-full items-center justify-start px-2 py-0.5 text-sm sm:text-base border-2 border-white text-rose-700 dark:text-rose-100 bg-rose-100 dark:bg-rose-600 ring-1 ring-rose-100 dark:ring-rose-600 dark:border-neutral-900">
+                        <svg class="w-5 h-5 mr-1 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        This election was <strong class="mx-1">closed</strong> by an admin!
+                    </span>
                 @endif
                 {{-- Election details --}}
                 <div>
