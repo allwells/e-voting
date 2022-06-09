@@ -22,6 +22,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections');
     Route::get('/elections/{election:id}', 'App\Http\Controllers\ElectionController@show')->name('elections.view');
     Route::post('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\ElectionController@vote')->name('elections.vote');
+    Route::post('/elections/{election:id}/close', 'App\Http\Controllers\ElectionController@close')->name('elections.close');
+    Route::post('/elections/{election:id}/edit', 'App\Http\Controllers\ElectionController@edit')->name('elections.edit');
+    Route::delete('/elections/{election:id}/delete', 'App\Http\Controllers\ElectionController@destroy')->name('elections.delete');
 
     // RESULTS ROUTE
     Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');

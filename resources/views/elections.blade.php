@@ -9,7 +9,7 @@
         @if (auth() && auth()->user()->privilege == 'admin')
             <div
                 class="w-full min-h-full px-0 py-3 tracking-wide bg-white border sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
-                <x-live_heading text="Create Elections" />
+                <x-live_heading text="Create Election" />
 
                 <div class="px-4 pb-6 mt-6 sm:px-0 grow text-neutral-500 dark:text-neutral-200">
                     <x-election_form />

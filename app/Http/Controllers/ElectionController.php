@@ -99,4 +99,33 @@ class ElectionController extends Controller
 
         return back();
     }
+
+    public function close(Request $request)
+    {
+        dd($request);
+        // Election::where('id', $election->id)->update([
+        //     'status' => 'closed',
+        // ]);
+
+        // return back();
+    }
+
+    public function edit(Request $request)
+    {
+        dd($request);
+    }
+
+    public function destroy(Election $election)
+    {
+        $user = auth()->user()->privilege;
+
+        if(auth() && $user !== 'admin')
+        {
+            return abort(403, 'Unauthorized action.');
+        }
+
+        $election->delete();
+
+        return back();
+    }
 }
