@@ -3,7 +3,7 @@
         @csrf
 
         <div id="election-success-msg"
-            class="items-center justify-between hidden w-full px-3 py-3 font-normal text-left border-2 border-white dark:border-neutral-900 cursor-default text-md ring-1 ring-emerald-300 text-emerald-800 bg-emerald-200 h-fit">
+            class="items-center justify-between hidden w-full px-3 py-3 font-normal text-left border-2 border-white cursor-default dark:border-neutral-900 text-md ring-1 ring-emerald-300 text-emerald-800 bg-emerald-200 h-fit">
             <span id="election-message"></span>
             <span id="close-election-success-msg"
                 class="p-1 text-white transition duration-300 rounded-sm cursor-pointer bg-emerald-600/60 hover:bg-emerald-700/90">

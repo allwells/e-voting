@@ -35,7 +35,14 @@
                 @endif
                 {{-- Election details --}}
                 <div>
-                    <h2 class="text-lg font-bold uppercase sm:text-2xl">{{ $election->title }}</h2>
+                    <div class="flex items-start justify-between break-words break-all">
+                        <h2 class="text-lg font-bold uppercase sm:text-2xl">{{ $election->title }}</h2>
+                        @if (auth() && auth()->user()->privilege == 'admin')
+                            @if ($today->lt($election->start_date) && $today->lt($election->end_date))
+                                <x-edit_election_modal :election="$election" />
+                            @endif
+                        @endif
+                    </div>
 
                     @if ($election->type == 'close')
                         <span

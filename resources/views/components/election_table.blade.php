@@ -47,22 +47,6 @@
                         </a>
                     </li>
 
-                    @if ($today->lt($election->start_date) && $today->lt($election->end_date))
-                        <div class="my-1"></div>
-
-                        <li>
-                            <form action="{{ route('elections.edit', $election->id) }}" method="POST"
-                                class="w-full">
-                                @csrf
-                                <button type="submit" title="Edit this election"
-                                    class="block w-full px-4 py-2 font-medium text-left hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
-                                    Edit
-                                </button>
-                            </form>
-                        </li>
-                    @endif
-
-
                     @if ($today->gt($election->start_date) && $today->lt($election->end_date) && !($election->status == 'closed'))
                         <div class="my-1"></div>
 
