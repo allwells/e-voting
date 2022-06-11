@@ -1,14 +1,14 @@
 {
     "private": true,
     "scripts": {
+        "postinstall": "npm run prod",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production",
-        "ui-commit": "git add . && git commit -am 'Update UI' && git push origin master"
+        "production": "mix --production"
     },
     "devDependencies": {
         "@tailwindcss/line-clamp": "^0.4.0",
