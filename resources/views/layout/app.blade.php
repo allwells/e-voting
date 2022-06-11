@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     </link>
 
@@ -35,7 +35,7 @@
         <x-footer />
     @endguest
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ secure_asset('js/app.js') }}"></script>
 
     <!-- Flowbite library -->
     <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
