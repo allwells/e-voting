@@ -6,7 +6,7 @@
 @section('views')
     <div class="flex flex-col items-center justify-start gap-10 px-3 py-10 h-fit lg:px-24">
         <div
-            class="w-full min-h-full px-0 py-3 tracking-wide bg-white border sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+            class="w-full min-h-full px-0 py-3 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
             <x-live_heading text="Result Details" />
 
             <x-breadcrumbs previousPage="Results" currentPage="Result Details" link="results" />
@@ -23,8 +23,9 @@
                 </div>
 
                 <div
-                    class="flex flex-col items-start w-full gap-2 mt-3 text-lg h-fit text-neutral-400 justify-stretch sm:items-center sm:gap-5 sm:text-3xl sm:flex-row">
-                    <span class="text-sm sm:text-lg">Share on social media:</span> {!! $share !!}
+                    class="flex flex-col items-start w-full gap-2 mt-3 text-lg h-fit text-neutral-400 justify-stretch sm:items-center sm:gap-5 sm:text-xl sm:flex-row">
+                    <span class="text-sm sm:text-base dark:text-neutral-200">Share on social media:</span>
+                    {!! $share !!}
                 </div>
             </div>
         </div>

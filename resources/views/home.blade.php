@@ -1,9 +1,7 @@
 @extends('layout.app')
-
+@section('no-home', 'no-home')
 @section('title', 'Home')
 
 @section('content')
-    <div class="">
-        <x-hero />
-    </div>
+    <x-hero />
 @endsection

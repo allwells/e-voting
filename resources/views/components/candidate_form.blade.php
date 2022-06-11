@@ -1,9 +1,9 @@
-<form id="add-candidates-form" class="flex flex-col items-center justify-start mt-8 space-y-8"
+<form id="add-candidates-form" class="flex flex-col items-center justify-start gap-6"
     action="{{ route('candidates') }}" method="POST">
     @csrf
 
     <div id="candidate-success-msg"
-        class="items-center justify-between hidden w-full px-3 py-3 font-normal text-left border-2 border-white dark:border-neutral-900 cursor-default text-md ring-1 ring-emerald-300 text-emerald-800 bg-emerald-200 h-fit">
+        class="items-center justify-between hidden w-full px-3 py-3 font-normal text-left border-2 border-white cursor-default dark:border-neutral-900 text-md ring-1 ring-emerald-300 text-emerald-800 bg-emerald-200 h-fit">
         <span id="candidate-message"></span>
         <span id="close-candidate-success-msg"
             class="p-1 text-white transition duration-300 rounded-sm cursor-pointer bg-emerald-600/60 hover:bg-emerald-700/90">
@@ -15,60 +15,61 @@
         </span>
     </div>
 
-    <div class="flex flex-col w-full gap-4">
-        <div class="flex flex-col gap-4 md:flex-row">
+    <div class="flex flex-col w-full gap-4 text-sm md:flex-row">
+        <div class="flex flex-col w-full gap-2 md:w-6/12">
             {{-- name input field --}}
-            <div class="w-full md:w-6/12">
+            <div class="w-full">
                 <label for="name" class="font-semibold text-gray-700 dark:text-neutral-300">Name
                     <span class="text-rose-500">*</span>
                 </label>
                 <input id="name" name="name" type="text"
-                    class="relative block w-full px-3 py-2 mt-1 text-base text-neutral-700 dark:text-neutral-300 duration-300 border-4 dark:bg-neutral-800 border-neutral-200 dark:hover:border-neutral-500 dark:border-neutral-700 h-14 hover:border-neutral-500 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
+                    class="relative block w-full h-12 px-3 py-2 mt-1 text-sm duration-300 border rounded-md md:text-base text-neutral-700 dark:text-neutral-300 dark:bg-neutral-800 border-neutral-200 dark:hover:border-neutral-500 dark:border-neutral-700 hover:border-neutral-500 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
                     placeholder="Enter candidate's full name" value="{{ old('name') }}">
 
                 <span id='name-error' class="text-red-600 text-md error-text"></span>
             </div>
 
             {{-- party field --}}
-            <div class="w-full md:w-6/12">
+            <div class="w-full">
                 <label for="party" class="font-semibold text-gray-700 dark:text-neutral-300">Party
                     <span class="text-rose-500">*</span>
                 </label>
                 <input id="party" name="party" type="text"
-                    class="relative block w-full px-3 py-2 mt-1 text-base text-neutral-700 dark:text-neutral-300 duration-300 border-4 dark:bg-neutral-800 border-neutral-200 dark:hover:border-neutral-500 dark:border-neutral-700 h-14 hover:border-neutral-500 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
+                    class="relative block w-full h-12 px-3 py-2 mt-1 text-sm duration-300 border rounded-md md:text-base text-neutral-700 dark:text-neutral-300 dark:bg-neutral-800 border-neutral-200 dark:hover:border-neutral-500 dark:border-neutral-700 hover:border-neutral-500 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
                     placeholder="Enter candidate's party" value="{{ old('party') }}">
 
                 <span id='party-error' class="text-red-600 text-md error-text"></span>
             </div>
-        </div>
 
-        <div class="flex flex-col gap-4 md:flex-row">
             {{-- election field --}}
-            <div class="w-full md:w-6/12">
+            <div class="w-full">
                 <label for="election_id" class="font-semibold text-gray-700 dark:text-neutral-300">Election
                     <span class="text-rose-500">*</span>
                 </label>
                 <select id="election_id" name="election_id" type="text"
-                    class="relative block w-full px-3 py-2 mt-1 text-base text-neutral-700 dark:text-neutral-300 duration-300 border-4 dark:bg-neutral-800 border-neutral-200 dark:hover:border-neutral-500 dark:border-neutral-700 h-14 hover:border-neutral-500 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
+                    class="relative block w-full h-12 px-3 py-2 mt-1 text-sm duration-300 border rounded-md md:text-base text-neutral-700 dark:text-neutral-300 dark:bg-neutral-800 border-neutral-200 dark:hover:border-neutral-500 dark:border-neutral-700 hover:border-neutral-500 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
                     value="{{ old('election_id') }}">
-                    <option>-- Select election --</option>
+                    <option class="text-sm md:text-base">-- Select election --</option>
                     @foreach ($elections as $election)
-                        <option value="{{ $election->id }}">{{ $election->title }}</option>
+                        <option class="text-sm md:text-base" value="{{ $election->id }}">{{ $election->title }}
+                        </option>
                     @endforeach
                 </select>
 
                 <span id='election_id-error' class="text-red-600 text-md error-text"></span>
             </div>
+        </div>
 
+        <div class="flex-grow w-full md:w-6/12">
             {{-- image field --}}
-            <div class="w-full md:w-6/12">
+            <div class="w-full h-full">
                 <label for="email" class="font-semibold text-gray-700 dark:text-neutral-300">
                     Image
                 </label>
 
                 <div class="flex items-center justify-center w-full mt-1">
                     <label for="dropzone-file"
-                        class="flex flex-col items-center justify-center w-full transition duration-300 border-4 border-dashed cursor-pointer h-44 bg-neutral-50 hover:border-neutral-500 border-neutral-300 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500 dark:hover:bg-neutral-800">
+                        class="flex flex-col items-center justify-center w-full transition duration-300 border border-dashed rounded-md cursor-pointer h-52 bg-neutral-50 hover:border-neutral-500 border-neutral-300 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500 dark:hover:bg-neutral-800">
 
                         <div
                             class="flex flex-col items-center justify-center pt-5 pb-6 text-center text-neutral-500 dark:text-neutral-200">
@@ -93,9 +94,9 @@
     </div>
 
     {{-- add candidate button --}}
-    <div class="flex items-center justify-center w-full border lg:w-2/5 sm:w-3/5">
+    <div class="flex items-center justify-center w-full lg:w-2/5 sm:w-3/5">
         <button type="submit"
-            class="w-full h-12 font-semibold text-white transition duration-300 bg-indigo-600 dark:hover:bg-indigo-700 border-2 border-white dark:border-neutral-900 shadow-xl signup-submit-btn ring-1 ring-indigo-600 hover:shadow-indigo-300 dark:hover:shadow-neutral-900 active:shadow-none">
+            class="w-full font-medium text-white transition duration-300 bg-indigo-600 border border-transparent rounded-md shadow-xl hover:bg-indigo-700 focus:border-white h-11 shadow-neutral-300 ring-1 ring-transparent dark:border-neutral-900 dark:shadow-black dark:hover:bg-indigo-700 focus:ring-indigo-600">
             Add Candidate
         </button>
     </div>

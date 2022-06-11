@@ -6,7 +6,7 @@
 @section('views')
     <div class="flex items-center justify-center px-3 py-10 h-fit lg:px-28">
         <div
-            class="w-full min-h-full py-3 tracking-wide bg-white border sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+            class="w-full min-h-full px-4 py-3 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
             <x-live_heading text="Settings" />
 
             <div class="px-4 pb-6 mt-6 grow sm:px-0 text-neutral-500 dark:text-neutral-200">
@@ -15,25 +15,24 @@
                     <h2 class="text-base font-bold uppercase md:text-lg text-neutral-800 dark:text-neutral-100">
                         Appearance
                     </h2>
-                    <div class="flex flex-col items-start justify-start gap-2 mt-4">
-                        <label for="theme"
-                            class="text-sm font-semibold md:text-base text-neutral-500 dark:text-neutral-400">Theme</label>
+                    <div class="flex flex-col items-start justify-start gap-1 mt-2">
+                        <label for="theme" class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Theme</label>
                         <form class="flex items-center justify-start w-11/12 gap-4 xl:w-1/4 lg:w-2/5 sm:w-1/2"
                             action="{{ route('settings.theme') }}" method="POST">
                             @csrf
 
                             <select name="theme" id="theme"
-                                class="w-full transition duration-300 border-4 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600">
+                                class="w-full text-sm transition duration-300 border rounded-md h-11 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600">
                                 {{-- light theme option --}}
                                 <option
-                                    class="border outline-0 text-neutral-700 bg-neutral-50 border-neutral-100 dark:text-neutral-200 dark:bg-neutral-800 dark:border-neutral-700 dark:ring-0"
+                                    class="text-sm border outline-0 text-neutral-700 bg-neutral-50 border-neutral-100 dark:text-neutral-200 dark:bg-neutral-800 dark:border-neutral-700 dark:ring-0"
                                     @if (auth()->user()->theme == 'light') selected @endif value="light">
                                     Light
                                 </option>
 
                                 {{-- dark theme option --}}
                                 <option
-                                    class="border outline-0 text-neutral-700 bg-neutral-50 border-neutral-100 dark:text-neutral-200 dark:bg-neutral-800 dark:border-neutral-700 dark:ring-0"
+                                    class="text-sm border outline-0 text-neutral-700 bg-neutral-50 border-neutral-100 dark:text-neutral-200 dark:bg-neutral-800 dark:border-neutral-700 dark:ring-0"
                                     @if (auth()->user()->theme == 'dark') selected @endif value="dark">
                                     Dark
                                 </option>
@@ -54,23 +53,22 @@
                     </h2>
 
                     {{-- change email setting --}}
-                    <div class="w-full gap-4 mt-8 md:w-1/2">
-                        <label for="email"
-                            class="text-sm font-semibold md:text-base text-neutral-500 dark:text-neutral-400">
+                    <div class="w-full gap-2 mt-2 md:w-1/2">
+                        <label for="email" class="text-sm font-medium text-neutral-500 dark:text-neutral-400">
                             Change email
                         </label>
                         <form action="{{ route('settings.email') }}" method="post"
-                            class="flex flex-col items-start justify-start gap-4 mt-2">
+                            class="flex flex-col items-start justify-start gap-4">
                             @csrf
 
                             <input type="email" name="email" id="email" placeholder="Enter new email address"
                                 value="{{ auth()->user()->email }}"
-                                class="w-full transition duration-300 border-4 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600"
+                                class="w-full mt-1 text-sm transition duration-300 border rounded-md h-11 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600"
                                 required />
 
                             <div class="w-full sm:w-fit">
                                 <button
-                                    class="w-full px-10 py-2 font-semibold text-white transition duration-300 bg-indigo-600 border border-white shadow-lg hover:bg-indigo-500 sm:w-fit h-fit dark:text-neutral-900 shadow-indigo-400 ring-1 ring-indigo-600 hover:ring-indigo-500 dark:border-neutral-900 dark:shadow-black">
+                                    class="w-full px-10 font-medium text-white transition duration-300 bg-indigo-600 border border-transparent rounded-md shadow-lg focus:border-white h-11 hover:bg-indigo-500 sm:w-fit shadow-indigo-400 ring-1 ring-transparent focus:ring-indigo-600 dark:focus:border-neutral-900 dark:shadow-black">
                                     Update
                                 </button>
                             </div>
@@ -85,47 +83,41 @@
                         Change Password
                     </label>
 
-                    <form class="px-1 space-y-4" action="{{ route('settings.password') }}" method="post">
+                    <form class="flex flex-col gap-3 mt-2" action="{{ route('settings.password') }}" method="post">
                         @csrf
 
                         {{-- current password input field --}}
-                        <div class="-space-y-px rounded-md shadow-sm">
-                            <div class="mb-4">
-                                <label for="current_password"
-                                    class="text-sm md:text-base text-neutral-500 dark:text-neutral-400">
-                                    Current Password
-                                </label>
+                        <div>
+                            <label for="current_password" class="text-sm text-neutral-500 dark:text-neutral-400">
+                                Current Password
+                            </label>
 
-                                <input type="password" name="current_password" id="current_password"
-                                    placeholder="Enter current password"
-                                    class="w-full transition duration-300 border-4 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600"
-                                    required />
-                            </div>
+                            <input type="password" name="current_password" id="current_password"
+                                placeholder="Enter current password"
+                                class="w-full mt-1 text-sm transition duration-300 border rounded-md h-11 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600"
+                                required />
                         </div>
 
                         {{-- new password input field --}}
-                        <div class="-space-y-px rounded-md shadow-sm">
-                            <div class="mb-4">
-                                <label for="password" class="text-sm md:text-base text-neutral-500 dark:text-neutral-400">
-                                    New Password
-                                </label>
+                        <div>
+                            <label for="password" class="text-sm text-neutral-500 dark:text-neutral-400">
+                                New Password
+                            </label>
 
-                                <input type="password" name="password" id="password" placeholder="Enter a new password"
-                                    class="w-full transition duration-300 border-4 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600"
-                                    required />
-                            </div>
+                            <input type="password" name="password" id="password" placeholder="Enter a new password"
+                                class="w-full mt-1 text-sm transition duration-300 border rounded-md h-11 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600"
+                                required />
                         </div>
 
                         {{-- password confirmation input field --}}
-                        <div class="pb-2">
-                            <label for="password_confirmation"
-                                class="text-sm md:text-base text-neutral-500 dark:text-neutral-400">
+                        <div>
+                            <label for="password_confirmation" class="text-sm text-neutral-500 dark:text-neutral-400">
                                 Confirm New Password
                             </label>
 
                             <input type="password" name="password_confirmation" id="password_confirmation"
                                 placeholder="Confirm new password"
-                                class="w-full transition duration-300 border-4 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600"
+                                class="w-full mt-1 text-sm transition duration-300 border rounded-md h-11 outline-0 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 focus:border-indigo-600 dark:focus:border-indigo-600"
                                 required />
 
                             @error('password')
@@ -138,7 +130,7 @@
 
                         <div class="w-full sm:w-fit">
                             <button
-                                class="w-full px-10 py-2 font-semibold text-white transition duration-300 bg-indigo-600 border border-white shadow-lg hover:bg-indigo-500 sm:w-fit h-fit dark:text-neutral-900 shadow-indigo-400 ring-1 ring-indigo-600 hover:ring-indigo-500 dark:border-neutral-900 dark:shadow-black">
+                                class="w-full px-10 font-medium text-white transition duration-300 bg-indigo-600 border border-transparent rounded-md shadow-lg focus:border-white h-11 hover:bg-indigo-500 sm:w-fit shadow-indigo-400 ring-1 ring-transparent focus:ring-indigo-600 dark:focus:border-neutral-900 dark:shadow-black">
                                 Update
                             </button>
                         </div>

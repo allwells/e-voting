@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="h-full bg-neutral-100 dark:bg-neutral-800">
+<body class="@auth bg-neutral-100 h-full @endauth dark:bg-neutral-800">
     {{-- Navbar for non-authenticated users --}}
     @guest
         <x-navbar />

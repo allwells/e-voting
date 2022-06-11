@@ -6,7 +6,7 @@
 @section('views')
     <div class="flex flex-col items-center justify-start gap-10 px-3 py-10 h-fit lg:px-24">
         <div
-            class="w-full min-h-full px-0 py-3 tracking-wide bg-white border sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+            class="w-full min-h-full px-0 py-3 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
             <x-live_heading text="Election Details" />
 
             <x-breadcrumbs previousPage="Elections" currentPage="Election Details" link="elections" />
@@ -14,17 +14,17 @@
             <div class="px-4 pb-6 mt-3 cursor-default sm:px-0 grow text-neutral-700 dark:text-neutral-200">
                 @if ($today->gt($election->start_date) && $today->gt($election->end_date))
                     <span
-                        class="mb-2 flex w-full items-center justify-start px-2 py-0.5 text-sm sm:text-base border-2 border-white text-rose-700 dark:text-rose-100 bg-rose-100 dark:bg-rose-600 ring-1 ring-rose-100 dark:ring-rose-600 dark:border-neutral-900">
+                        class="mb-2 flex w-full items-center justify-start px-2 py-0.5 text-sm sm:text-base border border-rose-700 text-rose-700 dark:border-rose-900 rounded dark:text-rose-100 bg-rose-100 dark:bg-rose-600">
                         <svg class="w-5 h-5 mr-1 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        This election has <strong class="mx-1">ended</strong>!
+                        This election has <strong class="mx-1">ended!</strong>
                     </span>
                 @elseif ($election->status == 'closed')
                     <span
-                        class="mb-2 flex w-full items-center justify-start px-2 py-0.5 text-sm sm:text-base border-2 border-white text-rose-700 dark:text-rose-100 bg-rose-100 dark:bg-rose-600 ring-1 ring-rose-100 dark:ring-rose-600 dark:border-neutral-900">
+                        class="mb-2 flex w-full items-center justify-start px-2 py-0.5 text-sm sm:text-base border border-rose-700 text-rose-700 dark:border-rose-900 rounded dark:text-rose-100 bg-rose-100 dark:bg-rose-600">
                         <svg class="w-5 h-5 mr-1 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,6 +33,7 @@
                         This election was <strong class="mx-1">closed</strong> by an admin!
                     </span>
                 @endif
+
                 {{-- Election details --}}
                 <div>
                     <div class="flex items-start justify-between break-words break-all">
@@ -64,14 +65,14 @@
                             <div class="flex justify-start w-full gap-2 sm:w-fit">
                                 {{-- Start date --}}
                                 <span
-                                    class="bg-indigo-200 border-2 border-white text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5 ring-1 ring-indigo-100 dark:ring-indigo-600 dark:border-neutral-900">
+                                    class="bg-indigo-200 border border-indigo-600 rounded text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5">
                                     <i class="fa fa-calendar"></i>
                                     {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->start_date, 0, 10)))) }}
                                 </span>
 
                                 {{-- Start time --}}
                                 <span
-                                    class="bg-indigo-200 border-2 border-white text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5 ring-1 ring-indigo-100 dark:ring-indigo-600 dark:border-neutral-900">
+                                    class="bg-indigo-200 border border-indigo-600 rounded text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5">
                                     <i class="fa fa-clock"></i>
                                     {{ substr($election->start_date, 10, 6) }} UTC
                                 </span>
@@ -89,14 +90,14 @@
                             <div class="flex justify-start w-full gap-2 sm:w-fit">
                                 {{-- End date --}}
                                 <span
-                                    class="bg-indigo-200 border-2 border-white text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5 ring-1 ring-indigo-100 dark:ring-indigo-600 dark:border-neutral-900">
+                                    class="bg-indigo-200 border border-indigo-600 rounded text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5">
                                     <i class="fa fa-calendar"></i>
                                     {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->end_date, 0, 10)))) }}
                                 </span>
 
                                 {{-- End time --}}
                                 <span
-                                    class="bg-indigo-200 border-2 border-white text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5 ring-1 ring-indigo-100 dark:ring-indigo-600 dark:border-neutral-900">
+                                    class="bg-indigo-200 border border-indigo-600 rounded text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5">
                                     <i class="fa fa-clock"></i>
                                     {{ substr($election->end_date, 10, 6) }} UTC
                                 </span>

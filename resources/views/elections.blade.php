@@ -8,7 +8,7 @@
         class="flex flex-col items-center justify-start @if (auth() && auth()->user()->privilege == 'admin') ) gap-16 @endif px-3 py-10 h-fit lg:px-28">
         @if (auth() && auth()->user()->privilege == 'admin')
             <div
-                class="w-full min-h-full px-0 py-3 tracking-wide bg-white border sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+                class="w-full min-h-full px-0 py-3 tracking-wide bg-white border rounded-lg shadow-lg sm:px-4 shadow-neutral-300 dark:shadow-black border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
                 <x-live_heading text="Create Election" />
 
                 <div class="px-4 pb-6 mt-6 sm:px-0 grow text-neutral-500 dark:text-neutral-200">
@@ -18,7 +18,7 @@
         @endif
 
         <div
-            class="w-full min-h-full px-0 py-4 tracking-wide bg-white border md:p-8 dark:bg-neutral-900 border-neutral-100 dark:border-neutral-800 dark:ring-neutral-900 ring-1 ring-white">
+            class="w-full min-h-full px-0 py-4 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black md:p-8 dark:bg-neutral-900 border-neutral-100 dark:border-neutral-800 dark:ring-neutral-900 ring-1 ring-white">
             @if (auth() && auth()->user()->privilege == 'user')
                 <div class="-mt-2 md:-mt-14">
                     <x-live_heading text="Elections" />
@@ -58,7 +58,7 @@
                             @endforeach
                         </tbody>
                     @else
-                        <tr class="text-lg text-center cursor-default text-neutral-500">
+                        <tr class="text-base text-center cursor-default sm:text-lg text-neutral-500">
                             <td colspan="4" class="pt-10">
                                 No elections yet.
                             </td>

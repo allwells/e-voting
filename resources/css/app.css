@@ -31,7 +31,7 @@ body {
     color: #fff !important;
     font-weight: 700 !important;
     background-color: #5850ec !important;
-    box-shadow: 2px 2px 25px #aaa !important;
+    box-shadow: 2px 2px 20px #999 !important;
 }
 
 
@@ -43,7 +43,7 @@ body {
     color: #fff !important;
     font-weight: 700 !important;
     background-color: #5850ec !important;
-    box-shadow: 2px 2px 25px #000 !important;
+    box-shadow: 2px 2px 20px #000 !important;
 }
 
 /* Chart layout */
@@ -51,9 +51,13 @@ body {
     min-height: 25rem;
 }
 
+.no-nav, .no-footer, .no-home {
+    display: none !important;
+}
+
 .candidate-card {
     min-width: 25rem !important;
-    max-width: calc(50% - 2rem);
+    max-width: calc(45% - 2rem) !important;
 }
 
 /* Nav bar */
@@ -72,7 +76,6 @@ div#nav-profile-image {
 /* Hero background */
 .hero-background {
     min-height: 90vh;
-    margin-top: 5.6rem;
     background-image: url("../../public/images/background-spot.svg");
     background-size: 100%;
     background-position: center;

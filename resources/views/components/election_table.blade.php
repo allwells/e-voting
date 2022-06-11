@@ -25,7 +25,7 @@
         @if (auth() && auth()->user()->privilege == 'admin')
             <button id="dropdownLeftButton-{{ $election->id }}"
                 data-dropdown-toggle="dropdownLeft-{{ $election->id }}" data-dropdown-placement="left-start"
-                class="inline-flex items-center p-1 text-sm font-medium text-center transition duration-300 bg-transparent text-neutral-700 focus:outline-none hover:bg-neutral-200 focus:ring-2 focus:ring-neutral-300 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:ring-neutral-500"
+                class="inline-flex items-center p-1 text-sm font-medium text-center transition duration-300 bg-transparent rounded text-neutral-700 focus:outline-none hover:bg-neutral-200 focus:ring-2 focus:ring-neutral-300 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:ring-neutral-500"
                 type="button">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
@@ -37,12 +37,12 @@
 
             <!-- Dropdown menu -->
             <div id="dropdownLeft-{{ $election->id }}"
-                class="z-20 hidden w-40 bg-white border divide-y shadow dark:border-neutral-700 border-neutral-300 divide-neutral-100 dark:bg-neutral-800">
+                class="z-20 hidden w-40 bg-white border divide-y rounded shadow dark:border-neutral-700 border-neutral-300 divide-neutral-100 dark:bg-neutral-800">
                 <ul class="p-1 text-sm text-left text-neutral-700 dark:text-neutral-200"
                     aria-labelledby="dropdownLeftButton-{{ $election->id }}">
                     <li>
                         <a href="{{ route('elections.view', $election->id) }}" title="Enter Election"
-                            class="block px-4 py-2 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
+                            class="block px-4 py-2 font-medium rounded hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
                             Enter
                         </a>
                     </li>
@@ -55,7 +55,7 @@
                                 class="w-full">
                                 @csrf
                                 <button type="submit" title="Close this election"
-                                    class="block w-full px-4 py-2 font-medium text-left hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
+                                    class="block w-full px-4 py-2 font-medium text-left rounded hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
                                     Close
                                 </button>
                             </form>
@@ -71,7 +71,7 @@
                             @method('DELETE')
 
                             <button type="submit" title="Delete this election"
-                                class="block w-full px-4 py-2 font-medium text-left hover:bg-neutral-100 dark:text-rose-600 dark:hover:bg-neutral-700/50">
+                                class="block w-full px-4 py-2 font-medium text-left rounded text-rose-600 hover:bg-neutral-100 dark:text-rose-600 dark:hover:bg-neutral-700/50">
                                 Delete
                             </button>
                         </form>

@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="relative flex justify-center overflow-hidden align-top bg-white hero-background">
-    <div class="px-4 mx-auto mt-10 max-w-7xl sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-        <div class="flex flex-col justify-start mt-12 align-middle sm:text-center lg:text-left">
+<div class="relative flex justify-center pt-10 overflow-hidden align-top bg-white hero-background sm:pt-20">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="flex flex-col justify-start mt-16 align-middle sm:text-center lg:text-left">
             <div class="flex justify-center">
                 <h1 class="text-4xl font-extrabold tracking-tight text-center text-gray-900 sm:text-5xl md:text-6xl">
                     <span class="block xl:inline">Facilitate your</span>
@@ -18,9 +18,9 @@
                 </p>
             </div>
 
-            <div class="flex justify-center sm:py-6 sm:mt-6 mt-3 align-middle">
+            <div class="flex justify-center mt-3 align-middle sm:py-6 sm:mt-6">
                 <a href="{{ route('register') }}"
-                    class="py-2 h-fit w-fit px-8 font-semibold border-4 border-white text-white ring-1 ring-indigo-600 bg-indigo-600 shadow-lg hover:shadow-indigo-300 active:shadow-none transition duration-300">
+                    class="px-5 py-1.5 font-medium text-base text-white bg-indigo-600 border border-transparent rounded-md shadow-lg shadow-neutral-300 hover:bg-indigo-700 focus:border-white h-fit w-fit ring-1 ring-transparent focus:ring-indigo-600">
                     Get Started
                 </a>
             </div>
