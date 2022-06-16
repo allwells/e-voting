@@ -6,10 +6,10 @@
 @section('views')
     <div class="flex items-center justify-center px-3 py-10 h-fit lg:px-28">
         <div
-            class="w-full min-h-full px-4 py-3 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+            class="w-full min-h-full p-4 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
             <x-live_heading text="Settings" />
 
-            <div class="px-4 pb-6 mt-6 grow sm:px-0 text-neutral-500 dark:text-neutral-200">
+            <div class="pb-6 mt-6 grow text-neutral-500 dark:text-neutral-200">
                 {{-- Appearance settings --}}
                 <div>
                     <h2 class="text-base font-bold uppercase md:text-lg text-neutral-800 dark:text-neutral-100">

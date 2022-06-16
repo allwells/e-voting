@@ -18,6 +18,9 @@ Route::group(['middleware' => 'auth'], function() {
     // DASHBOARD ROUTE
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
+    // PROFILE ROUTE
+    // Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
+
     // ELECTIONS ROUTE
     Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections');
     Route::get('/elections/{election:id}', 'App\Http\Controllers\ElectionController@show')->name('elections.view');
@@ -43,6 +46,14 @@ Route::group(['middleware' => 'auth'], function() {
     // redirects to dashboard route
     Route::get('/', function() { return redirect()->route('dashboard'); });
     Route::get('/home', function() { return redirect()->route('dashboard'); });
+});
+
+// SUPERUSER ROUTE
+Route::group(['middleware' => 'superuser'], function() {
+    // USERS ROUTE
+    Route::get('/users', 'App\Http\Controllers\Superuser\UserController@index')->name('users');
+    Route::delete('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@destroy')->name('users.destroy');
+    Route::post('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@privilege')->name('users.privilege');
 });
 
 // ADMINS ROUTE
