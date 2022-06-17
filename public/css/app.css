@@ -1157,6 +1157,9 @@ input[type="range"]::-ms-fill-lower {
 .flex-shrink-0 {
   flex-shrink: 0;
 }
+.flex-shrink {
+  flex-shrink: 1;
+}
 .flex-grow {
   flex-grow: 1;
 }
@@ -1606,6 +1609,10 @@ input[type="range"]::-ms-fill-lower {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 .pb-6 {
   padding-bottom: 1.5rem;
