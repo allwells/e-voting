@@ -6,6 +6,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+div#analysis-card {
+    max-width: calc(50% - 0.5rem) !important;
 }
 
 #social-links ul {
@@ -23,27 +28,25 @@ body {
     color: #5850ec;
 }
 
-#active-dashboard *, #active-candidate *, #active-election *, #active-results *, #active-information *, #active-settings * {
-    color: #fff !important;
-}
-
-#active-dashboard, #active-candidate, #active-election, #active-results, #active-information, #active-settings {
-    color: #fff !important;
+#active-dashboard, #active-candidate, #active-election, #active-results, #active-information, #active-settings, #active-users {
     font-weight: 700 !important;
-    background-color: #5850ec !important;
-    box-shadow: 2px 2px 20px #999 !important;
+    color: #5850ec !important;
+    background-color: transparent;
 }
 
-
-#active-dark-dashboard *, #active-dark-candidate *, #active-dark-election *, #active-dark-results *, #active-dark-information *, #active-dark-settings * {
-    color: #fff !important;
+#active-dashboard:hover, #active-candidate:hover, #active-election:hover, #active-results:hover, #active-information:hover, #active-settings:hover, #active-users:hover {
+    background-color: transparent;
 }
 
-#active-dark-dashboard, #active-dark-candidate, #active-dark-election, #active-dark-results, #active-dark-information, #active-dark-settings {
-    color: #fff !important;
+#active-dark-dashboard, #active-dark-candidate, #active-dark-election, #active-dark-results, #active-dark-information, #active-dark-settings, #active-dark-users {
     font-weight: 700 !important;
-    background-color: #5850ec !important;
-    box-shadow: 2px 2px 20px #000 !important;
+    color: #5850ec !important;
+    background-color: transparent;
+}
+
+
+#active-dark-dashboard:hover, #active-dark-candidate:hover, #active-dark-election:hover, #active-dark-results:hover, #active-dark-information:hover, #active-dark-settings:hover, #active-dark-users:hover {
+    background-color: transparent;
 }
 
 /* Chart layout */
@@ -93,9 +96,9 @@ footer {
 }
 
 /* User dashboard layout */
-#layout {
+/* #layout {
     min-height: calc(100% - 2rem);
-}
+} */
 
 /* user profile page */
 .user-profile .profile-bg-image {
@@ -141,6 +144,12 @@ footer {
 @media only screen and (max-width: 1024px) {
     .candidate-card {
         min-width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 488px) {
+    div#analysis-card {
+        max-width: 100% !important;
     }
 }
 

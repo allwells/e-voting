@@ -7,7 +7,7 @@
     <div class="flex flex-col items-center justify-start px-3 py-10 gap-y-16 h-fit lg:px-28">
         @if (auth() && auth()->user()->privilege == 'admin')
             <div
-                class="w-full min-h-full px-4 py-3 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+                class="w-full min-h-full p-4 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
                 <x-live_heading text="Add Candidates" />
 
                 <div class="pb-6 mt-6 grow text-neutral-500 dark:text-neutral-200">

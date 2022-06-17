@@ -12,7 +12,8 @@
         "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "okipa/laravel-table": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

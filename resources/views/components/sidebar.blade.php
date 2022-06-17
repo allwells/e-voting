@@ -1,7 +1,7 @@
-<aside
+{{-- <aside
     class="sidebar-menu fixed w-72 hidden sm:flex flex-col z-50 h-full px-2 pb-3 pt-0.5 top-0 bg-white shadow-2xl dark:border-r dark:border-neutral-700 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300"
     aria-label="Sidebar">
-    <div class="flex flex-col items-start justify-start w-full h-full px-3 pt-2 sm:justify-between">
+    <div class="flex items-start justify-start w-full h-full px-3 pt-2 sm:justify-between">
         <ul class="w-full space-y-2">
             <li class="flex items-center justify-end px-4 py-1 sm:py-3 sm:justify-start">
                 <x-logo />
@@ -35,7 +35,7 @@
                     </a>
                 </li>
 
-                {{-- <li>
+                <li>
                     <a href="#" id="@yield('register-tab')"
                         class="flex items-center px-3 py-2 text-sm font-normal transition duration-300 rounded-md h-11 dark:hover:bg-neutral-800/50 hover:bg-neutral-200/50 active:bg-neutral-200 register-btn">
                         <svg class="flex-shrink-0 w-6 h-6 text-indigo-600 transition duration-75" fill="currentColor"
@@ -45,7 +45,7 @@
                             </path>
                         </svg>
                         <span class="flex-1 ml-3 text-sm whitespace-nowrap">Register</span>
-                    </a> --}}
+                    </a>
                 </li>
             @endif
 
@@ -63,7 +63,7 @@
                 </li>
 
 
-                {{-- <li>
+                <li>
                     <a href="{{ route('voter.registration') }}" id="@yield('voter-reg-tab')"
                     <svg
                         class="flex items-center px-3 py-2 text-sm font-normal transition duration-300 rounded-md h-11 dark:hover:bg-neutral-800/50 hover:bg-neutral-200/50 active:bg-neutral-200 registration-btn">
@@ -75,7 +75,7 @@
                         </svg>
                         <span class="flex-1 ml-3 text-sm whitespace-nowrap">Voter Registration</span>
                     </a>
-                </li> --}}
+                </li>
             @endif
 
             <li>
@@ -139,15 +139,106 @@
                     </span>
                 </button>
             </form>
-
-            {{-- <div class="py-5 cursor-default">
-                <span class="text-base font-semibold text-ellipsis">
-                    Allwell Onen
-                </span>
-                <span class="text-base text-ellipsis">
-                    aleenfestus@gmail.com
-                </span>
-            </div> --}}
         </span>
     </div>
-</aside>
+</aside> --}}
+
+<div
+    class="bg-white w-fit md:w-fit px-5 h-full rounded-xl py-3 hidden sm:flex justify-between pb-6 items-center flex-col">
+    <div>
+        <div class="flex justify-center items-center">
+            <a href="{{ route('home') }}" class="home-btn text-lg font-bold">
+                <span class="text-neutral-700 dark:text-neutral-200">
+                    <span class="text-indigo-600">e</span>Voting
+                </span>
+            </a>
+        </div>
+        <div class="border-b border-neutral-200 mt-2"></div>
+        <div class="mt-5">
+            <ul class="flex flex-col gap-6 justify-start text-neutral-400 items-start md:items-center">
+                <li>
+                    <a href="{{ route('dashboard') }}" id="@yield('dashboard-tab')"
+                        data-tooltip-target="tooltip-right-dashboard" data-tooltip-placement="right"
+                        class="flex items-start gap-2 w-full hover:bg-neutral-200/70 transition duration-300 py-2.5 px-2 rounded-md text-xl hover:text-neutral-900">
+                        <i class="fas fa-home"></i>
+                        <span class="text-sm md:hidden">Dashboard</span>
+                    </a>
+                    <div id="tooltip-right-dashboard" role="tooltip"
+                        class="inline-block absolute invisible z-10 py-2 px-3 text-xs font-medium text-white bg-neutral-900 rounded-md shadow-sm opacity-0 tooltip dark:bg-neutral-50">
+                        Dashboard
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </li>
+                @if (auth()->user()->privilege == 'superuser')
+                    <li>
+                        <a href="{{ route('users') }}" id="@yield('users-tab')"
+                            data-tooltip-target="tooltip-right-users" data-tooltip-placement="right"
+                            class="flex items-start gap-2 w-full hover:bg-neutral-200/70 transition duration-300 py-2.5 px-2 rounded-md text-xl hover:text-neutral-900">
+                            <i class="fas fa-users"></i>
+                            <span class="text-sm md:hidden">Users</span>
+                        </a>
+                        <div id="tooltip-right-users" role="tooltip"
+                            class="inline-block absolute invisible z-10 py-2 px-3 text-xs font-medium text-white bg-neutral-900 rounded-md shadow-sm opacity-0 tooltip dark:bg-neutral-50">
+                            Users
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                    </li>
+                @endif
+                <li>
+                    <a href="{{ route('elections') }}" id="@yield('election-tab')"
+                        data-tooltip-target="tooltip-right-election" data-tooltip-placement="right"
+                        class="flex items-start gap-2 w-full hover:bg-neutral-200/70 transition duration-300 p-2.5 rounded-md text-xl hover:text-neutral-900">
+                        <i class="fas fa-box"></i>
+                        <span class="text-sm md:hidden">Election</span>
+                    </a>
+                    <div id="tooltip-right-election" role="tooltip"
+                        class="inline-block absolute invisible z-10 py-2 px-3 text-xs font-medium text-white bg-neutral-900 rounded-md shadow-sm opacity-0 tooltip dark:bg-neutral-50">
+                        Election
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </li>
+                <li>
+                    <a href="{{ route('results') }}" id="@yield('results-tab')"
+                        data-tooltip-target="tooltip-right-results" data-tooltip-placement="right"
+                        class="flex items-start gap-2 w-full hover:bg-neutral-200/70 transition duration-300 p-2.5 rounded-md text-xl hover:text-neutral-900">
+                        <i class="fas fa-poll"></i>
+                        <span class="text-sm md:hidden">Results</span>
+                    </a>
+                    <div id="tooltip-right-results" role="tooltip"
+                        class="inline-block absolute invisible z-10 py-2 px-3 text-xs font-medium text-white bg-neutral-900 rounded-md shadow-sm opacity-0 tooltip dark:bg-neutral-50">
+                        Results
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </li>
+                <li>
+                    <a href="{{ route('settings') }}" id="@yield('settings-tab')"
+                        data-tooltip-target="tooltip-right-settings" data-tooltip-placement="right"
+                        class="flex items-start gap-2 w-full hover:bg-neutral-200/70 transition duration-300 p-2.5 rounded-md text-xl hover:text-neutral-900">
+                        <i class="fas fa-gear"></i>
+                        <span class="text-sm md:hidden">Settings</span>
+                    </a>
+                    <div id="tooltip-right-settings" role="tooltip"
+                        class="inline-block absolute invisible z-10 py-2 px-3 text-xs font-medium text-white bg-neutral-900 rounded-md shadow-sm opacity-0 tooltip dark:bg-neutral-50">
+                        Settings
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+        <button type="submit" data-tooltip-target="tooltip-right-logout" data-tooltip-placement="right"
+            class="flex items-start gap-2 w-full hover:bg-neutral-200/70 text-neutral-900 transition duration-300 p-2.5 rounded-md text-xl">
+            <i class="fas fa-sign-out"></i>
+            <span class="text-sm md:hidden">Logout</span>
+        </button>
+        <div id="tooltip-right-logout" role="tooltip"
+            class="inline-block absolute invisible z-10 py-2 px-3 text-xs font-medium text-white bg-neutral-900 rounded-md shadow-sm opacity-0 tooltip dark:bg-neutral-50">
+            Logout
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+    </form>
+</div>

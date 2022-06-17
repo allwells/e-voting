@@ -6,12 +6,12 @@
 @section('views')
     <div class="flex flex-col items-center justify-start gap-10 px-3 py-10 h-fit lg:px-24">
         <div
-            class="w-full min-h-full px-0 py-3 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+            class="w-full min-h-full tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black p-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
             <x-live_heading text="Result Details" />
 
             <x-breadcrumbs previousPage="Results" currentPage="Result Details" link="results" />
 
-            <div class="px-4 pb-6 mt-2 cursor-default grow sm:px-0 text-neutral-700 dark:text-neutral-200">
+            <div class="pb-6 mt-2 cursor-default grow text-neutral-700 dark:text-neutral-200">
                 <div class="w-full">
                     <h1 class="mb-5 font-bold uppercase text-neutral-700 dark:text-neutral-200 text-md md:text-2xl">
                         Results for {{ $election->title }}
@@ -31,7 +31,11 @@
         </div>
     </div>
 
-    <script src="{{ secure_asset('js/app.js') }}"></script>
+    {{-- REMOVE COMMENTS BEFORE DEPLOYMENT --}}
+    {{-- <script src="{{ secure_asset('js/app.js') }}"></script> --}}
+
+    {{-- For localhost - COMMENT THIS BEFORE DEPLOYMENT --}}
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Charting library -->
     {{-- <script src="https://unpkg.com/chart.js@^2.9.3/dist/Chart.min.js"></script> --}}

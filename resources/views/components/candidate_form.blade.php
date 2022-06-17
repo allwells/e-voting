@@ -19,11 +19,11 @@
         <div class="flex flex-col w-full gap-2 md:w-6/12">
             {{-- name input field --}}
             <div class="w-full">
-                <label for="name" class="font-semibold text-gray-700 dark:text-neutral-300">Name
+                <label for="name" class="font-semibold text-neutral-700 dark:text-neutral-300">Name
                     <span class="text-rose-500">*</span>
                 </label>
                 <input id="name" name="name" type="text"
-                    class="relative block w-full h-12 px-3 py-2 mt-1 text-sm duration-300 border rounded-md md:text-base text-neutral-700 dark:text-neutral-300 dark:bg-neutral-800 border-neutral-200 dark:hover:border-neutral-500 dark:border-neutral-700 hover:border-neutral-500 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
+                    class="relative block w-full h-12 px-3 py-2 mt-1 text-sm duration-300 border rounded-md text-neutral-700 dark:text-neutral-300 dark:bg-neutral-800 border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 hover:border-neutral-700 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
                     placeholder="Enter candidate's full name" value="{{ old('name') }}">
 
                 <span id='name-error' class="text-red-600 text-md error-text"></span>
@@ -31,11 +31,11 @@
 
             {{-- party field --}}
             <div class="w-full">
-                <label for="party" class="font-semibold text-gray-700 dark:text-neutral-300">Party
+                <label for="party" class="font-semibold text-neutral-700 dark:text-neutral-300">Party
                     <span class="text-rose-500">*</span>
                 </label>
                 <input id="party" name="party" type="text"
-                    class="relative block w-full h-12 px-3 py-2 mt-1 text-sm duration-300 border rounded-md md:text-base text-neutral-700 dark:text-neutral-300 dark:bg-neutral-800 border-neutral-200 dark:hover:border-neutral-500 dark:border-neutral-700 hover:border-neutral-500 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
+                    class="relative block w-full h-12 px-3 py-2 mt-1 text-sm duration-300 border rounded-md text-neutral-700 dark:text-neutral-300 dark:bg-neutral-800 border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 hover:border-neutral-700 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
                     placeholder="Enter candidate's party" value="{{ old('party') }}">
 
                 <span id='party-error' class="text-red-600 text-md error-text"></span>
@@ -43,15 +43,14 @@
 
             {{-- election field --}}
             <div class="w-full">
-                <label for="election_id" class="font-semibold text-gray-700 dark:text-neutral-300">Election
+                <label for="election_id" class="font-semibold text-neutral-700 dark:text-neutral-300">Election
                     <span class="text-rose-500">*</span>
                 </label>
                 <select id="election_id" name="election_id" type="text"
-                    class="relative block w-full h-12 px-3 py-2 mt-1 text-sm duration-300 border rounded-md md:text-base text-neutral-700 dark:text-neutral-300 dark:bg-neutral-800 border-neutral-200 dark:hover:border-neutral-500 dark:border-neutral-700 hover:border-neutral-500 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10"
-                    value="{{ old('election_id') }}">
-                    <option class="text-sm md:text-base">-- Select election --</option>
+                    class="relative block w-full h-12 px-3 py-2 mt-1 text-sm duration-300 border rounded-md text-neutral-700 dark:text-neutral-300 dark:bg-neutral-800 border-neutral-400 dark:hover:border-neutral-500 dark:border-neutral-700 hover:border-neutral-700 dark:focus:border-indigo-600 focus:outline-none focus:ring-indigo-600 focus:border-indigo-600 focus:z-10">
+                    <option class="text-sm">-- Select election --</option>
                     @foreach ($elections as $election)
-                        <option class="text-sm md:text-base" value="{{ $election->id }}">{{ $election->title }}
+                        <option class="text-sm" value="{{ $election->id }}">{{ $election->title }}
                         </option>
                     @endforeach
                 </select>
@@ -63,13 +62,13 @@
         <div class="flex-grow w-full md:w-6/12">
             {{-- image field --}}
             <div class="w-full h-full">
-                <label for="email" class="font-semibold text-gray-700 dark:text-neutral-300">
+                <label for="email" class="font-semibold text-neutral-700 dark:text-neutral-300">
                     Image
                 </label>
 
                 <div class="flex items-center justify-center w-full mt-1">
                     <label for="dropzone-file"
-                        class="flex flex-col items-center justify-center w-full transition duration-300 border border-dashed rounded-md cursor-pointer h-52 bg-neutral-50 hover:border-neutral-500 border-neutral-300 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500 dark:hover:bg-neutral-800">
+                        class="flex flex-col items-center justify-center w-full transition duration-300 border border-dashed rounded-md cursor-pointer h-52 bg-neutral-50 hover:border-neutral-700 border-neutral-400 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:border-neutral-700 dark:hover:border-neutral-500 dark:hover:bg-neutral-800">
 
                         <div
                             class="flex flex-col items-center justify-center pt-5 pb-6 text-center text-neutral-500 dark:text-neutral-200">

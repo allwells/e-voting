@@ -6,10 +6,10 @@
 @section('views')
     <div class="flex items-center justify-center px-3 py-10 h-fit lg:px-28">
         <div
-            class="w-full min-h-full px-0 py-3 tracking-wide bg-white border sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+            class="w-full min-h-full p-4 tracking-wide rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black bg-white border border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
             <x-live_heading text="User Manual" />
 
-            <div class="px-4 pb-6 mt-6 grow sm:px-0 text-neutral-500 dark:text-neutral-200">
+            <div class="pb-6 mt-6 grow text-neutral-500 dark:text-neutral-200">
                 <h2>Welcome</h2>
                 <p class="mt-1">These are few guidelines for user:</p>
 

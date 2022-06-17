@@ -6,12 +6,12 @@
 @section('views')
     <div class="flex flex-col items-center justify-start gap-10 px-3 py-10 h-fit lg:px-24">
         <div
-            class="w-full min-h-full px-0 py-3 tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black sm:px-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
+            class="w-full min-h-full tracking-wide bg-white border rounded-lg shadow-lg shadow-neutral-300 dark:shadow-black p-4 border-neutral-100 dark:border-neutral-800 md:px-8 dark:bg-neutral-900 dark:ring-neutral-900 ring-1 ring-white">
             <x-live_heading text="Election Details" />
 
             <x-breadcrumbs previousPage="Elections" currentPage="Election Details" link="elections" />
 
-            <div class="px-4 pb-6 mt-3 cursor-default sm:px-0 grow text-neutral-700 dark:text-neutral-200">
+            <div class="pb-6 mt-3 cursor-default grow text-neutral-700 dark:text-neutral-200">
                 @if ($today->gt($election->start_date) && $today->gt($election->end_date))
                     <span
                         class="mb-2 flex w-full items-center justify-start px-2 py-0.5 text-sm sm:text-base border border-rose-700 text-rose-700 dark:border-rose-900 rounded dark:text-rose-100 bg-rose-100 dark:bg-rose-600">

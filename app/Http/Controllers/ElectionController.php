@@ -112,9 +112,9 @@ class ElectionController extends Controller
     public function edit(Request $request, Election $election)
     {
         // get user privilege
-        $isNotAdmin = auth() && auth()->user()->privilege !== 'admin';
+        $isUnauthorizedUser = auth() && auth()->user()->privilege !== 'admin' || auth() && auth()->user()->privilege !== 'superuser';
 
-        if($isNotAdmin)
+        if($isUnauthorizedUser)
         {
             return abort(403, 'Unauthorized action.');
         }
@@ -150,9 +150,9 @@ class ElectionController extends Controller
 
     public function destroy(Election $election)
     {
-        $isNotAdmin = auth() && auth()->user()->privilege !== 'admin';
+        $isUnauthorizedUser = auth() && auth()->user()->privilege !== 'admin' || auth() && auth()->user()->privilege !== 'superuser';
 
-        if(isNotAdmin)
+        if(isUnauthorizedUser)
         {
             return abort(403, 'Unauthorized action.');
         }
