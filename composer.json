@@ -13,7 +13,7 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "okipa/laravel-table": "*"
+        "cloudinary/cloudinary_php": "^2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

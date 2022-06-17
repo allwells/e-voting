@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 
 div#analysis-card {
@@ -24,28 +24,51 @@ div#analysis-card {
     transition-duration: 0.4s !important;
 }
 
-#social-links ul a:hover{
+#social-links ul a:hover {
     color: #5850ec;
 }
 
-#active-dashboard, #active-candidate, #active-election, #active-results, #active-information, #active-settings, #active-users {
+#active-dashboard,
+#active-candidate,
+#active-election,
+#active-results,
+#active-information,
+#active-settings,
+#active-users {
     font-weight: 700 !important;
     color: #5850ec !important;
     background-color: transparent;
 }
 
-#active-dashboard:hover, #active-candidate:hover, #active-election:hover, #active-results:hover, #active-information:hover, #active-settings:hover, #active-users:hover {
+#active-dashboard:hover,
+#active-candidate:hover,
+#active-election:hover,
+#active-results:hover,
+#active-information:hover,
+#active-settings:hover,
+#active-users:hover {
     background-color: transparent;
 }
 
-#active-dark-dashboard, #active-dark-candidate, #active-dark-election, #active-dark-results, #active-dark-information, #active-dark-settings, #active-dark-users {
+#active-dark-dashboard,
+#active-dark-candidate,
+#active-dark-election,
+#active-dark-results,
+#active-dark-information,
+#active-dark-settings,
+#active-dark-users {
     font-weight: 700 !important;
     color: #5850ec !important;
     background-color: transparent;
 }
 
-
-#active-dark-dashboard:hover, #active-dark-candidate:hover, #active-dark-election:hover, #active-dark-results:hover, #active-dark-information:hover, #active-dark-settings:hover, #active-dark-users:hover {
+#active-dark-dashboard:hover,
+#active-dark-candidate:hover,
+#active-dark-election:hover,
+#active-dark-results:hover,
+#active-dark-information:hover,
+#active-dark-settings:hover,
+#active-dark-users:hover {
     background-color: transparent;
 }
 
@@ -54,7 +77,9 @@ div#analysis-card {
     min-height: 25rem;
 }
 
-.no-nav, .no-footer, .no-home {
+.no-nav,
+.no-footer,
+.no-home {
     display: none !important;
 }
 
@@ -115,6 +140,8 @@ footer {
 .user-profile .profile-image-container .profile-img {
     width: 110px;
     height: 110px;
+    display: flex;
+    flex-shrink: 0;
     border-radius: 50%;
     background-size: cover;
     background-position: center;

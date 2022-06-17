@@ -19,7 +19,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
     // PROFILE ROUTE
-    // Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
+    Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
+    Route::post('/profile', 'App\Http\Controllers\ProfileController@store');
 
     // ELECTIONS ROUTE
     Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections');

@@ -26,14 +26,14 @@
                     {{-- </div> --}}
 
                     <div class="sm:flex items-center justify-center gap-3 p-1.5 cursor-default rounded-md bg-white hidden">
-                        <a href="#profile">
+                        <a href="{{ route('profile') }}">
                             <div
                                 class="flex items-center justify-center text-xl font-extrabold uppercase rounded-md hover:bg-neutral-200 h-11 w-11 text-neutral-500 bg-neutral-200/50">
                                 {{ auth()->user()->fname[0] . auth()->user()->lname[0] }}
                             </div>
                         </a>
                         <div class="flex flex-col items-start justify-start text-base font-medium text-neutral-700">
-                            <a href="#profile" class="hover:underline">
+                            <a href="{{ route('profile') }}" class="hover:underline">
                                 <span>{{ auth()->user()->fname }} {{ auth()->user()->lname }}</span>
                             </a>
                             <span class="text-xs font-normal text-neutral-500">{{ auth()->user()->email }}</span>
@@ -55,7 +55,7 @@
                                 <ul class="flex flex-col gap-1 p-1 text-sm text-neutral-500"
                                     aria-labelledby="dropdownLeftStartButton">
                                     <li>
-                                        <a href="#profile"
+                                        <a href="{{ route('profile') }}"
                                             class="flex items-center justify-start gap-2 p-2 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
                                             <span>
                                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
