@@ -1006,6 +1006,9 @@ input[type="range"]::-ms-fill-lower {
 .mr-0 {
   margin-right: 0px;
 }
+.mt-2\.5 {
+  margin-top: 0.625rem;
+}
 .block {
   display: block;
 }
