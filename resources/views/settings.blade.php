@@ -3,7 +3,7 @@
 @section('settings-tab', auth()->user()->theme == 'dark' ? 'active-dark-settings' : 'active-settings')
 
 @section('views')
-    <form action="{{ route('settings') }}" method="POST"
+    <form action="{{ route('settings.save') }}" method="POST"
         class="w-full bg-white flex gap-5 rounded-xl p-5 md:flex-row flex-col">
         @csrf
 
