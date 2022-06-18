@@ -2,7 +2,7 @@
 
 <tr
     class="my-2 text-sm leading-loose text-neutral-600 hover:text-neutral-900 transition duration-300 bg-white cursor-default hover:bg-neutral-100/50">
-    <td class="w-8 px-4 text-center">
+    <td class="w-8 px-4 border-r border-neutral-100 text-center">
         {{ $user->id }}
     </td>
 
