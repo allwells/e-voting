@@ -10,14 +10,15 @@
                 <h2 class="mb-3 text-lg font-extrabold text-center uppercase sm:text-xl text-neutral-800">Sign up</h2>
             </div>
 
-            <form id="register-form" class="flex flex-col gap-3" action="{{ route('register') }}" method="POST">
+            <form class="register-form flex flex-col gap-3" action="{{ route('register') }}" method="POST">
                 @csrf
 
-                <div id="success-msg"
-                    class="items-center justify-start hidden w-full px-3 py-3 font-normal text-left border-2 border-white cursor-default text-md ring-1 ring-emerald-300 text-emerald-800 bg-emerald-200 h-fit">
+                <div
+                    class="success-msg items-center justify-start hidden w-full px-3 py-3 font-normal text-left border-2 border-white cursor-default text-md ring-1 ring-emerald-300 text-emerald-800 bg-emerald-200 h-fit">
                 </div>
 
                 <input type="hidden" name="remember" value="true">
+
                 <div class="flex flex-col gap-2">
                     {{-- first name input field --}}
                     <div>

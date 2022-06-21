@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('elections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('type');
+            $table->timestamp('end_date')->nullable();
+            $table->timestamp('start_date')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ class ResultController extends Controller
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
-        $closed_elections = DB::table('elections')->where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
+        $closed_elections = DB::table('elections')->where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->paginate(10);
 
         $elections = Election::all();
 

@@ -1,32 +1,31 @@
-@props(['user' => $user])
+@props(['index' => $index, 'user' => $user])
 
-<tr
-    class="my-2 text-sm leading-loose text-neutral-600 hover:text-neutral-900 transition duration-300 bg-white cursor-default hover:bg-neutral-100/50">
-    <td class="w-8 px-4 text-center">
-        {{ $user->id }}
+<tr class="hover:bg-neutral-50">
+    <td class="text-center cursor-default w-fit px-3">
+        {{ $index }}
     </td>
 
-    <td class="px-2 py-2 text-left">
+    <td class="px-2 py-3 text-left">
         {{ $user->fname }}
     </td>
 
-    <td class="px-2 py-2 text-left">
+    <td class="px-2 py-3 text-left">
         {{ $user->lname }}
     </td>
 
-    <td class="px-2 py-2 text-left">
+    <td class="px-2 py-3 text-left">
         {{ $user->email }}
     </td>
 
-    <td class="px-2 py-2 text-left">
+    <td class="px-2 py-3 text-left">
         {{ $user->privilege }}
     </td>
 
-    <td class="py-2 text-center flex justify-center items-center">
+    <td class="text-center capitalize cursor-default">
         <button id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart-{{ $user->id }}"
             data-dropdown-placement="left-start"
             class="p-1 hover:bg-neutral-200 rounded-md focus:bg-neutral-300 focus:text-neutral-900">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
                 </path>
             </svg>

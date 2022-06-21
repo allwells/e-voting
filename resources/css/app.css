@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 
 div#analysis-card {
@@ -14,39 +14,64 @@ div#analysis-card {
 }
 
 #social-links ul {
-    gap: 20px !important;
+    gap: 15px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: flex-end !important;
 }
 
 #social-links ul a {
-    transition-duration: 0.4s !important;
+    color: #222 !important;
 }
 
-#social-links ul a:hover{
-    color: #5850ec;
-}
-
-#active-dashboard, #active-candidate, #active-election, #active-results, #active-information, #active-settings, #active-users {
-    font-weight: 700 !important;
+#social-links ul a:hover {
     color: #5850ec !important;
-    background-color: transparent;
 }
 
-#active-dashboard:hover, #active-candidate:hover, #active-election:hover, #active-results:hover, #active-information:hover, #active-settings:hover, #active-users:hover {
-    background-color: transparent;
+#active-dashboard,
+#active-candidate,
+#active-election,
+#active-results,
+#active-information,
+#active-settings,
+#active-users {
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    background-color: #5850ec;
+    box-shadow: 0 2px 8px #453fb177;
 }
 
-#active-dark-dashboard, #active-dark-candidate, #active-dark-election, #active-dark-results, #active-dark-information, #active-dark-settings, #active-dark-users {
-    font-weight: 700 !important;
-    color: #5850ec !important;
-    background-color: transparent;
+#active-dashboard:hover,
+#active-candidate:hover,
+#active-election:hover,
+#active-results:hover,
+#active-information:hover,
+#active-settings:hover,
+#active-users:hover {
+    background-color: #5850ec;
 }
 
+#active-dark-dashboard,
+#active-dark-candidate,
+#active-dark-election,
+#active-dark-results,
+#active-dark-information,
+#active-dark-settings,
+#active-dark-users {
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    background-color: #5850ec;
+}
 
-#active-dark-dashboard:hover, #active-dark-candidate:hover, #active-dark-election:hover, #active-dark-results:hover, #active-dark-information:hover, #active-dark-settings:hover, #active-dark-users:hover {
-    background-color: transparent;
+#active-dark-dashboard:hover,
+#active-dark-candidate:hover,
+#active-dark-election:hover,
+#active-dark-results:hover,
+#active-dark-information:hover,
+#active-dark-settings:hover,
+#active-dark-users:hover {
+    background-color: #5850ec;
+    box-shadow: 0 2px 8px #000;
 }
 
 /* Chart layout */
@@ -54,7 +79,9 @@ div#analysis-card {
     min-height: 25rem;
 }
 
-.no-nav, .no-footer, .no-home {
+.no-nav,
+.no-footer,
+.no-home {
     display: none !important;
 }
 
@@ -115,6 +142,8 @@ footer {
 .user-profile .profile-image-container .profile-img {
     width: 110px;
     height: 110px;
+    display: flex;
+    flex-shrink: 0;
     border-radius: 50%;
     background-size: cover;
     background-position: center;
