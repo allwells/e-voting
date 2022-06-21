@@ -2233,7 +2233,7 @@ function getPage(selector, url) {
 }
 
 function createAccount() {
-  $(document).on("submit", "#register-form", function (event) {
+  $(document).on("submit", "form.register-form", function (event) {
     event.preventDefault();
     var pageURL = $(this).attr("action");
     $.ajax({
@@ -2245,7 +2245,7 @@ function createAccount() {
       contentType: false,
       beforeSend: function beforeSend() {
         $(document).find("span.error-text").text("");
-        $("div#success-msg").css("display", "none");
+        $("div.success-msg").css("display", "none");
       },
       success: function success(response) {
         if (response.status === 422) {
@@ -2253,11 +2253,11 @@ function createAccount() {
             $("span#" + prefix + "-error").text(value[0]);
           });
         } else {
-          $("#register-form")[0].reset();
-          $(document).find("div#success-msg").text(response.message);
-          $("div#success-msg").css("display", "flex");
+          $("form.register-form")[0].reset();
+          $(document).find("div.success-msg").text(response.message);
+          $("div.success-msg").css("display", "flex");
           setTimeout(function () {
-            $("div#success-msg").css("display", "none");
+            $("div.success-msg").css("display", "none");
             window.location.href = "/login";
           }, 3000);
         }
@@ -2298,10 +2298,15 @@ function creationForm(formId, msgId, successMsg) {
 }
 
 function closeNotification(btnId, notificationId) {
-  $(document).on('click', btnId, function (event) {
+  $(document).on("click", btnId, function (event) {
     event.preventDefault();
     $(document).find(notificationId).css("display", "none");
   });
+}
+
+function addCandidateRow() {
+  var tableRow = "<tr class=\"my-2\">\n                        <td class=\"py-2\">\n                            <div class=\"flex justify-center items-center px-2\">\n                                <input name=\"name[]\" type=\"text\" id=\"name\"\n                                    class=\"w-full text-xs sm:text-sm px-3 transition duration-300 border border-neutral-200 rounded h-12 outline-0 bg-transparent text-neutral-600  placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600\"\n                                    placeholder=\"Enter candidate's full name'\" required>\n                            </div>\n                        </td>\n                        <td class=\"py-2\">\n                            <div class=\"flex justify-center items-center px-2\">\n                                <input name=\"party[]\" type=\"text\" id=\"party\"\n                                    class=\"w-full text-xs sm:text-sm px-3 transition duration-300 border border-neutral-200 rounded h-12 outline-0 bg-transparent text-neutral-600  placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600\"\n                                    placeholder=\"Enter candidate's' party\" required>\n                            </div>\n                        </td>\n                        <td class=\"py-2 text-center\">\n                            <div class=\"w-full h-12 flex justify-center items-center\">\n                                <button type=\"button\"\n                                    class=\"p-0.5 text-white rounded-sm bg-rose-600 shadow-lg hover:bg-rose-700 focus:bg-rose-700 focus:ring focus:ring-rose-300 remove-row\">\n                                    <svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"\n                                        xmlns=\"http://www.w3.org/2000/svg\">\n                                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\n                                            d=\"M20 12H4\"></path>\n                                    </svg>\n                                </button>\n                            </div>\n                        </td>\n                    </tr>";
+  $("tbody.candidates-table").append(tableRow);
 }
 
 var showMenu = true;
@@ -2309,34 +2314,41 @@ $(document).ready(function () {
   // create user account
   createAccount(); // Create election
 
-  creationForm('#create-election-form', '#election-message', '#election-success-msg'); // Add candidates for election
+  creationForm("form.create-election-form", ".election-message", ".election-success-msg"); // Add candidates for election
 
-  creationForm('#add-candidates-form', '#candidate-message', '#candidate-success-msg'); // cast vote
+  creationForm("#add-candidates-form", "#candidate-message", "#candidate-success-msg"); // cast vote
 
-  creationForm('#voting-form', '#voting-message', '#voting-success-msg'); // close candidate creation notifications
+  creationForm("#voting-form", "#voting-message", "#voting-success-msg"); // close candidate creation notifications
 
-  closeNotification('#close-voting-success-msg', '#voting-success-msg'); // close candidate creation notifications
+  closeNotification("#close-voting-success-msg", "#voting-success-msg"); // close candidate creation notifications
 
-  closeNotification('#close-candidate-success-msg', '#candidate-success-msg'); // close election creation notifications
+  closeNotification("#close-candidate-success-msg", "#candidate-success-msg"); // close election creation notifications
 
-  closeNotification('#close-election-success-msg', '#election-success-msg'); // mobile menu button
+  closeNotification(".close-election-success-msg", ".election-success-msg"); // mobile menu button
 
-  $(document).on('click', 'button.mobile-menu-btn', function (event) {
+  $(document).on("click", "button.mobile-menu-btn", function (event) {
     event.preventDefault();
 
     if (showMenu) {
-      $(document).find('svg.open-menu-icon').css('display', 'none');
-      $(document).find('svg.close-menu-icon').css('display', 'block'); // open side menu
+      $(document).find("svg.open-menu-icon").css("display", "none");
+      $(document).find("svg.close-menu-icon").css("display", "block"); // open side menu
 
-      $(document).find('aside.sidebar-menu').css('display', 'block');
+      $(document).find("div.sidebar-menu").css("display", "block");
       showMenu = !showMenu;
     } else {
-      $(document).find('svg.open-menu-icon').css('display', 'block');
-      $(document).find('svg.close-menu-icon').css('display', 'none'); // close side menu
+      $(document).find("svg.open-menu-icon").css("display", "block");
+      $(document).find("svg.close-menu-icon").css("display", "none"); // close side menu
 
-      $(document).find('aside.sidebar-menu').css('display', 'none');
+      $(document).find("div.sidebar-menu").css("display", "none");
       showMenu = !showMenu;
     }
+  });
+  $("button.add-candidate-btn").on("click", function (event) {
+    event.preventDefault();
+    addCandidateRow();
+  });
+  $("tbody").on("click", "button.remove-row", function () {
+    $(this).parent().parent().parent().remove();
   });
 });
 

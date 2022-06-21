@@ -1,17 +1,19 @@
-@props(['election' => $election, 'today' => $today])
+@props(['index' => $index, 'election' => $election, 'today' => $today])
 
-<tr
-    class="bg-white border-l border-y border-neutral-200 dark:border-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800/30 dark:bg-neutral-900">
+<tr class="hover:bg-neutral-50">
+    <td class="text-center cursor-default w-fit px-3">
+        {{ $index }}
+    </td>
+
     <td class="py-3 text-left cursor-default w-fit" title="{{ $election->title }}">
         <div class="px-4 line-clamp-1">{{ $election->title }}</div>
     </td>
 
-    <td class="px-4 py-3 text-left border-l cursor-default border-neutral-200 dark:border-neutral-800/50"
-        title="{{ $election->description }}">
+    <td class="px-4 py-3 text-left cursor-default" title="{{ $election->description }}">
         <div class="line-clamp-1">{{ $election->description }}</div>
     </td>
 
-    <td class="px-4 py-3 text-left border-l cursor-default border-neutral-200 dark:border-neutral-800/50">
+    <td class="px-4 py-3 text-left cursor-default">
         @if ($today->lt($election->start_date) && $today->lt($election->end_date) && !($election->status == 'closed'))
             <span class="text-xs font-semibold text-blue-600 uppercase">upcoming</span>
         @elseif (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
@@ -21,8 +23,13 @@
         @endif
     </td>
 
-    <td class="py-3 text-center capitalize cursor-default border-x border-neutral-200 dark:border-neutral-800/50">
-        @if (auth() && auth()->user()->privilege == 'admin')
+    <td class="text-center capitalize cursor-default">
+        @if (auth() && (auth()->user()->privilege != 'superuser' && auth()->user()->privilege != 'admin'))
+            <a href="{{ route('elections.show', $election->id) }}" title="Enter Election"
+                class="px-2 font-semibold text-indigo-600 capitalize bg-transparent border-0 outline-none dark:text-indigo-500 hover:underline">
+                Enter
+            </a>
+        @else
             <button id="dropdownLeftButton-{{ $election->id }}"
                 data-dropdown-toggle="dropdownLeft-{{ $election->id }}" data-dropdown-placement="left-start"
                 class="inline-flex items-center p-1 text-sm font-medium text-center transition duration-300 bg-transparent rounded text-neutral-700 focus:outline-none hover:bg-neutral-200 focus:ring-2 focus:ring-neutral-300 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:ring-neutral-500"
@@ -41,11 +48,22 @@
                 <ul class="p-1 text-sm text-left text-neutral-700 dark:text-neutral-200"
                     aria-labelledby="dropdownLeftButton-{{ $election->id }}">
                     <li>
-                        <a href="{{ route('elections.view', $election->id) }}" title="Enter Election"
-                            class="block px-4 py-2 font-medium rounded hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
+                        <a href="{{ route('elections.show', $election->id) }}" title="View election"
+                            class="block px-4 py-2 font-normal rounded hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
                             Enter
                         </a>
                     </li>
+
+                    @if ($today->lt($election->start_date) && $today->lt($election->end_date))
+                        <div class="my-1"></div>
+
+                        <li>
+                            <a href="{{ route('elections.edit', $election->id) }}" title="Edit this election"
+                                class="block px-4 py-2 font-normal rounded hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
+                                Edit
+                            </a>
+                        </li>
+                    @endif
 
                     @if ($today->gt($election->start_date) && $today->lt($election->end_date) && !($election->status == 'closed'))
                         <div class="my-1"></div>
@@ -55,7 +73,7 @@
                                 class="w-full">
                                 @csrf
                                 <button type="submit" title="Close this election"
-                                    class="block w-full px-4 py-2 font-medium text-left rounded hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
+                                    class="block w-full px-4 py-2 font-normal text-left rounded hover:bg-neutral-100 dark:hover:bg-neutral-700/50">
                                     Close
                                 </button>
                             </form>
@@ -65,8 +83,7 @@
                     <div class="my-1 border-b dark:border-neutral-700 border-neutral-100"></div>
 
                     <li>
-                        <form action="{{ route('elections.delete', $election->id) }}" method="POST"
-                            class="w-full">
+                        <form action="{{ route('elections.delete', $election->id) }}" method="POST" class="w-full">
                             @csrf
                             @method('DELETE')
 
@@ -78,11 +95,6 @@
                     </li>
                 </ul>
             </div>
-        @else
-            <a href="{{ route('elections.view', $election->id) }}" title="Enter Election"
-                class="px-4 font-semibold text-indigo-600 capitalize bg-transparent border-0 outline-none dark:text-indigo-500 hover:underline">
-                Enter
-            </a>
         @endif
     </td>
 </tr>

@@ -1,6 +1,6 @@
 <div class="flex items-center justify-between ml-4 mb-4">
     <div class="flex justify-end flex-grow gap-4">
-        <div class="flex items-center text-sm font-normal gap-2 text-neutral-600 w-fit">
+        <div class="sm:flex hidden items-center text-sm font-normal gap-2 text-neutral-600 w-fit">
             <span>
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
@@ -13,6 +13,10 @@
                     {{-- {{ date('h:iA', strtotime(date('h:iA')) + 60 * 60) }} --}}
                 </b>
             </span>
+        </div>
+
+        <div class="sm:hidden flex w-full items-center justify-center">
+            <x-logo />
         </div>
 
         <div class="sm:flex items-center justify-center gap-3 p-1.5 cursor-default rounded-md bg-white hidden">
@@ -30,7 +34,7 @@
                 <span class="text-xs font-normal text-neutral-500">{{ auth()->user()->email }}</span>
             </div>
 
-            <div>
+            <div class="flex justify-center items-center h-fit w-fit">
                 <button type="button" id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart"
                     data-dropdown-placement="left-start"
                     class="p-0.5 border-none rounded outline-none hover:bg-neutral-100 text-neutral-600 hover:text-neutral-900">

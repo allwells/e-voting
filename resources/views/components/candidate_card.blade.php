@@ -5,8 +5,7 @@
     {{-- card image --}}
     <div
         class="w-full h-24 border rounded-md text-neutral-400 border-neutral-200 dark:border-neutral-800 dark:text-neutral-600">
-        <svg class="flex-shrink-0 w-full h-full" fill="currentColor" viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
+        <svg class="flex-shrink-0 w-full h-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd">
             </path>
         </svg>

@@ -1,7 +1,7 @@
 @props(['previousPage' => $previousPage, 'currentPage' => $currentPage, 'link' => $link])
 
 <div class="cursor-default text-neutral-700 dark:text-neutral-500 text-sm">
-    <a href='{{ route("$link") }}' class="text-indigo-600 cursor-pointer dark:text-indigo-500 hover:underline">
+    <a href='{{ route("$link") }}' class="text-indigo-600 cursor-pointer dark:text-indigo-500 underline">
         {{ $previousPage }}
     </a>
     /

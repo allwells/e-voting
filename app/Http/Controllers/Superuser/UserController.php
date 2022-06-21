@@ -14,7 +14,7 @@ class UserController extends Controller
         $users = User::class;
 
         return view('superuser.users', [
-            'users' => $users::where('privilege', '!=', 'superuser')->orderBy('privilege')->paginate(10)
+            'users' => $users::where('privilege', '!=', 'superuser')->paginate(10)
         ]);
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('election_id')->constrained()->onDelete('cascade');
+            $table->foreignId('election_id')->references('id')->on('elections')->onDelete('cascade');
             $table->string('name');
             $table->string('party');
             $table->string('image')->nullable();
