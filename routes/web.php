@@ -24,13 +24,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     // ELECTIONS ROUTE
     Route::get('/elections', 'App\Http\Controllers\ElectionController@index')->name('elections.view');
-    Route::get('/elections/create', 'App\Http\Controllers\ElectionController@showCreate')->name('elections.create');
-    Route::post('/elections/create', 'App\Http\Controllers\ElectionController@create');
     Route::get('/elections/{election:id}', 'App\Http\Controllers\ElectionController@show')->name('elections.show');
     Route::post('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\ElectionController@vote')->name('elections.vote');
-    Route::post('/elections/{election:id}/close', 'App\Http\Controllers\ElectionController@close')->name('elections.close');
-    Route::post('/elections/{election:id}/edit', 'App\Http\Controllers\ElectionController@edit')->name('elections.edit');
-    Route::delete('/elections/{election:id}/delete', 'App\Http\Controllers\ElectionController@destroy')->name('elections.delete');
 
     // RESULTS ROUTE
     Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');
@@ -52,7 +47,12 @@ Route::group(['middleware' => 'auth'], function() {
 // SUPERUSER AND ADMIN ROUTE
 Route::group(['middleware' => ['superuser', 'admin']], function() {
     // ELECTIONS ROUTE
-    Route::post('/elections', 'App\Http\Controllers\ElectionController@store');
+    Route::get('/elections/manage/create', 'App\Http\Controllers\ElectionController@showCreate')->name('elections.create');
+    Route::post('/elections/manage/create', 'App\Http\Controllers\ElectionController@create');
+    Route::post('/elections/manage/{election:id}/close', 'App\Http\Controllers\ElectionController@close')->name('elections.close');
+    Route::get('/elections/manage/{election:id}/edit', 'App\Http\Controllers\ElectionController@showEdit')->name('elections.edit');
+    Route::post('/elections/manage/{election:id}/edit', 'App\Http\Controllers\ElectionController@edit');
+    Route::delete('/elections/manage/{election:id}/delete', 'App\Http\Controllers\ElectionController@destroy')->name('elections.delete');
 
     // ADD CANDIDATE ROUTE
     Route::get('/candidates', 'App\Http\Controllers\Admin\CandidateController@index')->name('candidates');

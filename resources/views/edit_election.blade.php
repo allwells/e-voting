@@ -1,13 +1,14 @@
 @extends('layout.layout')
 
-@section('title', 'Create Election')
+@section('title', 'Edit Election')
 @section('election-tab', auth()->user()->theme == 'dark' ? 'active-dark-election' : 'active-election')
 
 @section('views')
     <div class="flex flex-col w-full gap-5 p-4 bg-white rounded-xl sm:px-5 sm:py-6 min-h-fit">
-        <label class="text-sm font-medium text-neutral-600 sm:text-base">Create Election</label>
+        <label class="text-sm font-medium text-neutral-600 sm:text-base">Edit Election</label>
 
-        <form action="{{ route('elections.create') }}" method="POST" class="flex flex-col gap-5 create-election-form">
+        <form action="{{ route('elections.edit', $election->id) }}" method="POST"
+            class="flex flex-col gap-5 create-election-for">
             @csrf
 
             <div class="flex flex-col gap-2 p-0 sm:px-5 sm:py-6 sm:border rounded-xl sm:gap-5">
@@ -15,7 +16,7 @@
 
                 <div
                     class="election-success-msg items-center justify-between hidden w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-normal border rounded cursor-default border-emerald-600 text-emerald-800 bg-emerald-200 h-fit">
-                    <span class="election-message">Election created successfully!</span>
+                    <span class="election-message">Election updated successfully!</span>
                     <span
                         class="p-1 transition duration-300 rounded-sm cursor-pointer close-election-success-msg text-emerald-700 hover:bg-emerald-400/50">
                         <svg class="w-3.5 sm:w-4 h-3.5 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -35,7 +36,7 @@
 
                         <input name="title" type="text" id="title"
                             class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
-                            placeholder="Enter election title" required>
+                            placeholder="Enter election title" value="{{ $election->title }}" required>
 
                         @error('title')
                             <div class="mt-3 text-rose-600 text-md">
@@ -52,7 +53,7 @@
 
                         <input name="description" type="text" id="description"
                             class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
-                            placeholder="Enter election description">
+                            placeholder="Enter election description" value="{{ $election->description }}">
                     </div>
                 </div>
 
@@ -66,7 +67,7 @@
 
                         <input name="start_date" type="datetime-local" id="start_date"
                             class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
-                            required>
+                            value="{{ $election->start_date }}" required>
 
                         @error('start_date')
                             <div class="mt-3 text-rose-600 text-md">
@@ -83,7 +84,7 @@
 
                         <input name="end_date" type="datetime-local" id="end_date"
                             class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
-                            required>
+                            value="{{ $election->end_date }}" required>
                     </div>
                 </div>
 
@@ -98,8 +99,8 @@
                             class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
                             required>
                             <option>-- Select election type --</option>
-                            <option value="open">Open</option>
-                            <option value="close">Close</option>
+                            <option @if ($election->type == 'open') selected @endif value="open">Open</option>
+                            <option @if ($election->type == 'close') selected @endif value="close">Close</option>
                         </select>
 
                         @error('type')
@@ -133,7 +134,40 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="border-b candidates-table"></tbody>
+                        <tbody class="border-b candidates-table">
+                            @foreach ($candidates as $candidate)
+                                <tr class="my-2">
+                                    <td class="py-2">
+                                        <div class="flex items-center justify-center px-2">
+                                            <input name="name[]" type="text" id="name"
+                                                class="w-full h-12 px-3 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                                                placeholder="Enter candidate's full name'" value="{{ $candidate->name }}"
+                                                required>
+                                        </div>
+                                    </td>
+                                    <td class="py-2">
+                                        <div class="flex items-center justify-center px-2">
+                                            <input name="party[]" type="text" id="party"
+                                                class="w-full h-12 px-3 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                                                placeholder="Enter candidate's' party" value="{{ $candidate->party }}"
+                                                required>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 text-center">
+                                        <div class="flex items-center justify-center w-full h-12">
+                                            <button type="button"
+                                                class="p-0.5 text-white rounded-sm bg-rose-600 shadow-lg hover:bg-rose-700 focus:bg-rose-700 focus:ring focus:ring-rose-300 remove-row">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M20 12H4"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -142,7 +176,7 @@
             <div class="flex items-center justify-end w-full">
                 <button type="submit"
                     class="w-full px-8 py-2 text-sm font-normal text-white bg-indigo-600 rounded-md shadow-lg sm:w-fit hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-300">
-                    Create Election
+                    Update
                 </button>
             </div>
         </form>

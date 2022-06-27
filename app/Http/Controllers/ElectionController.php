@@ -29,7 +29,8 @@ class ElectionController extends Controller
         return view('create_election');
     }
 
-    public function create(Request $request, Election $election) {
+    public function create(Request $request, Election $election)
+    {
         // get user privilege
         $isUnauthorizedUser = (auth() && auth()->user()->privilege !== 'superuser') && (auth() && auth()->user()->privilege !== 'admin');
 
@@ -83,14 +84,14 @@ class ElectionController extends Controller
         return back();
     }
 
-    public function show(Request $request)
+    public function show(Request $request, Election $election)
     {
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
         $votes = Vote::all();
-        $elections = Election::whereId((int) $request->election)->first();
-        $candidates = Candidate::where('election_id', (int) $request->election)->get();
+        $elections = Election::whereId($election->id)->first();
+        $candidates = Candidate::where('election_id', $election->id)->get();
         $voted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();
 
         return view('show_elections', [
@@ -122,10 +123,19 @@ class ElectionController extends Controller
         return back();
     }
 
+    public function showEdit(Election $election)
+    {   $candidates = Candidate::where('election_id', $election->id)->get();
+
+        return view('edit_election', [
+            'election' => $election,
+            'candidates' => $candidates
+        ]);
+    }
+
     public function edit(Request $request, Election $election)
     {
         // get user privilege
-        $isUnauthorizedUser = auth() && auth()->user()->privilege !== 'superuser' || auth() && auth()->user()->privilege !== 'admin';
+        $isUnauthorizedUser = (auth() && auth()->user()->privilege !== 'superuser') && (auth() && auth()->user()->privilege !== 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -134,28 +144,45 @@ class ElectionController extends Controller
 
         // validate user input
         $validator = Validator::make($request->all(), [
-                'title' => 'required|max:100',
-                'description' => 'max:300',
-                'type' => 'required',
-                'start_date' => 'required',
-                'start_time' => 'required',
-                'end_date' => 'required',
-                'end_time' => 'required',
+            'title' => 'required|max:100',
+            'description' => 'max:300',
+            'type' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
         ]);
 
         if(!$validator->passes()) {
             return response()->json(['status' => 422, 'error' => $validator->errors()->toArray()]);
         } else {
-            $start_time = $request->start_time . ':00';
-            $end_time = $request->end_time . ':00';
+            $election_values = [
+                    'user_id' => $request->user()->id,
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'type' => $request->type,
+                    'start_date' => $request->start_date,
+                    'end_date' => $request->end_date,
+                    'updated_at' => date('Y-m-d H:i:s')
+            ];
 
-            Election::where('id', $election->id)->update([
-                'title' => $request->title,
-                'description' => $request->description,
-                'type' => $request->type,
-                'start_date' => $request->start_date . ' ' . $start_time, // Concatinate election start time with start date
-                'end_date' => $request->end_date . ' ' . $end_time, // Concatinate election end time with end date
-            ]);
+            Election::where('id', $election->id)->update($election_values);
+
+            foreach($request->name as $key => $candidate_name) {
+                $exists = Candidate::where('election_id', $election->id)->where('name', $candidate_name)->where('party', $request->party[$key])->get();
+
+                if($exists->count() > 0)
+                {
+                    Candidate::where('election_id', $election->id)->update([
+                        'name' => $candidate_name,
+                        'party' => $request->party[$key]
+                    ]);
+                } else {
+                    Candidate::create([
+                        'election_id' => $election->id,
+                        'name' => $candidate_name,
+                        'party' => $request->party[$key]
+                    ]);
+                }
+            }
         }
 
         return back();

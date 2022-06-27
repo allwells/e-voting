@@ -4,8 +4,11 @@
 @section('results-tab', auth()->user()->theme == 'dark' ? 'active-dark-results' : 'active-results')
 
 @section('views')
-    <div class="w-full px-1">
-        <x-breadcrumbs previousPage="Results" currentPage="Result Details" link="results" />
+    <div class="w-full bg-white flex flex-col gap-5 rounded-xl px-4 sm:px-5 py-5 sm:py-6">
+        <div class="flex flex-col gap-1">
+            <label class="text-neutral-600 font-medium text-sm sm:text-base">Result Details</label>
+            <x-breadcrumbs previousPage="Results" currentPage="Result Details" link="results" />
+        </div>
 
         <div class="pb-6 mt-2 cursor-default grow text-neutral-700">
             <div class="w-full">
