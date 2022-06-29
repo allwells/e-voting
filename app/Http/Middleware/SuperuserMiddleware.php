@@ -35,10 +35,10 @@ class SuperuserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $user = auth()->user()->privilege;
+        $superuser = $request->user()->privilege === 'superuser';
 
-        if ($user !== 'superuser') {
-            abort(403, 'Unauthorized action.');
+        if (!$superuser) {
+            abort(403, 'You do not have access to this page.');
         }
 
         return $next($request);

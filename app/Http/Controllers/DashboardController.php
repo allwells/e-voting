@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superuser;
+namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Election;
@@ -11,18 +11,21 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $total_admins = User::where('privilege', 'admin')->get();
+        $totalAdmins = User::where('privilege', 'admin')->get();
         $users = User::where('privilege', 'user')->take(7)->get();
         $admins = User::where('privilege', 'admin')->take(7)->get();
-        $total_users = User::where('privilege','!=', 'superuser')->get();
+        $totalUsers = User::where('privilege','!=', 'superuser')->get();
         $elections = Election::all();
+        $userDashboard = 'dashboard';
+        $superuserDashboard = 'superuser.dashboard';
+        $superuser = auth()->user()->privilege === 'superuser';
 
-        return view('superuser.dashboard', [
+        return view((!$superuser ? $userDashboard : $superuserDashboard), [
             'users' => $users,
             'admins' => $admins,
             'elections' => $elections,
-            'total_users' => $total_users,
-            'total_admins' => $total_admins,
+            'totalUsers' => $totalUsers,
+            'totalAdmins' => $totalAdmins,
         ]);
     }
 }

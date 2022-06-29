@@ -13,21 +13,25 @@
         <div class="line-clamp-1">{{ $election->description }}</div>
     </td>
 
-    <td class="px-4 py-3 text-left cursor-default">
+    <td class="px-4 py-3 text-left cursor-default text-xs font-semibold uppercase">
         @if ($today->lt($election->start_date) && $today->lt($election->end_date) && !($election->status == 'closed'))
-            <span class="text-xs font-semibold text-blue-600 uppercase">upcoming</span>
+            <span class="text-blue-600">upcoming</span>
         @elseif (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
-            <span class="text-xs font-semibold text-red-600 uppercase">ended</span>
+            <span class="text-red-600">ended</span>
         @else
-            <span class="text-xs font-semibold text-green-600 uppercase">started</span>
+            <span class="text-green-600">started</span>
         @endif
     </td>
 
     <td class="text-center capitalize cursor-default">
         @if (auth() && (auth()->user()->privilege != 'superuser' && auth()->user()->privilege != 'admin'))
-            <a href="{{ route('elections.show', $election->id) }}" title="Enter Election"
-                class="px-2 font-semibold text-indigo-600 capitalize bg-transparent border-0 outline-none dark:text-indigo-500 hover:underline">
-                Enter
+            <a href="{{ route('elections.show', $election->id) }}" type="submit" title="Enter election"
+                class="hover:bg-neutral-300/50 rounded p-1 text-neutral-800">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                    </path>
+                </svg>
             </a>
         @else
             <button id="dropdownLeftButton-{{ $election->id }}"

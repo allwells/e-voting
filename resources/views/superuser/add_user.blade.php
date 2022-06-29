@@ -5,7 +5,7 @@
 @section('add-users-sub-tab', 'add-users-sub-tab')
 
 @section('views')
-    <div class="w-full bg-white flex flex-col gap-5 rounded-xl p-4 sm:p-5">
+    <div class="w-full bg-white flex flex-col gap-2 rounded-xl p-4 sm:p-5">
         <label class="text-neutral-600 font-medium text-sm sm:text-base">Add User</label>
 
         <form action="{{ route('users.add') }}" method="POST" class="w-full flex flex-col gap-5 add-users-form">
@@ -25,7 +25,7 @@
             </div>
 
             <div class="mt-3 border rounded-xl flex flex-col gap-3 w-full p-3 sm:p-6">
-                <div class="w-full flex gap-4">
+                <div class="w-full flex sm:flex-row flex-col gap-4">
                     <div class="w-full sm:w-6/12">
                         <label for="fname" class="text-sm font-medium text-neutral-600 dark:text-neutral-400">
                             First Name
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="w-full flex gap-4">
+                <div class="w-full flex sm:flex-row flex-col gap-4">
                     <div class="w-full sm:w-6/12">
                         <label for="phone" class="text-sm font-medium text-neutral-600 dark:text-neutral-400">
                             Phone

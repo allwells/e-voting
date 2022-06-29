@@ -6,7 +6,10 @@
 
 @section('views')
     <div class="flex flex-col w-full gap-5 p-4 bg-white rounded-xl sm:px-5 sm:py-6 min-h-fit">
-        <label class="text-sm font-medium text-neutral-600 sm:text-base">Create Election</label>
+        <div>
+            <label class="text-sm font-medium text-neutral-600 sm:text-base">Create Election</label>
+            <x-breadcrumbs previousPage="Elections" currentPage="Create Election" link="elections.view" />
+        </div>
 
         <form action="{{ route('elections.create') }}" method="POST" class="flex flex-col gap-5 create-election-form">
             @csrf

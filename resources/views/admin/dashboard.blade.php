@@ -4,7 +4,7 @@
 @section('dashboard-tab', auth()->user()->theme == 'dark' ? 'active-dark-dashboard' : 'active-dashboard')
 
 @section('views')
-    <div class="flex flex-col items-start justify-start h-full pr-5">
-        User Dashboard
+    <div class="border border-dashed border-neutral-500">
+        Admin Dashboard
     </div>
 @endsection

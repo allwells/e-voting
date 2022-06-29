@@ -34,7 +34,7 @@
 
             {{-- Election details --}}
             <div>
-                <h2 class="text-lg font-bold uppercase sm:text-xl">{{ $election->title }}</h2>
+                <h2 class="text-lg font-bold uppercase sm:text-xl text-neutral-700">{{ $election->title }}</h2>
 
                 @if ($election->type == 'close')
                     <span class="mb-2 flex items-center justify-start text-sm text-blue-700">
@@ -42,9 +42,9 @@
                     </span>
                 @endif
 
-                <div class="flex flex-col justify-start gap-3 mt-4 text-xs md:flex-row md:gap-8 sm:text-sm text-neutral-50">
+                <div class="flex flex-col justify-start gap-3 mt-4 text-xs md:flex-row md:gap-8 text-neutral-50">
                     <div class="flex flex-col items-start w-full gap-1 sm:w-fit sm:gap-2 sm:items-center sm:flex-row">
-                        <label class="font-semibold text-neutral-700 dark:text-neutral-100">
+                        <label class="font-semibold text-neutral-700">
                             @if ($today->lt($election->start_date) && $today->lt($election->end_date))
                                 Starts:
                             @else
@@ -53,15 +53,13 @@
                         </label>
                         <div class="flex justify-start w-full gap-2 sm:w-fit">
                             {{-- Start date --}}
-                            <span
-                                class="bg-indigo-200 border border-indigo-600 rounded text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5">
+                            <span class="text-indigo-700 font-medium">
                                 <i class="fa fa-calendar"></i>
                                 {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->start_date, 0, 10)))) }}
                             </span>
 
                             {{-- Start time --}}
-                            <span
-                                class="bg-indigo-200 border border-indigo-600 rounded text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5">
+                            <span class="text-indigo-700 font-medium">
                                 <i class="fa fa-clock"></i>
                                 {{ substr($election->start_date, 10, 6) }} UTC
                             </span>
@@ -69,8 +67,8 @@
                     </div>
 
                     <div class="flex flex-col items-start w-full gap-1 sm:w-fit sm:gap-2 sm:items-center sm:flex-row">
-                        <label class="font-semibold text-neutral-700 dark:text-neutral-100">
-                            @if ($today->lt($election->start_date) && $today->lt($election->end_date))
+                        <label class="font-semibold text-neutral-700">
+                            @if (($today->lt($election->start_date) && $today->lt($election->end_date)) || ($today->gt($election->start_date) && $today->lt($election->end_date)))
                                 Ends:
                             @else
                                 Ended:
@@ -78,15 +76,13 @@
                         </label>
                         <div class="flex justify-start w-full gap-2 sm:w-fit">
                             {{-- End date --}}
-                            <span
-                                class="bg-indigo-200 border border-indigo-600 rounded text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5">
+                            <span class="text-indigo-700 font-medium">
                                 <i class="fa fa-calendar"></i>
                                 {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->end_date, 0, 10)))) }}
                             </span>
 
                             {{-- End time --}}
-                            <span
-                                class="bg-indigo-200 border border-indigo-600 rounded text-indigo-700 dark:text-indigo-100 dark:bg-indigo-600 font-semibold py-0.5 px-1.5">
+                            <span class="text-indigo-700 font-medium">
                                 <i class="fa fa-clock"></i>
                                 {{ substr($election->end_date, 10, 6) }} UTC
                             </span>
@@ -148,11 +144,6 @@
                         @endif
                     </table>
                 </div>
-
-                {{-- @foreach ($candidates as $candidate)
-                    <x-candidate_card :votes="$votes" :hasVoted="$hasVoted" :election="$election" :candidate="$candidate"
-                        :today="$today" />
-                @endforeach --}}
             </div>
         </div>
     </div>

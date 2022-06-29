@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // AUTHENTICATED USER ROUTE
-Route::group(['middleware' => 'auth'], function() {
+Route::middleware(['auth'])->group(function() {
     // PROFILE ROUTE
     Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
     Route::post('/profile', 'App\Http\Controllers\ProfileController@store');
@@ -36,13 +36,15 @@ Route::group(['middleware' => 'auth'], function() {
     // LOGOUT ROUTE
     Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController@index')->name('logout');
 
-    // redirects to dashboard route
+    // DASHBOARD ROUTE
+    Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
+
     Route::get('/', function() { return redirect()->route('dashboard'); });
     Route::get('/home', function() { return redirect()->route('dashboard'); });
 });
 
-// SUPERUSER AND ADMIN ROUTE
-Route::group(['middleware' => ['superuser', 'admin']], function() {
+// ADMINS ROUTE
+Route::middleware(['admin'])->group(function() {
     // ELECTIONS ROUTE
     Route::get('/elections/manage/create', 'App\Http\Controllers\Superuser\ElectionController@showCreate')->name('elections.create');
     Route::post('/elections/manage/create', 'App\Http\Controllers\Superuser\ElectionController@create');
@@ -53,38 +55,21 @@ Route::group(['middleware' => ['superuser', 'admin']], function() {
 });
 
 // SUPERUSER ROUTE
-Route::group(['middleware' => 'superuser'], function() {
-    // DASHBOARD ROUTE
-    Route::get('/dashboard', 'App\Http\Controllers\Superuser\DashboardController@index')->name('dashboard');
-
+Route::middleware(['superuser'])->group(function() {
     // USERS ROUTE
     Route::get('/users', 'App\Http\Controllers\Superuser\UserController@index')->name('users');
     Route::get('/users/add', 'App\Http\Controllers\Superuser\UserController@getAddUser')->name('users.add');
     Route::post('/users/add', 'App\Http\Controllers\Superuser\UserController@addUser');
     Route::delete('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@destroy')->name('users.destroy');
     Route::post('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@privilege')->name('users.privilege');
-});
 
-// ADMINS ROUTE
-Route::group(['middleware' => 'admin'], function() {
-    // DASHBOARD ROUTE
-    Route::get('/user/dashboard', 'App\Http\Controllers\User\DashboardController@index')->name('user.dashboard');
-});
-
-// USERS ROUTE
-Route::group(['middleware' => 'user'], function() {
-    // DASHBOARD ROUTE
-    Route::get('/user/dashboard', 'App\Http\Controllers\User\DashboardController@index')->name('user.dashboard');
-
-    // INFORMATION ROUTE
-    Route::get('/information', 'App\Http\Controllers\User\InformationController@index')->name('information');
-
-    // VOTER REGISTRATION ROUTE
-    Route::get('/registration', 'App\Http\Controllers\User\VoterRegistrationController@index')->name('voter.registration');
+    // redirects to dashboard route
+    // Route::get('/', function() { return redirect()->route('dashboard'); });
+    // Route::get('/home', function() { return redirect()->route('dashboard'); });
 });
 
 // GUEST ROUTE
-Route::group(['middleware' => 'guest'], function() {
+Route::middleware(['guest'])->group(function() {
     // HOME ROUTE
     Route::get('/', function () { return view('home'); })->name("home");
 

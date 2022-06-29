@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -102,11 +106,6 @@ div#analysis-card {
   display: none !important;
 }
 
-.candidate-card {
-  min-width: 25rem !important;
-  max-width: calc(45% - 2rem) !important;
-}
-
 /* Nav bar */
 #navbar-container {
   top: 0;
@@ -124,9 +123,10 @@ div#nav-profile-image {
 .hero-background {
   min-height: 90vh;
   background-image: url('../../public/images/background-spot.svg');
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top;
+  background-repeat: repeat;
+  background-attachment: fixed;
 }
 
 /* Login page */

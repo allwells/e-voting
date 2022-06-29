@@ -1,5 +1,5 @@
 <div
-    class="bg-white w-72 sm:relative fixed h-full sidebar-menu py-4 hidden md:flex justify-between items-start px-3.5 sm:px-5 flex-col">
+    class="bg-white w-72 sm:relative fixed h-full sidebar-menu py-4 hidden md:flex justify-between items-start px-3.5 sm:px-5 flex-col z-50">
     <div class="w-full">
         <div class="items-center justify-start hidden tracking-wider sm:flex">
             <a href="{{ route('home') }}" class="text-2xl font-bold home-btn sm:text-3xl">
@@ -11,15 +11,15 @@
 
         <div class="w-full mt-10 sm:mt-5">
             <ul class="flex flex-col items-start justify-start w-full gap-2 text-neutral-500">
-                @if (auth()->user()->privilege == 'superuser')
-                    <li class="w-full">
-                        <a href="{{ route('dashboard') }}" id="@yield('dashboard-tab')" d
-                            class="flex items-start w-full gap-2 px-3 py-2 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
-                            <i class="fas fa-home"></i>
-                            <span class="text-sm">Dashboard</span>
-                        </a>
-                    </li>
+                <li class="w-full">
+                    <a href="{{ route('dashboard') }}" id="@yield('dashboard-tab')" d
+                        class="flex items-start w-full gap-2 px-3 py-2 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
+                        <i class="fas fa-home"></i>
+                        <span class="text-sm">Dashboard</span>
+                    </a>
+                </li>
 
+                @if (auth()->user()->privilege == 'superuser')
                     <li class="w-full">
                         <button type="button" id="@yield('users-tab')"
                             class="flex items-center justify-between w-full px-3 py-2 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900"
@@ -51,18 +51,10 @@
                             </li>
                         </ul>
                     </li>
-                @else
-                    <li class="w-full">
-                        <a href="{{ route('user.dashboard') }}" id="@yield('dashboard-tab')" d
-                            class="flex items-start w-full gap-2 px-3 py-2 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
-                            <i class="fas fa-home"></i>
-                            <span class="text-sm">Dashboard</span>
-                        </a>
-                    </li>
                 @endif
 
                 <li class="w-full">
-                    @if (auth() && auth()->user()->privilege != 'superuser' && (auth() && auth()->user()->privilege != 'admin'))
+                    @if (auth() && auth()->user()->privilege !== 'superuser')
                         <a href="{{ route('elections.view') }}" id="@yield('election-tab')"
                             class="flex items-start w-full gap-2 px-3 py-2 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
                             <i class="fas fa-box"></i>
