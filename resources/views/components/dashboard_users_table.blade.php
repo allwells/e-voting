@@ -6,11 +6,7 @@
     </td>
 
     <td class="px-2 py-3 text-left">
-        {{ $user->fname }}
-    </td>
-
-    <td class="px-2 py-3 text-left">
-        {{ $user->lname }}
+        {{ $user->fname }} {{ $user->lname }}
     </td>
 
     <td class="px-2 py-3 text-left">

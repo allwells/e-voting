@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('password');
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->string('privilege')->default('user');
             $table->string('theme')->default('light');
             $table->timestamp('email_verified_at')->nullable();

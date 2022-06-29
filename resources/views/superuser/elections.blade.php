@@ -2,10 +2,24 @@
 
 @section('title', 'View Elections')
 @section('election-tab', auth()->user()->theme == 'dark' ? 'active-dark-election' : 'active-election')
+@section('view-elections-sub-tab', 'view-elections-sub-tab')
 
 @section('views')
     <div class="w-full bg-white flex flex-col gap-5 rounded-xl p-4 sm:p-5">
-        <label class="text-neutral-600 font-medium text-sm sm:text-base">View Election</label>
+        <div class="flex justify-between items-center">
+            <label class="text-neutral-600 font-medium text-sm sm:text-base">View Elections</label>
+
+            @if (auth()->user()->privilege === 'admin')
+                <a href={{ route('elections.create') }}
+                    class="flex items-center justify-center gap-3 p-1 text-white bg-indigo-600 rounded shadow-lg hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
+                        </path>
+                    </svg>
+                </a>
+            @endif
+        </div>
 
         <div class="overflow-x-auto">
             <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">

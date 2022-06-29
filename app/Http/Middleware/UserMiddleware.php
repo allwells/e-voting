@@ -35,10 +35,10 @@ class UserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $user = auth()->user()->privilege;
+        $user = $request->user()->privilege === 'user';
 
-        if ($user !== 'user') {
-            abort(403, 'Unauthorized action.');
+        if (!$user) {
+            abort(403, 'You do not have access to this page - user');
         }
 
         return $next($request);

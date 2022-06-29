@@ -1,19 +1,26 @@
-@props(['election' => $election])
+@props(['index' => $index, 'election' => $election])
 
-<tr
-    class="text-sm text-neutral-600 cursor-default hover:text-neutral-900 transition duration-300 bg-white hover:bg-neutral-100/50">
-    <td class="py-4 text-left w-fit" title="{{ $election->title }}">
-        <div class="px-2 line-clamp-1">{{ $election->title }}</div>
+<tr class="hover:bg-neutral-50">
+    <td class="text-center cursor-default w-14">
+        {{ $index }}
     </td>
 
-    <td class="py-4 border-x text-left border-neutral-100" title="{{ $election->description }}">
-        <div class="px-4 line-clamp-1">{{ $election->description }}</div>
+    <td class="py-3 text-left cursor-default w-fit" title="{{ $election->title }}">
+        <div class="px-3 line-clamp-1">{{ $election->title }}</div>
     </td>
 
-    <td class="py-4 text-center capitalize">
-        <a href="{{ route('results.view', $election->id) }}" type="submit" title="View results for this election"
-            class="font-semibold text-indigo-600 capitalize bg-transparent border-0 outline-none dark:text-indigo-500 hover:underline">
-            View
+    <td class="px-3 py-4 text-left cursor-default" title="{{ $election->description }}">
+        <div class="line-clamp-1">{{ $election->description }}</div>
+    </td>
+
+    <td class="px-3 text-center">
+        <a href="{{ route('results.view', $election->id) }}" type="submit" title="Show result for this election"
+            class="bg-indigo-600 hover:bg-indigo-700 focus:ring focus:ring-indigo-300 rounded p-1 text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                </path>
+            </svg>
         </a>
     </td>
 </tr>

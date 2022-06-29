@@ -5,10 +5,6 @@
 
 @section('views')
     <div class="flex flex-col items-start justify-start h-full pr-5">
-        @if (auth()->user()->privilege === 'admin')
-            {{ view('admin.dashboard') }}
-        @else
-            {{ view('user.dashboard') }}
-        @endif
+        User Dashboard
     </div>
 @endsection

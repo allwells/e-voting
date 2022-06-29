@@ -2,30 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-family: "Ubuntu", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 div#analysis-card {
-    max-width: calc(50% - 0.5rem) !important;
+  max-width: calc(50% - 0.5rem) !important;
 }
 
 #social-links ul {
-    gap: 15px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
+  gap: 15px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
 }
 
 #social-links ul a {
-    color: #222 !important;
+  color: #222 !important;
 }
 
 #social-links ul a:hover {
-    color: #5850ec !important;
+  color: #5850ec !important;
+}
+
+#view-users-sub-tab,
+#add-users-sub-tab,
+#view-elections-sub-tab,
+#create-elections-sub-tab {
+  color: #222 !important;
+  font-family: 700 !important;
+  background-color: #eee !important;
+}
+
+#active-users ~ #users-dropdown {
+  display: block !important;
+}
+
+#active-election ~ #election-dropdown {
+  display: block !important;
 }
 
 #active-dashboard,
@@ -35,10 +56,10 @@ div#analysis-card {
 #active-information,
 #active-settings,
 #active-users {
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    background-color: #5850ec;
-    box-shadow: 0 2px 8px #453fb177;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  background-color: #5850ec;
+  /* box-shadow: 0 2px 8px #453fb177; */
 }
 
 #active-dashboard:hover,
@@ -48,7 +69,7 @@ div#analysis-card {
 #active-information:hover,
 #active-settings:hover,
 #active-users:hover {
-    background-color: #5850ec;
+  background-color: #5850ec;
 }
 
 #active-dark-dashboard,
@@ -58,9 +79,9 @@ div#analysis-card {
 #active-dark-information,
 #active-dark-settings,
 #active-dark-users {
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    background-color: #5850ec;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  background-color: #5850ec;
 }
 
 #active-dark-dashboard:hover,
@@ -70,56 +91,52 @@ div#analysis-card {
 #active-dark-information:hover,
 #active-dark-settings:hover,
 #active-dark-users:hover {
-    background-color: #5850ec;
-    box-shadow: 0 2px 8px #000;
+  background-color: #5850ec;
+  box-shadow: 0 2px 8px #000;
 }
 
 /* Chart layout */
 #result-chart-canvas {
-    min-height: 25rem;
+  min-height: 25rem;
 }
 
 .no-nav,
 .no-footer,
 .no-home {
-    display: none !important;
-}
-
-.candidate-card {
-    min-width: 25rem !important;
-    max-width: calc(45% - 2rem) !important;
+  display: none !important;
 }
 
 /* Nav bar */
 #navbar-container {
-    top: 0;
-    width: 100%;
+  top: 0;
+  width: 100%;
 }
 
 /* nav bar profile image */
 div#nav-profile-image {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Hero background */
 .hero-background {
-    min-height: 90vh;
-    background-image: url("../../public/images/background-spot.svg");
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+  min-height: 90vh;
+  background-image: url('../../public/images/background-spot.svg');
+  background-size: contain;
+  background-position: top;
+  background-repeat: repeat;
+  background-attachment: fixed;
 }
 
 /* Login page */
 .login-container {
-    min-height: 90vh;
+  min-height: 90vh;
 }
 
 /* Footer */
 footer {
-    cursor: default;
+  cursor: default;
 }
 
 /* User dashboard layout */
@@ -129,109 +146,109 @@ footer {
 
 /* user profile page */
 .user-profile .profile-bg-image {
-    height: 15rem;
-    background-size: cover;
-    background-position: bottom;
-    background-repeat: no-repeat;
+  height: 15rem;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
 }
 
 .user-profile .profile-image-container {
-    margin-left: 3%;
+  margin-left: 3%;
 }
 
 .user-profile .profile-image-container .profile-img {
-    width: 110px;
-    height: 110px;
-    display: flex;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .user-profile .profile-details {
-    width: 100%;
-    padding: 0 5%;
+  width: 100%;
+  padding: 0 5%;
 }
 
 .user-profile .profile-details form {
-    width: 80%;
+  width: 80%;
 }
 
 /* user settings page */
 .user-settings {
-    padding: 0 5%;
+  padding: 0 5%;
 }
 
 @media only screen and (max-width: 1361px) {
-    .candidate-card {
-        min-width: 100% !important;
-    }
+  .candidate-card {
+    min-width: 100% !important;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
-    .candidate-card {
-        min-width: 100% !important;
-    }
+  .candidate-card {
+    min-width: 100% !important;
+  }
 }
 
 @media only screen and (max-width: 488px) {
-    div#analysis-card {
-        max-width: 100% !important;
-    }
+  div#analysis-card {
+    max-width: 100% !important;
+  }
 }
 
 @media (min-width: 1024px) {
-    .lg\:w-6\/12 {
-        width: 49% !important;
-    }
+  .lg\:w-6\/12 {
+    width: 49% !important;
+  }
 }
 
 @media (min-width: 768px) {
-    .md\:w-2\/6 {
-        width: 31% !important;
-    }
+  .md\:w-2\/6 {
+    width: 31% !important;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    .vote-btn {
-        opacity: 1 !important;
-    }
+  .vote-btn {
+    opacity: 1 !important;
+  }
 
-    .user-profile .profile-details form {
-        width: 95% !important;
-    }
+  .user-profile .profile-details form {
+    width: 95% !important;
+  }
 }
 
 @media only screen and (max-width: 570px) {
-    #navbar-container .nav-contents {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
+  #navbar-container .nav-contents {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 
-    /* user settings page */
-    .user-settings {
-        padding: 0 6%;
-    }
+  /* user settings page */
+  .user-settings {
+    padding: 0 6%;
+  }
 }
 
 @media only screen and (max-width: 320px) {
-    .user-profile .profile-image-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-    }
+  .user-profile .profile-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 
-    .user-profile .profile-bg-image {
-        height: 8rem;
-    }
+  .user-profile .profile-bg-image {
+    height: 8rem;
+  }
 
-    .user-profile .profile-image-container .details {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-    }
+  .user-profile .profile-image-container .details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 }
