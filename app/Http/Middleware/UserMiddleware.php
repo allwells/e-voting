@@ -37,7 +37,7 @@ class UserMiddleware
     {
         $user = auth()->user()->privilege;
 
-        if ($user !== 'user') {
+        if ($user !== 'user' && $user !== 'admin') {
             abort(403, 'Unauthorized action.');
         }
 

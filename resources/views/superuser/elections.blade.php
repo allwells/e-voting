@@ -2,10 +2,11 @@
 
 @section('title', 'View Elections')
 @section('election-tab', auth()->user()->theme == 'dark' ? 'active-dark-election' : 'active-election')
+@section('view-elections-sub-tab', 'view-elections-sub-tab')
 
 @section('views')
     <div class="w-full bg-white flex flex-col gap-5 rounded-xl p-4 sm:p-5">
-        <label class="text-neutral-600 font-medium text-sm sm:text-base">View Election</label>
+        <label class="text-neutral-600 font-medium text-sm sm:text-base">View Elections</label>
 
         <div class="overflow-x-auto">
             <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">

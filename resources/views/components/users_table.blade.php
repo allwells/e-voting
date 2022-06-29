@@ -24,7 +24,7 @@
     <td class="text-center capitalize cursor-default">
         <button id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart-{{ $user->id }}"
             data-dropdown-placement="left-start"
-            class="p-1 hover:bg-neutral-200 rounded-md focus:bg-neutral-300 focus:text-neutral-900">
+            class="p-1 hover:bg-neutral-200 rounded focus:bg-neutral-300 focus:text-neutral-900">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
                 </path>

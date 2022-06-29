@@ -14,7 +14,7 @@
                 @csrf
 
                 <div
-                    class="success-msg items-center justify-start hidden w-full px-3 py-3 font-normal text-left border-2 border-white cursor-default text-md ring-1 ring-emerald-300 text-emerald-800 bg-emerald-200 h-fit">
+                    class="success-msg items-center justify-between hidden w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-normal border rounded cursor-default border-emerald-600 text-emerald-800 bg-emerald-200 h-fit">
                 </div>
 
                 <input type="hidden" name="remember" value="true">

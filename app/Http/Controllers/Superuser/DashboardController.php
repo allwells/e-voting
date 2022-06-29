@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Superuser;
 
 use App\Models\User;
 use App\Models\Election;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -16,7 +17,7 @@ class DashboardController extends Controller
         $total_users = User::where('privilege','!=', 'superuser')->get();
         $elections = Election::all();
 
-        return view('dashboard', [
+        return view('superuser.dashboard', [
             'users' => $users,
             'admins' => $admins,
             'elections' => $elections,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Superuser;
 
 use Carbon\Carbon;
 use App\Models\Vote;
@@ -9,6 +9,7 @@ use App\Models\Candidate;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class ElectionController extends Controller
@@ -18,7 +19,7 @@ class ElectionController extends Controller
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
-        return view('elections', [
+        return view('superuser.elections', [
             'today' => $today,
             'elections' => Election::all()
         ]);
@@ -26,7 +27,7 @@ class ElectionController extends Controller
 
     public function showCreate()
     {
-        return view('create_election');
+        return view('superuser.create_election');
     }
 
     public function create(Request $request, Election $election)
@@ -126,7 +127,7 @@ class ElectionController extends Controller
     public function showEdit(Election $election)
     {   $candidates = Candidate::where('election_id', $election->id)->get();
 
-        return view('edit_election', [
+        return view('superuser.edit_election', [
             'election' => $election,
             'candidates' => $candidates
         ]);

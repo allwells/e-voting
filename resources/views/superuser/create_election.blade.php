@@ -2,6 +2,7 @@
 
 @section('title', 'Create Election')
 @section('election-tab', auth()->user()->theme == 'dark' ? 'active-dark-election' : 'active-election')
+@section('create-elections-sub-tab', 'create-elections-sub-tab')
 
 @section('views')
     <div class="flex flex-col w-full gap-5 p-4 bg-white rounded-xl sm:px-5 sm:py-6 min-h-fit">

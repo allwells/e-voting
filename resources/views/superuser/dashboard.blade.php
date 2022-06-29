@@ -4,7 +4,7 @@
 @section('dashboard-tab', auth()->user()->theme == 'dark' ? 'active-dark-dashboard' : 'active-dashboard')
 
 @section('views')
-    <div class="flex flex-col items-start justify-start h-full">
+    <div class="flex flex-col items-start justify-start h-full pr-5">
         <div class="flex lg:flex-nowrap flex-wrap items-center gap-4 justify-stretch w-full">
             <x-analysis_card :data="$total_admins" title="Admins" icon="fas fa-user-tie" />
             <x-analysis_card :data="$total_users" title="Total Users" icon="fas fa-users" />
