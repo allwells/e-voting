@@ -6,9 +6,9 @@
 @section('views')
     <div class="flex flex-col items-start justify-start h-full pr-5">
         @if (auth()->user()->privilege === 'admin')
-            {{ view('admin.dashboard') }}
+            {{ view('admin.dashboard', ['elections' => $elections, 'totalAdmins' => $totalAdmins, 'totalUsers' => $totalUsers]) }}
         @else
-            {{ view('user.dashboard') }}
+            {{ view('user.dashboard', ['elections' => $electionList, 'latestElection' => $latestElection]) }}
         @endif
     </div>
 @endsection
