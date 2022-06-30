@@ -58,8 +58,8 @@ Route::middleware(['admin'])->group(function() {
 Route::middleware(['superuser'])->group(function() {
     // USERS ROUTE
     Route::get('/users', 'App\Http\Controllers\Superuser\UserController@index')->name('users');
-    Route::get('/users/add', 'App\Http\Controllers\Superuser\UserController@getAddUser')->name('users.add');
-    Route::post('/users/add', 'App\Http\Controllers\Superuser\UserController@addUser');
+    Route::get('/users/manage/add', 'App\Http\Controllers\Superuser\UserController@getAddUser')->name('users.add');
+    Route::post('/users/manage/add', 'App\Http\Controllers\Superuser\UserController@addUser');
     Route::delete('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@destroy')->name('users.destroy');
     Route::post('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@privilege')->name('users.privilege');
 

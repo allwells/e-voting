@@ -4,15 +4,20 @@
 @section('election-tab', auth()->user()->theme == 'dark' ? 'active-dark-election' : 'active-election')
 
 @section('views')
-    <div class="w-full bg-white flex flex-col gap-5 rounded-xl px-4 sm:px-5 py-5 sm:py-6">
+    <div class="flex flex-col w-full gap-5 px-4 py-5 bg-white rounded-xl sm:px-5 sm:py-6">
         <div class="flex flex-col gap-1">
-            <label class="text-neutral-600 font-medium text-sm sm:text-base">Election Details</label>
-            <x-breadcrumbs previousPage="Elections" currentPage="Election Details" link="elections.view" />
+            <label class="text-sm font-medium text-neutral-600 sm:text-base">Election Details</label>
+            @if (auth()->user()->privilege == 'user')
+                <x-breadcrumbs previousPage="Elections" currentPage="Election Details" link="dashboard" />
+            @else
+                <x-breadcrumbs previousPage="Elections" currentPage="Election Details" link="elections.view" />
+            @endif
         </div>
 
-        <div class="border rounded-xl py-6 px-5">
+        <div class="px-5 py-6 border rounded-xl">
             @if ($today->gt($election->start_date) && $today->gt($election->end_date))
-                <span class="mb-2 flex w-full items-center justify-start p-2.5 text-sm text-blue-700 rounded-md bg-blue-100">
+                <span
+                    class="mb-2 flex w-full items-center justify-start p-2.5 text-sm text-blue-700 rounded-md bg-blue-100">
                     <svg class="w-5 h-5 mr-1 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -34,83 +39,74 @@
 
             {{-- Election details --}}
             <div>
-                <h2 class="text-lg font-bold uppercase sm:text-xl text-neutral-700">{{ $election->title }}</h2>
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg font-bold uppercase sm:text-xl text-neutral-800">{{ $election->title }}</h2>
+                    <span class="text-sm text-neutral-500"> posted {{ $election->created_at->diffForHumans() }}</span>
+                </div>
 
                 @if ($election->type == 'close')
-                    <span class="mb-2 flex items-center justify-start text-sm text-blue-700">
+                    <span class="flex items-center justify-start mb-2 text-sm text-blue-700">
                         This is a <strong class="mx-1">close</strong> election!
                     </span>
                 @endif
 
-                <div class="flex flex-col justify-start gap-3 mt-4 text-xs md:flex-row md:gap-8 text-neutral-50">
+                <div class="flex flex-col justify-start gap-3 mt-2 text-xs md:flex-row md:gap-3 text-neutral-600">
                     <div class="flex flex-col items-start w-full gap-1 sm:w-fit sm:gap-2 sm:items-center sm:flex-row">
-                        <label class="font-semibold text-neutral-700">
-                            @if ($today->lt($election->start_date) && $today->lt($election->end_date))
-                                Starts:
-                            @else
-                                Started:
-                            @endif
-                        </label>
-                        <div class="flex justify-start w-full gap-2 sm:w-fit">
+                        <div class="flex justify-start w-full gap-2 font-medium sm:w-fit">
                             {{-- Start date --}}
-                            <span class="text-indigo-700 font-medium">
-                                <i class="fa fa-calendar"></i>
+                            <span>
+                                <i class="text-indigo-700 fa fa-calendar"></i>
                                 {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->start_date, 0, 10)))) }}
                             </span>
 
                             {{-- Start time --}}
-                            <span class="text-indigo-700 font-medium">
-                                <i class="fa fa-clock"></i>
+                            <span>
+                                <i class="text-indigo-700 fa fa-clock"></i>
                                 {{ substr($election->start_date, 10, 6) }} UTC
                             </span>
                         </div>
                     </div>
 
+                    <span>to</span>
+
                     <div class="flex flex-col items-start w-full gap-1 sm:w-fit sm:gap-2 sm:items-center sm:flex-row">
-                        <label class="font-semibold text-neutral-700">
-                            @if (($today->lt($election->start_date) && $today->lt($election->end_date)) || ($today->gt($election->start_date) && $today->lt($election->end_date)))
-                                Ends:
-                            @else
-                                Ended:
-                            @endif
-                        </label>
-                        <div class="flex justify-start w-full gap-2 sm:w-fit">
+                        <div class="flex justify-start w-full gap-2 font-medium sm:w-fit">
                             {{-- End date --}}
-                            <span class="text-indigo-700 font-medium">
-                                <i class="fa fa-calendar"></i>
+                            <span>
+                                <i class="text-indigo-700 fa fa-calendar"></i>
                                 {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->end_date, 0, 10)))) }}
                             </span>
 
                             {{-- End time --}}
-                            <span class="text-indigo-700 font-medium">
-                                <i class="fa fa-clock"></i>
+                            <span>
+                                <i class="text-indigo-700 fa fa-clock"></i>
                                 {{ substr($election->end_date, 10, 6) }} UTC
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <p class="mt-2 text-sm sm:text-base text-neutral-500 dark:text-neutral-300">
+                <p class="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-300">
                     {{ $election->description }}</p>
             </div>
 
             {{-- Election candidates --}}
             <div class="flex flex-col gap-3 mt-8">
-                <label class="text-neutral-600 font-medium text-sm sm:text-base">Candidates</label>
+                <label class="text-sm font-medium text-neutral-600 sm:text-base">Candidates</label>
 
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-neutral-500 dark:text-neutral-400">
                         <thead class="text-xs uppercase text-neutral-700 border-y">
                             <tr>
-                                <th scope="col" class="text-center w-12">
+                                <th scope="col" class="w-12 text-center">
                                     S/N
                                 </th>
 
-                                <th scope="col" class="py-4 px-2 text-left">
+                                <th scope="col" class="px-2 py-4 text-left">
                                     Name
                                 </th>
 
-                                <th scope="col" class="py-4 px-2 text-left">
+                                <th scope="col" class="px-2 py-4 text-left">
                                     Party
                                 </th>
 
@@ -118,10 +114,10 @@
                                     Votes
                                 </th>
 
-                                <th scope="col" class="py-4 text-center w-20">
+                                <th scope="col" class="w-20 py-4 text-center">
                                     @if (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
                                         <a href="{{ route('results.view', $election) }}"
-                                            class="py-1 px-2 bg-neutral-100 rounded text-indigo-700 font-normal text-sm hover:bg-indigo-200 hover:text-indigo-800 hover:underline">
+                                            class="px-2 py-1 text-sm font-normal text-indigo-700 rounded bg-neutral-100 hover:bg-indigo-200 hover:text-indigo-800 hover:underline">
                                             Results
                                         </a>
                                     @endif
