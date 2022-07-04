@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/elections', 'App\Http\Controllers\Superuser\ElectionController@index')->name('elections.view');
     Route::get('/elections/{election:id}', 'App\Http\Controllers\Superuser\ElectionController@show')->name('elections.show');
     Route::post('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\Superuser\ElectionController@vote')->name('elections.vote');
+    Route::post('/elections/verify', 'App\Http\Controllers\Superuser\ElectionController@codeVerification')->name('elections.verify');
 
     // RESULTS ROUTE
     Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');
@@ -52,6 +53,7 @@ Route::middleware(['admin'])->group(function() {
     Route::get('/elections/manage/{election:id}/edit', 'App\Http\Controllers\Superuser\ElectionController@showEdit')->name('elections.edit');
     Route::post('/elections/manage/{election:id}/edit', 'App\Http\Controllers\Superuser\ElectionController@edit');
     Route::delete('/elections/manage/{election:id}/delete', 'App\Http\Controllers\Superuser\ElectionController@destroy')->name('elections.delete');
+    Route::post('/elections/manage/{election:id}/activation', 'App\Http\Controllers\Superuser\ElectionController@codeActivation')->name('activation');
 });
 
 // SUPERUSER ROUTE

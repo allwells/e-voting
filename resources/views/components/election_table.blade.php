@@ -13,13 +13,21 @@
         <div class="line-clamp-1">{{ $election->description }}</div>
     </td>
 
+    <td class="px-4 py-3 text-left cursor-default text-xs font-normal lowercase">
+        @if ($election->type == 'private')
+            <span class="text-white bg-rose-600 p-1 rounded">private</span>
+        @else
+            <span class="text-white bg-emerald-600 p-1 rounded">public</span>
+        @endif
+    </td>
+
     <td class="px-4 py-3 text-left cursor-default text-xs font-semibold uppercase">
         @if ($today->lt($election->start_date) && $today->lt($election->end_date) && !($election->status == 'closed'))
             <span class="text-blue-600">upcoming</span>
         @elseif (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
-            <span class="text-red-600">ended</span>
+            <span class="text-rose-600">ended</span>
         @else
-            <span class="text-green-600">started</span>
+            <span class="text-emerald-600">started</span>
         @endif
     </td>
 

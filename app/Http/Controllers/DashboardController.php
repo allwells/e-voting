@@ -18,9 +18,6 @@ class DashboardController extends Controller
         $totalUsers = User::where('privilege','!=', 'superuser')->get();
 
         $elections = Election::all();
-        $electionList = Election::orderBy('start_date')->paginate(25);
-        $todayMinusOneWeekAgo = \Carbon\Carbon::today()->subDays(7);
-        $latestElection = Election::where('created_at', '>=', $todayMinusOneWeekAgo)->latest()->take(5)->get();
 
         $userDashboard = 'dashboard';
         $superuserDashboard = 'superuser.dashboard';
@@ -32,8 +29,6 @@ class DashboardController extends Controller
             'elections' => $elections,
             'totalUsers' => $totalUsers,
             'totalAdmins' => $totalAdmins,
-            'electionList' => $electionList,
-            'latestElection' => $latestElection,
         ]);
     }
 }
