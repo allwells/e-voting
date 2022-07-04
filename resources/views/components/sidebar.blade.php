@@ -14,13 +14,8 @@
                 <li class="w-full">
                     <a href="{{ route('dashboard') }}" id="@yield('dashboard-tab')" d
                         class="flex items-start w-full gap-2 px-3 py-2 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
-                        @if (auth()->user()->privilege == 'user')
-                            <i class="fas fa-box"></i>
-                            <span class="text-sm">Election</span>
-                        @else
-                            <i class="fas fa-home"></i>
-                            <span class="text-sm">Dashboard</span>
-                        @endif
+                        <i class="fas fa-home"></i>
+                        <span class="text-sm">Dashboard</span>
                     </a>
                 </li>
 
@@ -59,18 +54,14 @@
                 @endif
 
 
-                @if (auth() && auth()->user()->privilege !== 'superuser')
-                    @if (auth()->user()->privilege == 'admin')
-                        <li class="w-full">
-                            <a href="{{ route('elections.view') }}" id="@yield('election-tab')"
-                                class="flex items-start w-full gap-2 px-3 py-2 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
-                                <i class="fas fa-box"></i>
-                                <span class="text-sm">Election</span>
-                            </a>
-                        </li>
-                    @endif
-                @else
-                    <li class="w-full">
+                <li class="w-full">
+                    @if (auth() && auth()->user()->privilege !== 'superuser')
+                        <a href="{{ route('elections.view') }}" id="@yield('election-tab')"
+                            class="flex items-start w-full gap-2 px-3 py-2 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
+                            <i class="fas fa-box"></i>
+                            <span class="text-sm">Election</span>
+                        </a>
+                    @else
                         <button type="button" id="@yield('election-tab')"
                             class="flex items-center justify-between w-full px-3 py-2 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900"
                             aria-controls="election-dropdown" data-collapse-toggle="election-dropdown">
@@ -105,8 +96,8 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                @endif
+                    @endif
+                </li>
 
                 <li class="w-full">
                     <a href="{{ route('results') }}" id="@yield('results-tab')"

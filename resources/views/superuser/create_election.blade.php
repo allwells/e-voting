@@ -11,24 +11,14 @@
             <x-breadcrumbs previousPage="Elections" currentPage="Create Election" link="elections.view" />
         </div>
 
-        <form action="{{ route('elections.create') }}" method="POST" class="flex flex-col gap-5 create-election-form">
+        <form action="{{ route('elections.create') }}" method="POST" class="flex flex-col gap-5 create-election-for">
             @csrf
 
             <div class="flex flex-col gap-2 p-0 sm:px-5 sm:py-6 sm:border rounded-xl sm:gap-5">
                 <label class="text-sm font-medium text-neutral-600">Election Details</label>
 
-                <div
-                    class="election-success-msg items-center justify-between hidden w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-normal border rounded cursor-default border-emerald-600 text-emerald-800 bg-emerald-200 h-fit">
-                    <span class="election-message">Election created successfully!</span>
-                    <span
-                        class="p-1 transition duration-300 rounded-sm cursor-pointer close-election-success-msg text-emerald-700 hover:bg-emerald-400/50">
-                        <svg class="w-3.5 sm:w-4 h-3.5 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                            </path>
-                        </svg>
-                    </span>
-                </div>
+                <x-success_message />
+                <x-error_message />
 
                 <div class="flex flex-col justify-center w-full gap-2 sm:gap-5 form-input-group md:flex-row">
                     <div class="w-full md:w-6/12">
@@ -102,8 +92,8 @@
                             class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
                             required>
                             <option>-- Select election type --</option>
-                            <option value="open">Open</option>
-                            <option value="close">Close</option>
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
                         </select>
 
                         @error('type')
