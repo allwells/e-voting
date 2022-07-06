@@ -54,6 +54,9 @@ Route::middleware(['admin'])->group(function() {
     Route::post('/elections/manage/{election:id}/edit', 'App\Http\Controllers\Superuser\ElectionController@edit');
     Route::delete('/elections/manage/{election:id}/delete', 'App\Http\Controllers\Superuser\ElectionController@destroy')->name('elections.delete');
     Route::post('/elections/manage/{election:id}/activation', 'App\Http\Controllers\Superuser\ElectionController@codeActivation')->name('activation');
+
+    // CSV AND EXCEL SPREADSHEET ROUTES
+    Route::post('/elections/manage/{election:id}/import', 'App\Http\Controllers\Superuser\ElectionController@fileImport')->name('import.file');
 });
 
 // SUPERUSER ROUTE

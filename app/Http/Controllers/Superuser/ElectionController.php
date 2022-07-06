@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Superuser;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Vote;
 use App\Models\Election;
 use App\Models\Candidate;
+use App\Imports\FileImport;
 use App\Models\Participant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
 class ElectionController extends Controller
@@ -248,6 +252,45 @@ class ElectionController extends Controller
         }
 
         return back();
+    }
+
+    public function fileImport(Request $request, Election $election)
+    {
+        // $extension = substr($request->imported_file, -4);
+
+        // if($extension !== '.csv')
+        // {
+        //     return back()->with('error', 'Invalid file type! Preferred file type: .csv');
+        // }
+
+        $path1 = $request->file('imported_file')->store('temp');
+        $path2 = storage_path('app') . '/' . $path1;
+
+        $uploadedData = Excel::toArray(new FileImport, $path2);
+
+        foreach($uploadedData[0] as $users)
+        {
+            $user = new User();
+            $user->fname = $users['fname'];
+            $user->lname = $users['lname'];
+            $user->email = $users['email'];
+            $user->phone = $users['phone'];
+            $user->password = Hash::make($users['email']);
+            $user->save();
+
+            $userId = $user->id;
+
+            $participant = [
+                'user_id' => $userId,
+                'election_id' => $election->id,
+                'name' => $users['fname'] . " " . $users['lname'],
+                'email' => $users['email'],
+            ];
+
+            Participant::create($participant);
+        }
+
+        return back()->with('success', 'File data uploaded successfully!');
     }
 
     public function destroy(Election $election)

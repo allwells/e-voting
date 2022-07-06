@@ -150,7 +150,7 @@
 
                 {{-- Election candidates --}}
                 <div class="flex flex-col gap-3 mt-8">
-                    <label class="text-sm font-medium text-neutral-600 sm:text-base">Candidates</label>
+                    <label class="text-sm font-medium text-neutral-600">Candidates</label>
 
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm text-left text-neutral-500 dark:text-neutral-400">
@@ -199,6 +199,43 @@
                         </table>
                     </div>
                 </div>
+
+                <form action="{{ route('import.file', $election) }}" method="post" enctype="multipart/form-data"
+                    class="mt-10">
+                    @csrf
+
+                    <div class="flex flex-col justify-start w-full form-input-group">
+                        <label for="imported_file" class="text-sm font-medium text-neutral-600">
+                            Import File
+                        </label>
+
+                        <span class="mt-1 text-xs tracking-wide text-neutral-500">
+                            Import file containing dataset of only individuals that will participate in this election.
+                        </span>
+
+                        <div class="flex items-center justify-start gap-3 mt-2">
+                            <input name="imported_file" type="file" id="imported_file"
+                                aria-describedby="file_input_help"
+                                class="flex-grow px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                                required>
+
+                            <button type="submit"
+                                class="w-full px-5 py-2.5 text-sm flex justify-between gap-2 items-center font-normal text-white bg-indigo-600 rounded shadow-lg sm:w-fit hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-300">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Upload
+                            </button>
+                        </div>
+
+                        <span class="mt-2 text-xs tracking-wide text-neutral-500">
+                            File type must be <strong>.csv</strong> and <strong>.xlsx</strong>
+                        </span>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
