@@ -321,6 +321,6 @@ class ElectionController extends Controller
 
         $election->delete();
 
-        return back();
+        return back()->with('success', 'Deleted successfully!');
     }
 }
