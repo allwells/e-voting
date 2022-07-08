@@ -31,8 +31,14 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/results/{election:id}/chart', 'App\Http\Controllers\ResultController@result_chart')->name('results.chart');
 
     // SETTINGS ROUTE
-    Route::get('/settings', 'App\Http\Controllers\SettingController@index')->name('settings');
-    Route::post('/settings', 'App\Http\Controllers\SettingController@store')->name('settings.save');
+    Route::get('/settings/profile', 'App\Http\Controllers\SettingController@profileSetting')->name('settings.profile');
+    Route::get('/settings/email', 'App\Http\Controllers\SettingController@emailSetting')->name('settings.email');
+    Route::get('/settings/password', 'App\Http\Controllers\SettingController@passwordSetting')->name('settings.password');
+    Route::get('/settings/notification', 'App\Http\Controllers\SettingController@notificationSetting')->name('settings.notification');
+    Route::post('/settings/profile', 'App\Http\Controllers\SettingController@editProfile');
+    Route::post('/settings/email', 'App\Http\Controllers\SettingController@changeEmail');
+    Route::post('/settings/password', 'App\Http\Controllers\SettingController@changePassword');
+    Route::post('/settings/notification', 'App\Http\Controllers\SettingController@setNotification');
 
     // LOGOUT ROUTE
     Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController@index')->name('logout');
@@ -54,6 +60,9 @@ Route::middleware(['admin'])->group(function() {
     Route::post('/elections/manage/{election:id}/edit', 'App\Http\Controllers\Superuser\ElectionController@edit');
     Route::delete('/elections/manage/{election:id}/delete', 'App\Http\Controllers\Superuser\ElectionController@destroy')->name('elections.delete');
     Route::post('/elections/manage/{election:id}/activation', 'App\Http\Controllers\Superuser\ElectionController@codeActivation')->name('activation');
+
+    // CSV AND EXCEL SPREADSHEET ROUTES
+    Route::post('/elections/manage/{election:id}/import', 'App\Http\Controllers\Superuser\ElectionController@fileImport')->name('import.file');
 });
 
 // SUPERUSER ROUTE

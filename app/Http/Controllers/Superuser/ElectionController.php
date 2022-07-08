@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers\Superuser;
 
+use Mail;
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Vote;
 use App\Models\Election;
 use App\Models\Candidate;
+use App\Imports\FileImport;
 use App\Models\Participant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
 class ElectionController extends Controller
@@ -155,6 +160,23 @@ class ElectionController extends Controller
         $elections = Election::whereId($election->id)->first();
         $candidates = Candidate::where('election_id', $election->id)->get();
         $voted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();
+        $participants = Participant::where('election_id', $election->id)->get();
+
+        $user = User::first();
+
+        $mailData = [
+            'recipient' => $user,
+            'from' => config('mail.from.address'),
+            'name' => config('app.name'),
+            'subject' => "Private Election Invitation",
+            'election' => $election,
+        ];
+
+        // Mail::send('mail.invitation', $mailData, function($message) use ($mailData) {
+        //     $message->to($mailData['recipient']->email)
+        //             ->from($mailData['from'], $mailData['name'])
+        //             ->subject($mailData['subject']);
+        // });
 
         return view('show_elections', [
             'votes' => $votes,
@@ -162,6 +184,7 @@ class ElectionController extends Controller
             'voted' => $voted,
             'election' => $elections,
             'candidates' => $candidates,
+            'participants' => $participants,
         ]);
     }
 
@@ -248,6 +271,49 @@ class ElectionController extends Controller
         }
 
         return back();
+    }
+
+    public function fileImport(Request $request, Election $election)
+    {
+        $extension = $request->file('imported_file')->getClientOriginalExtension();
+
+        if($extension !== 'csv' && $extension != 'xls' && $extension != 'xlsx')
+        {
+            return back()->with('error', 'Invalid file format! Preferred file format: .csv, .xls or .xlsx');
+        }
+
+        $path1 = $request->file('imported_file')->store('temp');
+        $path2 = storage_path('app') . '/' . $path1;
+
+        $uploadedData = Excel::toArray(new FileImport, $path2);
+
+        foreach($uploadedData[0] as $users)
+        {
+            $user = new User();
+            $user->fname = $users['fname'];
+            $user->lname = $users['lname'];
+            $user->email = $users['email'];
+            $user->phone = $users['phone'];
+            $user->password = Hash::make($users['email']);
+            $user->save();
+
+            $userId = $user->id;
+
+            $participant = [
+                'user_id' => $userId,
+                'election_id' => $election->id,
+                'name' => $users['fname'] . " " . $users['lname'],
+                'email' => $users['email'],
+            ];
+
+            Participant::create($participant);
+
+            $recipient = $users['email'];
+
+            Mail::to($recipient)->send(new PrivateElectionInvite($users));
+        }
+
+        return back()->with('success', 'File data uploaded successfully!');
     }
 
     public function destroy(Election $election)

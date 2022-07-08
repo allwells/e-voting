@@ -1,5 +1,5 @@
 @if (\Session::has('warn'))
-    <div id="alert-2" class="flex w-full p-4 mb-4 bg-yellow-200 rounded-md dark:bg-yellow-200" role="alert">
+    <div id="alert-2" class="flex w-full p-4 mt-3 mb-4 bg-yellow-200 rounded-md dark:bg-yellow-200" role="alert">
         <svg class="flex-shrink-0 w-5 h-5 text-yellow-700 dark:text-yellow-800" fill="currentColor" viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"

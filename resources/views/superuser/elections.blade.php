@@ -104,6 +104,12 @@
                         @endforeach
                     @endforeach
 
+                    {{-- @foreach ($participants as $participant)
+                        @if ($participant->user_id == auth()->user()->id && $election->id == $participant->election_id)
+                            <x-election_card :election="$election" />
+                        @endif
+                    @endforeach --}}
+
                     <div class="w-full mt-3 text-neutral-800">
                         {{ $electionList->links() }}
                     </div>

@@ -1,5 +1,5 @@
 @if (\Session::has('success'))
-    <div id="alert-2" class="flex w-full p-4 mb-4 rounded-md bg-emerald-200 dark:bg-emerald-200" role="alert">
+    <div id="alert-2" class="flex w-full p-4 mt-3 mb-4 rounded-md bg-emerald-200 dark:bg-emerald-200" role="alert">
         <svg class="flex-shrink-0 w-5 h-5 text-emerald-700 dark:text-emerald-800" fill="currentColor" viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"

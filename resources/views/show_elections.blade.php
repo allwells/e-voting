@@ -63,7 +63,7 @@
                 </div>
             @endif
 
-            <div class="w-full px-5 py-6 border rounded-xl md:w-3/4">
+            <div class="w-full px-5 py-6 border rounded-xl @if ($election->type == 'private') md:w-3/4 @endif">
                 @if ($today->gt($election->start_date) && $today->gt($election->end_date))
                     <span
                         class="mb-2 flex w-full items-center justify-start p-2.5 text-sm text-blue-700 rounded-md bg-blue-100">
@@ -150,7 +150,7 @@
 
                 {{-- Election candidates --}}
                 <div class="flex flex-col gap-3 mt-8">
-                    <label class="text-sm font-medium text-neutral-600 sm:text-base">Candidates</label>
+                    <label class="text-sm font-medium text-neutral-600">Candidates</label>
 
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm text-left text-neutral-500 dark:text-neutral-400">
@@ -199,6 +199,113 @@
                         </table>
                     </div>
                 </div>
+
+                @if ($today->lt($election->start_date) && $today->lt($election->end_date))
+                    @if (auth()->user()->privilege == 'superuser' || auth()->user()->privilege == 'admin')
+                        <form action="{{ route('import.file', $election) }}" method="post"
+                            enctype="multipart/form-data" class="mt-10">
+                            @csrf
+
+                            <div class="flex flex-col justify-start w-full form-input-group">
+                                <label for="imported_file" class="text-sm font-medium text-neutral-600">
+                                    Import Participants
+                                </label>
+
+                                <span class="mt-1 text-xs tracking-wide text-neutral-500">
+                                    Import file containing dataset of only individuals that will participate in this
+                                    election.
+                                </span>
+
+                                <div class="flex items-center justify-start gap-3 mt-2">
+                                    <input name="imported_file" type="file" id="imported_file"
+                                        aria-describedby="file_input_help"
+                                        class="flex-grow px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                                        required>
+
+                                    <button type="submit"
+                                        class="w-full px-5 py-2.5 text-sm flex justify-between gap-2 items-center font-normal text-white bg-indigo-600 rounded shadow-lg sm:w-fit hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-300">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        Upload
+                                    </button>
+                                </div>
+
+                                <span class="mt-2 text-xs tracking-wide text-neutral-500">
+                                    File format must be <strong>.csv</strong>, <strong>.xls</strong> or
+                                    <strong>.xlsx</strong>
+                                </span>
+                            </div>
+                        </form>
+                    @endif
+                @endif
+
+                @if ($election->type == 'private')
+                    {{-- Election participants --}}
+                    <div class="flex flex-col gap-3 mt-8">
+                        <label class="text-sm font-medium text-neutral-600">Participants</label>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left text-neutral-500 dark:text-neutral-400">
+                                <thead>
+                                    <tr class="text-xs uppercase border-y text-neutral-700">
+                                        <th class="w-12 px-2 py-4 text-center">S/N</th>
+                                        <th class="px-2 py-4 text-left">Name</th>
+                                        <th class="px-2 py-4 text-left">Email</th>
+
+                                        @if (auth()->user()->privilege == 'superuser' || auth()->user()->privilege == 'admin')
+                                            <th scope="col" class="w-14">
+                                                <span class="flex items-center justify-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"
+                                                        class="w-6 h-6">
+                                                        <g data-name="User Settings">
+                                                            <g data-name="&lt;Group&gt;">
+                                                                <path fill="none" stroke="#303c42"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M23.5,19.5v-2l-1.24-.31a4,4,0,0,0-.17-.43l.65-1.09-1.41-1.41-1.09.65a4,4,0,0,0-.43-.17L19.5,13.5h-2l-.31,1.24a4,4,0,0,0-.43.17l-1.09-.65-1.41,1.41.65,1.09a4,4,0,0,0-.17.43l-1.24.31v2l1.24.31a4,4,0,0,0,.17.43l-.65,1.09,1.41,1.41,1.09-.65a4,4,0,0,0,.43.17l.31,1.24h2l.31-1.24a4,4,0,0,0,.43-.17l1.09.65,1.41-1.41-.65-1.09a4,4,0,0,0,.17-.43Z"
+                                                                    data-name="&lt;Path&gt;" />
+                                                                <circle cx="18.5" cy="18.5" r="2"
+                                                                    fill="none" stroke="#303c42"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    data-name="&lt;Path&gt;" />
+                                                            </g>
+                                                            <g data-name="&lt;Group&gt;">
+                                                                <circle cx="11" cy="6" r="5.5"
+                                                                    fill="none" stroke="#303c42"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    data-name="&lt;Path&gt;" />
+                                                                <path fill="none" stroke="#303c42"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M17.17,14.75A17.26,17.26,0,0,0,11,13.5a18.74,18.74,0,0,0-8.31,2.2A4,4,0,0,0,.5,19.27V20A1.5,1.5,0,0,0,2,21.5H14.43" />
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                            </th>
+                                        @endif
+                                    </tr>
+                                </thead>
+
+                                @if ($participants->count() > 0)
+                                    <tbody class="text-sm border-b text-neutral-600">
+                                        @foreach ($participants as $index => $participant)
+                                            <x-participants_table :index="$index + 1" :participant="$participant" />
+                                        @endforeach
+                                    </tbody>
+                                @else
+                                    <tr class="text-base text-center cursor-default sm:text-lg text-neutral-500">
+                                        <td colspan="4" class="pt-10">
+                                            No participant for this election yet.
+                                        </td>
+                                    </tr>
+                                @endif
+                            </table>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
