@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Superuser;
 
+use Mail;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Vote;
@@ -159,6 +160,23 @@ class ElectionController extends Controller
         $elections = Election::whereId($election->id)->first();
         $candidates = Candidate::where('election_id', $election->id)->get();
         $voted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();
+        $participants = Participant::where('election_id', $election->id)->get();
+
+        $user = User::first();
+
+        $mailData = [
+            'recipient' => $user,
+            'from' => config('mail.from.address'),
+            'name' => config('app.name'),
+            'subject' => "Private Election Invitation",
+            'election' => $election,
+        ];
+
+        // Mail::send('mail.invitation', $mailData, function($message) use ($mailData) {
+        //     $message->to($mailData['recipient']->email)
+        //             ->from($mailData['from'], $mailData['name'])
+        //             ->subject($mailData['subject']);
+        // });
 
         return view('show_elections', [
             'votes' => $votes,
@@ -166,6 +184,7 @@ class ElectionController extends Controller
             'voted' => $voted,
             'election' => $elections,
             'candidates' => $candidates,
+            'participants' => $participants,
         ]);
     }
 
@@ -256,12 +275,12 @@ class ElectionController extends Controller
 
     public function fileImport(Request $request, Election $election)
     {
-        // $extension = substr($request->imported_file, -4);
+        $extension = $request->file('imported_file')->getClientOriginalExtension();
 
-        // if($extension !== '.csv')
-        // {
-        //     return back()->with('error', 'Invalid file type! Preferred file type: .csv');
-        // }
+        if($extension !== 'csv' && $extension != 'xls' && $extension != 'xlsx')
+        {
+            return back()->with('error', 'Invalid file format! Preferred file format: .csv, .xls or .xlsx');
+        }
 
         $path1 = $request->file('imported_file')->store('temp');
         $path2 = storage_path('app') . '/' . $path1;
@@ -288,6 +307,10 @@ class ElectionController extends Controller
             ];
 
             Participant::create($participant);
+
+            $recipient = $users['email'];
+
+            Mail::to($recipient)->send(new PrivateElectionInvite($users));
         }
 
         return back()->with('success', 'File data uploaded successfully!');

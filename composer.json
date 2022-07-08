@@ -21,6 +21,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "maatwebsite/excel": "^3.1",
+        "pelago/emogrifier": "dev-main",
         "phpoffice/phpspreadsheet": "1.23.0"
     },
     "require-dev": {

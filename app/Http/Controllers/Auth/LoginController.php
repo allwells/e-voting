@@ -38,7 +38,7 @@ class LoginController extends Controller
          * Authenticate user and @return error message if authentication fails.
          */
         if(!auth()->attempt($request->only('email', 'password'), $request->remember)) {
-            return back()->with('status', 'Invalid email or password!');
+            return back()->with('error', 'Invalid email or password!');
         }
 
         // redirect user to intented page

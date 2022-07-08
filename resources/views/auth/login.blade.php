@@ -12,12 +12,7 @@
             <form id="login-form" class="flex flex-col gap-3" action="{{ route('login') }}" method="POST">
                 @csrf
 
-                @if (session('status'))
-                    <div
-                        class="items-center justify-start w-full px-3 py-3 font-normal text-left border-2 border-white cursor-default text-md ring-1 ring-rose-300 text-rose-800 bg-rose-200 h-fit">
-                        {{ session('status') }}
-                    </div>
-                @endif
+                <x-error_message />
 
                 <input type="hidden" name="remember" value="true">
                 <div class="flex flex-col gap-2">
