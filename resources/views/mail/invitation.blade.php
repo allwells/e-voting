@@ -82,14 +82,14 @@
 
     <div class="main">
         <div class="content">
-            <h3 class="greeting">Hello {{ $recipient->fname }},</h3>
+            <h3 class="greeting">Hello {{ $recipient['fname'] }},</h3>
             <p class="body-text">You have been invited to participate in a provate election.</p>
             <p class="body-text">Below are your login details.</p>
         </div>
 
         <p>Login Details:</p>
-        <p>Email: {{ $recipient->email }}</p>
-        <p>Password: {{ $recipient->email }}</p>
+        <p>Email: {{ $recipient['email'] }}</p>
+        <p>Password: {{ $recipient['email'] }}</p>
 
         <a href="http://localhost:8000/elections/{{ $election->id }}" class="link" rel="noreferrer"
             target="_blank">View Election</a>

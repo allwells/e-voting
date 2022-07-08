@@ -190,7 +190,7 @@
                                     @endforeach
                                 </tbody>
                             @else
-                                <tr class="text-base text-center cursor-default sm:text-lg text-neutral-500">
+                                <tr class="text-sm text-center cursor-default sm:text-lg text-neutral-500">
                                     <td colspan="4" class="pt-10">
                                         No candidates for this election yet.
                                     </td>
@@ -296,7 +296,7 @@
                                         @endforeach
                                     </tbody>
                                 @else
-                                    <tr class="text-base text-center cursor-default sm:text-lg text-neutral-500">
+                                    <tr class="text-sm text-center cursor-default text-neutral-500">
                                         <td colspan="4" class="pt-10">
                                             No participant for this election yet.
                                         </td>

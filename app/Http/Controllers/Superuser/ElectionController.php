@@ -162,22 +162,6 @@ class ElectionController extends Controller
         $voted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();
         $participants = Participant::where('election_id', $election->id)->get();
 
-        $user = User::first();
-
-        $mailData = [
-            'recipient' => $user,
-            'from' => config('mail.from.address'),
-            'name' => config('app.name'),
-            'subject' => "Private Election Invitation",
-            'election' => $election,
-        ];
-
-        // Mail::send('mail.invitation', $mailData, function($message) use ($mailData) {
-        //     $message->to($mailData['recipient']->email)
-        //             ->from($mailData['from'], $mailData['name'])
-        //             ->subject($mailData['subject']);
-        // });
-
         return view('show_elections', [
             'votes' => $votes,
             'today' => $today,
@@ -282,10 +266,8 @@ class ElectionController extends Controller
             return back()->with('error', 'Invalid file format! Preferred file format: .csv, .xls or .xlsx');
         }
 
-        $path1 = $request->file('imported_file')->store('temp');
-        $path2 = storage_path('app') . '/' . $path1;
-
-        $uploadedData = Excel::toArray(new FileImport, $path2);
+        $path = storage_path('app') . '/' . $request->file('imported_file')->store('temp');
+        $uploadedData = Excel::toArray(new FileImport, $path);
 
         foreach($uploadedData[0] as $users)
         {
@@ -299,18 +281,30 @@ class ElectionController extends Controller
 
             $userId = $user->id;
 
-            $participant = [
+            $newParticipant = [
                 'user_id' => $userId,
                 'election_id' => $election->id,
                 'name' => $users['fname'] . " " . $users['lname'],
                 'email' => $users['email'],
             ];
 
-            Participant::create($participant);
+            Participant::create($newParticipant);
 
             $recipient = $users['email'];
 
-            Mail::to($recipient)->send(new PrivateElectionInvite($users));
+            $mailData = [
+                'recipient' => $users,
+                'from' => config('mail.from.address'),
+                'name' => config('app.name'),
+                'subject' => "Private Election Invitation",
+                'election' => $election,
+            ];
+
+            Mail::send('mail.invitation', $mailData, function($message) use ($mailData, $recipient) {
+                $message->to($recipient)
+                        ->from($mailData['from'], $mailData['name'])
+                        ->subject($mailData['subject']);
+            });
         }
 
         return back()->with('success', 'File data uploaded successfully!');

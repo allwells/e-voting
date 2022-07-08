@@ -4,8 +4,8 @@
 @section('results-tab', auth()->user()->theme == 'dark' ? 'active-dark-results' : 'active-results')
 
 @section('views')
-    <div class="w-full bg-white flex flex-col gap-5 rounded-xl p-4 sm:p-5">
-        <label class="text-neutral-600 font-medium text-sm sm:text-base">View Election</label>
+    <div class="flex flex-col w-full gap-5 p-4 bg-white rounded-xl sm:p-5">
+        <label class="text-sm font-medium text-neutral-600 sm:text-base">View Election</label>
 
         <div class="overflow-x-auto">
             <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">
@@ -15,15 +15,15 @@
                             S/N
                         </th>
 
-                        <th scope="col" class="py-4 px-3 text-left">
+                        <th scope="col" class="px-3 py-4 text-left">
                             Title
                         </th>
 
-                        <th scope="col" class="py-4 px-3 text-left">
+                        <th scope="col" class="px-3 py-4 text-left">
                             Description
                         </th>
 
-                        <th scope="col" class="py-4 px-3 text-center"></th>
+                        <th scope="col" class="px-3 py-4 text-center"></th>
                     </tr>
                 </thead>
                 @if ($closed_elections->count() > 0)
@@ -33,7 +33,7 @@
                         @endforeach
                     </tbody>
                 @else
-                    <tr class="text-base text-center text-neutral-600">
+                    <tr class="text-sm text-center text-neutral-600">
                         <td colspan="3" class="py-10">No results yet.</td>
                     </tr>
                 @endif
