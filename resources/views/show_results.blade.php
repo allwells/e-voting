@@ -29,11 +29,8 @@
         </div>
     </div>
 
-    {{-- REMOVE COMMENTS BEFORE DEPLOYMENT --}}
-    {{-- <script src="{{ secure_asset('js/app.js') }}"></script> --}}
-
     {{-- For localhost - COMMENT THIS BEFORE DEPLOYMENT --}}
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ secure_asset('js/app.js') }}"></script>
 
     <!-- Application script -->
     <script>
