@@ -38,7 +38,7 @@ class RegisterController extends Controller
         ]);
 
         if(!$validator->passes()) {
-            return back()->with('error', $validator->errors()->toArray());
+            return back()->with('warn', 'Oops! There\'s a problem. Check your inputs and try again.');
         } else {
             $values = [
                 'fname' => $request->fname,
