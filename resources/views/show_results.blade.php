@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    @if (env('APP_ENV' == 'production'))
+    @if (env('APP_ENV') == 'production')
         <script src="{{ secure_asset('js/app.js') }}"></script>
     @else
         <script src="{{ asset('js/app.js') }}"></script>
