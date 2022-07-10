@@ -29,8 +29,11 @@
         </div>
     </div>
 
-    {{-- For localhost - COMMENT THIS BEFORE DEPLOYMENT --}}
-    <script src="{{ secure_asset('js/app.js') }}"></script>
+    @if (env('APP_ENV' == 'production'))
+        <script src="{{ secure_asset('js/app.js') }}"></script>
+    @else
+        <script src="{{ asset('js/app.js') }}"></script>
+    @endif
 
     <!-- Application script -->
     <script>
