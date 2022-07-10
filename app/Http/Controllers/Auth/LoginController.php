@@ -41,7 +41,7 @@ class LoginController extends Controller
             return back()->with('error', 'Invalid email or password!');
         }
 
-        // redirect user to intented page
+        // redirect user to intended page
         return redirect()->intended('');
     }
 }

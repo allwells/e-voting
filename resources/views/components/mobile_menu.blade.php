@@ -1,7 +1,6 @@
 <div class="fixed inset-y-0 z-50 flex items-center top-2 left-3 md:hidden h-fit w-fit">
     <!-- Mobile menu button-->
-    <button type="button"
-        class="flex items-center p-1 text-white bg-indigo-600 rounded-md border-2 h-fit w-fit mobile-menu-btn">
+    <button type="button" class="flex items-center p-1 text-white bg-indigo-600 rounded-sm h-fit w-fit mobile-menu-btn">
 
         <svg class="w-6 h-6 open-menu-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"

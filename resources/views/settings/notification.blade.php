@@ -36,7 +36,7 @@
 
         <div class="flex items-center justify-end w-full p-3 mt-3 border rounded-md sm:rounded-xl md:p-4">
             <button type="submit"
-                class="w-full sm:w-fit py-2.5 px-10 text-sm font-medium text-white rounded-md bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-600/40">
+                class="w-full sm:w-fit py-3 px-10 text-sm font-medium text-white rounded bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-600/40">
                 Save
             </button>
         </div>

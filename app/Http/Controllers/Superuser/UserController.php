@@ -17,7 +17,7 @@ class UserController extends Controller
         $users = User::class;
 
         return view('superuser.users', [
-            'users' => $users::where('privilege', '!=', 'superuser')->paginate(10)
+            'users' => $users::where('privilege', '!=', 'superuser')->paginate(25)
         ]);
     }
 
@@ -33,11 +33,11 @@ class UserController extends Controller
             'fname' => 'required|max:50',
             'lname' => 'max:50',
             'email' => 'required|email|unique:users|max:120',
-            'phone' => 'unique:users|min:10|max:15',
+            'phone' => 'min:10|max:15',
         ]);
 
         if(!$validator->passes()) {
-            return response()->json(['status' => 422, 'error' => $validator->errors()->toArray()]);
+            return back()->with('warn', 'Something went wrong! Check your inputs and try again.');
         } else {
             $values = [
                 'fname' => $request->fname,
@@ -51,7 +51,7 @@ class UserController extends Controller
 
             if($query > 0)
             {
-                return response()->json(['status' => 200, 'message' => 'User added successfully!']);
+                return back()->with('success', 'User added!');
             }
         }
     }
@@ -62,7 +62,7 @@ class UserController extends Controller
 
         if($isUnauthorizedUser)
         {
-            return abort(403, 'Unauthorized action.');
+            return back()->with('error', 'Unauthorized action!');
         }
 
         if($user->privilege == 'user')
@@ -70,6 +70,8 @@ class UserController extends Controller
             User::where('id', $user->id)->update([
                 'privilege' => 'admin',
             ]);
+
+            return back()->with('success', $user->fname . ' ' . $user->lname . ' is now an admin.');
         }
 
         if($user->privilege == 'admin')
@@ -77,9 +79,11 @@ class UserController extends Controller
             User::where('id', $user->id)->update([
                 'privilege' => 'user',
             ]);
+
+            return back()->with('success', 'Success! Admin privilege revoked.');
         }
 
-        return back();
+        return back()->with('error', 'Oops! Something went wrong. Try again.');
     }
 
     public function destroy(User $user)
@@ -88,11 +92,11 @@ class UserController extends Controller
 
         if($isUnauthorizedUser)
         {
-            return abort(403, 'Unauthorized action.');
+            return back()->with('error', 'Unauthorized action!');
         }
 
         $user->delete();
 
-        return back();
+        return back()->with('success', 'User deleted!');
     }
 }

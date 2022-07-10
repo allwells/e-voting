@@ -9,7 +9,12 @@
         {{-- FOR ADMIN AND SUPERUSER --}}
         @if (auth()->user()->privilege == 'admin' || auth()->user()->privilege == 'superuser')
             <div class="flex items-center justify-between">
-                <label class="text-sm font-medium text-neutral-600 sm:text-base">View Elections</label>
+                <div class="flex flex-col justify-start items-start w-full">
+                    <label class="text-sm font-medium text-neutral-600 sm:text-base">View Elections</label>
+
+                    <x-error_message />
+                    <x-success_message />
+                </div>
 
                 @if (auth()->user()->privilege === 'admin')
                     <a href={{ route('elections.create') }}
@@ -72,50 +77,46 @@
 
         {{-- FOR USERS(VOTERS) --}}
         @if (auth()->user()->privilege == 'user')
-            <x-error_message />
-
             <div class="flex items-center justify-between">
-                <h3 class="text-lg font-medium text-neutral-800">Elections</h3>
+                <div class="flex flex-col justify-start items-start w-full">
+                    <div class="flex justify-between items-center w-full">
+                        <h3 class="text-lg font-medium text-neutral-800">Elections</h3>
 
-                @if (auth()->user()->privilege == 'user')
-                    <div>
-                        <button type="button" data-modal-toggle="election-code-modal"
-                            class="flex items-center justify-center gap-2 px-4 py-2 text-sm text-white bg-indigo-600 rounded text-medium hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-300">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            Join Private Election
-                        </button>
-                        <x-election_code_modal />
+                        @if (auth()->user()->privilege == 'user')
+                            <div>
+                                <button type="button" data-modal-toggle="election-code-modal"
+                                    class="flex items-center justify-center gap-2 px-3 py-2 text-sm text-white bg-indigo-600 rounded text-medium hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-600/40">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Join Private Election
+                                </button>
+                                <x-election_code_modal />
+                            </div>
+                        @endif
                     </div>
-                @endif
+
+                    <x-error_message />
+                    <x-success_message />
+                </div>
             </div>
 
             <div
                 class="flex flex-col items-center justify-start w-full gap-5 md:flex-row md:justify-between md:items-start">
-                <div class="flex flex-col items-start justify-start w-full gap-5 pb-10 md:w-3/4">
-                    @foreach ($participants as $participant)
-                        @foreach ($elections as $election)
-                            @if ($election->type === 'public' || ($participant->user_id == auth()->user()->id && $election->id == $participant->election_id))
-                                <x-election_card :election="$election" />
-                            @endif
-                        @endforeach
+                <div class="flex items-start justify-start w-full gap-5 pb-10 flex-wrap">
+                    @foreach ($electionList as $election)
+                        <x-election_card :election="$election" />
                     @endforeach
 
-                    {{-- @foreach ($participants as $participant)
-                        @if ($participant->user_id == auth()->user()->id && $election->id == $participant->election_id)
-                            <x-election_card :election="$election" />
-                        @endif
-                    @endforeach --}}
-
-                    <div class="w-full mt-3 text-neutral-800">
+                    {{-- <div class="w-full mt-3 text-neutral-800">
                         {{ $electionList->links() }}
-                    </div>
+                    </div> --}}
                 </div>
 
-                <div class="w-full p-4 pb-6 bg-white border rounded-lg md:w-1/4 h-fit border-neutral-200">
+                {{-- <div class="w-full p-4 pb-6 bg-white border rounded-lg md:w-1/4 h-fit border-neutral-200">
                     <h3 class="text-base font-medium text-neutral-800">Latest</h3>
 
                     <div class="flex flex-col gap-3 mt-3">
@@ -124,7 +125,7 @@
                                 {{ $latest->title }}</p>
                         @endforeach
                     </div>
-                </div>
+                </div> --}}
             </div>
 
         @endif

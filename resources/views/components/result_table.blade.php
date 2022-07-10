@@ -15,7 +15,7 @@
 
     <td class="px-3 text-center">
         <a href="{{ route('results.view', $election->id) }}" type="submit" title="Show result for this election"
-            class="bg-indigo-600 hover:bg-indigo-700 focus:ring focus:ring-indigo-300 rounded p-1 text-white">
+            class="bg-indigo-600 hover:bg-indigo-700 focus:ring focus:ring-indigo-600/40 rounded p-1 text-white">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">

@@ -19,31 +19,12 @@
             <x-logo />
         </div>
 
-        <div class="sm:flex items-center justify-center gap-3 p-1.5 cursor-default rounded-md bg-white hidden">
-            <a href="{{ route('profile') }}">
-                <div
-                    class="flex items-center justify-center text-lg font-bold uppercase rounded hover:bg-neutral-200 h-9 w-9 text-neutral-500 bg-neutral-200/50">
-                    {{ auth()->user()->fname[0] . auth()->user()->lname[0] }}
-                </div>
-            </a>
-
-            <div class="flex flex-col items-start justify-start text-sm font-medium text-neutral-700">
-                <a href="{{ route('profile') }}" class="hover:underline">
-                    <span>{{ auth()->user()->fname }} {{ auth()->user()->lname }}</span>
-                </a>
-                <span class="text-xs font-normal text-neutral-500">{{ auth()->user()->email }}</span>
-            </div>
-
+        <div class="md:flex items-center justify-center cursor-default hidden">
             <div class="flex justify-center items-center h-fit w-fit">
                 <button type="button" id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart"
                     data-dropdown-placement="left-start"
-                    class="p-0.5 border-none rounded outline-none hover:bg-neutral-100 text-neutral-600 hover:text-neutral-900">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
-                        </path>
-                    </svg>
+                    class="flex items-center justify-center text-base font-bold uppercase rounded-full hover:bg-neutral-200 h-10 w-10 text-neutral-500 bg-white">
+                    {{ auth()->user()->fname[0] . (auth()->user()->lname ? auth()->user()->lname[0] : null) }}
                 </button>
                 <!-- Dropdown menu -->
                 <div id="dropdownLeftStart"
@@ -86,5 +67,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
