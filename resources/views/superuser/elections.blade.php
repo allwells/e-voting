@@ -96,23 +96,13 @@
             <div
                 class="flex flex-col items-center justify-start w-full gap-5 md:flex-row md:justify-between md:items-start">
                 <div class="flex flex-col items-start justify-start w-full gap-5 pb-10 md:w-3/4">
-                    @foreach ($participants as $participant)
-                        @foreach ($elections as $election)
-                            @if ($election->type === 'public' || ($participant->user_id == auth()->user()->id && $election->id == $participant->election_id))
-                                <x-election_card :election="$election" />
-                            @endif
-                        @endforeach
+                    @foreach ($electionList as $election)
+                        <x-election_card :election="$election" />
                     @endforeach
 
-                    {{-- @foreach ($participants as $participant)
-                        @if ($participant->user_id == auth()->user()->id && $election->id == $participant->election_id)
-                            <x-election_card :election="$election" />
-                        @endif
-                    @endforeach --}}
-
-                    <div class="w-full mt-3 text-neutral-800">
+                    {{-- <div class="w-full mt-3 text-neutral-800">
                         {{ $electionList->links() }}
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="w-full p-4 pb-6 bg-white border rounded-lg md:w-1/4 h-fit border-neutral-200">

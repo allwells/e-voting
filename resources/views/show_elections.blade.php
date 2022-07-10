@@ -113,14 +113,14 @@
                             <div class="flex justify-start w-full gap-2 font-medium sm:w-fit">
                                 {{-- Start date --}}
                                 <span>
-                                    <i class="text-indigo-700 fa fa-calendar"></i>
+                                    <i class="text-neutral-600 fa fa-calendar"></i>
                                     {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->start_date, 0, 10)))) }}
                                 </span>
 
                                 {{-- Start time --}}
                                 <span>
-                                    <i class="text-indigo-700 fa fa-clock"></i>
-                                    {{ substr($election->start_date, 10, 6) }} UTC
+                                    <i class="text-neutral-600 fa fa-clock"></i>
+                                    {{ substr($election->start_date, 10, 6) }}
                                 </span>
                             </div>
                         </div>
@@ -131,14 +131,14 @@
                             <div class="flex justify-start w-full gap-2 font-medium sm:w-fit">
                                 {{-- End date --}}
                                 <span>
-                                    <i class="text-indigo-700 fa fa-calendar"></i>
+                                    <i class="text-neutral-600 fa fa-calendar"></i>
                                     {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->end_date, 0, 10)))) }}
                                 </span>
 
                                 {{-- End time --}}
                                 <span>
-                                    <i class="text-indigo-700 fa fa-clock"></i>
-                                    {{ substr($election->end_date, 10, 6) }} UTC
+                                    <i class="text-neutral-600 fa fa-clock"></i>
+                                    {{ substr($election->end_date, 10, 6) }}
                                 </span>
                             </div>
                         </div>

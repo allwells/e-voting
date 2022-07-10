@@ -20,7 +20,7 @@
 
     <div class="flex flex-col items-center justify-start gap-2 mt-2 text-xs font-normal sm:flex-row text-neutral-500">
         <span>
-            <i class="mr-1 fa fa-clock"></i>{{ substr($election->start_date, 10, 6) }}UTC
+            <i class="mr-1 fa fa-clock"></i>{{ substr($election->start_date, 10, 6) }}
             <i
                 class="ml-2 mr-1 fa fa-calendar"></i>{{ date('d F, Y', strtotime(str_replace('-', '', substr($election->start_date, 0, 10)))) }}
         </span>
@@ -29,7 +29,7 @@
         <span class="sm:hidden">to</span>
 
         <span>
-            <i class="mr-1 fa fa-clock"></i>{{ substr($election->end_date, 10, 6) }}UTC
+            <i class="mr-1 fa fa-clock"></i>{{ substr($election->end_date, 10, 6) }}
             <i
                 class="ml-2 mr-1 fa fa-calendar"></i>{{ date('d F, Y', strtotime(str_replace('-', '', substr($election->end_date, 0, 10)))) }}
         </span>

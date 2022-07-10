@@ -24,17 +24,34 @@ class ElectionController extends Controller
     {
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
+        $todayMinusOneWeek = \Carbon\Carbon::today()->subDays(7);
 
-        $electionList = Election::where('type', 'public')->orderBy('start_date')->paginate(25);
-        $todayMinusOneWeekAgo = \Carbon\Carbon::today()->subDays(7);
-        $latestElection = Election::where('created_at', '>=', $todayMinusOneWeekAgo)->latest()->take(5)->get();
+        $elections = [];
+
+        $publicElection = Election::where('type', 'public')->orderBy('start_date')->get();
+        $privateElection = Election::where('type', 'private')->orderBy('start_date')->get();
+        $latestElection = Election::where('created_at', '>=', $todayMinusOneWeek)->latest()->take(5)->get();
+        $participants = Participant::where('user_id', auth()->user()->id)->get();
+
+        foreach($privateElection as $election)
+        {
+            $electionId = $participants->pluck('election_id')->toArray();
+            if(in_array($election->id , $electionId))
+            {
+                array_push($elections, $election);
+            }
+        }
+
+        foreach($publicElection as $pElection)
+        {
+            array_push($elections, $pElection);
+        }
 
         return view('superuser.elections', [
             'today' => $today,
+            'electionList' => $elections,
             'elections' => Election::all(),
-            'electionList' => $electionList,
             'latestElection' => $latestElection,
-            'participants' => Participant::all(),
         ]);
     }
 
@@ -85,7 +102,7 @@ class ElectionController extends Controller
             return back()->with('success', 'Code activated successfully!');
         }
 
-        return back()->with('error', 'Oops! There was an error. Try again.');
+        return back()->with('error', 'Oops! There was an error.');
     }
 
     public function showCreate()
@@ -148,7 +165,7 @@ class ElectionController extends Controller
             }
         }
 
-        return back();
+        return back()->with('error', 'Oops! There was an error.');
     }
 
     public function show(Request $request, Election $election)
@@ -180,7 +197,7 @@ class ElectionController extends Controller
             'candidate_id' => (int) $request->candidate,
         ]);
 
-        return back();
+        return back()->with('info', 'Thank you for participating.');
     }
 
     public function close(Election $election)
@@ -189,7 +206,7 @@ class ElectionController extends Controller
             'status' => 'closed',
         ]);
 
-        return back();
+        return back()->with('success', 'Election closed!');
     }
 
     public function showEdit(Election $election)
