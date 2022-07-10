@@ -324,20 +324,20 @@ class ElectionController extends Controller
             });
         }
 
-        return back()->with('success', 'File data uploaded successfully!');
+        return back()->with('success', 'Data imported!');
     }
 
     public function destroy(Election $election)
     {
-        $isUnauthorizedUser = auth() && auth()->user()->privilege !== 'superuser' || auth() && auth()->user()->privilege !== 'user';
+        $isUnauthorizedUser = (auth() && auth()->user()->privilege !== 'superuser') && (auth() && auth()->user()->privilege !== 'admin');
 
-        if(isUnauthorizedUser)
+        if($isUnauthorizedUser)
         {
-            return abort(403, 'Unauthorized action.');
+            return back()->with('error', 'Unauthorized action.');
         }
 
         $election->delete();
 
-        return back()->with('success', 'Deleted successfully!');
+        return back()->with('success', 'Election deleted!');
     }
 }

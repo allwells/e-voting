@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -31,30 +32,29 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'fname' => 'required|max:50',
             'lname' => 'max:50',
-            'email' => 'required|email|unique:users|max:120',
-            'phone' => 'required|unique:users|min:10|max:15',
+            'email' => 'required|email|unique:users|max:100',
             'dob' => 'required',
-            'password' => 'required|confirmed|min:6|max:18',
+            'password' => 'required|confirmed|min:6',
         ]);
 
         if(!$validator->passes()) {
-            return response()->json(['status' => 422, 'error' => $validator->errors()->toArray()]);
+            return back()->with('error', $validator->errors()->toArray());
         } else {
             $values = [
                 'fname' => $request->fname,
                 'lname' => $request->lname,
                 'email' => $request->email,
-                'phone' => $request->phone,
                 'dob' => $request->dob,
                 'password' => \Hash::make($request->password),
             ];
 
-            $query = DB::table('users')->insert($values);
+            User::create($values);
 
-            if($query > 0)
-            {
-                return response()->json(['status' => 200, 'message' => 'Account created successfully!']);
-            }
+            // authenticate user and sign user in
+            auth()->attempt($request->only('email', 'password'));
+
+            // redirect user
+            return redirect()->route('dashboard');
         }
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Vote;
 use App\Models\Election;
 use Jorenvh\Share\Share;
 use App\Models\Candidate;
+use App\Models\Participant;
 use Chartisan\PHP\Chartisan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,14 +19,36 @@ class ResultController extends Controller
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
-        $closed_elections = DB::table('elections')->where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->paginate(10);
+        $closedPublicElections = Election::where('type', 'public')->where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
+        $closedPrivateElections = Election::where('type', 'private')->where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
+        $participants = Participant::where('user_id', auth()->user()->id)->get();
+        $elections = collect();
 
-        $elections = Election::all();
+        foreach($closedPrivateElections as $closedPrivateElection)
+        {
+            $electionId = $participants->pluck('election_id')->toArray();
+            if(in_array($closedPrivateElection->id , $electionId))
+            {
+                $elections->push($closedPrivateElection);
+            }
+        }
 
-        return view('result', [
-            'elections' => $elections,
-            'closed_elections' => $closed_elections,
-        ]);
+        foreach($closedPublicElections as $closedPublicElection)
+        {
+            $elections->push($closedPublicElection);
+        }
+
+
+        if(auth()->user()->privilege !== 'superuser' && auth()->user()->privilege !== 'admin')
+        {
+            return view('result', [
+                'elections' => $elections,
+            ]);
+        } else {
+            return view('result', [
+                'elections' => Election::where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get(),
+            ]);
+        }
     }
 
     public function show(Request $request)

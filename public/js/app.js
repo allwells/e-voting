@@ -2256,10 +2256,6 @@ function createAccount() {
           $("form.register-form")[0].reset();
           $(document).find("div.success-msg").text(response.message);
           $("div.success-msg").css("display", "flex");
-          setTimeout(function () {
-            $("div.success-msg").css("display", "none");
-            window.location.href = "/login";
-          }, 3000);
         }
       }
     });
@@ -2305,7 +2301,7 @@ function closeNotification(btnId, notificationId) {
 }
 
 function addCandidateRow() {
-  var tableRow = "<tr class=\"my-2\">\n                        <td class=\"py-2\">\n                            <div class=\"flex justify-center items-center px-2\">\n                                <input name=\"name[]\" type=\"text\" id=\"name\"\n                                    class=\"w-full text-xs sm:text-sm px-3 transition duration-300 border border-neutral-200 rounded h-12 outline-0 bg-transparent text-neutral-600  placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600\"\n                                    placeholder=\"Enter candidate's full name'\" required>\n                            </div>\n                        </td>\n                        <td class=\"py-2\">\n                            <div class=\"flex justify-center items-center px-2\">\n                                <input name=\"party[]\" type=\"text\" id=\"party\"\n                                    class=\"w-full text-xs sm:text-sm px-3 transition duration-300 border border-neutral-200 rounded h-12 outline-0 bg-transparent text-neutral-600  placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600\"\n                                    placeholder=\"Enter candidate's' party\" required>\n                            </div>\n                        </td>\n                        <td class=\"py-2 text-center\">\n                            <div class=\"w-full h-12 flex justify-center items-center\">\n                                <button type=\"button\"\n                                    class=\"p-0.5 text-white rounded-sm bg-rose-600 shadow-lg hover:bg-rose-700 focus:bg-rose-700 focus:ring focus:ring-rose-300 remove-row\">\n                                    <svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"\n                                        xmlns=\"http://www.w3.org/2000/svg\">\n                                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\n                                            d=\"M20 12H4\"></path>\n                                    </svg>\n                                </button>\n                            </div>\n                        </td>\n                    </tr>";
+  var tableRow = "<tr class=\"my-2\">\n                        <td class=\"py-2\">\n                            <div class=\"flex justify-center items-center px-2\">\n                                <input name=\"name[]\" type=\"text\" id=\"name\"\n                                    class=\"w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-indigo-600 focus:ring-0\"\n                                    placeholder=\"Enter candidate's full name\" required>\n                            </div>\n                        </td>\n                        <td class=\"py-2\">\n                            <div class=\"flex justify-center items-center px-2\">\n                                <input name=\"party[]\" type=\"text\" id=\"party\"\n                                    class=\"w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-indigo-600 focus:ring-0\"\n                                    placeholder=\"Enter candidate's party\" required>\n                            </div>\n                        </td>\n                        <td class=\"py-2 text-center\">\n                            <div class=\"w-full h-12 flex justify-center items-center\">\n                                <button type=\"button\"\n                                    class=\"text-white rounded-sm bg-rose-600 hover:bg-rose-700 focus:bg-rose-700 focus:ring focus:ring-rose-400/40 remove-row\">\n                                    <svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"\n                                        xmlns=\"http://www.w3.org/2000/svg\">\n                                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\n                                            d=\"M20 12H4\"></path>\n                                    </svg>\n                                </button>\n                            </div>\n                        </td>\n                    </tr>";
   $("tbody.candidates-table").append(tableRow);
 }
 
@@ -2318,6 +2314,7 @@ function copyToClipboard(elementId) {
 }
 
 var showMenu = true;
+var showNav = true;
 $(document).ready(function () {
   // create user account
   createAccount(); // Create election
@@ -2345,6 +2342,25 @@ $(document).ready(function () {
 
       $(document).find("div.sidebar-menu").css("display", "none");
       showMenu = !showMenu;
+    }
+  }); // mobile nav button
+
+  $(document).on("click", "button.mobile-nav-btn", function (event) {
+    event.preventDefault();
+
+    if (showNav) {
+      $(document).find("svg.open-nav-icon").css("display", "none");
+      $(document).find("svg.close-nav-icon").css("display", "block"); // open nav
+
+      $(document).find("div.mobile-nav-menu").css("display", "flex");
+      $(document).find("div.mobile-nav-menu").css("flex-direction", "column");
+      showNav = !showNav;
+    } else {
+      $(document).find("svg.open-nav-icon").css("display", "block");
+      $(document).find("svg.close-nav-icon").css("display", "none"); // close nav
+
+      $(document).find("div.mobile-nav-menu").css("display", "none");
+      showNav = !showNav;
     }
   });
   $("button.add-candidate-btn").on("click", function (event) {

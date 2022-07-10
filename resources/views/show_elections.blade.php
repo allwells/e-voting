@@ -4,7 +4,7 @@
 @section('election-tab', auth()->user()->theme == 'dark' ? 'active-dark-election' : 'active-election')
 
 @section('views')
-    <div class="flex flex-col w-full gap-5 px-4 py-5 bg-white rounded-xl sm:px-5 sm:py-6">
+    <div class="flex flex-col w-full gap-5 px-3 py-5 bg-white rounded-xl sm:px-5 sm:py-6">
         <x-error_message />
         <x-success_message />
 
@@ -63,7 +63,8 @@
                 </div>
             @endif
 
-            <div class="w-full px-5 py-6 border rounded-xl @if ($election->type == 'private') md:w-3/4 @endif">
+            <div
+                class="w-full px-3 py-4 sm:px-5 sm:py-6 border rounded-xl @if ($election->type == 'private') md:w-3/4 @endif">
                 @if ($today->gt($election->start_date) && $today->gt($election->end_date))
                     <span
                         class="mb-2 flex w-full items-center justify-start p-2.5 text-sm text-blue-700 rounded-md bg-blue-100">
@@ -88,27 +89,24 @@
 
                 {{-- Election details --}}
                 <div>
-                    <div class="flex items-center justify-between">
-                        <h1 class="flex items-center text-xl font-semibold text-neutral-800">
+                    <div class="flex items-start sm:items-center justify-start sm:justify-between sm:flex-row flex-col">
+                        <h1 class="flex items-center text-xl font-semibold text-neutral-800 gap-1 flex-wrap">
                             {{ $election->title }}
 
                             @if ($election->type == 'private')
-                                <span class="flex items-center justify-center text-red-600 w-fit h-fit"
+                                <span
+                                    class="flex items-center justify-center bg-red-600 rounded-sm px-0.5 w-fit h-fit font-normal text-xs uppercase text-white"
                                     title="This election is private">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
+                                    private
                                 </span>
                             @endif
                         </h1>
-                        <span class="text-sm text-neutral-500"> posted
-                            {{ $election->created_at->diffForHumans() }}</span>
+                        <span class="text-sm text-neutral-500">
+                            posted {{ $election->created_at->diffForHumans() }}
+                        </span>
                     </div>
 
-                    <div class="flex flex-col justify-start gap-3 mt-2 text-xs md:flex-row md:gap-3 text-neutral-600">
+                    <div class="flex flex-col justify-start gap-1 mt-2 text-xs sm:flex-row sm:gap-3 text-neutral-600">
                         <div class="flex flex-col items-start w-full gap-1 sm:w-fit sm:gap-2 sm:items-center sm:flex-row">
                             <div class="flex justify-start w-full gap-2 font-medium sm:w-fit">
                                 {{-- Start date --}}
@@ -150,7 +148,16 @@
 
                 {{-- Election candidates --}}
                 <div class="flex flex-col gap-3 mt-8">
-                    <label class="text-sm font-medium text-neutral-600">Candidates</label>
+                    <div class="flex justify-between items-center">
+                        <label class="text-sm font-medium text-neutral-600">Candidates</label>
+
+                        @if (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
+                            <a href="{{ route('results.view', $election) }}"
+                                class="px-2 py-1 text-sm font-normal text-indigo-700 rounded bg-neutral-100 hover:bg-indigo-200 hover:text-indigo-800 hover:underline">
+                                View Results
+                            </a>
+                        @endif
+                    </div>
 
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm text-left text-neutral-500 dark:text-neutral-400">
@@ -170,15 +177,6 @@
 
                                     <th scope="col" class="py-4 text-center">
                                         Votes
-                                    </th>
-
-                                    <th scope="col" class="w-20 py-4 text-center">
-                                        @if (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
-                                            <a href="{{ route('results.view', $election) }}"
-                                                class="px-2 py-1 text-sm font-normal text-indigo-700 rounded bg-neutral-100 hover:bg-indigo-200 hover:text-indigo-800 hover:underline">
-                                                Results
-                                            </a>
-                                        @endif
                                     </th>
                                 </tr>
                             </thead>
@@ -202,8 +200,8 @@
 
                 @if ($today->lt($election->start_date) && $today->lt($election->end_date))
                     @if (auth()->user()->privilege == 'superuser' || auth()->user()->privilege == 'admin')
-                        <form action="{{ route('import.file', $election) }}" method="post"
-                            enctype="multipart/form-data" class="mt-10">
+                        <form action="{{ route('import.file', $election) }}" method="post" enctype="multipart/form-data"
+                            class="mt-10">
                             @csrf
 
                             <div class="flex flex-col justify-start w-full form-input-group">
@@ -216,14 +214,14 @@
                                     election.
                                 </span>
 
-                                <div class="flex items-center justify-start gap-3 mt-2">
+                                <div class="flex items-center justify-start sm:flex-row flex-col gap-3 mt-2">
                                     <input name="imported_file" type="file" id="imported_file"
                                         aria-describedby="file_input_help"
-                                        class="flex-grow px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                                        class="flex-grow px-3 mt-1 w-full text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
                                         required>
 
                                     <button type="submit"
-                                        class="w-full px-5 py-2.5 text-sm flex justify-between gap-2 items-center font-normal text-white bg-indigo-600 rounded shadow-lg sm:w-fit hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-300">
+                                        class="w-full px-5 py-2.5 text-sm flex justify-center gap-2 items-center font-normal text-white bg-indigo-600 rounded shadow-lg sm:w-fit hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-300">
                                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd"
@@ -297,7 +295,7 @@
                                     </tbody>
                                 @else
                                     <tr class="text-sm text-center cursor-default text-neutral-500">
-                                        <td colspan="4" class="pt-10">
+                                        <td colspan="4" class="pt-8 pb-3">
                                             No participant for this election yet.
                                         </td>
                                     </tr>

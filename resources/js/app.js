@@ -45,11 +45,6 @@ function createAccount() {
                     $("form.register-form")[0].reset();
                     $(document).find("div.success-msg").text(response.message);
                     $("div.success-msg").css("display", "flex");
-
-                    setTimeout(() => {
-                        $("div.success-msg").css("display", "none");
-                        window.location.href = "/login";
-                    }, 3000);
                 }
             },
         });
@@ -100,22 +95,22 @@ function addCandidateRow() {
                         <td class="py-2">
                             <div class="flex justify-center items-center px-2">
                                 <input name="name[]" type="text" id="name"
-                                    class="w-full text-xs sm:text-sm px-3 transition duration-300 border border-neutral-200 rounded h-12 outline-0 bg-transparent text-neutral-600  placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
-                                    placeholder="Enter candidate's full name'" required>
+                                    class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-indigo-600 focus:ring-0"
+                                    placeholder="Enter candidate's full name" required>
                             </div>
                         </td>
                         <td class="py-2">
                             <div class="flex justify-center items-center px-2">
                                 <input name="party[]" type="text" id="party"
-                                    class="w-full text-xs sm:text-sm px-3 transition duration-300 border border-neutral-200 rounded h-12 outline-0 bg-transparent text-neutral-600  placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
-                                    placeholder="Enter candidate's' party" required>
+                                    class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-indigo-600 focus:ring-0"
+                                    placeholder="Enter candidate's party" required>
                             </div>
                         </td>
                         <td class="py-2 text-center">
                             <div class="w-full h-12 flex justify-center items-center">
                                 <button type="button"
-                                    class="p-0.5 text-white rounded-sm bg-rose-600 shadow-lg hover:bg-rose-700 focus:bg-rose-700 focus:ring focus:ring-rose-300 remove-row">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    class="text-white rounded-sm bg-rose-600 hover:bg-rose-700 focus:bg-rose-700 focus:ring focus:ring-rose-400/40 remove-row">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M20 12H4"></path>
@@ -137,6 +132,7 @@ function copyToClipboard(elementId) {
 }
 
 let showMenu = true;
+let showNav = true;
 $(document).ready(function () {
     // create user account
     createAccount();
@@ -177,6 +173,30 @@ $(document).ready(function () {
             $(document).find("div.sidebar-menu").css("display", "none");
 
             showMenu = !showMenu;
+        }
+    });
+
+    // mobile nav button
+    $(document).on("click", "button.mobile-nav-btn", function (event) {
+        event.preventDefault();
+
+        if (showNav) {
+            $(document).find("svg.open-nav-icon").css("display", "none");
+            $(document).find("svg.close-nav-icon").css("display", "block");
+
+            // open nav
+            $(document).find("div.mobile-nav-menu").css("display", "flex");
+            $(document).find("div.mobile-nav-menu").css("flex-direction", "column");
+
+            showNav = !showNav;
+        } else {
+            $(document).find("svg.open-nav-icon").css("display", "block");
+            $(document).find("svg.close-nav-icon").css("display", "none");
+
+            // close nav
+            $(document).find("div.mobile-nav-menu").css("display", "none");
+
+            showNav = !showNav;
         }
     });
 

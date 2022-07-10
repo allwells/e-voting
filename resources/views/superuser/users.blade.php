@@ -7,6 +7,12 @@
 @section('views')
     <div class="flex flex-col w-full gap-5 p-4 bg-white rounded-xl sm:p-5">
         <label class="text-sm font-medium text-neutral-600 sm:text-base">View Users</label>
+
+        <x-success_message />
+        <x-error_message />
+        <x-warning_message />
+        <x-info_message />
+
         <div class="flex items-center justify-center w-full">
             <x-user_search_form />
         </div>

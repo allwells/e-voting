@@ -18,12 +18,12 @@
 
             <div class="flex justify-center mt-3 align-middle sm:py-6 sm:mt-6 gap-5">
                 <a href="{{ route('register') }}"
-                    class="px-8 py-3 border border-indigo-600 font-normal @yield('no-nav') text-sm text-white transition duration-300 bg-indigo-600 rounded hover:bg-indigo-700 focus:ring focus:ring-indigo-300 h-fit w-fit">
+                    class="sm:px-8 sm:py-3 px-4 py-2 border border-indigo-600 font-normal @yield('no-nav') text-sm text-white transition duration-300 bg-indigo-600 rounded hover:bg-indigo-700 focus:ring focus:ring-indigo-300 h-fit w-fit">
                     Get Started
                 </a>
 
                 <a href="#how-it-works"
-                    class="px-8 py-3 font-normal @yield('no-nav') text-sm text-neutral-600 transition duration-300 bg-white rounded border border-neutral-400 hover:text-indigo-600 hover:border-indigo-600 h-fit w-fit">
+                    class="sm:px-8 sm:py-3 px-4 py-2 font-normal @yield('no-nav') text-sm text-neutral-600 transition duration-300 bg-white rounded border border-neutral-400 hover:text-indigo-600 hover:border-indigo-600 h-fit w-fit">
                     See How It Works
                 </a>
             </div>

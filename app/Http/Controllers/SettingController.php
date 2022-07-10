@@ -49,7 +49,7 @@ class SettingController extends Controller
 
         if(!$validator->passes())
         {
-            return back()->with('info', 'Read the message under each input field and try again.');
+            return back()->with('warn', 'Read the message under each input field and try again.');
         }
 
         User::where('id', auth()->user()->id)->update([

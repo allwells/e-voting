@@ -26,10 +26,10 @@
                         <th scope="col" class="px-3 py-4 text-center"></th>
                     </tr>
                 </thead>
-                @if ($closed_elections->count() > 0)
+                @if ($elections->count() > 0)
                     <tbody class="border-b">
-                        @foreach ($closed_elections as $index => $closed)
-                            <x-result_table :index="$index" :election="$closed" />
+                        @foreach ($elections as $index => $closed)
+                            <x-result_table :index="$index + 1" :election="$closed" />
                         @endforeach
                     </tbody>
                 @else
@@ -39,9 +39,9 @@
                 @endif
             </table>
 
-            <div class="px-3 mt-2.5 ">
-                {{ $closed_elections->links() }}
-            </div>
+            {{-- <div class="px-3 mt-2.5 ">
+                {{ $elections->links() }}
+            </div> --}}
         </div>
     </div>
 @endsection

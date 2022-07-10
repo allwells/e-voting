@@ -20,11 +20,11 @@
                     @csrf
 
                     <input type="text" name="code" id="code"
-                        class="border border-neutral-200 hover:border-neutral-400 focus:border-indigo-600 transition duration-300 text-neutral-700 text-sm rounded bg-neutral-200 w-full h-11 px-2 focus:ring-0 focus:outline-0 placeholder-neutral-500"
+                        class="border border-transparent hover:border-neutral-300 focus:border-indigo-600 transition duration-300 text-neutral-700 text-sm rounded bg-neutral-100 w-full h-11 px-3 focus:ring-0 placeholder-neutral-500"
                         placeholder="Enter election code" required>
 
                     <button type="submit"
-                        class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring focus:outline-none focus:ring-indigo-300 font-medium rounded text-sm px-5 py-2.5 text-center">
+                        class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring focus:ring-indigo-600/40 font-medium rounded text-sm px-6 py-3 text-center">
                         Verify Code
                     </button>
                 </form>

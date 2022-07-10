@@ -28,7 +28,7 @@
                         </label>
 
                         <input name="title" type="text" id="title"
-                            class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                            class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-indigo-600 focus:ring-0"
                             placeholder="Enter election title" required>
 
                         @error('title')
@@ -45,7 +45,7 @@
                         </label>
 
                         <input name="description" type="text" id="description"
-                            class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                            class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-indigo-600 focus:ring-0"
                             placeholder="Enter election description">
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         </label>
 
                         <input name="start_date" type="datetime-local" id="start_date"
-                            class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                            class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-indigo-600 focus:ring-0"
                             required>
 
                         @error('start_date')
@@ -76,7 +76,7 @@
                         </label>
 
                         <input name="end_date" type="datetime-local" id="end_date"
-                            class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                            class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-indigo-600 focus:ring-0"
                             required>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                         </label>
 
                         <select name="type" type="combo" id="type"
-                            class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
+                            class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-indigo-600 focus:ring-0"
                             required>
                             <option>-- Select election type --</option>
                             <option value="public">Public</option>
@@ -117,10 +117,10 @@
                             <tr class="border-y">
                                 <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Candidate Name</th>
                                 <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Candidate Party</th>
-                                <th>
+                                <th class="w-12">
                                     <button type="button"
-                                        class="w-fit p-0.5 text-white rounded-sm bg-indigo-600 shadow-lg hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-300 add-candidate-btn">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        class="w-fit text-white rounded-sm bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-600/40 add-candidate-btn">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -137,7 +137,7 @@
 
             <div class="flex items-center justify-end w-full">
                 <button type="submit"
-                    class="w-full px-8 py-2 text-sm font-normal text-white bg-indigo-600 rounded-md shadow-lg sm:w-fit hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-300">
+                    class="w-full px-10 py-3 text-sm font-normal text-white bg-indigo-600 rounded sm:w-fit hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-600/40">
                     Create Election
                 </button>
             </div>

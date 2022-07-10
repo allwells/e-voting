@@ -13,11 +13,7 @@
         {{ $candidate->party }}
     </td>
 
-    <td class="px-2 py-3 text-center cursor-default">
-        {{ $votes->where('candidate_id', $candidate->id)->count() }}
-    </td>
-
-    <td class="text-center capitalize cursor-default w-20">
+    <td class="text-center capitalize cursor-default w-16 px-2 py-3">
 
         {{-- if the election has NOT started --}}
         @if ($today->lt($election->start_date) && $today->lt($election->end_date))
@@ -33,15 +29,12 @@
 
             {{-- if the election has ended --}}
         @elseif (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
+            {{ $votes->where('candidate_id', $candidate->id)->count() }}
         @else
             {{-- if the user has voted at least one candidate --}}
             @if ($voted || $candidate->votedBy(auth()->user()))
                 {{-- show 'voted!' on the candidate voted by user --}}
-                @if ($candidate->votedBy(auth()->user()))
-                    <span class="py-1 px-2 bg-neutral-500 rounded text-white font-normal text-sm" disabled>
-                        Voted!
-                    </span>
-                @endif
+                {{ $votes->where('candidate_id', $candidate->id)->count() }}
             @else
                 {{-- if the election is on-going and the user has NOT voted any candidate --}}
                 <div>
