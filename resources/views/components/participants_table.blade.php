@@ -30,7 +30,7 @@
                 class="absolute z-10 hidden bg-white divide-y rounded-lg shadow-lg right-4 divide-neutral-100 w-52 dark:bg-neutral-700">
                 <ul class="flex flex-col gap-1 p-1 text-sm text-neutral-500" aria-labelledby="dropdownLeftStartButton">
                     <li>
-                        <form action="{{ route('users.destroy', $participant->id) }}" method="POST">
+                        <form action="{{ route('participant.destroy', $participant->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
 
