@@ -99,8 +99,8 @@
                             class="w-full px-3 mt-1 text-xs transition duration-300 bg-transparent border rounded sm:text-sm border-neutral-200 h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-400 focus:border-indigo-600"
                             required>
                             <option>-- Select election type --</option>
-                            <option @if ($election->type == 'open') selected @endif value="open">Open</option>
-                            <option @if ($election->type == 'close') selected @endif value="close">Close</option>
+                            <option @if ($election->type == 'public') selected @endif value="public">Public</option>
+                            <option @if ($election->type == 'private') selected @endif value="private">Private</option>
                         </select>
 
                         @error('type')
