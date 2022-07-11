@@ -91,7 +91,7 @@
         <p>Email: {{ $recipient['email'] }}</p>
         <p>Password: {{ $recipient['email'] }}</p>
 
-        <a href="{{ env('APP_ENV') == 'production' ? "https://evotin.herokuapp.com/elections/$election->id" : "http://localhost:8000/elections/$election->id" }}"
+        <a href="{{ env('APP_ENV') == 'production' ? "http://evotin.herokuapp.com/elections/$election->id" : "http://localhost:8000/elections/$election->id" }}"
             class="link" rel="noreferrer" target="_blank">View Election</a>
 
         <div>
