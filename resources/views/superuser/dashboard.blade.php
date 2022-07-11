@@ -30,7 +30,7 @@
                                 <th class="py-4 px-2 text-left">Email</th>
                                 <th class="py-4 px-2 text-left">Privilege</th>
 
-                                <th scope="col" class="px-1 text-center">
+                                <th scope="col" class="px-1 text-center w-14">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" class="pl-1">
                                         <g data-name="User Settings">
                                             <g data-name="&lt;Group&gt;">
@@ -75,7 +75,7 @@
                                 <th class="py-4 px-2 text-left">Email</th>
                                 <th class="py-4 px-2 text-left">Privilege</th>
 
-                                <th scope="col" class="px-1 text-center">
+                                <th scope="col" class="px-1 text-center w-14">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" class="pl-1">
                                         <g data-name="User Settings">
                                             <g data-name="&lt;Group&gt;">
