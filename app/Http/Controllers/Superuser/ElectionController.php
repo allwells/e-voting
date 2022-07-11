@@ -26,25 +26,25 @@ class ElectionController extends Controller
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
         $todayMinusOneWeek = \Carbon\Carbon::today()->subDays(7);
 
-        $elections = [];
+        $elections = collect();
 
-        $publicElection = Election::where('type', 'public')->orderBy('start_date')->get();
-        $privateElection = Election::where('type', 'private')->orderBy('start_date')->get();
+        $publicElections = Election::where('type', 'public')->orderBy('start_date')->get();
+        $privateElections = Election::where('type', 'private')->orderBy('start_date')->get();
         $latestElection = Election::where('created_at', '>=', $todayMinusOneWeek)->latest()->take(5)->get();
         $participants = Participant::where('user_id', auth()->user()->id)->get();
 
-        foreach($privateElection as $election)
+        foreach($privateElections as $privateElection)
         {
             $electionId = $participants->pluck('election_id')->toArray();
-            if(in_array($election->id , $electionId))
+            if(in_array($privateElection->id , $electionId))
             {
-                array_push($elections, $election);
+                $elections->push($privateElection);
             }
         }
 
-        foreach($publicElection as $pElection)
+        foreach($publicElections as $publicElection)
         {
-            array_push($elections, $pElection);
+            $elections->push($publicElection);
         }
 
         return view('superuser.elections', [

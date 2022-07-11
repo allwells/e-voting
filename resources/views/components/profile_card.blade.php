@@ -1,5 +1,5 @@
 <div
-    class="flex items-center w-full border justify-between md:justify-center gap-3 p-1.5 cursor-default rounded-md bg-white">
+    class="flex items-center w-full border justify-between md:justify-center gap-3 p-1.5 cursor-default rounded-md bg-white overflow-y-hidden">
     <div class="flex justify-start items-center gap-2">
         <a href="{{ route('profile') }}">
             <div

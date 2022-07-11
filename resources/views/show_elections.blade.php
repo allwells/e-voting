@@ -7,6 +7,7 @@
     <div class="flex flex-col w-full gap-5 px-3 py-5 bg-white rounded-xl sm:px-5 sm:py-6">
         <x-error_message />
         <x-success_message />
+        <x-info_message />
 
         <div class="flex flex-col gap-1">
             <label class="text-sm font-medium text-neutral-600 sm:text-base">Election Details</label>
@@ -296,7 +297,7 @@
                                 @else
                                     <tr class="text-sm text-center cursor-default text-neutral-500">
                                         <td colspan="4" class="pt-8 pb-3">
-                                            No participant for this election yet.
+                                            No participant for this election.
                                         </td>
                                     </tr>
                                 @endif
