@@ -291,7 +291,7 @@
                                 @if ($participants->count() > 0)
                                     <tbody class="text-sm border-b text-neutral-600">
                                         @foreach ($participants as $index => $participant)
-                                            <x-participants_table :index="$index + 1" :participant="$participant" />
+                                            <x-participants_table :index="$index + 1" :participant="$participant" :election="$election" />
                                         @endforeach
                                     </tbody>
                                 @else
