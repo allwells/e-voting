@@ -1,4 +1,4 @@
-@props(['index' => $index, 'participant' => $participant])
+@props(['index' => $index, 'participant' => $participant, 'election' => $election])
 
 <tr class="hover:bg-neutral-50">
     <td class="w-12 px-3 text-center cursor-default">
@@ -30,13 +30,13 @@
                 class="absolute z-10 hidden bg-white divide-y rounded-lg shadow-lg right-4 divide-neutral-100 w-52 dark:bg-neutral-700">
                 <ul class="flex flex-col gap-1 p-1 text-sm text-neutral-500" aria-labelledby="dropdownLeftStartButton">
                     <li>
-                        <form action="{{ route('participant.destroy', $participant->id) }}" method="POST">
-                            @csrf
+                        <form action="{{ route('participant.destroy', [$election, $participant]) }}" method="POST">
                             @method('DELETE')
+                            @csrf
 
                             <button type="submit"
                                 class="flex items-center justify-start w-full gap-2 p-3 text-left transition duration-300 rounded-lg text-rose-600 hover:bg-neutral-100">
-                                Remove
+                                Kick out
                             </button>
                         </form>
                     </li>
