@@ -75,7 +75,7 @@
 
 <div class="body">
     <div class="header">
-        <a href="http://localhost:8000">
+        <a href="https://evotin.herokuapp.com">
             <img class="logo" src="{{ asset('images/logo-tranparent.png') }}" alt="eVoting logo" />
         </a>
     </div>
@@ -91,8 +91,8 @@
         <p>Email: {{ $recipient['email'] }}</p>
         <p>Password: {{ $recipient['email'] }}</p>
 
-        <a href="http://localhost:8000/elections/{{ $election->id }}" class="link" rel="noreferrer"
-            target="_blank">View Election</a>
+        <a href="{{ env('APP_ENV') == 'production' ? "https://evotin.herokuapp.com/elections/$election->id" : "http://localhost:8000/elections/$election->id" }}"
+            class="link" rel="noreferrer" target="_blank">View Election</a>
 
         <div>
             <p class="regards">Regards,</p>
