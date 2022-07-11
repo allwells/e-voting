@@ -33,7 +33,6 @@ class UserController extends Controller
             'fname' => 'required|max:50',
             'lname' => 'max:50',
             'email' => 'required|email|unique:users|max:120',
-            'phone' => 'min:10|max:15',
         ]);
 
         if(!$validator->passes()) {
@@ -43,7 +42,7 @@ class UserController extends Controller
                 'fname' => $request->fname,
                 'lname' => $request->lname,
                 'email' => $request->email,
-                'phone' => $request->phone,
+                'phone' => ($request->phone == null ? '' : $request->phone),
                 'password' => \Hash::make($request->email),
             ];
 
@@ -80,7 +79,7 @@ class UserController extends Controller
                 'privilege' => 'user',
             ]);
 
-            return back()->with('success', 'Success! Admin privilege revoked.');
+            return back()->with('success', 'Admin privilege revoked from ' . $user->fname . ' ' . $user->lname);
         }
 
         return back()->with('error', 'Oops! Something went wrong. Try again.');

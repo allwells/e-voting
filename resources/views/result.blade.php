@@ -33,8 +33,8 @@
                         @endforeach
                     </tbody>
                 @else
-                    <tr class="text-sm text-center text-neutral-600">
-                        <td colspan="3" class="py-10">No results yet.</td>
+                    <tr class="text-base text-center text-neutral-600">
+                        <td colspan="4" class="pt-12">No results to show.</td>
                     </tr>
                 @endif
             </table>

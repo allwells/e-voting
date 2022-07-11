@@ -12,7 +12,7 @@
         <x-error_message />
         <x-warning_message />
 
-        <form action="{{ route('users.add') }}" method="POST" class="w-full flex flex-col gap-5 add-users-form">
+        <form action="{{ route('users.add') }}" method="POST" class="w-full flex flex-col gap-5 add-users-for">
             @csrf
 
             <div class="mt-3 border rounded-xl flex flex-col gap-3 w-full p-3 sm:p-6">

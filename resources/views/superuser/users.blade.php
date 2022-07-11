@@ -27,7 +27,7 @@
                         <th class="px-2 py-4 text-left">Email</th>
                         <th class="px-2 py-4 text-left">Privilege</th>
 
-                        <th scope="col">
+                        <th scope="col w-14">
                             <span class="flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" class="w-7 h-7">
                                     <g data-name="User Settings">

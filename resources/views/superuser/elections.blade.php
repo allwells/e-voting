@@ -65,9 +65,9 @@
                             @endforeach
                         </tbody>
                     @else
-                        <tr class="text-base text-center cursor-default sm:text-lg text-neutral-500">
-                            <td colspan="4" class="pt-10">
-                                No elections yet.
+                        <tr class="text-base text-center cursor-default text-neutral-500">
+                            <td colspan="6" class="pt-10">
+                                Nothing to show.
                             </td>
                         </tr>
                     @endif
@@ -107,13 +107,18 @@
             <div
                 class="flex flex-col items-center justify-start w-full gap-5 md:flex-row md:justify-between md:items-start">
                 <div class="flex items-start justify-start w-full gap-5 pb-10 flex-wrap">
-                    @foreach ($electionList as $election)
-                        <x-election_card :election="$election" />
-                    @endforeach
-
-                    {{-- <div class="w-full mt-3 text-neutral-800">
+                    @if ($electionList->count() > 0)
+                        @foreach ($electionList as $election)
+                            <x-election_card :election="$election" />
+                        @endforeach
+                    @else
+                        {{-- <div class="w-full mt-3 text-neutral-800">
                         {{ $electionList->links() }}
                     </div> --}}
+                        <div class="text-center text-sm text-neutral-600 py-8 w-full">
+                            Nothing to show.
+                        </div>
+                    @endif
                 </div>
 
                 {{-- <div class="w-full p-4 pb-6 bg-white border rounded-lg md:w-1/4 h-fit border-neutral-200">

@@ -130,7 +130,7 @@ class ElectionController extends Controller
         ]);
 
         if(!$validator->passes()) {
-            return back()->with('warn', 'Check your inputs that they are correct and try again.');
+            return back()->with('warn', 'Oop! Something\'s not right. Check your inputs and try again.');
         } else {
             $accessCode = Str::random(10);
 
@@ -161,7 +161,7 @@ class ElectionController extends Controller
 
             if($query > 0)
             {
-                return back()->with('success', 'Election created successfully!');
+                return back()->with('success', 'Election created!');
             }
         }
 
@@ -210,11 +210,10 @@ class ElectionController extends Controller
     }
 
     public function showEdit(Election $election)
-    {   $candidates = Candidate::where('election_id', $election->id)->get();
-
+    {
         return view('superuser.edit_election', [
             'election' => $election,
-            'candidates' => $candidates
+            'candidates' => Candidate::where('election_id', $election->id)->get()
         ]);
     }
 
@@ -225,7 +224,7 @@ class ElectionController extends Controller
 
         if($isUnauthorizedUser)
         {
-            return abort(403, 'Unauthorized action.');
+            return back()->with('error', 'Unauthorized action.');
         }
 
         // validate user input
@@ -238,7 +237,7 @@ class ElectionController extends Controller
         ]);
 
         if(!$validator->passes()) {
-            return response()->json(['status' => 422, 'error' => $validator->errors()->toArray()]);
+            return back()->with('error', 'Oops! Something\'s not right. Check your inputs and try again.');
         } else {
             $election_values = [
                     'user_id' => $request->user()->id,

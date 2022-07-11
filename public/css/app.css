@@ -1664,6 +1664,10 @@ input[type="range"]::-ms-fill-lower {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
 .pr-5 {
   padding-right: 1.25rem;
 }
@@ -1711,6 +1715,9 @@ input[type="range"]::-ms-fill-lower {
 }
 .pt-5 {
   padding-top: 1.25rem;
+}
+.pt-12 {
+  padding-top: 3rem;
 }
 .text-left {
   text-align: left;
