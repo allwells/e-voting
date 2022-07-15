@@ -13,6 +13,7 @@ use App\Models\Participant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Snowfire\Beautymail\Beautymail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -134,7 +135,7 @@ class ElectionController extends Controller
         } else {
             $accessCode = Str::random(10);
 
-            $election_values = [
+            $electionValues = [
                     'user_id' => $request->user()->id,
                     'title' => $request->title,
                     'description' => $request->description,
@@ -146,15 +147,15 @@ class ElectionController extends Controller
                     'updated_at' => date('Y-m-d H:i:s')
             ];
 
-            $query = DB::table('elections')->insert($election_values);
+            $query = DB::table('elections')->insert($electionValues);
 
-            $electionId = Election::where('created_at', $election_values['created_at'])->where('updated_at', $election_values['updated_at'])->get();
+            $electionId = Election::where('created_at', $electionValues['created_at'])->where('updated_at', $electionValues['updated_at'])->get();
 
-            foreach($request->name as $key => $candidate_name) {
+            foreach($request->name as $key => $candidateName) {
                 $candidate = new Candidate;
 
                 $candidate->election_id = $electionId[0]->id;
-                $candidate->name = $candidate_name;
+                $candidate->name = $candidateName;
                 $candidate->party = $request->party[$key];
                 $candidate->save();
             }
@@ -239,7 +240,7 @@ class ElectionController extends Controller
         if(!$validator->passes()) {
             return back()->with('error', 'Oops! Something\'s not right. Check your inputs and try again.');
         } else {
-            $election_values = [
+            $electionValues = [
                     'user_id' => $request->user()->id,
                     'title' => $request->title,
                     'description' => $request->description,
@@ -249,28 +250,28 @@ class ElectionController extends Controller
                     'updated_at' => date('Y-m-d H:i:s')
             ];
 
-            Election::where('id', $election->id)->update($election_values);
+            Election::where('id', $election->id)->update($electionValues);
 
-            foreach($request->name as $key => $candidate_name) {
-                $exists = Candidate::where('election_id', $election->id)->where('name', $candidate_name)->where('party', $request->party[$key])->get();
+            foreach($request->name as $key => $candidateName) {
+                $exists = Candidate::where('election_id', $election->id)->where('name', $candidateName)->where('party', $request->party[$key])->get();
 
                 if($exists->count() > 0)
                 {
                     Candidate::where('election_id', $election->id)->update([
-                        'name' => $candidate_name,
+                        'name' => $candidateName,
                         'party' => $request->party[$key]
                     ]);
                 } else {
                     Candidate::create([
                         'election_id' => $election->id,
-                        'name' => $candidate_name,
+                        'name' => $candidateName,
                         'party' => $request->party[$key]
                     ]);
                 }
             }
         }
 
-        return back();
+        return redirect()->route('elections.show', $election)->with('success', 'Election updated!');
     }
 
     public function fileImport(Request $request, Election $election)
@@ -287,12 +288,14 @@ class ElectionController extends Controller
 
         foreach($uploadedData[0] as $users)
         {
+            $genPassword = Str()->random(32);
+
             $user = new User();
             $user->fname = $users['fname'];
             $user->lname = $users['lname'];
             $user->email = $users['email'];
             $user->phone = $users['phone'];
-            $user->password = Hash::make($users['email']);
+            $user->password = Hash::make($genPassword);
             $user->save();
 
             $userId = $user->id;
@@ -314,9 +317,12 @@ class ElectionController extends Controller
                 'name' => config('app.name'),
                 'subject' => "Private Election Invitation",
                 'election' => $election,
+                'genPassword' => $genPassword
             ];
 
-            Mail::send('mail.invitation', $mailData, function($message) use ($mailData, $recipient) {
+            $beautyMail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+            $beautyMail->send('mail.invitation', $mailData, function($message) use ($mailData, $recipient)
+            {
                 $message->to($recipient)
                         ->from($mailData['from'], $mailData['name'])
                         ->subject($mailData['subject']);

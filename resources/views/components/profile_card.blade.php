@@ -1,6 +1,6 @@
 <div
-    class="flex items-center w-full border justify-between md:justify-center gap-3 p-1.5 cursor-default rounded-md bg-white overflow-y-hidden">
-    <div class="flex justify-start items-center gap-2">
+    class="flex items-center w-full border justify-between md:justify-center gap-3 p-1.5 cursor-default rounded-md bg-white">
+    <div class="flex items-center justify-start gap-2">
         <a href="{{ route('profile') }}">
             <div
                 class="flex items-center justify-center text-lg font-bold uppercase rounded hover:bg-neutral-200 h-9 w-9 text-neutral-500 bg-neutral-200/50">
@@ -12,11 +12,12 @@
             <a href="{{ route('profile') }}" class="hover:underline">
                 <span>{{ auth()->user()->fname }} {{ auth()->user()->lname }}</span>
             </a>
-            <span class="text-xs font-normal text-neutral-500">{{ auth()->user()->email }}</span>
+            <span class="w-40 overflow-x-hidden text-xs font-normal text-neutral-500"
+                title="{{ auth()->user()->email }}">{{ auth()->user()->email }}</span>
         </div>
     </div>
 
-    <div class="flex justify-center items-center h-fit w-fit">
+    <div class="flex items-center justify-center h-fit w-fit">
         <button type="button" id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart"
             data-dropdown-placement="left-start"
             class="p-0.5 border-none rounded outline-none hover:bg-neutral-100 text-neutral-600 hover:text-neutral-900">

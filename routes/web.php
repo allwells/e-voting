@@ -94,4 +94,8 @@ Route::middleware(['guest'])->group(function() {
     // REGISTER ROUTE
     Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@index')->name('register');
     Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@store');
+
+    // PASSWORD-RESET ROUTE
+    Route::get('/password/reset', 'App\Http\Controllers\Auth\PasswordReset@index')->name('password.reset');
+    Route::post('/password/reset', 'App\Http\Controllers\Auth\PasswordReset@store');
 });
