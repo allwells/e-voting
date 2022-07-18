@@ -96,6 +96,8 @@ Route::middleware(['guest'])->group(function() {
     Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@store');
 
     // PASSWORD-RESET ROUTE
-    Route::get('/password/reset', 'App\Http\Controllers\Auth\PasswordReset@index')->name('password.reset');
-    Route::post('/password/reset', 'App\Http\Controllers\Auth\PasswordReset@store');
+    Route::get('/password/forgot', 'App\Http\Controllers\Auth\PasswordReset@index')->name('password.reset.link');
+    Route::post('/password/forgot', 'App\Http\Controllers\Auth\PasswordReset@requestResetLink');
+    Route::get('/password/reset/{token}', 'App\Http\Controllers\Auth\PasswordReset@passwordResetForm')->name('password.reset');
+    Route::post('/password/reset/{token}', 'App\Http\Controllers\Auth\PasswordReset@resetPassword');
 });

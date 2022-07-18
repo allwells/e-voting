@@ -74,7 +74,7 @@
                         </div>
 
                         <span class="w-fit">
-                            <a href="{{ route('password.reset') }}"
+                            <a href="{{ route('password.reset.link') }}"
                                 class="text-sm font-medium text-indigo-600 hover:underline">Forgot password?</a>
                         </span>
                     </div>

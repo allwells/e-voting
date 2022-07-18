@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Stevebauman\Location\Facades\Location;
 
@@ -31,7 +32,7 @@ class LoginController extends Controller
     {
         $clientIpAddress = $request->getClientIp();
         $clientDevice = $request->header('User-Agent');
-        $timestamp = Carbon::now()->toDateTimeString();
+        $timestamp = Carbon::now();
         $currentUserInfo = Location::get($clientIpAddress);
         $locationInfo = $currentUserInfo ? $currentUserInfo->regionName . ', ' . $currentUserInfo->cityName . ', ' . $currentUserInfo->countryName : "Unknown location";
 
@@ -49,6 +50,16 @@ class LoginController extends Controller
             return back()->with('error', 'Invalid email or password!');
         }
 
+        $token = \Str::random(64);
+
+        DB::table('password_resets')->insert([
+            'email' => auth()->user()->email,
+            'token' => $token,
+            'created_at' => $timestamp,
+        ]);
+
+        $actionLink = route('password.reset', ['token' => $token, 'email' => auth()->user()->email]);
+
         $mailData = [
             'recipient' => auth()->user()->email,
             'from' => config('mail.from.address'),
@@ -57,7 +68,8 @@ class LoginController extends Controller
             'clientIpAddress' => $clientIpAddress,
             'clientDevice' => $clientDevice,
             'locationInfo' => $locationInfo,
-            'timestamp' => $timestamp
+            'timestamp' => $timestamp->toDateTimeString(),
+            'passwordResetLink' => $actionLink
         ];
 
         $beautyMail = app()->make(\Snowfire\Beautymail\Beautymail::class);

@@ -25,7 +25,8 @@ class SettingController extends Controller
 
     public function notificationSetting()
     {
-        return view('settings.notification');
+        // return view('settings.notification');
+        return back()->with('error', 'The page request was not found.');
     }
 
     public function theme(Request $request)

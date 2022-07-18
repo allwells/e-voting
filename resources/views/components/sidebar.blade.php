@@ -148,12 +148,12 @@
                                 </a>
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <a id="@yield('notification-settings-sub-tab')" href="{{ route('settings.notification') }}"
                                     class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
                                     Notifications
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                 </ul>

@@ -20,27 +20,30 @@
 
     <tr>
         <td class="paragraph">
-            We received a request to reset the password on your <em>eVoting</em> account.
+            We received a request to reset the password for <em>eVoting</em> account associated with {{ $recipient }}.
         </td>
     </tr>
 
     <tr>
-        <td width="100%" height="8"></td>
+        <td width="100%" height="4"></td>
     </tr>
 
     <tr>
         <td class="paragraph">
-            <h1><strong>295569</strong></h1>
+            You can reset your password by clicking the button below:
         </td>
     </tr>
 
     <tr>
-        <td width="100%" height="8"></td>
+        <td width="100%" height="25"></td>
     </tr>
 
     <tr>
-        <td class="paragraph">
-            Enter this code to complete the reset.
+        <td>
+            @include('beautymail::templates.minty.button', [
+                'text' => 'Reset Password',
+                'link' => $actionLink,
+            ])
         </td>
     </tr>
 
@@ -69,7 +72,7 @@
     </tr>
 
     <tr>
-        <td class="paragraph" style="color: #777;">
+        <td class="paragraph" style="color: #444;">
             <strong>When and where this happened</strong>
         </td>
     </tr>
@@ -110,7 +113,7 @@
 
     <tr>
         <td class="paragraph" style="color: #777;">
-            <strong>Location:</strong> {{ $locationInfo }}
+            <strong>Approximate Location:</strong> {{ $locationInfo }}
         </td>
     </tr>
 
@@ -120,9 +123,7 @@
 
     <tr>
         <td class="paragraph" style="color: #777;">
-            <strong>Didn't do this?</strong> Be sure to <a
-                href="{{ env('APP_ENV') == 'production' ? 'http://evotin.herokuapp.com/password/reset' : 'http://localhost:8000/password/reset' }}">
-                change your password</a> right away.
+            <strong>Didn't do this?</strong> Be sure to <a href="{{ $actionLink }}"> change your password</a> right away.
         </td>
     </tr>
 
