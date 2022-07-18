@@ -12,7 +12,7 @@ return [
 
     'colors' => [
 
-        'highlight' => '#6961fd',
+        'highlight' => '#ffffff',
         'button'    => '#5850ec',
 
     ],
@@ -25,7 +25,7 @@ return [
 
         'logo'        => [
             'path'   => '%PUBLIC%/vendor/beautymail/assets/images/minty/evoting-logo.png',
-            'width'  => '100',
+            'width'  => '120',
             'height' => '50',
         ],
 
