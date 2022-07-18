@@ -1,108 +1,107 @@
-<html>
+@include('beautymail::templates.widgets.articleStart', ['color' => '#5850ec'])
+@extends('beautymail::templates.minty')
 
-<head>
-    <style rel="stylesheet" type="text/css">
-        .body {
-            width: 100% !important;
-            background-color: #FFFFFF !important;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-                Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-                sans-serif;
-        }
+@section('content')
 
-        h3,
-        p {
-            color: #333333 !important;
-        }
+    @include('beautymail::templates.minty.contentStart')
+    <tr>
+        <td class="title">
+            <h3>
+                <strong>Hello {{ $recipient['fname'] }},</strong>
+            </h3>
+        </td>
+    </tr>
 
-        p {
-            font-size: 16px;
-        }
+    <tr>
+        <td width="100%" height="7"></td>
+    </tr>
 
-        h3 {
-            font-size: 18px;
-            font-weight: 600;
-        }
+    <tr>
+        <td class="paragraph">
+            You have been invited to participate in a private election. Login with the login details to join the election.
+            P.S. it is adviced that you change your password to avoid forgetting your password.
+        </td>
+    </tr>
 
-        .header {
-            width: 100% !important;
-            display: flex !important;
-            padding: 1rem 0 !important;
-            place-items: center !important;
-            height: fit-content !important;
-            justify-content: center !important;
-        }
+    <tr>
+        <td width="100%" height="13"></td>
+    </tr>
 
-        a {
-            width: fit-content !important;
-            height: fit-content !important;
-        }
+    <tr>
+        <td class="title">
+            Login Details:
+        </td>
+    </tr>
 
-        .logo {
-            width: 180px !important;
-            height: 70px !important;
-        }
+    <tr>
+        <td width="100%" height="4"></td>
+    </tr>
 
-        .main {
-            width: 100% !important;
-        }
+    <tr>
+        <td class="paragraph">
+            Email: {{ $recipient['email'] }}
+        </td>
+    </tr>
 
-        .content {
-            padding: 2rem 0 !important;
-            place-items: center !important;
-            justify-content: center !important;
-            background-color: #ffffff !important;
-        }
+    <tr>
+        <td width="100%" height="4"></td>
+    </tr>
 
-        footer {
-            width: 100% !important;
-            font-size: 12px !important;
-            padding: 2rem 0 !important;
-            color: #555555 !important;
-            text-align: center !important;
-            height: fit-content !important;
-        }
+    <tr>
+        <td class="paragraph">
+            Password: {{ $genPassword }}
+        </td>
+    </tr>
 
-        .link {
-            color: #333;
-            padding: 1rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            background-color: #f5f5f5;
-        }
-    </style>
-</head>
+    <tr>
+        <td width="100%" height="25"></td>
+    </tr>
 
-<div class="body">
-    <div class="header">
-        <a href="https://evotin.herokuapp.com">
-            <img class="logo" src="{{ asset('images/logo-tranparent.png') }}" alt="eVoting logo" />
-        </a>
-    </div>
+    <tr>
+        <td>
+            @include('beautymail::templates.minty.button', [
+                'text' => 'View Election',
+                'link' =>
+                    env('APP_ENV') == 'production'
+                        ? "http://evotin.herokuapp.com/elections/$election->id"
+                        : "http://localhost:8000/elections/$election->id",
+            ])
+        </td>
+    </tr>
 
-    <div class="main">
-        <div class="content">
-            <h3 class="greeting">Hello {{ $recipient['fname'] }},</h3>
-            <p class="body-text">You have been invited to participate in a provate election.</p>
-            <p class="body-text">Below are your login details.</p>
-        </div>
+    <tr>
+        <td width="100%" height="25"></td>
+    </tr>
 
-        <p>Login Details:</p>
-        <p>Email: {{ $recipient['email'] }}</p>
-        <p>Password: {{ $recipient['email'] }}</p>
+    <tr>
+        <td class="paragraph">
+            Regards,
+        </td>
+    </tr>
 
-        <a href="{{ env('APP_ENV') == 'production' ? "http://evotin.herokuapp.com/elections/$election->id" : "http://localhost:8000/elections/$election->id" }}"
-            class="link" rel="noreferrer" target="_blank">View Election</a>
+    <tr>
+        <td width="100%" height="3"></td>
+    </tr>
 
-        <div>
-            <p class="regards">Regards,</p>
-            <p class="company">{{ config('app.name') }}</p>
-        </div>
-    </div>
+    <tr>
+        <td class="paragraph">
+            <strong>The {{ config('app.name') }} Team</strong>
+        </td>
+    </tr>
 
-    <footer>
-        &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
-    </footer>
-</div>
+    <tr>
+        <td width="100%" height="35"></td>
+    </tr>
 
-</html>
+    <tr>
+        <td class="footer" align="center" style="color: #777777;">
+            &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
+        </td>
+    </tr>
+
+    <tr>
+        <td width="100%" height="20"></td>
+    </tr>
+    @include('beautymail::templates.minty.contentEnd')
+
+@stop

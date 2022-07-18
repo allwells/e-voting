@@ -5,7 +5,7 @@
 @section('title', 'Login')
 
 @section('content')
-    <div id="page-content" class="flex items-center justify-center py-12 login-container px-6 lg:px-8">
+    <div id="page-content" class="flex items-center justify-center px-6 py-12 login-container lg:px-8">
         <div class="flex flex-col w-full max-w-lg gap-2">
             <div>
                 <h2 class="text-lg font-extrabold text-center uppercase sm:text-xl text-neutral-800">Login</h2>
@@ -59,17 +59,24 @@
 
                 <div class="flex flex-col w-full gap-2">
                     <button type="submit"
-                        class="bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-600/40 rounded py-3 text-white text-sm w-full">
+                        class="w-full py-3 text-sm text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-600/40">
                         Login
                     </button>
 
                     {{-- Link to sign up page --}}
-                    <div class="flex text-sm">
-                        <span class="mr-1 text-neutral-600">Don't have an account?</span>
-                        <a class="text-indigo-600 signup-btn hover:underline hover:text-indigo-700"
-                            href="{{ route('register') }}">
-                            Register
-                        </a>
+                    <div class="flex items-center justify-between">
+                        <div class="flex text-sm w-fit">
+                            <span class="mr-1 text-neutral-600">Don't have an account?</span>
+                            <a class="text-indigo-600 signup-btn hover:underline hover:text-indigo-700"
+                                href="{{ route('register') }}">
+                                Register
+                            </a>
+                        </div>
+
+                        <span class="w-fit">
+                            <a href="{{ route('password.reset') }}"
+                                class="text-sm font-medium text-indigo-600 hover:underline">Forgot password?</a>
+                        </span>
                     </div>
                 </div>
             </form>

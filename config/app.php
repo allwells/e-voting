@@ -187,6 +187,7 @@ return [
          */
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Snowfire\Beautymail\BeautymailServiceProvider::class,
 
         /*
          * Application Service Providers...
