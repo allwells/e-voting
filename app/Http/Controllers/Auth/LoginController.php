@@ -30,11 +30,11 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $clientIpAddress = $request->getClientIp();
-        $clientDevice = $request->header('User-Agent');
-        $timestamp = Carbon::now();
-        $currentUserInfo = Location::get($clientIpAddress);
-        $locationInfo = $currentUserInfo ? $currentUserInfo->regionName . ', ' . $currentUserInfo->cityName . ', ' . $currentUserInfo->countryName : "Unknown location";
+        // $clientIpAddress = $request->getClientIp();
+        // $clientDevice = $request->header('User-Agent');
+        // $timestamp = Carbon::now();
+        // $currentUserInfo = Location::get($clientIpAddress);
+        // $locationInfo = $currentUserInfo ? $currentUserInfo->regionName . ', ' . $currentUserInfo->cityName . ', ' . $currentUserInfo->countryName : "Unknown location";
 
         // validate user input
         $this->validate($request, [
@@ -50,35 +50,35 @@ class LoginController extends Controller
             return back()->with('error', 'Invalid email or password!');
         }
 
-        $token = \Str::random(64);
+        // $token = \Str::random(64);
 
-        DB::table('password_resets')->insert([
-            'email' => auth()->user()->email,
-            'token' => $token,
-            'created_at' => $timestamp,
-        ]);
+        // DB::table('password_resets')->insert([
+        //     'email' => auth()->user()->email,
+        //     'token' => $token,
+        //     'created_at' => $timestamp,
+        // ]);
 
-        $actionLink = route('password.reset', ['token' => $token, 'email' => auth()->user()->email]);
+        // $actionLink = route('password.reset', ['token' => $token, 'email' => auth()->user()->email]);
 
-        $mailData = [
-            'recipient' => auth()->user()->email,
-            'from' => config('mail.from.address'),
-            'name' => config('app.name'),
-            'subject' => "New login to e-Voting",
-            'clientIpAddress' => $clientIpAddress,
-            'clientDevice' => $clientDevice,
-            'locationInfo' => $locationInfo,
-            'timestamp' => $timestamp->toDateTimeString(),
-            'passwordResetLink' => $actionLink
-        ];
+        // $mailData = [
+        //     'recipient' => auth()->user()->email,
+        //     'from' => config('mail.from.address'),
+        //     'name' => config('app.name'),
+        //     'subject' => "New login to e-Voting",
+        //     'clientIpAddress' => $clientIpAddress,
+        //     'clientDevice' => $clientDevice,
+        //     'locationInfo' => $locationInfo,
+        //     'timestamp' => $timestamp->toDateTimeString(),
+        //     'passwordResetLink' => $actionLink
+        // ];
 
-        $beautyMail = app()->make(\Snowfire\Beautymail\Beautymail::class);
-        $beautyMail->send('mail.login', $mailData, function($message) use ($mailData)
-        {
-            $message->to($mailData['recipient'])
-                    ->from($mailData['from'], $mailData['name'])
-                    ->subject($mailData['subject']);
-        });
+        // $beautyMail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+        // $beautyMail->send('mail.login', $mailData, function($message) use ($mailData)
+        // {
+        //     $message->to($mailData['recipient'])
+        //             ->from($mailData['from'], $mailData['name'])
+        //             ->subject($mailData['subject']);
+        // });
 
         // redirect user to intended page
         return redirect()->intended('');
