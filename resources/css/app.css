@@ -17,6 +17,19 @@ div#analysis-card {
     max-width: calc(50% - 0.5rem) !important;
 }
 
+.activities {
+    max-height: 15rem;
+}
+
+.notify {
+    transition-duration: 200ms;
+}
+
+.notification:hover > .notify {
+    transition-duration: 200ms;
+    border: 2px solid #1e429f;
+}
+
 #social-links ul {
     gap: 15px !important;
     display: flex !important;
@@ -57,6 +70,7 @@ div#analysis-card {
     display: block !important;
 }
 
+#active-home,
 #active-dashboard,
 #active-candidate,
 #active-election,
@@ -70,6 +84,7 @@ div#analysis-card {
     /* box-shadow: 0 2px 8px #453fb177; */
 }
 
+#active-home:hover,
 #active-dashboard:hover,
 #active-candidate:hover,
 #active-election:hover,
@@ -80,6 +95,7 @@ div#analysis-card {
     background-color: #5850ec;
 }
 
+#active-dark-home,
 #active-dark-dashboard,
 #active-dark-candidate,
 #active-dark-election,
@@ -92,6 +108,7 @@ div#analysis-card {
     background-color: #5850ec;
 }
 
+#active-dark-home:hover,
 #active-dark-dashboard:hover,
 #active-dark-candidate:hover,
 #active-dark-election:hover,

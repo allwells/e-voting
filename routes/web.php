@@ -46,6 +46,9 @@ Route::middleware(['auth'])->group(function() {
     // DASHBOARD ROUTE
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
+    // HOME PAGE ROUTE
+    Route::get('/explore', 'App\Http\Controllers\FeedsController@index')->name('explore');
+
     Route::get('/', function() { return redirect()->route('dashboard'); });
     Route::get('/home', function() { return redirect()->route('dashboard'); });
 });

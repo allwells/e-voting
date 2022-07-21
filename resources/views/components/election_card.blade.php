@@ -1,69 +1,60 @@
-@props(['election' => $election])
+<div class="rounded-xl overflow-hidden flex flex-col justify-start items-start text-white"
+    style="background-image:url('{{ asset('images/profile-bg.jpg') }}'); background-position:bottom; background-size:cover;">
+    <div class="bg-black/40 w-full h-72 flex flex-col justify-between items-start">
+        <div class="flex justify-between items-start w-full p-5">
+            <div>
+                <h2 class="text-xl font-bold">School Elections 2022</h2>
+                <p class="text-sm font-normal tracking-wide">21st July 2022 - 25th July 2022</p>
+            </div>
 
-<div
-    class="flex-grow p-5 transition duration-300 bg-white border rounded-lg border-neutral-200 hover:border-indigo-600 max-w-lg w-96">
-    <div class="flex justify-start items-start sm:items-center sm:justify-between flex-col sm:flex-row">
-        <h1 class="flex items-center text-lg font-medium text-neutral-800 gap-1">
-            {{ $election->title }}
-            @if ($election->type == 'private')
-                <span
-                    class="flex items-center justify-center bg-red-600 rounded-sm px-0.5 w-fit h-fit font-normal text-xs uppercase text-white"
-                    title="This election is private">
-                    private
-                </span>
-            @endif
-        </h1>
-        <span class="text-sm tracking-wide text-neutral-500"> posted
-            {{ $election->created_at->diffForHumans() }}</span>
-    </div>
+            <span class="text-sm font-normal tracking-wide">12 minutes ago</span>
+        </div>
 
-    <div
-        class="flex flex-col sm:items-center items-start sm:justify-start gap-2 mt-1 text-xs font-normal sm:flex-row text-neutral-500">
-        <span class="flex justify-start items-center gap-1">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clip-rule="evenodd"></path>
-            </svg>
-            {{ substr($election->start_date, 10, 6) }}
+        <div class="flex flex-col justify-end items-start w-full">
+            <div class="flex mb-5 -space-x-4 px-5">
+                <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                    src="{{ asset('images/profile.jpg') }}" alt="">
+                <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                    src="{{ asset('images/profile.jpg') }}" alt="">
+                <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                    src="{{ asset('images/profile.jpg') }}" alt="">
+                <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                    src="{{ asset('images/profile.jpg') }}" alt="">
+                <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                    src="{{ asset('images/profile.jpg') }}" alt="">
+                <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                    src="{{ asset('images/profile.jpg') }}" alt="">
+            </div>
 
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                    clip-rule="evenodd"></path>
-            </svg>
-            {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->start_date, 0, 10)))) }}
-        </span>
+            <div class="w-full bg-blue-700 flex justify-start items-center px-5 py-3">
+                <div class="flex flex-col justify-start items-start w-full">
+                    <span class="flex justify-start items-center gap-3">
+                        <svg class="w-5 h-5" viewBox="0 0 15 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M14.1396 5.95346H12.7434V7.27645H13.232C13.3477 7.27645 13.4415 7.35087 13.4415 7.44182V7.77257C13.4415 7.86352 13.3477 7.93794 13.232 7.93794H2.48072C2.36509 7.93794 2.27128 7.86352 2.27128 7.77257V7.44182C2.27128 7.35087 2.36509 7.27645 2.48072 7.27645H2.96941V5.95346H1.57314C1.18698 5.95346 0.875 6.24906 0.875 6.61495V8.59944C0.875 8.96533 1.18698 9.26093 1.57314 9.26093H14.1396C14.5258 9.26093 14.8378 8.96533 14.8378 8.59944V6.61495C14.8378 6.24906 14.5258 5.95346 14.1396 5.95346ZM12.0452 7.27645V0.667697C12.0452 0.297673 11.7289 0 11.3405 0H4.37442C3.9839 0 3.66755 0.29974 3.66755 0.667697V7.27645H12.0452ZM5.48271 3.51419L6.03904 2.9912C6.13067 2.90438 6.27903 2.90438 6.37066 2.99327L7.27169 3.85321L9.34865 1.9018C9.44028 1.81498 9.58864 1.81498 9.68027 1.90387L10.2322 2.431C10.3239 2.51782 10.3239 2.65838 10.2301 2.74521L7.43095 5.37465C7.33932 5.46147 7.19097 5.46147 7.09934 5.37258L5.48271 3.8284C5.3889 3.74158 5.39108 3.60101 5.48271 3.51419Z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-xl font-bold">60,806 <span class="text-sm">votes</span></span>
+                    </span>
 
-        <span class="hidden sm:block">-</span>
-        <span class="sm:hidden">to</span>
+                    <span class="flex justify-start items-center gap-3 text-sm">
+                        <svg class="w-5 h-5" viewBox="0 0 15 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.50001 13.2888C6.20206 13.2888 4.93327 12.9251 3.85407 12.2436C2.77488 11.5622 1.93374 10.5937 1.43704 9.46048C0.940343 8.3273 0.810384 7.08038 1.0636 5.87741C1.31682 4.67443 1.94183 3.56943 2.85962 2.70213C3.7774 1.83483 4.94672 1.24419 6.21973 1.00491C7.49273 0.765618 8.81223 0.888429 10.0114 1.35781C11.2105 1.82719 12.2354 2.62205 12.9565 3.64188C13.6776 4.66172 14.0625 5.86072 14.0625 7.08726C14.0625 8.73201 13.3711 10.3094 12.1404 11.4724C10.9097 12.6354 9.24049 13.2888 7.50001 13.2888ZM7.50001 1.77168C6.38749 1.77168 5.29995 2.08343 4.37492 2.66751C3.44989 3.2516 2.72892 4.08178 2.30318 5.05308C1.87744 6.02437 1.76604 7.09316 1.98309 8.12428C2.20013 9.15541 2.73586 10.1026 3.52253 10.846C4.3092 11.5893 5.31148 12.0956 6.40262 12.3007C7.49377 12.5058 8.62477 12.4005 9.6526 11.9982C10.6804 11.5959 11.5589 10.9146 12.177 10.0404C12.7951 9.1663 13.125 8.13859 13.125 7.08726C13.125 5.67748 12.5324 4.32544 11.4775 3.32858C10.4226 2.33171 8.99185 1.77168 7.50001 1.77168Z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M9.65156 9.74507L7.03125 7.26889V3.10059H7.96875V6.90123L10.3125 9.12049L9.65156 9.74507Z">
+                            </path>
+                        </svg>
+                        Voting closes in 30 minutes
+                    </span>
+                </div>
 
-        <span class="flex justify-start items-center gap-1">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clip-rule="evenodd"></path>
-            </svg>
-            {{ substr($election->end_date, 10, 6) }}
-
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                    clip-rule="evenodd"></path>
-            </svg>
-            {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->end_date, 0, 10)))) }}
-        </span>
-    </div>
-
-    <p class="mt-2 text-sm font-normal tracking-wide text-neutral-700 line-clamp-1"
-        title="{{ $election->description }}">
-        {{ $election->description }}
-    </p>
-
-    <div class="flex items-center justify-end mt-3">
-        <a href="{{ route('elections.show', $election->id) }}"
-            class="px-2 py-2 sm:py-1 text-sm text-white bg-indigo-600 rounded w-full sm:w-fit text-center text-normal hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-600/40 capitalize">
-            View Election
-        </a>
+                <a href="#"
+                    class="py-1.5 px-5 rounded-lg hover:bg-white text-blue-700 text-base bg-white/90 border border-transparent font-semibold focus:ring focus:ring-white/50 focus:border-blue-700">
+                    Vote
+                </a>
+            </div>
+        </div>
     </div>
 </div>

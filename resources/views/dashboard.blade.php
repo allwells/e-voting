@@ -8,7 +8,7 @@
         @if (auth()->user()->privilege === 'admin')
             {{ view('admin.dashboard', ['elections' => $elections, 'totalAdmins' => $totalAdmins, 'totalUsers' => $totalUsers]) }}
         @else
-            {{ view('user.dashboard') }}
+            {{ view('user.home') }}
         @endif
     </div>
 @endsection
