@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 // AUTHENTICATED USER ROUTE
 Route::middleware(['auth'])->group(function() {
+    // HOME PAGE ROUTE
+    Route::get('/explore', 'App\Http\Controllers\FeedsController@index')->name('explore');
+
     // PROFILE ROUTE
     Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
     Route::post('/profile', 'App\Http\Controllers\ProfileController@store');
@@ -46,11 +49,8 @@ Route::middleware(['auth'])->group(function() {
     // DASHBOARD ROUTE
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
-    // HOME PAGE ROUTE
-    Route::get('/explore', 'App\Http\Controllers\FeedsController@index')->name('explore');
-
-    Route::get('/', function() { return redirect()->route('dashboard'); });
-    Route::get('/home', function() { return redirect()->route('dashboard'); });
+    Route::get('/', function() { return redirect()->route('explore'); });
+    Route::get('/home', function() { return redirect()->route('explore'); });
 });
 
 // ADMINS ROUTE

@@ -22,6 +22,7 @@
                 @yield('views')
 
                 <x-footer_bar />
+                <x-mobile_nav />
             </div>
         @endif
     </div>
