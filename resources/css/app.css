@@ -2,19 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Gilroy Extra Bold";
+    src: url('../fonts/gilroy/Gilroy-FREE/Gilroy-ExtraBold.otf')format('opentype');
+}
+
+@font-face {
+    font-family: "Gilroy Light";
+    src: url('../fonts/gilroy/Gilroy-FREE/Gilroy-Light.otf')format('opentype');
+}
+
 * {
     scroll-behavior: smooth;
+}
+
+.font-normal {
+    font-weight: 400 !important;
+}
+
+.font-medium {
+    font-weight: 500 !important;
+}
+
+.font-semibold {
+    font-weight: 600 !important;
+}
+
+.font-bold {
+    font-weight: 700 !important;
 }
 
 body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: "Ubuntu", sans-serif;
+    font-family: 'Gilroy Light' !important;
 }
 
 div#analysis-card {
     max-width: calc(50% - 0.5rem) !important;
+}
+
+.activities {
+    max-height: 15rem;
+}
+
+.notify {
+    transition-duration: 200ms;
+}
+
+.notification:hover > .notify {
+    transition-duration: 200ms;
+    border: 2px solid #1e429f;
 }
 
 #social-links ul {
@@ -57,6 +96,7 @@ div#analysis-card {
     display: block !important;
 }
 
+#active-home,
 #active-dashboard,
 #active-candidate,
 #active-election,
@@ -70,6 +110,7 @@ div#analysis-card {
     /* box-shadow: 0 2px 8px #453fb177; */
 }
 
+#active-home:hover,
 #active-dashboard:hover,
 #active-candidate:hover,
 #active-election:hover,
@@ -80,6 +121,7 @@ div#analysis-card {
     background-color: #5850ec;
 }
 
+#active-dark-home,
 #active-dark-dashboard,
 #active-dark-candidate,
 #active-dark-election,
@@ -92,6 +134,7 @@ div#analysis-card {
     background-color: #5850ec;
 }
 
+#active-dark-home:hover,
 #active-dark-dashboard:hover,
 #active-dark-candidate:hover,
 #active-dark-election:hover,
