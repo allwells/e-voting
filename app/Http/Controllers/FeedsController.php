@@ -16,7 +16,7 @@ class FeedsController extends Controller
         $candidates = Candidate::all();
         $elections = Election::where('type', 'public')->get();
 
-        return view('user.home', [
+        return view('user.feeds', [
             'count' => $count,
             'votes' => $votes,
             'elections' => $elections,

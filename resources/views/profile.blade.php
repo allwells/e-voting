@@ -10,7 +10,7 @@
         <div class="mb-6 -mt-8 profile-image-container lg:mb-12">
             <div class="flex items-end justify-start gap-2 details">
                 {{-- profile picture --}}
-                <div class="border-4 border-white profile-img dark:border-neutral-800"
+                <div class="border-4 border-neutral-100 profile-img dark:border-neutral-800"
                     style="background-image: url('{{ asset('images/profile.jpg') }}');"></div>
 
                 {{-- name and email --}}

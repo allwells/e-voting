@@ -18,6 +18,10 @@ Route::middleware(['auth'])->group(function() {
     // HOME PAGE ROUTE
     Route::get('/explore', 'App\Http\Controllers\FeedsController@index')->name('explore');
 
+    // NOTIFICATIONS PAGE ROUTE
+    Route::get('/notifications', 'App\Http\Controllers\NotificationController@index')->name('notifications');
+    Route::post('/notifications', 'App\Http\Controllers\NotificationController@markAsRead')->name('notifications.mark-all');
+
     // PROFILE ROUTE
     Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
     Route::post('/profile', 'App\Http\Controllers\ProfileController@store');
