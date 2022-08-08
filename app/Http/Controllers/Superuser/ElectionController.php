@@ -174,7 +174,7 @@ class ElectionController extends Controller
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
-        $votes = Vote::all();
+        $votes = Vote::where('election_id', $election->id)->get();
         $elections = Election::whereId($election->id)->first();
         $candidates = Candidate::where('election_id', $election->id)->get();
         $voted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();

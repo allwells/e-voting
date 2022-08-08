@@ -43,6 +43,7 @@
         {{-- post feed section --}}
         <div
             class="flex-grow h-full rounded-2xl gap-5 flex flex-col overflow-y-auto scrollbar-hide scroll-smooth justify-start items-start pt-16">
+
             @yield('home-page')
 
             <div style="min-height: 25px !important; height: 25px !important; max-height: 25px !important;" class="w-full">

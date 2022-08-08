@@ -43,8 +43,7 @@ $seconds = $date->diffInSeconds($now);
                 @endforeach
             </div>
 
-            <div style="background-color: #0000FF; height: auto;"
-                class="w-full flex justify-start items-center px-3 md:px-5 pt-1 pb-2 md:py-3">
+            <div class="bg-[#0000FF] h-auto w-full flex justify-start items-center px-3 md:px-5 pt-1 pb-2 md:py-3">
                 <div class="flex flex-col justify-start items-start w-full">
                     <span class="flex justify-start items-center gap-3">
                         <svg style="width:14px; height: 9.26px;" viewBox="0 0 15 10" fill="currentColor"
