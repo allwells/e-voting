@@ -32,7 +32,7 @@ $seconds = $date->diffInSeconds($now);
             </div>
         </div>
 
-        <div class="md:px-5 w-full">
+        <div class="md:px-5 px-3 w-full">
             <p class="text-xs">{{ $election->description }}</p>
 
             <div class="w-full flex justify-end items-start gap-5 mt-3">
@@ -70,7 +70,7 @@ $seconds = $date->diffInSeconds($now);
             </div>
 
             <h1 class="text-3xl mt-2 text-[#0000FF] font-bold">Candidates</h1>
-            <div class="w-full mt-2 grid grid-cols-2 gap-2">
+            <div class="w-full mt-2 grid sm:grid-cols-2 grid-cols-1 gap-2">
                 @foreach ($candidates as $candidate)
                     @if ($election->id === $candidate->election_id)
                         <x-candidate_card :candidate="$candidate" :election="$election" />
@@ -79,9 +79,9 @@ $seconds = $date->diffInSeconds($now);
             </div>
         </div>
 
-        <div class="bg-[#0000FF] rounded-br-2xl h-[80px] rounded-bl-2xl px-5 w-full flex justify-end items-center">
+        <div class="md:bg-[#0000FF] md:rounded-br-2xl h-[80px] md:rounded-bl-2xl px-5 w-full flex justify-end items-center">
             <a href="#"
-                class="h-[37px] py-1.5 px-5 text-[#0000FF] rounded-lg hover:bg-white text-base bg-white/90 border border-transparent font-semibold focus:ring focus:ring-white/50 focus:bg-white">
+                class="h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg md:hover:bg-white text-base md:bg-white/90 border border-transparent font-semibold md:focus:ring md:focus:ring-white/50 md:focus:bg-white bg-[#0000FF] hover:bg-[#0000CC] focus:bg-[#0000CC] focus:ring focus:ring-[#0000FF]/30">
                 View Insights
             </a>
         </div>

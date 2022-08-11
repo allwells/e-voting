@@ -5,7 +5,7 @@
         <div class="overflow-hidden rounded-full">
             <a href="#" class="w-fit h-fit overflow-hidden">
                 <img src="{{ asset('images/profile.jpg') }}" alt="profile picture"
-                    class="rounded-full h-20 w-20 min-h-[80px] min-w-[80px] max-h-[80px] max-w-[80px]"
+                    class="rounded-full md:h-20 md:w-20 md:min-h-[80px] md:min-w-[80px] md:max-h-[80px] md:max-w-[80px] h-16 w-16 min-h-[64px] min-w-[64px] max-h-[64px] max-w-[64px]"
                     title="View Profile" />
             </a>
         </div>

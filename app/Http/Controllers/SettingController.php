@@ -8,25 +8,30 @@ use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
+    public function index()
+    {
+        return \redirect()->route('settings.profile');
+    }
+
     public function profileSetting()
     {
-        return view('settings.edit_profile');
+        return view('user.settings.edit_profile');
     }
 
     public function emailSetting()
     {
-        return view('settings.change_email');
+        return view('user.settings.change_email');
     }
 
     public function passwordSetting()
     {
-        return view('settings.change_password');
+        return view('user.settings.change_password');
     }
 
     public function notificationSetting()
     {
-        // return view('settings.notification');
-        return back()->with('error', 'The page request was not found.');
+        return view('user.settings.notification');
+        // return back()->with('error', 'The page request was not found.');
     }
 
     public function theme(Request $request)
