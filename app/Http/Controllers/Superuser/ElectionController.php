@@ -181,10 +181,19 @@ class ElectionController extends Controller
         $candidates = Candidate::where('election_id', $electionId)->get();
         $participants = Participant::where('election_id', $electionId)->get();
 
+        $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed';
+        $notStarted = $today->lt($election->start_date) && $today->lt($election->end_date);
+
+        $allVotes = Vote::where('election_id', $election->id)->get()->pluck('candidate_id')->toArray();
+        $winner = array_count_values($allVotes);
+
         return view('show_elections', [
             'votes' => $votes,
             'today' => $today,
+            'winner' => $winner,
+            'isEnded' => $isEnded,
             'election' => $elections,
+            'notStarted' => $notStarted,
             'candidates' => $candidates,
             'participants' => $participants,
         ]);
