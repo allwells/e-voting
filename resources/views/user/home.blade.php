@@ -10,7 +10,7 @@
             <div class="h-fit w-fit md:w-48 rounded-2xl bg-transparent">
                 <ul style="color: #0000FF;" class="flex text-lg flex-col justify-start items-start gap-4">
                     <li class="w-full">
-                        <a href="#" class="flex justify-start items-center gap-2 w-full transition duration-200">
+                        <a href="/explore" class="flex justify-start items-center gap-2 w-full transition duration-200">
                             <x-icons.home_icon style="width: 18px;" class="h-5 flex-shrink-0" />
                             Voices Home
                         </a>
@@ -26,7 +26,7 @@
                     <li class="w-full">
                         <a href="#" class="flex justify-start items-center gap-2 w-full transition duration-200">
                             <x-icons.questionmark_icon style="width: 24px; height: 24px;" class="flex-shrink-0" />
-                            FAQ
+                            FAQs
                         </a>
                     </li>
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Vote;
 use App\Models\Election;
+use App\Models\Candidate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

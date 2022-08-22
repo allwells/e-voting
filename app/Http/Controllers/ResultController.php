@@ -19,36 +19,20 @@ class ResultController extends Controller
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
-        $closedPublicElections = Election::where('type', 'public')->where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
-        $closedPrivateElections = Election::where('type', 'private')->where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
-        $participants = Participant::where('user_id', auth()->user()->id)->get();
+        $closedElections = Election::where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
+        $votes = Vote::where('user_id', auth()->user()->id)->get();
         $elections = collect();
 
-        foreach($closedPrivateElections as $closedPrivateElection)
+        foreach($closedElections as $closedElection)
         {
-            $electionId = $participants->pluck('election_id')->toArray();
-            if(in_array($closedPrivateElection->id , $electionId))
+            $electionId = $votes->pluck('election_id')->toArray();
+            if(in_array($closedElection->id , $electionId))
             {
-                $elections->push($closedPrivateElection);
+                $elections->push($closedElection);
             }
         }
 
-        foreach($closedPublicElections as $closedPublicElection)
-        {
-            $elections->push($closedPublicElection);
-        }
-
-
-        if(auth()->user()->privilege !== 'superuser' && auth()->user()->privilege !== 'admin')
-        {
-            return view('result', [
-                'elections' => $elections,
-            ]);
-        } else {
-            return view('result', [
-                'elections' => Election::where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get(),
-            ]);
-        }
+        return view('result', ['elections' => $elections]);
     }
 
     public function show(Request $request)

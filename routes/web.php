@@ -29,7 +29,8 @@ Route::middleware(['auth'])->group(function() {
     // ELECTIONS ROUTE
     Route::get('/elections', 'App\Http\Controllers\Superuser\ElectionController@index')->name('elections.view');
     Route::get('/elections/{election:id}', 'App\Http\Controllers\Superuser\ElectionController@show')->name('elections.show');
-    Route::post('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\Superuser\ElectionController@vote')->name('elections.vote');
+    Route::post('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\Superuser\ElectionController@addVote')->name('elections.vote.add');
+    Route::delete('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\Superuser\ElectionController@removeVote')->name('elections.vote.remove');
     Route::post('/elections/verify', 'App\Http\Controllers\Superuser\ElectionController@codeVerification')->name('elections.verify');
 
     // RESULTS ROUTE

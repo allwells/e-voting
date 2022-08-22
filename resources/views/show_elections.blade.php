@@ -16,26 +16,33 @@ $seconds = $date->diffInSeconds($now);
 
 @section('home-page')
     <div
-        class="md:bg-white w-full min-h-fit rounded-2xl text-justify flex flex-col gap-4 lg:max-w-3xl justify-start items-start ">
+        class="flex flex-col items-start justify-start w-full gap-4 text-justify md:bg-white min-h-fit rounded-2xl lg:max-w-3xl">
+
+        <div class="px-3 absolute w-full max-w-[44rem]">
+            <x-error_message />
+            <x-info_message />
+            <x-success_message />
+        </div>
+
         <div class="w-full min-h-[218px] overflow-hidden rounded-2xl"
             style="background-image: url('{{ asset('images/profile-bg.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-            <div class="w-full h-full bg-black/50 flex justify-center flex-col items-center text-white">
-                <h1 class="md:text-4xl font-bold 2text-xl text-center">{{ $election->title }}</h1>
-                <p class="text-sm font-normal mt-1 text-center">
+            <div class="flex flex-col items-center justify-center w-full h-full text-white bg-black/50">
+                <h1 class="font-bold text-center md:text-4xl 2text-xl">{{ $election->title }}</h1>
+                <p class="mt-1 text-sm font-normal text-center">
                     {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->start_date, 0, 10)))) }} -
                     {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->end_date, 0, 10)))) }}
                 </p>
 
-                <h3 class="text-base font-bold mt-7 text-center">
+                <h3 class="text-base font-bold text-center mt-7">
                     Port Harcourt, Nigeria
                 </h3>
             </div>
         </div>
 
-        <div class="md:px-5 px-3 w-full">
+        <div class="w-full px-3 md:px-5">
             <p class="text-xs">{{ $election->description }}</p>
 
-            <div class="w-full flex justify-end items-start gap-5 mt-3">
+            <div class="flex items-start justify-start sm:justify-end w-full gap-5 mt-3">
                 <div class="text-[#0000FF] w-fit h-fit flex flex-col items-center justify-start">
                     <p class="text-xs font-semibold">Votes</p>
                     <p class="text-2xl font-bold">{{ $votes->count() }}</p>
@@ -70,20 +77,32 @@ $seconds = $date->diffInSeconds($now);
             </div>
 
             <h1 class="text-3xl mt-2 text-[#0000FF] font-bold">Candidates</h1>
-            <div class="w-full mt-2 grid sm:grid-cols-2 grid-cols-1 gap-2">
+            <div class="grid w-full grid-cols-1 gap-2 mt-2 sm:grid-cols-2">
                 @foreach ($candidates as $candidate)
                     @if ($election->id === $candidate->election_id)
-                        <x-candidate_card :candidate="$candidate" :election="$election" />
+                        <x-candidate_card :today="$today" :candidate="$candidate" :election="$election" />
                     @endif
                 @endforeach
             </div>
         </div>
 
         <div class="md:bg-[#0000FF] md:rounded-br-2xl h-[80px] md:rounded-bl-2xl px-5 w-full flex justify-end items-center">
-            <a href="#"
-                class="h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg md:hover:bg-white text-base md:bg-white/90 border border-transparent font-semibold md:focus:ring md:focus:ring-white/50 md:focus:bg-white bg-[#0000FF] hover:bg-[#0000CC] focus:bg-[#0000CC] focus:ring focus:ring-[#0000FF]/30">
-                View Insights
-            </a>
+            @if (($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed')
+                <a href="{{ route('results.view', $election) }}" title="View election results"
+                    class="h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg md:hover:bg-white text-base md:bg-white/90 border border-transparent font-semibold md:focus:ring md:focus:ring-white/50 md:focus:bg-white bg-[#0000FF] hover:bg-[#0000CC] focus:bg-[#0000CC] focus:ring focus:ring-[#0000FF]/30">
+                    View Insights
+                </a>
+            @elseif ($today->lt($election->start_date) && $today->lt($election->end_date))
+                <button type="button" title="This election has not started" disabled
+                    class="h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg text-base md:bg-white/70 border border-transparent font-semibold bg-[#0000FF]/70">
+                    View Insights
+                </button>
+            @else
+                <button type="button" title="Wait for election to end" disabled
+                    class="h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg text-base md:bg-white/70 border border-transparent font-semibold bg-[#0000FF]/70">
+                    View Insights
+                </button>
+            @endif
         </div>
     </div>
 @endsection
