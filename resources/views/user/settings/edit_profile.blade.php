@@ -1,9 +1,9 @@
-@extends('layout.layout')
+@extends('user.settings')
 @section('title', 'Edit Profile')
 @section('profile-settings-sub-tab', 'profile-settings-sub-tab')
 @section('settings-tab', auth()->user()->theme == 'dark' ? 'active-dark-settings' : 'active-settings')
 
-@section('views')
+@section('settings-page')
     <form action="{{ route('settings.profile') }}" method="POST"
         class="flex flex-col w-full gap-2 p-3 bg-white rounded-xl sm:p-5">
         @csrf

@@ -29,7 +29,8 @@ Route::middleware(['auth'])->group(function() {
     // ELECTIONS ROUTE
     Route::get('/elections', 'App\Http\Controllers\Superuser\ElectionController@index')->name('elections.view');
     Route::get('/elections/{election:id}', 'App\Http\Controllers\Superuser\ElectionController@show')->name('elections.show');
-    Route::post('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\Superuser\ElectionController@vote')->name('elections.vote');
+    Route::post('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\Superuser\ElectionController@addVote')->name('elections.vote.add');
+    Route::delete('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\Superuser\ElectionController@removeVote')->name('elections.vote.remove');
     Route::post('/elections/verify', 'App\Http\Controllers\Superuser\ElectionController@codeVerification')->name('elections.verify');
 
     // RESULTS ROUTE
@@ -38,10 +39,12 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/results/{election:id}/chart', 'App\Http\Controllers\ResultController@result_chart')->name('results.chart');
 
     // SETTINGS ROUTE
+    Route::get('/settings', 'App\Http\Controllers\SettingController@index')->name('settings');
     Route::get('/settings/profile', 'App\Http\Controllers\SettingController@profileSetting')->name('settings.profile');
     Route::get('/settings/email', 'App\Http\Controllers\SettingController@emailSetting')->name('settings.email');
     Route::get('/settings/password', 'App\Http\Controllers\SettingController@passwordSetting')->name('settings.password');
     Route::get('/settings/notification', 'App\Http\Controllers\SettingController@notificationSetting')->name('settings.notification');
+
     Route::post('/settings/profile', 'App\Http\Controllers\SettingController@editProfile');
     Route::post('/settings/email', 'App\Http\Controllers\SettingController@changeEmail');
     Route::post('/settings/password', 'App\Http\Controllers\SettingController@changePassword');

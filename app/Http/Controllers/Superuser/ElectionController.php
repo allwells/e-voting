@@ -174,31 +174,59 @@ class ElectionController extends Controller
         $today = Carbon::now();
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
-        $votes = Vote::all();
-        $elections = Election::whereId($election->id)->first();
-        $candidates = Candidate::where('election_id', $election->id)->get();
-        $voted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();
-        $participants = Participant::where('election_id', $election->id)->get();
+        $electionId = $election->id;
+
+        $votes = Vote::where('election_id', $electionId)->get();
+        $elections = Election::whereId($electionId)->first();
+        $candidates = Candidate::where('election_id', $electionId)->get();
+        $participants = Participant::where('election_id', $electionId)->get();
 
         return view('show_elections', [
             'votes' => $votes,
             'today' => $today,
-            'voted' => $voted,
             'election' => $elections,
             'candidates' => $candidates,
             'participants' => $participants,
         ]);
     }
 
-    public function vote(Request $request)
+    public function addVote(Request $request)
     {
-        Vote::create([
-            'user_id' => $request->user()->id,
-            'election_id' => (int) $request->election,
-            'candidate_id' => (int) $request->candidate,
-        ]);
+        $userId = auth()->user()->id;
+        $electionId = (int) $request->election;
+        $candidateId = (int) $request->candidate;
 
-        return back()->with('info', 'Thank you for participating.');
+        $voteExists = Vote::where('user_id', $userId)->where('election_id', $electionId)->get();
+
+        if($voteExists->count() === 0)
+        {
+            Vote::create([
+                'user_id' => $userId,
+                'election_id' => $electionId,
+                'candidate_id' => $candidateId,
+            ]);
+
+            return back()->with('info', 'Thank you for participating.');
+        } else {
+            return back()->with('info', 'You can only vote one candidate. Cancel previous vote to by clicking the vote icon.');
+        }
+    }
+
+    public function removeVote(Request $request)
+    {
+        $userId = auth()->user()->id;
+        $electionId = (int) $request->election;
+        $candidateId = (int) $request->candidate;
+
+        $voteExists = Vote::where('user_id', $userId)->where('election_id', $electionId)->where('candidate_id', $candidateId)->get();
+
+        if($voteExists->count() > 0)
+        {
+            Vote::where('user_id', $userId)->where('election_id', $electionId)->where('candidate_id', $candidateId)->delete();
+            return back()->with('info', 'Your vote has been cancelled.');
+        }
+
+        return back()->with('error', 'Oops! There was an error, please try again.');
     }
 
     public function close(Election $election)

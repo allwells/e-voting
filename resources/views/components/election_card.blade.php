@@ -43,8 +43,7 @@ $seconds = $date->diffInSeconds($now);
                 @endforeach
             </div>
 
-            <div style="background-color: #0000FF; height: auto;"
-                class="w-full flex justify-start items-center px-3 md:px-5 pt-1 pb-2 md:py-3">
+            <div class="bg-[#0000FF] h-auto w-full flex justify-start items-center px-3 md:px-5 pt-1 pb-2 md:py-3">
                 <div class="flex flex-col justify-start items-start w-full">
                     <span class="flex justify-start items-center gap-3">
                         <svg style="width:14px; height: 9.26px;" viewBox="0 0 15 10" fill="currentColor"
@@ -59,7 +58,7 @@ $seconds = $date->diffInSeconds($now);
                     </span>
 
                     <span class="flex justify-start items-center gap-3 text-sm">
-                        <svg style="width:15px; height: 14.17px;" viewBox="0 0 15 15" fill="currentColor"
+                        <svg class="w-[15px] h-[14.17px]" viewBox="0 0 15 15" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M7.50001 13.2888C6.20206 13.2888 4.93327 12.9251 3.85407 12.2436C2.77488 11.5622 1.93374 10.5937 1.43704 9.46048C0.940343 8.3273 0.810384 7.08038 1.0636 5.87741C1.31682 4.67443 1.94183 3.56943 2.85962 2.70213C3.7774 1.83483 4.94672 1.24419 6.21973 1.00491C7.49273 0.765618 8.81223 0.888429 10.0114 1.35781C11.2105 1.82719 12.2354 2.62205 12.9565 3.64188C13.6776 4.66172 14.0625 5.86072 14.0625 7.08726C14.0625 8.73201 13.3711 10.3094 12.1404 11.4724C10.9097 12.6354 9.24049 13.2888 7.50001 13.2888ZM7.50001 1.77168C6.38749 1.77168 5.29995 2.08343 4.37492 2.66751C3.44989 3.2516 2.72892 4.08178 2.30318 5.05308C1.87744 6.02437 1.76604 7.09316 1.98309 8.12428C2.20013 9.15541 2.73586 10.1026 3.52253 10.846C4.3092 11.5893 5.31148 12.0956 6.40262 12.3007C7.49377 12.5058 8.62477 12.4005 9.6526 11.9982C10.6804 11.5959 11.5589 10.9146 12.177 10.0404C12.7951 9.1663 13.125 8.13859 13.125 7.08726C13.125 5.67748 12.5324 4.32544 11.4775 3.32858C10.4226 2.33171 8.99185 1.77168 7.50001 1.77168Z"

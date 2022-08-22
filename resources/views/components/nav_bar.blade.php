@@ -181,13 +181,13 @@ $unreadNotifications = \DB::table('notifications')
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="#" class="w-fit h-fit rounded-full p-2">
+                <a href="{{ route('results') }}" class="w-fit h-fit rounded-full p-2">
                     <x-icons.chart_icon style="height: 19px; width: 19px;" class="text-white" />
                 </a>
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="#" class="w-fit h-fit rounded-full p-2">
+                <a href="{{ route('settings') }}" class="w-fit h-fit rounded-full p-2">
                     <x-icons.settings_icon style="height: 25px; width: 25px;" class="text-white" />
                 </a>
             </li>
