@@ -80,7 +80,8 @@ $seconds = $date->diffInSeconds($now);
             <div class="grid w-full grid-cols-1 gap-2 mt-2 sm:grid-cols-2">
                 @foreach ($candidates as $candidate)
                     @if ($election->id === $candidate->election_id)
-                        <x-candidate_card :today="$today" :candidate="$candidate" :election="$election" />
+                        <x-candidate_card :today="$today" :candidate="$candidate" :election="$election" :winner="$winner"
+                            :isEnded="$isEnded" :notStarted="$notStarted" />
                     @endif
                 @endforeach
             </div>

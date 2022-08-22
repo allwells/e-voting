@@ -14,9 +14,9 @@ $unreadNotifications = \DB::table('notifications')
 @endphp
 
 <nav
-    class="md:shadow-lg shadow-black/10 w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 flex items-center jusitify-between md:py-2 md:px-5 gap-10">
+    class="md:shadow-lg shadow-black/10 w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 flex items-center jusitify-between md:py-2 md:px-5 gap-5">
     <div
-        class="md:w-1/5 w-full md:block flex justify-between items-center md:bg-transparent bg-white md:py-0 py-4 md:px-0 px-5">
+        class="lg:max-w-[210px] flex-grow md:block flex justify-between items-center md:bg-transparent bg-white md:py-0 py-4 md:px-0 px-5">
         <div class="md:hidden flex justify-center items-center">
             <button type="button">
                 <svg class="w-8 h-8 text-[#0000FF]" fill="currentColor" viewBox="0 0 20 20"
@@ -28,8 +28,7 @@ $unreadNotifications = \DB::table('notifications')
             </button>
         </div>
 
-        <span class="md:font-bold flex-grow md:flex-grow-0 md:block flex justify-center items-center"
-            style="font-size: 30px;">
+        <span class="md:font-bold flex-grow md:flex-grow-0 text-[30px] md:block flex justify-center items-center">
             <a href="{{ route('explore') }}" class="md:block hidden">eVoting</a>
 
             <a href="{{ route('explore') }}" class="md:hidden">
@@ -92,7 +91,7 @@ $unreadNotifications = \DB::table('notifications')
         </form>
     </div>
 
-    <div class="w-3/12 md:flex md:justify-end items-center hidden">
+    <div class="lg:max-w-[370px] md:w-full md:flex md:justify-end items-center hidden">
         <ul class="flex justify-end items-center gap-6 overflow-visible">
             <li class=" flex justify-center items-center rounded-full">
                 <button type="button" id="notificationDropdownButton" data-dropdown-toggle="notificationDropdown"
