@@ -4,7 +4,7 @@
             <div class="flex justify-center">
                 <h1 class="text-4xl font-extrabold tracking-tight text-center text-gray-900 sm:text-5xl md:text-6xl">
                     <span class="block xl:inline">Facilitate your</span>
-                    <span class="block text-indigo-600 xl:inline">online voting</span>
+                    <span class="block text-[#0000FF] xl:inline">online voting</span>
                 </h1>
             </div>
 
@@ -18,12 +18,14 @@
 
             <div class="flex justify-center mt-3 align-middle sm:py-6 sm:mt-6 gap-5">
                 <a href="{{ route('register') }}"
-                    class="sm:px-8 sm:py-3 px-4 py-2 border border-indigo-600 font-normal @yield('no-nav') text-sm text-white transition duration-300 bg-indigo-600 rounded hover:bg-indigo-700 focus:ring focus:ring-indigo-300 h-fit w-fit">
+                    class="sm:px-8 sm:py-3 px-4 py-2 border border-[#0000FF] font-bold @yield('no-nav') text-sm text-white
+                transition duration-300 bg-[#0000FF] rounded-md hover:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/30
+                h-fit w-fit">
                     Get Started
                 </a>
 
                 <a href="#how-it-works"
-                    class="sm:px-8 sm:py-3 px-4 py-2 font-normal @yield('no-nav') text-sm text-neutral-600 transition duration-300 bg-white rounded border border-neutral-400 hover:text-indigo-600 hover:border-indigo-600 h-fit w-fit">
+                    class="sm:px-8 sm:py-3 px-4 py-2 font-bold @yield('no-nav') text-sm text-neutral-600 transition duration-300 bg-white rounded-md border border-neutral-400 hover:text-[#0000FF] focus:border-[#0000FF] focus:ring focus:ring-[#0000FF]/30 hover:border-[#0000FF] h-fit w-fit">
                     See How It Works
                 </a>
             </div>

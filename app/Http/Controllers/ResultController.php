@@ -32,7 +32,48 @@ class ResultController extends Controller
             }
         }
 
-        return view('result', ['elections' => $elections]);
+        if(auth()->user()->privilege != 'superuser')
+        {
+            return view('result', ['elections' => $elections]);
+        }
+
+        return view('superuser.result', ['elections' => $closedElections]);
+    }
+
+    // Send email to all participants of this election about the results being out.
+    private function sendMail()
+    {
+        $today = Carbon::now();
+        $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
+
+        $closedElections = Election::where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
+        $votes = Vote::where('user_id', auth()->user()->id)->get();
+        $elections = collect();
+
+        foreach($closedElections as $closedElection)
+        {
+            $electionId = $votes->pluck('election_id')->toArray();
+            if(in_array($closedElection->id , $electionId))
+            {
+                $elections->push($closedElection);
+            }
+        }
+
+        $mailData = [
+            'recipient' => $users,
+            'from' => config('mail.from.address'),
+            'name' => config('app.name'),
+            'subject' => "Private Election Invitation",
+            'election' => $election,
+        ];
+
+        $beautyMail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+        $beautyMail->send('mail.election_results', $mailData, function($message) use ($mailData, $recipient)
+        {
+            $message->to($recipient)
+                    ->from($mailData['from'], $mailData['name'])
+                    ->subject($mailData['subject']);
+        });
     }
 
     public function show(Request $request)
@@ -51,7 +92,18 @@ class ResultController extends Controller
         ->telegram()
         ->whatsapp();
 
-        return view('show_results', [
+
+        if(auth()->user()->privilege != 'superuser')
+        {
+            return view('show_results', [
+                'votes' => $votes,
+                'election' => $elections,
+                'candidates' => $candidates,
+                'share' => $share
+            ]);
+        }
+
+        return view('superuser.show_results', [
             'votes' => $votes,
             'election' => $elections,
             'candidates' => $candidates,

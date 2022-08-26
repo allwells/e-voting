@@ -48,10 +48,6 @@ body {
     font-family: 'Gilroy Light' !important;
 }
 
-div#analysis-card {
-    max-width: calc(50% - 0.5rem) !important;
-}
-
 .activities {
     max-height: 15rem;
 }
@@ -109,13 +105,14 @@ div#analysis-card {
 #active-dashboard,
 #active-candidate,
 #active-election,
+#active-notifications,
 #active-results,
 #active-information,
 #active-settings,
 #active-users {
     font-weight: 600 !important;
     color: #ffffff !important;
-    background-color: #5850ec;
+    background-color: #0000FF;
     /* box-shadow: 0 2px 8px #453fb177; */
 }
 
@@ -123,35 +120,38 @@ div#analysis-card {
 #active-dashboard:hover,
 #active-candidate:hover,
 #active-election:hover,
+#active-notifications:hover,
 #active-results:hover,
 #active-information:hover,
 #active-settings:hover,
 #active-users:hover {
-    background-color: #5850ec;
+    background-color: #0000FF;
 }
 
 #active-dark-home,
 #active-dark-dashboard,
 #active-dark-candidate,
 #active-dark-election,
+#active-dark-notifications,
 #active-dark-results,
 #active-dark-information,
 #active-dark-settings,
 #active-dark-users {
     font-weight: 600 !important;
     color: #ffffff !important;
-    background-color: #5850ec;
+    background-color: #0000FF;
 }
 
 #active-dark-home:hover,
 #active-dark-dashboard:hover,
 #active-dark-candidate:hover,
 #active-dark-election:hover,
+#active-dark-notifications:hover,
 #active-dark-results:hover,
 #active-dark-information:hover,
 #active-dark-settings:hover,
 #active-dark-users:hover {
-    background-color: #5850ec;
+    background-color: #0000FF;
     box-shadow: 0 2px 8px #000;
 }
 
@@ -254,12 +254,6 @@ footer {
 @media only screen and (max-width: 1024px) {
     .candidate-card {
         min-width: 100% !important;
-    }
-}
-
-@media only screen and (max-width: 488px) {
-    div#analysis-card {
-        max-width: 100% !important;
     }
 }
 

@@ -17,10 +17,9 @@ class FileImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new User([
-            'fname'     => $row['fname'],
-            'lname'     => $row['lname'],
+            'firstname'     => $row['fname'],
+            'lastname'     => $row['lname'],
             'email'    => $row['email'],
-            'phone' => $row['phone'],
         ]);
     }
 }

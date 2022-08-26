@@ -1,5 +1,10 @@
 @props(['election' => $election])
 
+@php
+$votes = App\Models\Vote::where('election_id', $election->id)->get();
+$candidates = App\Models\Candidate::where('election_id', $election->id)->get();
+@endphp
+
 <div class="flex justify-between items-start gap-3 rounded-lg overflow-hidden">
     <a href='{{ route('elections.show', $election) }}'
         style="background-image: url({{ asset('images/profile-bg.jpg') }}); background-repeat: no-repeat; background-position: center; background-size: cover;"
@@ -28,7 +33,7 @@
                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                         clip-rule="evenodd"></path>
                 </svg>
-                4
+                {{ $candidates->count() }}
             </span>
 
             <span class="flex justify-center items-center gap-0.5" title="Votes">
@@ -38,7 +43,7 @@
                         d="M14.1396 5.95346H12.7434V7.27645H13.232C13.3477 7.27645 13.4415 7.35087 13.4415 7.44182V7.77257C13.4415 7.86352 13.3477 7.93794 13.232 7.93794H2.48072C2.36509 7.93794 2.27128 7.86352 2.27128 7.77257V7.44182C2.27128 7.35087 2.36509 7.27645 2.48072 7.27645H2.96941V5.95346H1.57314C1.18698 5.95346 0.875 6.24906 0.875 6.61495V8.59944C0.875 8.96533 1.18698 9.26093 1.57314 9.26093H14.1396C14.5258 9.26093 14.8378 8.96533 14.8378 8.59944V6.61495C14.8378 6.24906 14.5258 5.95346 14.1396 5.95346ZM12.0452 7.27645V0.667697C12.0452 0.297673 11.7289 0 11.3405 0H4.37442C3.9839 0 3.66755 0.29974 3.66755 0.667697V7.27645H12.0452ZM5.48271 3.51419L6.03904 2.9912C6.13067 2.90438 6.27903 2.90438 6.37066 2.99327L7.27169 3.85321L9.34865 1.9018C9.44028 1.81498 9.58864 1.81498 9.68027 1.90387L10.2322 2.431C10.3239 2.51782 10.3239 2.65838 10.2301 2.74521L7.43095 5.37465C7.33932 5.46147 7.19097 5.46147 7.09934 5.37258L5.48271 3.8284C5.3889 3.74158 5.39108 3.60101 5.48271 3.51419Z"
                         clip-rule="evenodd"></path>
                 </svg>
-                243
+                {{ $votes->count() }}
             </span>
 
             @if ($election->type == 'private')

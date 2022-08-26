@@ -10,28 +10,42 @@ class SettingController extends Controller
 {
     public function index()
     {
-        return \redirect()->route('settings.profile');
+        return \redirect()->route('settings.email');
     }
 
-    public function profileSetting()
-    {
-        return view('user.settings.edit_profile');
-    }
+    // public function profileSetting()
+    // {
+    //     return view('user.settings.edit_profile');
+    // }
 
     public function emailSetting()
     {
-        return view('user.settings.change_email');
+        if(auth()->user()->privilege != 'superuser')
+        {
+            return view('user.settings.change_email');
+        }
+
+        return view('superuser.settings.change_email');
     }
 
     public function passwordSetting()
     {
-        return view('user.settings.change_password');
+        if(auth()->user()->privilege != 'superuser')
+        {
+            return view('user.settings.change_password');
+        }
+
+        return view('superuser.settings.change_password');
     }
 
     public function notificationSetting()
     {
-        return view('user.settings.notification');
-        // return back()->with('error', 'The page request was not found.');
+        if(auth()->user()->privilege != 'superuser')
+        {
+            return view('user.settings.notification');
+        }
+
+        return view('superuser.settings.notification');
     }
 
     public function theme(Request $request)
@@ -45,28 +59,28 @@ class SettingController extends Controller
         return back()->with('success', 'Theme updated!');
     }
 
-    public function editProfile(Request $request)
-    {
-        // validate user input
-        $validator = Validator::make($request->all(), [
-            'fname' => 'required',
-            'phone' => 'required|min:10|max:16',
-        ]);
+    // public function editProfile(Request $request)
+    // {
+    //     // validate user input
+    //     $validator = Validator::make($request->all(), [
+    //         'fname' => 'required',
+    //         'phone' => 'required|min:10|max:16',
+    //     ]);
 
-        if(!$validator->passes())
-        {
-            return back()->with('warn', 'Read the message under each input field and try again.');
-        }
+    //     if(!$validator->passes())
+    //     {
+    //         return back()->with('warn', 'Read the message under each input field and try again.');
+    //     }
 
-        User::where('id', auth()->user()->id)->update([
-            'fname' => $request->fname,
-            'lname' => $request->lname,
-            'dob' => $request->dob,
-            'phone' => $request->phone,
-        ]);
+    //     User::where('id', auth()->user()->id)->update([
+    //         'fname' => $request->fname,
+    //         'lname' => $request->lname,
+    //         'dob' => $request->dob,
+    //         'phone' => $request->phone,
+    //     ]);
 
-        return back()->with('success', 'Profile updated!');
-    }
+    //     return back()->with('success', 'Profile updated!');
+    // }
 
     public function changeEmail(Request $request)
     {

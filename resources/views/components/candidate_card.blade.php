@@ -1,4 +1,4 @@
-@props(['today' => $today, 'candidate' => $candidate, 'election' => $election, 'winner' => $winner, 'isEnded' => $isEnded, 'notStarted' => $notStarted])
+@props(['today' => $today, 'candidate' => $candidate, 'election' => $election, 'winner' => $winner, 'hasEnded' => $hasEnded, 'hasNotStarted' => $hasNotStarted])
 
 @php
 // check is user's vote exists
@@ -27,7 +27,7 @@ $realWinnerId = (int)0;
         <div class="overflow-hidden rounded-full">
             <a href="#" class="overflow-hidden w-fit h-fit">
                 <img src="{{ asset('images/profile.jpg') }}" alt="profile picture"
-                    class="rounded-full md:h-20 md:w-20 md:min-h-[80px] md:min-w-[80px] md:max-h-[80px] md:max-w-[80px] h-16 w-16 min-h-[64px] min-w-[64px] max-h-[64px] max-w-[64px] {{ $isEnded && !$isWinner ? 'opacity-40' : null }}"
+                    class="rounded-full md:h-20 md:w-20 md:min-h-[80px] md:min-w-[80px] md:max-h-[80px] md:max-w-[80px] h-16 w-16 min-h-[64px] min-w-[64px] max-h-[64px] max-w-[64px] {{ $hasEnded && !$isWinner ? 'opacity-40' : null }}"
                     title="View Profile" />
             </a>
         </div>
@@ -36,16 +36,16 @@ $realWinnerId = (int)0;
             @if ($hasVoted)
                 <p class="text-xs">You voted</p>
             @endif
-            <h2 class="text-base font-bold uppercase hover:underline {{ $isEnded && !$isWinner ? 'opacity-40' : null }}"
+            <h2 class="text-base font-bold uppercase hover:underline {{ $hasEnded && !$isWinner ? 'opacity-40' : null }}"
                 title="View Profile">
                 <a href="#">{{ $candidate->name }}</a>
             </h2>
 
-            <p class="text-sm font-light capitalize {{ $isEnded && !$isWinner ? 'opacity-40' : null }}">
+            <p class="text-sm font-light capitalize {{ $hasEnded && !$isWinner ? 'opacity-40' : null }}">
                 {{ $candidate->party }}
             </p>
 
-            @if ($isEnded)
+            @if ($hasEnded)
                     @if ($isWinner)
                         <p class="text-sm text-[#0000FF] font-bold">WINNER</p>
                     @endif
@@ -57,7 +57,7 @@ $realWinnerId = (int)0;
     <span class="text-lg uppercase font-bold text-[#0000FF]">{{ $candidateVotes->count() }}</span>
 
     @if ($hasVoted)
-        @if ($isEnded)
+        @if ($hasEnded)
             <button class="text-[#0000FF] cursor-default" title="Voting session is close" disabled>
                 <svg class="w-6 h-6" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -83,7 +83,7 @@ $realWinnerId = (int)0;
     @endif
 
     @if (!$hasVoted)
-        @if ($isEnded)
+        @if ($hasEnded)
             <button class="cursor-default text-neutral-400" title="Voting session is close" disabled>
                 <svg class="w-6 h-6" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -91,7 +91,7 @@ $realWinnerId = (int)0;
                         fill="currentColor" />
                 </svg>
             </button>
-        @elseif ($notStarted)
+        @elseif ($hasNotStarted)
             <button class="cursor-default text-neutral-400" title="Voting session has not started" disabled>
                 <svg class="w-6 h-6" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -101,7 +101,7 @@ $realWinnerId = (int)0;
             </button>
         @else
             <form action="{{ route('elections.vote.add', [$election->id, $candidate->id]) }}" method="post"
-                class="w-fit h-fit {{ $isEnded ? 'opacity-40 cursor-not-allowed' : null }}">
+                class="w-fit h-fit {{ $hasEnded ? 'opacity-40 cursor-not-allowed' : null }}">
                 @csrf
 
                 <button type="submit" class="transition duration-300 text-neutral-400 hover:text-neutral-700"

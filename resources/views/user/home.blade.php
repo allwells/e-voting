@@ -10,31 +10,47 @@
             <div class="h-fit w-fit md:w-48 rounded-2xl bg-transparent">
                 <ul style="color: #0000FF;" class="flex text-lg flex-col justify-start items-start gap-4">
                     <li class="w-full">
-                        <a href="/explore" class="flex justify-start items-center gap-2 w-full transition duration-200">
+                        <a href="/explore" class="flex justify-start items-center gap-2 w-fit">
                             <x-icons.home_icon style="width: 18px;" class="h-5 flex-shrink-0" />
                             Voices Home
                         </a>
                     </li>
 
                     <li class="w-full">
-                        <a href="#" class="flex justify-start items-center gap-2 w-full transition duration-200">
+                        <a href="#" class="flex justify-start items-center gap-2 w-fit">
                             <x-icons.information_icon style="width: 22px; height: 22px;" class="flex-shrink-0" />
                             About
                         </a>
                     </li>
 
                     <li class="w-full">
-                        <a href="#" class="flex justify-start items-center gap-2 w-full transition duration-200">
+                        <a href="#" class="flex justify-start items-center gap-2 w-fit">
                             <x-icons.questionmark_icon style="width: 24px; height: 24px;" class="flex-shrink-0" />
                             FAQs
                         </a>
                     </li>
 
                     <li class="w-full">
-                        <a href="#" class="flex justify-start items-center gap-2 w-full transition duration-200">
+                        <a href="#" class="flex justify-start items-center gap-2 w-fit">
                             <x-icons.support_icon style="width: 24px; height: 24px;" class="flex-shrink-0" />
                             Support
                         </a>
+                    </li>
+
+                    <li class="w-full">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="flex justify-start items-center gap-2 w-full transition duration-200">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Logout
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
