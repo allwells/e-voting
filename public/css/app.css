@@ -1043,6 +1043,12 @@ input[type="range"]::-ms-fill-lower {
 .mr-0 {
   margin-right: 0px;
 }
+.-mt-7 {
+  margin-top: -1.75rem;
+}
+.-mt-6 {
+  margin-top: -1.5rem;
+}
 .block {
   display: block;
 }
@@ -1156,6 +1162,9 @@ input[type="range"]::-ms-fill-lower {
 .h-\[1\.6rem\] {
   height: 1.6rem;
 }
+.h-\[14px\] {
+  height: 14px;
+}
 .max-h-\[0\.5rem\] {
   max-height: 0.5rem;
 }
@@ -1267,6 +1276,9 @@ input[type="range"]::-ms-fill-lower {
 }
 .w-\[1\.6rem\] {
   width: 1.6rem;
+}
+.w-\[14px\] {
+  width: 14px;
 }
 .min-w-\[4rem\] {
   min-width: 4rem;

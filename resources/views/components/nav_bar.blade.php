@@ -99,7 +99,7 @@ $unreadNotifications = \DB::table('notifications')
                     <x-icons.bell_icon style="height: 23.33px; width: 20px;" class="text-white" />
                     @if ($unreadNotifications->count() > 0)
                         <span
-                            class="w-3 h-3 absolute bg-red-600 rounded-full border-2 border-[#0000FF] -mt-5 ml-2.5"></span>
+                            class="w-[14px] h-[14px] absolute bg-red-600 rounded-full border-2 border-[#0000FF] -mt-7 ml-2.5"></span>
                     @endif
                 </a>
 
