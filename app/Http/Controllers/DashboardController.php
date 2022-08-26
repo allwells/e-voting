@@ -12,23 +12,39 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $today = \Carbon\Carbon::now();
+        $today = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $today);
+
+        $totalElections = Election::all();
+        $elections = Election::all()->take(5);
         $totalAdmins = User::where('privilege', 'admin')->get();
-        $users = User::where('privilege', 'user')->take(7)->get();
-        $admins = User::where('privilege', 'admin')->take(7)->get();
         $totalUsers = User::where('privilege','!=', 'superuser')->get();
+        $users = User::where('privilege','!=', 'superuser')->take(5)->get();
 
-        $elections = Election::all();
+        $results = collect();
 
-        $userDashboard = 'dashboard';
-        $superuserDashboard = 'superuser.dashboard';
-        $superuser = auth()->user()->privilege === 'superuser';
+        foreach($totalElections as $election)
+        {
+            $hasEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed';
+            if($hasEnded)
+            {
+                $results->push($election);
+            }
+        }
 
-        return view((!$superuser ? $userDashboard : $superuserDashboard), [
+        if(auth()->user()->privilege != 'superuser')
+        {
+            return back()->with('error', 'Error: The page requested was not found!');
+        }
+
+        return view('superuser.dashboard', [
             'users' => $users,
-            'admins' => $admins,
+            'today' => $today,
             'elections' => $elections,
             'totalUsers' => $totalUsers,
             'totalAdmins' => $totalAdmins,
+            'results' => $results->take(5),
+            'totalElections' => $totalElections,
         ]);
     }
 }

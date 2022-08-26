@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('election_id')->references('id')->on('elections')->onDelete('cascade');
+            $table->string('message');
             $table->boolean('isRead')->default(false);
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notification');
+        Schema::dropIfExists('notifications');
     }
 };

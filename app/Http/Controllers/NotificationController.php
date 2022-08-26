@@ -25,7 +25,18 @@ class NotificationController extends Controller
             ->where('isRead', false)
             ->get();
 
-        return view('user.notification',
+        if(auth()->user()->privilege != 'superuser')
+        {
+            return view('user.notification',
+                [
+                    'notifications' => $notifications,
+                    'readNotifications' => $readNotifications,
+                    'unreadNotifications' => $unreadNotifications
+                ]
+            );
+        }
+
+        return view('superuser.notification',
             [
                 'notifications' => $notifications,
                 'readNotifications' => $readNotifications,
@@ -37,6 +48,12 @@ class NotificationController extends Controller
     public function markAsRead(Request $request)
     {
         \DB::table('notifications')->where('user_id', auth()->user()->id)->where('isRead', 0)->update([ 'isRead' => 1 ]);
+        return back();
+    }
+
+    public function markAsUnRead(Request $request)
+    {
+        \DB::table('notifications')->where('user_id', auth()->user()->id)->where('isRead', 1)->update([ 'isRead' => 0 ]);
         return back();
     }
 }

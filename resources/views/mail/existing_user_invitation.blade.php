@@ -7,7 +7,7 @@
     <tr>
         <td class="title">
             <h3>
-                <strong>Hello {{ $recipient['fname'] }},</strong>
+                <strong>Hello {{ $recipient->fname }},</strong>
             </h3>
         </td>
     </tr>
@@ -18,38 +18,7 @@
 
     <tr>
         <td class="paragraph">
-            You have been invited to participate in a private election. Login with the login details to join the election.
-            P.S. it is adviced that you change your password to avoid forgetting your password.
-        </td>
-    </tr>
-
-    <tr>
-        <td width="100%" height="13"></td>
-    </tr>
-
-    <tr>
-        <td class="title">
-            Login Details:
-        </td>
-    </tr>
-
-    <tr>
-        <td width="100%" height="4"></td>
-    </tr>
-
-    <tr>
-        <td class="paragraph">
-            Email: {{ $recipient['email'] }}
-        </td>
-    </tr>
-
-    <tr>
-        <td width="100%" height="4"></td>
-    </tr>
-
-    <tr>
-        <td class="paragraph">
-            Password: {{ $genPassword }}
+            You are invited to participate in a private election. Proceed to the election by clicking the button below.
         </td>
     </tr>
 
@@ -60,10 +29,10 @@
     <tr>
         <td>
             @include('beautymail::templates.minty.button', [
-                'text' => 'View Election',
+                'text' => 'Go to election',
                 'link' =>
                     env('APP_ENV') == 'production'
-                        ? "http://evotin.herokuapp.com/elections/$election->id"
+                        ? "https://evotin.herokuapp.com/elections/$election->id"
                         : "http://localhost:8000/elections/$election->id",
             ])
         </td>

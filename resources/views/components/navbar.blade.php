@@ -8,7 +8,7 @@
             <x-logo />
 
             <button type="button"
-                class="flex sm:hidden items-center p-1 text-white bg-indigo-600 rounded-sm h-fit w-fit mobile-nav-btn">
+                class="flex sm:hidden items-center p-1 text-white bg-[#0000FF] rounded-sm h-fit w-fit mobile-nav-btn">
                 <svg class="w-6 h-6 open-nav-icon" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -29,19 +29,19 @@
             class="hidden sm:flex sm:flex-row flex-col items-start sm:items-center gap-4 sm:gap-6 sm:mt-0 mt-5 w-full sm:w-fit mobile-nav-menu">
             {{-- home button --}}
             <a href="{{ route('home') }}"
-                class="px-8 py-3 border-neutral-300 text-center font-semibold sm:font-normal @yield('no-home') text-sm sm:text-indigo-600 sm:transition duration-300 bg-neutral-100 sm:bg-white border sm:border-transparent rounded sm:hover:border-indigo-500 h-fit w-full sm:w-fit focus:ring focus:border-indigo-600 focus:ring-neutral-700/20">
+                class="px-8 py-3 border-neutral-300 text-center font-semibold sm:font-normal @yield('no-home') text-sm sm:text-[#0000FF] sm:transition duration-300 bg-neutral-100 sm:bg-white border sm:border-transparent rounded sm:hover:border-indigo-500 h-fit w-full sm:w-fit focus:ring focus:border-[#0000FF] focus:ring-neutral-700/20">
                 Home
             </a>
 
             {{-- login button --}}
             <a href="{{ route('login') }}"
-                class="px-8 py-3 border-neutral-300 text-center font-semibold sm:font-normal @yield('no-nav') text-sm sm:text-indigo-600 sm:transition sm:duration-300 bg-neutral-100 sm:bg-white border sm:border-transparent rounded sm:hover:border-indigo-500 h-fit w-full sm:w-fit focus:ring focus:border-indigo-600 focus:ring-neutral-700/20">
+                class="px-8 py-3 border-neutral-300 text-center font-semibold sm:font-normal @yield('no-nav') text-sm sm:text-[#0000FF] sm:transition sm:duration-300 bg-neutral-100 sm:bg-white border sm:border-transparent rounded sm:hover:border-indigo-500 h-fit w-full sm:w-fit focus:ring focus:border-[#0000FF] focus:ring-neutral-700/20">
                 Login
             </a>
 
             {{-- register button --}}
             <a href="{{ route('register') }}"
-                class="px-8 py-3 text-center border border-indigo-600 font-semibold sm:font-normal @yield('no-nav') text-sm text-white sm:transition sm:duration-300 bg-indigo-600 rounded sm:hover:bg-indigo-700 focus:ring focus:ring-indigo-600/40 h-fit w-full sm:w-fit">
+                class="px-8 py-3 text-center border border-[#0000FF] font-semibold sm:font-normal @yield('no-nav') text-sm text-white sm:transition sm:duration-300 bg-[#0000FF] rounded sm:hover:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/30 h-fit w-full sm:w-fit">
                 Register
             </a>
         </div>

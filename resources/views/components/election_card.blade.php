@@ -6,6 +6,12 @@ foreach ($votes as $vote) {
         $count++;
     }
 }
+
+$hasVoted = App\Models\Vote::where('user_id', auth()->user()->id)
+    ->where('election_id', (int) $election->id)
+    ->first();
+
+$exists = $hasVoted ? $hasVoted->user_id == auth()->user()->id : null;
 @endphp
 
 @php
@@ -53,7 +59,7 @@ $seconds = $date->diffInSeconds($now);
                                 clip-rule="evenodd"></path>
                         </svg>
                         <span class="text-xl font-bold">
-                            {{ $count }} <span class="text-base">Votes</span>
+                            {{ $count }} <span class="text-base">{{ $count > 1 ? 'Votes' : 'Vote' }}</span>
                         </span>
                     </span>
 
@@ -90,9 +96,13 @@ $seconds = $date->diffInSeconds($now);
                     </span>
                 </div>
 
-                <a href="{{ route('elections.show', $election) }}" style="color: #0000FF; height: 36.45px;"
-                    class="py-1.5 px-5 rounded-lg hover:bg-white text-base bg-white/90 border border-transparent font-semibold focus:ring focus:ring-white/50 focus:bg-white">
-                    Vote
+                <a href="{{ route('elections.show', $election) }}"
+                    class="py-1.5 px-5 rounded-lg hover:bg-white text-base bg-white/90 text-[#0000FF] h-[36.45px] border border-transparent font-semibold focus:ring focus:ring-white/50 focus:bg-white">
+                    @if ($exists)
+                        Voted
+                    @else
+                        Open
+                    @endif
                 </a>
             </div>
         </div>

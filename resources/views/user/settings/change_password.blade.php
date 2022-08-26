@@ -10,7 +10,7 @@
 
         <div class="flex flex-col w-full md:flex-row">
             <div class="w-full">
-                <label class="text-base font-medium text-neutral-600">Change Password</label>
+                <label class="text-base font-bold text-neutral-800">Change Password</label>
 
                 <x-success_message />
                 <x-warning_message />
@@ -27,7 +27,7 @@
 
                             <input type="password" name="current_password" id="current_password"
                                 placeholder="Enter your current password"
-                                class="w-full px-3 mt-1 text-sm transition duration-300 border border-transparent rounded placeholder-neutral-400 bg-neutral-100 h-11 outline-0 text-neutral-900 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
+                                class="w-full px-3 mt-1 text-sm transition duration-300 border border-transparent rounded-lg placeholder-neutral-400 bg-neutral-100 h-11 outline-0 text-neutral-900 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
                                 required />
                         </div>
 
@@ -39,7 +39,7 @@
 
                             <div class="flex flex-col items-start justify-start gap-1.5">
                                 <input type="password" name="password" id="password" placeholder="Choose a new password"
-                                    class="w-full px-3 mt-1 text-sm transition duration-300 border border-transparent rounded placeholder-neutral-400 bg-neutral-100 h-11 outline-0 text-neutral-900 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
+                                    class="w-full px-3 mt-1 text-sm transition duration-300 border border-transparent rounded-lg placeholder-neutral-400 bg-neutral-100 h-11 outline-0 text-neutral-900 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
                                     required />
                             </div>
                         </div>
@@ -53,7 +53,7 @@
 
                             <input type="password" name="password_confirmation" id="password_confirmation"
                                 placeholder="Confirm your new password"
-                                class="w-full px-3 mt-1 text-sm transition duration-300 border border-transparent rounded placeholder-neutral-400 bg-neutral-100 h-11 outline-0 text-neutral-900 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
+                                class="w-full px-3 mt-1 text-sm transition duration-300 border border-transparent rounded-lg placeholder-neutral-400 bg-neutral-100 h-11 outline-0 text-neutral-900 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
                                 required />
                         </div>
                     </div>
@@ -78,9 +78,9 @@
             </div>
         </div>
 
-        <div class="flex items-center justify-end w-full p-3 mt-3 border rounded-md sm:rounded-xl md:p-4">
+        <div class="flex items-center justify-end w-full mt-3">
             <button type="submit"
-                class="w-full sm:w-fit py-3 px-10 text-sm font-bold tracking-wide text-white rounded bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/40">
+                class="w-full sm:w-fit py-3 px-10 text-sm font-bold tracking-wide text-white rounded-lg bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/30">
                 Save
             </button>
         </div>

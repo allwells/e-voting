@@ -5,7 +5,7 @@
             <div class="items-center justify-start hidden tracking-wider sm:flex">
                 <a href="{{ route('home') }}" class="text-2xl font-bold home-btn sm:text-3xl">
                     <span class="text-neutral-700 dark:text-neutral-200">
-                        <span class="text-indigo-600">e</span>Voting
+                        <span class="text-[#0000FF]">e</span>Voting
                     </span>
                 </a>
             </div>
@@ -14,7 +14,7 @@
                 <ul class="flex flex-col items-start justify-start w-full gap-2 text-neutral-500">
                     <li class="w-full">
                         <a href="{{ route('dashboard') }}" id="@yield('dashboard-tab')"
-                            class="flex items-start w-full gap-2 p-3 text-lg font-normal transition duration-300 rounded hover:bg-neutral-200/80 hover:text-neutral-900">
+                            class="flex items-start w-full gap-2 p-3 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
                             <i class="fas fa-home"></i>
                             <span class="text-sm">Dashboard</span>
                         </a>
@@ -23,7 +23,7 @@
                     @if (auth()->user()->privilege == 'superuser')
                         <li class="w-full">
                             <button type="button" id="@yield('users-tab')"
-                                class="flex items-center justify-between w-full px-3 py-2.5 text-lg font-normal transition duration-300 rounded hover:bg-neutral-200/80 hover:text-neutral-900"
+                                class="flex items-center justify-between w-full px-3 py-2.5 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900"
                                 aria-controls="users-dropdown" data-collapse-toggle="users-dropdown">
                                 <div class="flex items-center justify-center gap-2">
                                     <i class="fas fa-users"></i>
@@ -41,13 +41,13 @@
                                 class="hidden ml-5 mt-2 border-l-2 border-neutral-200 pl-3 space-y-3 py-2.5">
                                 <li>
                                     <a id="@yield('add-users-sub-tab')" href="{{ route('users.add') }}"
-                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
                                         Add User
                                     </a>
                                 </li>
                                 <li>
                                     <a id="@yield('view-users-sub-tab')" href="{{ route('users') }}"
-                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
                                         View Users
                                     </a>
                                 </li>
@@ -57,15 +57,15 @@
 
 
                     <li class="w-full">
-                        @if (auth() && auth()->user()->privilege !== 'superuser')
+                        @if (auth() && auth()->user()->privilege != 'superuser')
                             <a href="{{ route('elections.view') }}" id="@yield('election-tab')"
-                                class="flex items-start w-full gap-2 p-3 text-lg font-normal transition duration-300 rounded hover:bg-neutral-200/80 hover:text-neutral-900">
+                                class="flex items-start w-full gap-2 p-3 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
                                 <i class="fas fa-box"></i>
                                 <span class="text-sm">Election</span>
                             </a>
                         @else
                             <button type="button" id="@yield('election-tab')"
-                                class="flex items-center justify-between w-full p-3 text-lg font-normal transition duration-300 rounded hover:bg-neutral-200/80 hover:text-neutral-900"
+                                class="flex items-center justify-between w-full p-3 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900"
                                 aria-controls="election-dropdown" data-collapse-toggle="election-dropdown">
                                 <div class="flex items-center justify-center gap-2">
                                     <i class="fas fa-box"></i>
@@ -87,13 +87,13 @@
                                 class="hidden ml-5 border-l-2 mt-2 border-neutral-200 pl-3 space-y-3 py-2.5">
                                 <li>
                                     <a id="@yield('create-elections-sub-tab')" href="{{ route('elections.create') }}"
-                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
                                         Create Election
                                     </a>
                                 </li>
                                 <li>
                                     <a id="@yield('view-elections-sub-tab')" href="{{ route('elections.view') }}"
-                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
                                         View Elections
                                     </a>
                                 </li>
@@ -102,8 +102,19 @@
                     </li>
 
                     <li class="w-full">
+                        {{-- <span
+                            class="min-h-[0.5rem] min-w-[0.5rem] max-h-[0.5rem] max-w-[0.5rem] h-2 w-2 bg-red-600 rounded-full"></span> --}}
+
+                        <a href="{{ route('notifications') }}" id="@yield('notifications-tab')"
+                            class="flex items-start w-full gap-2 p-3 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
+                            <x-icons.bell_icon style="height: 20px; width: 18px;" class="hover:text-neutral-900" />
+                            <span class="text-sm">Notifications</span>
+                        </a>
+                    </li>
+
+                    <li class="w-full">
                         <a href="{{ route('results') }}" id="@yield('results-tab')"
-                            class="flex items-start w-full gap-2 p-3 text-lg font-normal transition duration-300 rounded hover:bg-neutral-200/80 hover:text-neutral-900">
+                            class="flex items-start w-full gap-2 p-3 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
                             <i class="fas fa-poll"></i>
                             <span class="text-sm">Results</span>
                         </a>
@@ -111,7 +122,7 @@
 
                     <li class="w-full">
                         <button type="button" id="@yield('settings-tab')"
-                            class="flex items-center justify-between w-full p-3 text-lg font-normal transition duration-300 rounded hover:bg-neutral-200/80 hover:text-neutral-900"
+                            class="flex items-center justify-between w-full p-3 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900"
                             aria-controls="settings-dropdown" data-collapse-toggle="settings-dropdown">
                             <div class="flex items-center justify-center gap-2">
                                 <i class="fas fa-gear"></i>
@@ -127,33 +138,33 @@
 
                         <ul id="settings-dropdown"
                             class="hidden ml-5 border-l-2 mt-2 border-neutral-200 pl-3 space-y-3 py-2.5">
-                            <li>
+                            {{-- <li>
                                 <a id="@yield('profile-settings-sub-tab')" href="{{ route('settings.profile') }}"
-                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
                                     Edit Profile
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li>
                                 <a id="@yield('email-settings-sub-tab')" href="{{ route('settings.email') }}"
-                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
                                     Change Email
                                 </a>
                             </li>
 
                             <li>
                                 <a id="@yield('password-settings-sub-tab')" href="{{ route('settings.password') }}"
-                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
                                     Change Password
                                 </a>
                             </li>
 
-                            {{-- <li>
+                            <li>
                                 <a id="@yield('notification-settings-sub-tab')" href="{{ route('settings.notification') }}"
-                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
                                     Notifications
                                 </a>
-                            </li> --}}
+                            </li>
                         </ul>
                     </li>
                 </ul>

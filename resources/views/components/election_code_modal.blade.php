@@ -14,17 +14,17 @@
             </button>
 
             <div class="py-6 px-6 lg:px-8">
-                <h3 class="mb-4 text-base font-medium text-neutral-700">Election Code Verification</h3>
+                <h3 class="m-0 text-base font-bold text-neutral-800">Election Code Verification</h3>
 
                 <form class="space-y-6" action="{{ route('elections.verify') }}" method="POST">
                     @csrf
 
                     <input type="text" name="code" id="code"
-                        class="border border-transparent hover:border-neutral-300 focus:border-indigo-600 transition duration-300 text-neutral-700 text-sm rounded bg-neutral-100 w-full h-11 px-3 focus:ring-0 placeholder-neutral-500"
+                        class="border border-transparent hover:border-neutral-300 focus:border-[#0000FF] transition duration-300 text-neutral-700 text-sm rounded bg-neutral-100 w-full h-11 px-3 focus:ring-0 placeholder-neutral-500"
                         placeholder="Enter election code" required>
 
                     <button type="submit"
-                        class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring focus:ring-indigo-600/40 font-medium rounded text-sm px-6 py-3 text-center">
+                        class="w-full text-white bg-[#0000FF] hover:bg-[#0000FF] focus:ring focus:ring-[#0000FF]/30 font-bold rounded-md text-sm px-6 py-3 text-center">
                         Verify Code
                     </button>
                 </form>

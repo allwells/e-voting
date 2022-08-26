@@ -1,6 +1,6 @@
 @props(['index' => $index, 'user' => $user])
 
-<tr class="hover:bg-neutral-50">
+<tr class="hover:bg-neutral-50 text-xs">
     <td class="text-center cursor-default w-fit px-3">
         {{ $index }}
     </td>
@@ -45,6 +45,7 @@
                         </button>
                     </form>
                 </li>
+
                 {{-- <li>
                     <form action="{{ route('users.block', $user->id) }}" method="POST">
                         @csrf
@@ -54,6 +55,7 @@
                         </button>
                     </form>
                 </li> --}}
+
                 <li>
                     <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                         @csrf

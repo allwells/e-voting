@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 // AUTHENTICATED USER ROUTE
 Route::middleware(['auth'])->group(function() {
-    // HOME PAGE ROUTE
+    // HOME ROUTE
     Route::get('/explore', 'App\Http\Controllers\FeedsController@index')->name('explore');
 
-    // NOTIFICATIONS PAGE ROUTE
+    // NOTIFICATIONS ROUTE
     Route::get('/notifications', 'App\Http\Controllers\NotificationController@index')->name('notifications');
     Route::post('/notifications', 'App\Http\Controllers\NotificationController@markAsRead')->name('notifications.mark-all');
 
@@ -40,12 +40,12 @@ Route::middleware(['auth'])->group(function() {
 
     // SETTINGS ROUTE
     Route::get('/settings', 'App\Http\Controllers\SettingController@index')->name('settings');
-    Route::get('/settings/profile', 'App\Http\Controllers\SettingController@profileSetting')->name('settings.profile');
+    // Route::get('/settings/profile', 'App\Http\Controllers\SettingController@profileSetting')->name('settings.profile');
     Route::get('/settings/email', 'App\Http\Controllers\SettingController@emailSetting')->name('settings.email');
     Route::get('/settings/password', 'App\Http\Controllers\SettingController@passwordSetting')->name('settings.password');
     Route::get('/settings/notification', 'App\Http\Controllers\SettingController@notificationSetting')->name('settings.notification');
 
-    Route::post('/settings/profile', 'App\Http\Controllers\SettingController@editProfile');
+    // Route::post('/settings/profile', 'App\Http\Controllers\SettingController@editProfile');
     Route::post('/settings/email', 'App\Http\Controllers\SettingController@changeEmail');
     Route::post('/settings/password', 'App\Http\Controllers\SettingController@changePassword');
     Route::post('/settings/notification', 'App\Http\Controllers\SettingController@setNotification');
@@ -56,8 +56,8 @@ Route::middleware(['auth'])->group(function() {
     // DASHBOARD ROUTE
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
-    Route::get('/', function() { return redirect()->route('explore'); });
-    Route::get('/home', function() { return redirect()->route('explore'); });
+    Route::get('/', function() { return auth()->user()->privilege != 'superuser' ? redirect()->route('explore') : redirect()->route('dashboard'); });
+    Route::get('/home', function() { return auth()->user()->privilege != 'superuser' ? redirect()->route('explore') : redirect()->route('dashboard'); });
 });
 
 // ADMINS ROUTE
@@ -84,6 +84,7 @@ Route::middleware(['superuser'])->group(function() {
     Route::get('/users', 'App\Http\Controllers\Superuser\UserController@index')->name('users');
     Route::get('/users/manage/add', 'App\Http\Controllers\Superuser\UserController@getAddUser')->name('users.add');
     Route::post('/users/manage/add', 'App\Http\Controllers\Superuser\UserController@addUser');
+    Route::post('/users/manage/import', 'App\Http\Controllers\Superuser\UserController@fileImport')->name('users.file-import');
     Route::delete('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@destroy')->name('users.destroy');
     Route::post('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@privilege')->name('users.privilege');
 

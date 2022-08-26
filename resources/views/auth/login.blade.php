@@ -20,9 +20,9 @@
 
                 <div class="flex flex-col gap-4">
                     <div>
-                        <label for="email-address" class="text-sm font-semibold text-neutral-700">Email</label>
-                        <input id="email-address" name="email" type="email" autocomplete="email" required
-                            class="relative block w-full px-3 mt-1 text-sm duration-300 border rounded h-11 text-neutral-700 border-neutral-400 hover:border-neutral-700 focus:outline-none focus:border-indigo-600 focus:z-10"
+                        <label for="email-address" class="text-sm font-semibold text-neutral-800">Email</label>
+                        <input id="email-address" name="email" type="email" required
+                            class="relative block w-full px-3 mt-1 text-sm duration-300 border rounded-md h-11 text-neutral-800 border-neutral-300 focus:ring-0 outline-0 hover:border-neutral-500 focus:outline-none focus:border-[#0000FF] focus:z-10"
                             placeholder="Enter your email address" value="{{ old('email') }}">
 
                         @error('email')
@@ -33,9 +33,9 @@
                     </div>
 
                     <div>
-                        <label for="password" class="text-sm font-semibold text-neutral-700">Password</label>
-                        <input id="password" name="password" type="password" autocomplete="current-password" required
-                            class="relative block w-full px-3 mt-1 text-sm duration-300 border rounded h-11 text-neutral-700 border-neutral-400 hover:border-neutral-700 focus:outline-none focus:border-indigo-600 focus:z-10"
+                        <label for="password" class="text-sm font-semibold text-neutral-800">Password</label>
+                        <input id="password" name="password" type="password" required
+                            class="relative block w-full px-3 mt-1 text-sm duration-300 border rounded-md h-11 text-neutral-800 border-neutral-300 focus:ring-0 outline-0 hover:border-neutral-500 focus:outline-none focus:border-[#0000FF] focus:z-10"
                             placeholder="Enter your password">
 
                         @error('password')
@@ -49,9 +49,9 @@
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <input id="remember-me" name="remember-me" type="checkbox"
-                            class="w-4 h-4 text-indigo-600 rounded border-neutral-300 border-1 focus:ring-indigo-600 hover:cursor-pointer">
+                            class="w-4 h-4 text-[#0000FF] rounded border-neutral-300 border-1 focus:ring-[#0000FF] hover:cursor-pointer">
                         <label for="remember-me"
-                            class="block ml-2 text-sm text-neutral-600 hover:text-neutral-800 hover:cursor-pointer">
+                            class="block ml-2 text-sm text-neutral-700 hover:text-neutral-800 hover:cursor-pointer">
                             Remember me
                         </label>
                     </div>
@@ -59,15 +59,15 @@
 
                 <div class="flex flex-col w-full gap-2">
                     <button type="submit"
-                        class="w-full py-3 text-sm text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:bg-indigo-700 focus:ring focus:ring-indigo-600/40">
+                        class="w-full py-3 text-sm text-white font-bold bg-[#0000FF] rounded-md hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/30">
                         Login
                     </button>
 
                     {{-- Link to sign up page --}}
                     <div class="flex items-center justify-between">
                         <div class="flex text-sm w-fit">
-                            <span class="mr-1 text-neutral-600">Don't have an account?</span>
-                            <a class="text-indigo-600 signup-btn hover:underline hover:text-indigo-700"
+                            <span class="mr-1 text-neutral-700">Don't have an account?</span>
+                            <a class="text-[#0000FF] signup-btn hover:underline hover:text-[#0000DD]"
                                 href="{{ route('register') }}">
                                 Register
                             </a>
@@ -75,7 +75,7 @@
 
                         <span class="w-fit">
                             <a href="{{ route('password.reset.link') }}"
-                                class="text-sm font-medium text-indigo-600 hover:underline">Forgot password?</a>
+                                class="text-sm font-medium text-[#0000FF] hover:underline">Forgot password?</a>
                         </span>
                     </div>
                 </div>

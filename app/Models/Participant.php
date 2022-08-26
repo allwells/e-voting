@@ -12,8 +12,6 @@ class Participant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'email',
         'user_id',
         'election_id',
     ];

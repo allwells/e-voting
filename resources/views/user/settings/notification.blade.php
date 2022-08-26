@@ -10,7 +10,7 @@
 
         <div class="flex flex-col w-full gap-5 md:flex-row">
             <div class="w-full">
-                <label class="text-base font-medium text-neutral-900">Notifications</label>
+                <label class="text-base font-bold text-neutral-800">Notifications</label>
 
                 <x-success_message />
                 <x-warning_message />
@@ -18,8 +18,8 @@
 
                 <div class="flex flex-col gap-3 p-3 mt-3 border rounded-xl sm:p-6">
                     <div class="flex items-center justify-between px-2 py-1 border rounded-md sm:px-4 sm:py-2">
-                        <div class="text-neutral-500">
-                            <p class="text-sm font-medium">Email Notification</p>
+                        <div class="text-neutral-700">
+                            <p class="text-sm font-bold">Email Notification</p>
                             <span class="text-xs">Get email notifications about election results.</span>
                         </div>
 
@@ -34,9 +34,9 @@
         </div>
 
 
-        <div class="flex items-center justify-end w-full p-3 mt-3 border rounded-md sm:rounded-xl md:p-4">
+        <div class="flex items-center justify-end w-full mt-3">
             <button type="submit"
-                class="w-full sm:w-fit py-3 px-10 text-sm font-bold text-white rounded bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/40">
+                class="w-full sm:w-fit py-3 px-10 text-sm font-bold text-white rounded-lg bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/30">
                 Save
             </button>
         </div>

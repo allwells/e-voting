@@ -14,9 +14,19 @@ class FeedsController extends Controller
         $count = 0;
         $votes = Vote::all();
         $candidates = Candidate::all();
-        $elections = Election::where('type', 'public')->get();
+        $elections = Election::where('type', 'public')->get()->reverse();
 
-        return view('user.feeds', [
+        if(auth()->user()->privilege != 'superuser')
+        {
+            return view('user.feeds', [
+                'count' => $count,
+                'votes' => $votes,
+                'elections' => $elections,
+                'candidates' => $candidates,
+            ]);
+        }
+
+        return view('dashboard', [
             'count' => $count,
             'votes' => $votes,
             'elections' => $elections,

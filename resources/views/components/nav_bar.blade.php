@@ -14,7 +14,7 @@ $unreadNotifications = \DB::table('notifications')
 @endphp
 
 <nav
-    class="md:shadow-lg shadow-black/10 w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 flex items-center jusitify-between md:py-2 md:px-5 gap-5">
+    class="md:shadow-lg z-50 shadow-black/10 w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 flex items-center jusitify-between md:py-2 md:px-5 gap-5">
     <div
         class="lg:max-w-[210px] flex-grow md:block flex justify-between items-center md:bg-transparent bg-white md:py-0 py-4 md:px-0 px-5">
         <div class="md:hidden flex justify-center items-center">
@@ -94,7 +94,16 @@ $unreadNotifications = \DB::table('notifications')
     <div class="lg:max-w-[370px] md:w-full md:flex md:justify-end items-center hidden">
         <ul class="flex justify-end items-center gap-6 overflow-visible">
             <li class=" flex justify-center items-center rounded-full">
-                <button type="button" id="notificationDropdownButton" data-dropdown-toggle="notificationDropdown"
+
+                <a href="{{ route('notifications') }}" class="hover:underline text-sm">
+                    <x-icons.bell_icon style="height: 23.33px; width: 20px;" class="text-white" />
+                    @if ($unreadNotifications->count() > 0)
+                        <span
+                            class="w-3 h-3 absolute bg-red-600 rounded-full border-2 border-[#0000FF] -mt-5 ml-2.5"></span>
+                    @endif
+                </a>
+
+                {{-- <button type="button" id="notificationDropdownButton" data-dropdown-toggle="notificationDropdown"
                     class="w-fit h-fit rounded-full p-2 notification flex justify-center items-center">
                     <x-icons.bell_icon style="height: 23.33px; width: 20px;" class="text-white" />
                     @if ($unreadNotifications->count() > 0)
@@ -170,11 +179,11 @@ $unreadNotifications = \DB::table('notifications')
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="#" class="w-fit h-fit rounded-full p-2">
+                <a href="{{ route('elections.view') }}" class="w-fit h-fit rounded-full p-2">
                     <x-icons.election_icon style="height: 20px; width: 20px;" class="text-white" />
                 </a>
             </li>
