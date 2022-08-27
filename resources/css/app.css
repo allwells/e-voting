@@ -14,8 +14,8 @@
 
 * {
     scroll-behavior: smooth;
+    font-family: 'Gilroy Light', 'Gilroy Extra Bold' !important;
 }
-
 
 #result-arrow-icon {
 transition-duration: 0.4s;
@@ -27,18 +27,22 @@ transition-duration: 0.4s;
 
 .font-normal {
     font-weight: 400 !important;
+    font-family: 'Gilroy Light', 'Gilroy Extra Bold' !important;
 }
 
 .font-medium {
     font-weight: 500 !important;
+    font-family: 'Gilroy Light', 'Gilroy Extra Bold' !important;
 }
 
 .font-semibold {
     font-weight: 600 !important;
+    font-family: 'Gilroy Light', 'Gilroy Extra Bold' !important;
 }
 
 .font-bold {
     font-weight: 700 !important;
+    font-family: 'Gilroy Light', 'Gilroy Extra Bold' !important;
 }
 
 body {

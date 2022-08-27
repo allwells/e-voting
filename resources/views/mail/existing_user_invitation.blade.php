@@ -29,7 +29,7 @@
     <tr>
         <td>
             @include('beautymail::templates.minty.button', [
-                'text' => 'Go to election',
+                'text' => 'Go to election page',
                 'link' =>
                     env('APP_ENV') == 'production'
                         ? "https://evotin.herokuapp.com/elections/$election->id"

@@ -61,6 +61,19 @@ $years2 = $startDate->diffInYears($now);
                         </h3>
                     @endif
                 </div>
+
+                @if (auth()->user()->privilege == 'superuser')
+                    <div class="w-full flex justify-end items-center px-3">
+                        <a href="{{ route('elections.edit', $election) }}" title="Edit this election"
+                            class="hover:bg-white/20 rounded-md text-white p-1 mb-3">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                @endif
             </div>
 
             @if (auth()->user()->privilege == 'superuser' && $election->type == 'private')
@@ -82,6 +95,17 @@ $years2 = $startDate->diffInYears($now);
                             <div class="flex gap-2 justify-start items-center">
                                 <span>Created:</span>
                                 <span>{{ date('d F, Y', strtotime(str_replace('-', '', substr($election->created_at, 0, 10)))) }}</span>
+                            </div>
+
+                            <div class="flex gap-2 justify-start items-center">
+                                <span>Election Type:</span>
+                                @if ($election->type == 'private')
+                                    <span class="text-xs uppercase font-bold text-red-600">private</span>
+                                @endif
+
+                                @if ($election->type == 'public')
+                                    <span class="text-xs uppercase font-bold text-green-600">public</span>
+                                @endif
                             </div>
 
                             <div class="flex gap-2 justify-start items-center">
@@ -189,53 +213,129 @@ $years2 = $startDate->diffInYears($now);
 
         @if ($election->type == 'private' && auth()->user()->privilege == 'superuser')
             @if ($today->lt($election->start_date))
-                <div class="w-full px-3 md:px-5 relative">
-                    <form action="{{ route('import.file', $election) }}" method="POST" enctype="multipart/form-data"
-                        class="flex flex-col justify-start items-start gap-2">
-                        @csrf
+                <div class="w-full sm:p-6">
+                    <label class="text-neutral-700 font-bold sm:block hidden text-base">Send Invite</label>
 
-                        <label class="block text-sm font-bold text-neutral-800" for="imported_file">
-                            Import Participants
+                    <div class="w-full relative sm:border sm:rounded-xl sm:p-6 mt-3">
+                        <label class="text-neutral-700 font-bold text-sm uppercase">Send invite manually</label>
+
+                        <form action="{{ route('invite', $election) }}" method="POST">
+                            @csrf
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                                <div class="w-full">
+                                    <input type="text" name="fname" id="fname" placeholder="First name"
+                                        class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
+                                        required />
+                                </div>
+
+                                <div class="w-full">
+                                    <input type="text" name="lname" id="lname" placeholder="Last name"
+                                        class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
+                                        required />
+                                </div>
+
+                                <div class="w-full">
+                                    <input type="email" name="email" id="email" placeholder="Email address"
+                                        class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
+                                        required />
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end items-center mt-5">
+                                <button type="submit"
+                                    class="w-full sm:w-fit py-2.5 px-5 text-sm font-bold text-white rounded-md bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/30 flex justify-center items-center gap-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                    Send Invite
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="w-full flex justify-between items-center gap-3 mt-8 mb-4">
+                            <div class="border-b border-dashed flex-grow border-neutral-300"></div>
+                            <span class="text-lg font-bold uppercase text-neutral-400">Or</span>
+                            <div class="border-b border-dashed flex-grow border-neutral-300"></div>
+                        </div>
+
+                        <label class="text-neutral-700 font-bold text-sm uppercase mb-5">
+                            Upload list of users to send invites
                         </label>
 
-                        <div class="flex justify-end items-center flex-grow w-full">
-                            <input type="file" name="imported_file" id="imported_file"
-                                class="w-full px-3 flex-grow text-sm transition duration-300 border cursor-pointer border-transparent rounded-lg placeholder-neutral-400 bg-neutral-100 h-10 outline-0 text-neutral-600 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
-                                required />
+                        <div class="w-full mb-3">
+                            <h3 class="text-neutral-800 text-sm">
+                                File Format: <span class="font-bold">.csv</span>, <span class="font-bold">.xlsx</span>,
+                                and
+                                <span class="font-bold">.xls</span> only.
+                            </h3>
 
-                            <button type="submit"
-                                class="flex text-sm font-bold justify-center items-center gap-1 bg-[#0000FF] py-1.5 px-2 mr-1 absolute rounded-md shadow-md hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/30 text-white">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
-                                </svg>
-                                Upload
-                            </button>
+                            <div class="mt-3">
+                                <h3 class="font-semibold text-neutral-700 text-sm">
+                                    Valid Inputs:
+                                </h3>
+                                <ul class="mb-3 list-disc pl-4 text-sm text-neutral-700">
+                                    <li>First Name</li>
+                                    <li>Last Name</li>
+                                    <li>Email</li>
+                                </ul>
+
+                                <h3 class="mb-2 text-neutral-700 text-sm">
+                                    The user inputs are extracted as shown in the image below.
+                                </h3>
+                                <img src="{{ asset('images/file_upload_format.png') }}" alt="file upload format image"
+                                    height="100" />
+                            </div>
                         </div>
-                        <span class="text-xs text-neutral-600">
 
-                        </span>
-                    </form>
+                        <form action="{{ route('users.file-import') }}" method="POST" enctype="multipart/form-data"
+                            class="flex flex-col justify-start items-start gap-2 mt-6">
+                            @csrf
+
+                            <label for="imported_file" class="text-sm font-medium text-neutral-600">
+                                File to upload
+                                <span class="text-rose-500">*</span>
+                            </label>
+
+                            <div class="flex justify-end items-center flex-grow w-full">
+                                <input type="file" name="imported_file" id="imported_file"
+                                    class="w-full px-3 flex-grow text-sm transition duration-300 border cursor-pointer border-neutral-100 rounded-lg placeholder-neutral-400 bg-neutral-100 h-10 outline-0 text-neutral-600 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
+                                    required />
+
+                                <button type="submit"
+                                    class="flex justify-center items-center gap-1 bg-[#0000FF] py-1.5 px-2 mr-1 absolute rounded-md shadow-md hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/30 text-white text-sm font-bold">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                                    </svg>
+                                    Upload
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             @endif
         @endif
 
         <div
-            class="md:bg-[#0000FF] md:rounded-br-2xl h-[80px] md:rounded-bl-2xl px-5 w-full flex justify-end items-center">
+            class="md:bg-[#0000FF] md:rounded-br-2xl h-[80px] md:rounded-bl-2xl sm:px-5 w-full flex justify-end items-center">
             @if ($hasEnded)
                 <a href="{{ route('results.view', $election) }}" title="View election results"
-                    class="h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg md:hover:bg-white text-base md:bg-white/90 border border-transparent font-semibold md:focus:ring md:focus:ring-white/50 md:focus:bg-white bg-[#0000FF] hover:bg-[#0000CC] focus:bg-[#0000CC] focus:ring focus:ring-[#0000FF]/30">
+                    class="w-full sm:w-fit h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg md:hover:bg-white text-base md:bg-white/90 border border-transparent font-semibold md:focus:ring md:focus:ring-white/50 md:focus:bg-white bg-[#0000FF] hover:bg-[#0000CC] focus:bg-[#0000CC] focus:ring focus:ring-[#0000FF]/30">
                     View Insights
                 </a>
             @elseif ($hasNotStarted)
                 <button type="button" title="This election has not started" disabled
-                    class="h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg text-base md:bg-white/70 border border-transparent font-semibold bg-[#0000FF]/70">
+                    class="w-full sm:w-fit h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg text-base md:bg-white/70 border border-transparent font-semibold bg-[#0000FF]/50">
                     View Insights
                 </button>
             @else
                 <button type="button" title="Wait for election to end" disabled
-                    class="h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg text-base md:bg-white/70 border border-transparent font-semibold bg-[#0000FF]/70">
+                    class="w-full sm:w-fit h-[37px] py-1.5 px-5 text-white md:text-[#0000FF] rounded-lg text-base md:bg-white/70 border border-transparent font-semibold bg-[#0000FF]/50">
                     View Insights
                 </button>
             @endif

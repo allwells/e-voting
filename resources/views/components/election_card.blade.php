@@ -16,14 +16,27 @@ $exists = $hasVoted ? $hasVoted->user_id == auth()->user()->id : null;
 
 @php
 $now = \Carbon\Carbon::now();
-$date = \Carbon\Carbon::parse($election->end_date);
+$today = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $now);
+$endDate = \Carbon\Carbon::parse($election->end_date);
+$startDate = \Carbon\Carbon::parse($election->start_date);
 
-$years = $date->diffInYears($now);
-$months = $date->diffInMonths($now);
-$days = $date->diffInDays($now);
-$hours = $date->diffInHours($now);
-$minutes = $date->diffInMinutes($now);
-$seconds = $date->diffInSeconds($now);
+$hasNotStarted = $today->lt($election->start_date) && $today->lt($election->end_date);
+$hasStarted = $today->gt($election->start_date) && $today->lt($election->end_date);
+$hasEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed';
+
+$seconds = $endDate->diffInSeconds($now);
+$minutes = $endDate->diffInMinutes($now);
+$hours = $endDate->diffInHours($now);
+$days = $endDate->diffInDays($now);
+$months = $endDate->diffInMonths($now);
+$years = $endDate->diffInYears($now);
+
+$seconds2 = $startDate->diffInSeconds($now);
+$minutes2 = $startDate->diffInMinutes($now);
+$hours2 = $startDate->diffInHours($now);
+$days2 = $startDate->diffInDays($now);
+$months2 = $startDate->diffInMonths($now);
+$years2 = $startDate->diffInYears($now);
 @endphp
 
 <div class="rounded-2xl overflow-hidden flex flex-col justify-start items-start text-white"
@@ -73,25 +86,62 @@ $seconds = $date->diffInSeconds($now);
                                 d="M9.65156 9.74507L7.03125 7.26889V3.10059H7.96875V6.90123L10.3125 9.12049L9.65156 9.74507Z">
                             </path>
                         </svg>
-                        @if (!($now->gt($election->start_date) && $now->gt($election->end_date)))
+                        @if ($hasStarted)
                             @if ($years > 0)
-                                <span>Voting closes in {{ $years }} {{ $years == 1 ? 'year' : 'years' }}</span>
+                                <p class="text-sm font-medium -mr-1.5">Voting closes in</p>
+                                <p class="text-sm font-medium">
+                                    {{ $years }} {{ $years == 1 ? 'year' : 'years' }}
+                                </p>
                             @elseif ($months > 0)
-                                <span>Voting closes in {{ $months }}
-                                    {{ $months == 1 ? 'month' : 'months' }}</span>
+                                <p class="text-sm font-medium -mr-1.5">Voting closes in</p>
+                                <p class="text-sm font-medium">
+                                    {{ $months }}{{ $months == 1 ? 'month' : 'months' }}</p>
                             @elseif ($days > 0)
-                                <span>Voting closes in {{ $days }} {{ $days == 1 ? 'day' : 'days' }}</span>
+                                <p class="text-sm font-medium -mr-1.5">Voting closes in</p>
+                                <p class="text-sm font-medium">
+                                    {{ $days }} {{ $days == 1 ? 'day' : 'days' }}
+                                </p>
                             @elseif ($hours > 0)
-                                <span>Voting closes in {{ $hours }} {{ $hours == 1 ? 'hour' : 'hours' }}</span>
+                                <p class="text-sm font-medium -mr-1.5">Voting closes in</p>
+                                <p class="text-sm font-medium">{{ $hours }}
+                                    {{ $hours == 1 ? 'hour' : 'hours' }}
+                                </p>
                             @elseif ($minutes > 0)
-                                <span>Voting closes in {{ $minutes }}
-                                    {{ $minutes == 1 ? 'minute' : 'minutes' }}</span>
+                                <p class="text-sm font-medium -mr-1.5">Voting closes in</p>
+                                <p class="text-sm font-medium">{{ $minutes }}
+                                    {{ $minutes == 1 ? 'minute' : 'minutes' }}
+                                </p>
                             @else
-                                <span>Voting closes in few seconds</span>
+                                <p class="text-sm font-bold">Voting closes in few seconds</p>
+                            @endif
+                        @elseif ($hasNotStarted)
+                            @if ($years2 > 0)
+                                <p class="text-sm font-medium -mr-1.5">Voting opens in</p>
+                                <p class="text-sm font-medium">{{ $years2 }}
+                                    {{ $years2 == 1 ? 'year' : 'years' }}</p>
+                            @elseif ($months2 > 0)
+                                <p class="text-sm font-medium -mr-1.5">Voting opens in</p>
+                                <p class="text-sm font-medium">{{ $months2 }}
+                                    {{ $months2 == 1 ? 'month' : 'months' }}</p>
+                            @elseif ($days2 > 0)
+                                <p class="text-sm font-medium -mr-1.5">Voting opens in</p>
+                                <p class="text-sm font-medium">{{ $days2 }} {{ $days2 == 1 ? 'day' : 'days' }}
+                                </p>
+                            @elseif ($hours2 > 0)
+                                <p class="text-sm font-medium -mr-1.5">Voting opens in</p>
+                                <p class="text-sm font-medium">{{ $hours2 }}
+                                    {{ $hours2 == 1 ? 'hour' : 'hours' }}</p>
+                            @elseif ($minutes2 > 0)
+                                <p class="text-sm font-medium -mr-1.5">Voting opens in</p>
+                                <p class="text-sm font-medium">{{ $minutes2 }}
+                                    {{ $minutes2 == 1 ? 'minute' : 'minutes' }}
+                                </p>
+                            @else
+                                <p class="text-sm font-bold">Voting opens in few seconds</p>
                             @endif
                         @else
-                            <span>Voting closed
-                                {{ \Carbon\Carbon::create($election->end_date)->diffForHumans() }}</span>
+                            <p class="text-sm font-bold">Voting closed
+                                {{ \Carbon\Carbon::create($election->end_date)->diffForHumans() }}</p>
                         @endif
                     </span>
                 </div>

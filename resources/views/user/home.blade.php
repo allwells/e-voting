@@ -98,23 +98,11 @@
                     <h3 style="color: #555555;" class="text-xs">Latest Activity</h3>
 
                     <div
-                        class="w-full text-neutral-700 text-sm flex flex-col scrollbar-hide scroll-smooth overflow-y-scroll">
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
-                        <x-activity_card />
+                        class="w-full text-neutral-700 pb-2 text-sm flex flex-col scrollbar-hide scroll-smooth overflow-y-scroll">
+                        {{-- <x-activity_card /> --}}
+                        <div class="text-sm text-neutral-600 font-medium py-8 text-center">
+                            No activity.
+                        </div>
                     </div>
                 </div>
 
