@@ -225,19 +225,19 @@ $years2 = $startDate->diffInYears($now);
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                                 <div class="w-full">
                                     <input type="text" name="fname" id="fname" placeholder="First name"
-                                        class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
+                                        class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-white md:bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
                                         required />
                                 </div>
 
                                 <div class="w-full">
                                     <input type="text" name="lname" id="lname" placeholder="Last name"
-                                        class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
+                                        class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-white md:bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
                                         required />
                                 </div>
 
                                 <div class="w-full">
                                     <input type="email" name="email" id="email" placeholder="Email address"
-                                        class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
+                                        class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-white md:bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
                                         required />
                                 </div>
                             </div>
@@ -302,7 +302,7 @@ $years2 = $startDate->diffInYears($now);
 
                             <div class="flex justify-end items-center flex-grow w-full">
                                 <input type="file" name="imported_file" id="imported_file"
-                                    class="w-full px-3 flex-grow text-sm transition duration-300 border cursor-pointer border-neutral-100 rounded-lg placeholder-neutral-400 bg-neutral-100 h-10 outline-0 text-neutral-600 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
+                                    class="w-full px-3 flex-grow text-sm transition duration-300 border cursor-pointer border-neutral-100 rounded-lg placeholder-neutral-400 bg-white md:bg-neutral-100 h-10 outline-0 text-neutral-600 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
                                     required />
 
                                 <button type="submit"
