@@ -13,7 +13,7 @@
 
         <div class="flex flex-col gap-3 justify-center items-center w-full">
             <div class="flex justify-between items-center  w-full">
-                <h2 class="text-3xl font-semibold text-[#0000FF]">Elections</h2>
+                <h2 class="text-xl md:text-3xl font-semibold text-[#0000FF]">Elections</h2>
 
                 {{-- <button id="electionFeedsOptionDropDown" data-dropdown-toggle="electionFeeds"
                     class="hover:bg-neutral-100 focus:ring focus:ring-black/20 p-0.5 rounded-md text-[#0000FF]">
@@ -40,7 +40,19 @@
                     </ul>
                 </div> --}}
 
-                <div>
+                <div class="flex justify-end items-center gap-3">
+                    @if (auth()->user()->privilege == 'admin')
+                        <a href="{{ route('elections.create') }}"
+                            class="flex items-center justify-center gap-1 p-1.5 md:px-3 md:py-2 text-xs sm:text-sm text-white bg-[#0000FF] rounded-md font-bold hover:bg-[#0000DD] focus:bg-[#0000FF] focus:ring focus:ring-[#0000FF]/30">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            <span class="hidden md:block">Create Election</span>
+                        </a>
+                    @endif
+
                     <button type="button" data-modal-toggle="election-code-modal"
                         class="flex items-center justify-center gap-1 sm:gap-2 px-3 py-2 text-xs sm:text-sm text-white bg-[#0000FF] rounded-md font-bold hover:bg-[#0000DD] focus:bg-[#0000FF] focus:ring focus:ring-[#0000FF]/30">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

@@ -75,6 +75,7 @@ Route::middleware(['admin'])->group(function() {
     Route::delete('/elections/{election}/kickout/{participant}', 'App\Http\Controllers\ParticipantController@destroy')->name('participant.destroy');
 
     // CSV AND EXCEL SPREADSHEET ROUTES
+    Route::post('/elections/manage/{election:id}/invite', 'App\Http\Controllers\Superuser\ElectionController@sendInviteManually')->name('invite');
     Route::post('/elections/manage/{election:id}/import', 'App\Http\Controllers\Superuser\ElectionController@fileImport')->name('import.file');
 });
 

@@ -132,7 +132,104 @@ class ElectionController extends Controller
             return back()->with('error', 'Unauthorized action.');
         }
 
-        return view('superuser.create_election');
+        if(auth()->user()->privilege == 'admin')
+        {
+            return view('user.create_election');
+        } else {
+            return view('superuser.create_election');
+        }
+    }
+
+    public function sendInviteManually(Request $request, Election $election)
+    {
+        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+
+        if($isUnauthorizedUser)
+        {
+            return back()->with('error', 'Unauthorized action.');
+        }
+
+        $genPassword = Str()->random(32);
+        $passwordHash = Hash::make($genPassword);
+
+        $userExists = User::where('email', $request->email)->first();
+        $userId = null;
+
+        if(!$userExists)
+        {
+            $user = new User();
+            $user->fname = $request->fname;
+            $user->lname = $request->lname ? $request->lname : null;
+            $user->email = $request->email;
+            $user->password = $passwordHash;
+            $user->save();
+            $userId = $user->id;
+        }
+
+        $preferredUserId = $userExists ? $userExists->id : $userId;
+
+        $newParticipant = [
+            'user_id' => $preferredUserId,
+            'election_id' => $election->id,
+        ];
+
+        Participant::create($newParticipant);
+
+        if($userExists)
+        {
+            $newNotification = [
+                'user_id' => $preferredUserId,
+                'election_id' => $election->id,
+                'message' => 'You are invited to participate in a private election titled "' . $election->title . '"',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+
+            DB::table('notifications')->insert($newNotification);
+        }
+
+        if(!$userExists)
+        {
+            $recipient = $request->email;
+
+            $mailData = [
+                'recipient' => ['first_name' => $request->fname, 'email' => $recipient],
+                'from' => config('mail.from.address'),
+                'name' => config('app.name'),
+                'subject' => "Private Election Invitation",
+                'election' => $election,
+                'genPassword' => $genPassword
+            ];
+
+            $beautyMail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+            $beautyMail->send('mail.new_user_invitation', $mailData, function($message) use ($mailData, $recipient)
+            {
+                $message->to($recipient)
+                        ->from($mailData['from'], $mailData['name'])
+                        ->subject($mailData['subject']);
+            });
+
+        } else {
+            $recipient = $userExists->email;
+
+            $mailData = [
+                'recipient' => $userExists,
+                'from' => config('mail.from.address'),
+                'name' => config('app.name'),
+                'subject' => "Private Election Invitation",
+                'election' => $election
+            ];
+
+            $beautyMail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+            $beautyMail->send('mail.existing_user_invitation', $mailData, function($message) use ($mailData, $recipient)
+            {
+                $message->to($recipient)
+                        ->from($mailData['from'], $mailData['name'])
+                        ->subject($mailData['subject']);
+            });
+        }
+
+        return back()->with('success', 'Invite sent successfully!');
     }
 
     public function fileImport(Request $request, Election $election)
@@ -440,10 +537,18 @@ class ElectionController extends Controller
             return back()->with('error', 'Unauthorized action.');
         }
 
-        return view('superuser.edit_election', [
-            'election' => $election,
-            'candidates' => Candidate::where('election_id', $election->id)->get()
-        ]);
+        if(auth()->user()->privilege == 'admin')
+        {
+            return view('user.edit_election', [
+                'election' => $election,
+                'candidates' => Candidate::where('election_id', $election->id)->get()
+            ]);
+        } else {
+            return view('superuser.edit_election', [
+                'election' => $election,
+                'candidates' => Candidate::where('election_id', $election->id)->get()
+            ]);
+        }
     }
 
     public function edit(Request $request, Election $election)

@@ -62,9 +62,9 @@ $candidates = App\Models\Candidate::where('election_id', $election->id)->get();
     </div>
 
     <a href="{{ route('elections.show', $election) }}" id="result-arrow-btn"
-        class="bg-[#0000FF] h-full w-12 text-white flex justify-center items-center">
-        <svg class="w-6 h-6" id="result-arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
+        class="bg-[#0000FF] h-full w-8 sm:w-12 text-white flex justify-center items-center">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" id="result-arrow-icon" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
     </a>
