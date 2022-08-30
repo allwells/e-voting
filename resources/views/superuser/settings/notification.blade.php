@@ -29,6 +29,19 @@
                                 @if (auth()->user()->email_notifications == 'on') @checked(true) @endif />
                         </div>
                     </div>
+
+                    <div class="flex items-center justify-between px-2 py-1 border rounded-md sm:px-4 sm:py-2">
+                        <div class="text-neutral-700">
+                            <p class="text-sm font-bold">Email Notification</p>
+                            <span class="text-xs">Get email notifications about election results.</span>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" name="email_notification" id="email_notification"
+                                class="w-5 h-5 text-[#0000FF] border rounded border-neutral-400 focus:ring-[#0000FF]/50 focus:ring-2"
+                                @if (auth()->user()->email_notifications == 'on') @checked(true) @endif />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

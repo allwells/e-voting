@@ -10,27 +10,27 @@ $candidates = App\Models\Candidate::where('election_id', $result->id)->get();
         {{ $index }}
     </td>
 
-    <td class="px-2 py-3 text-left">
+    <td class="px-2 py-2 text-left">
         {{ $result->title }}
     </td>
 
     @if ($hasDescription)
-        <td class="px-2 py-3 text-left">
+        <td class="px-2 py-2 text-left">
             <div class="line-clamp-1 max-w-5xl w-full">
                 {{ $result->description }}
             </div>
         </td>
     @endif
 
-    <td class="px-2 py-3 text-center">
+    <td class="px-2 py-2 text-center">
         {{ $candidates->count() }}
     </td>
 
-    <td class="px-2 py-3 text-center">
+    <td class="px-2 py-2 text-center">
         {{ $votes->count() }}
     </td>
 
-    <td class="px-2 py-3 text-left">
+    <td class="px-2 py-2 text-left">
         <div class="text-[#0000FF] flex justify-center items-center">
             <a href="{{ route('results.view', $result) }}" title="View Results"
                 class="hover:bg-neutral-800/10 rounded-md p-1 focus:bg-neutral-800/20">

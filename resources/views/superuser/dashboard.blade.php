@@ -13,7 +13,7 @@
 
 
         <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div class="w-full overflow-x-auto">
+            <div class="w-full h-full overflow-x-auto">
                 <div class="flex justify-between items-center w-full mt-8">
                     <label class="text-neutral-700 font-bold text-base">Users</label>
                     <a href="{{ route('users') }}"
@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="w-full overflow-x-auto">
+            <div class="w-full h-full overflow-x-auto">
                 <div class="flex justify-between items-center w-full mt-8">
                     <label class="text-neutral-700 font-bold text-base">Results</label>
                     <a href="{{ route('results') }}"

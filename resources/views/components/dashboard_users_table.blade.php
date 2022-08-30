@@ -1,19 +1,19 @@
 @props(['index' => $index, 'user' => $user])
 
 <tr class="hover:bg-neutral-50 text-xs">
-    <td class="text-center cursor-default w-fit px-3">
+    <td class="text-center cursor-default w-fit px-2">
         {{ $index }}
     </td>
 
-    <td class="px-2 py-3 text-left">
+    <td class="px-2 py-3.5 text-left">
         {{ $user->fname }} {{ $user->lname }}
     </td>
 
-    <td class="px-2 py-3 text-left">
+    <td class="px-2 py-3.5 text-left">
         {{ $user->email }}
     </td>
 
-    <td class="px-2 py-3 text-left">
+    <td class="px-2 py-3.5 text-left">
         {{ $user->privilege }}
     </td>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class=" h-full @auth {{ auth()->user()->theme }}  @endauth" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class=" h-full @auth {{ auth()->user()->theme }} @endauth" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <!-- Required meta tags -->
@@ -34,30 +34,33 @@
 
 </head>
 
-<body class="@auth bg-neutral-100 @endauth dark:bg-neutral-800">
-    {{-- Navbar for non-authenticated users --}}
-    @guest
-        <x-navbar />
-    @endguest
+<body class="flex justify-center items-start w-full overflow-y-auto scrollbar-hide scroll-smooth">
+    <main class="max-w-[1500px] w-full @auth bg-neutral-100 @endauth dark:bg-neutral-800 border-x">
 
-    {{-- Main --}}
-    @yield('content')
+        {{-- Navbar for non-authenticated users --}}
+        @guest
+            <x-navbar />
+        @endguest
 
-    {{-- Footer --}}
-    @guest
-        <x-footer />
-    @endguest
+        {{-- Main --}}
+        @yield('content')
 
-    {{-- REMOVE COMMENTS BEFORE DEPLOYMENT --}}
-    {{-- <script src="{{ secure_asset('js/app.js') }}"></script> --}}
+        {{-- Footer --}}
+        @guest
+            <x-footer />
+        @endguest
 
-    {{-- For localhost - COMMENT THIS BEFORE DEPLOYMENT --}}
-    <script src="{{ asset('js/app.js') }}"></script>
+        {{-- REMOVE COMMENTS BEFORE DEPLOYMENT --}}
+        {{-- <script src="{{ secure_asset('js/app.js') }}"></script> --}}
 
-    <!-- Flowbite library -->
-    <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
-    <!-- Flowbite Datepicker library -->
-    <script src="https://unpkg.com/flowbite@1.4.5/dist/datepicker.js"></script>
+        {{-- For localhost - COMMENT THIS BEFORE DEPLOYMENT --}}
+        <script src="{{ asset('js/app.js') }}"></script>
+
+        <!-- Flowbite library -->
+        <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+        <!-- Flowbite Datepicker library -->
+        <script src="https://unpkg.com/flowbite@1.4.5/dist/datepicker.js"></script>
+    </main>
 </body>
 
 </html>

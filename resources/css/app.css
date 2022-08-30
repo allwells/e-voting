@@ -4,12 +4,13 @@
 
 @font-face {
     font-family: "Gilroy Extra Bold";
-    src: url('../fonts/gilroy/Gilroy-FREE/Gilroy-ExtraBold.otf')format('opentype');
+    src: url("../fonts/gilroy/Gilroy-FREE/Gilroy-ExtraBold.otf")
+        format("opentype");
 }
 
 @font-face {
     font-family: "Gilroy Light";
-    src: url('../fonts/gilroy/Gilroy-FREE/Gilroy-Light.otf')format('opentype');
+    src: url("../fonts/gilroy/Gilroy-FREE/Gilroy-Light.otf") format("opentype");
 }
 
 * {
@@ -17,7 +18,7 @@
 }
 
 #result-arrow-icon {
-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 }
 
 #result-arrow-btn:hover > #result-arrow-icon {
@@ -41,10 +42,7 @@ transition-duration: 0.4s;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-family: 'Gilroy Light' !important;
+    font-family: "Gilroy Light" !important;
 }
 
 .activities {
@@ -72,7 +70,7 @@ body {
 }
 
 #social-links ul a:hover {
-    color: #0000FF !important;
+    color: #0000ff !important;
 }
 
 #view-users-sub-tab,
@@ -111,7 +109,7 @@ body {
 #active-users {
     font-weight: 600 !important;
     color: #ffffff !important;
-    background-color: #0000FF;
+    background-color: #0000ff;
     /* box-shadow: 0 2px 8px #453fb177; */
 }
 
@@ -124,7 +122,7 @@ body {
 #active-information:hover,
 #active-settings:hover,
 #active-users:hover {
-    background-color: #0000FF;
+    background-color: #0000ff;
 }
 
 #active-dark-home,
@@ -138,7 +136,7 @@ body {
 #active-dark-users {
     font-weight: 600 !important;
     color: #ffffff !important;
-    background-color: #0000FF;
+    background-color: #0000ff;
 }
 
 #active-dark-home:hover,
@@ -150,7 +148,7 @@ body {
 #active-dark-information:hover,
 #active-dark-settings:hover,
 #active-dark-users:hover {
-    background-color: #0000FF;
+    background-color: #0000ff;
     box-shadow: 0 2px 8px #000;
 }
 
