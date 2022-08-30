@@ -1337,8 +1337,8 @@ input[type="range"]::-ms-fill-lower {
 .max-w-\[64px\] {
   max-width: 64px;
 }
-.max-w-\[1400px\] {
-  max-width: 1400px;
+.max-w-\[1500px\] {
+  max-width: 1500px;
 }
 .max-w-5xl {
   max-width: 64rem;
@@ -1348,9 +1348,6 @@ input[type="range"]::-ms-fill-lower {
 }
 .max-w-sm {
   max-width: 24rem;
-}
-.max-w-\[1500px\] {
-  max-width: 1500px;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1857,6 +1854,10 @@ input[type="range"]::-ms-fill-lower {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
+.py-3\.5 {
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+}
 .px-1\.5 {
   padding-left: 0.375rem;
   padding-right: 0.375rem;
@@ -1868,10 +1869,6 @@ input[type="range"]::-ms-fill-lower {
 .py-0 {
   padding-top: 0px;
   padding-bottom: 0px;
-}
-.py-3\.5 {
-  padding-top: 0.875rem;
-  padding-bottom: 0.875rem;
 }
 .pr-5 {
   padding-right: 1.25rem;
@@ -2394,7 +2391,7 @@ input[type="range"]::-ms-fill-lower {
 }
 
 body {
-    font-family: "Gilroy Light" !important;
+    font-family: "Gilroy Light", serif !important;
 }
 
 .activities {
