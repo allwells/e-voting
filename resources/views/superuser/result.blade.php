@@ -36,9 +36,11 @@
                         @endforeach
                     </tbody>
                 @else
-                    <div class="w-full py-5 flex justify-center items-center">
-                        <span class="text-base text-neutral-500 tracking-wider">No results.</span>
-                    </div>
+                    <tr>
+                        <td colspan="6" class="text-center py-10">
+                            <span class="text-base text-neutral-500 tracking-wider">No results.</span>
+                        </td>
+                    </tr>
                 @endif
             </table>
         </div>
