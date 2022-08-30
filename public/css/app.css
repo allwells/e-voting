@@ -1052,6 +1052,9 @@ input[type="range"]::-ms-fill-lower {
 .-mt-5 {
   margin-top: -1.25rem;
 }
+.-ml-3 {
+  margin-left: -0.75rem;
+}
 .block {
   display: block;
 }
@@ -1337,8 +1340,8 @@ input[type="range"]::-ms-fill-lower {
 .max-w-\[64px\] {
   max-width: 64px;
 }
-.max-w-\[1400px\] {
-  max-width: 1400px;
+.max-w-\[1500px\] {
+  max-width: 1500px;
 }
 .max-w-5xl {
   max-width: 64rem;
@@ -1348,9 +1351,6 @@ input[type="range"]::-ms-fill-lower {
 }
 .max-w-sm {
   max-width: 24rem;
-}
-.max-w-\[1500px\] {
-  max-width: 1500px;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1625,9 +1625,9 @@ input[type="range"]::-ms-fill-lower {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
-.bg-indigo-600 {
+.bg-\[\#0000FF\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(88 80 236 / var(--tw-bg-opacity));
+  background-color: rgb(0 0 255 / var(--tw-bg-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1637,16 +1637,16 @@ input[type="range"]::-ms-fill-lower {
   --tw-bg-opacity: 1;
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
-.bg-\[\#0000FF\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 255 / var(--tw-bg-opacity));
-}
 .bg-transparent {
   background-color: transparent;
 }
 .bg-rose-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(225 29 72 / var(--tw-bg-opacity));
+}
+.bg-indigo-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(88 80 236 / var(--tw-bg-opacity));
 }
 .bg-yellow-200 {
   --tw-bg-opacity: 1;
@@ -1857,6 +1857,10 @@ input[type="range"]::-ms-fill-lower {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
+.py-3\.5 {
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+}
 .px-1\.5 {
   padding-left: 0.375rem;
   padding-right: 0.375rem;
@@ -1868,10 +1872,6 @@ input[type="range"]::-ms-fill-lower {
 .py-0 {
   padding-top: 0px;
   padding-bottom: 0px;
-}
-.py-3\.5 {
-  padding-top: 0.875rem;
-  padding-bottom: 0.875rem;
 }
 .pr-5 {
   padding-right: 1.25rem;
@@ -2394,7 +2394,7 @@ input[type="range"]::-ms-fill-lower {
 }
 
 body {
-    font-family: "Gilroy Light" !important;
+    font-family: "Gilroy Light", serif, Verdana, Geneva, Tahoma, sans-serif !important;
 }
 
 .activities {
