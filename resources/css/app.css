@@ -42,7 +42,7 @@
 }
 
 body {
-    font-family: "Gilroy Light", serif !important;
+    font-family: "Gilroy Light", serif, Verdana, Geneva, Tahoma, sans-serif !important;
 }
 
 .activities {

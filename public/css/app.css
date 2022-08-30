@@ -1622,9 +1622,9 @@ input[type="range"]::-ms-fill-lower {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
-.bg-indigo-600 {
+.bg-\[\#0000FF\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(88 80 236 / var(--tw-bg-opacity));
+  background-color: rgb(0 0 255 / var(--tw-bg-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1634,16 +1634,16 @@ input[type="range"]::-ms-fill-lower {
   --tw-bg-opacity: 1;
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
-.bg-\[\#0000FF\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 255 / var(--tw-bg-opacity));
-}
 .bg-transparent {
   background-color: transparent;
 }
 .bg-rose-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(225 29 72 / var(--tw-bg-opacity));
+}
+.bg-indigo-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(88 80 236 / var(--tw-bg-opacity));
 }
 .bg-yellow-200 {
   --tw-bg-opacity: 1;
@@ -2391,7 +2391,7 @@ input[type="range"]::-ms-fill-lower {
 }
 
 body {
-    font-family: "Gilroy Light", serif !important;
+    font-family: "Gilroy Light", serif, Verdana, Geneva, Tahoma, sans-serif !important;
 }
 
 .activities {
