@@ -62,11 +62,19 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="border-b text-neutral-600 text-sm">
-                            @foreach ($users as $index => $user)
-                                <x-dashboard_users_table :index="$index + 1" :user="$user" />
-                            @endforeach
-                        </tbody>
+                        @if ($users->count() > 0)
+                            <tbody class="border-b text-neutral-600 text-sm">
+                                @foreach ($users as $index => $user)
+                                    <x-dashboard_users_table :index="$index + 1" :user="$user" />
+                                @endforeach
+                            </tbody>
+                        @else
+                            <tr>
+                                <td colspan="6" class="text-center py-10">
+                                    <span class="text-base text-neutral-500 tracking-wider">No users.</span>
+                                </td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
             </div>
@@ -96,9 +104,17 @@
                             </tr>
                         </thead>
                         <tbody class="border-b text-neutral-600 text-sm">
-                            @foreach ($results as $index => $result)
-                                <x-dashboard_results_table :index="$index + 1" :result="$result" :hasDescription="false" />
-                            @endforeach
+                            @if ($results->count() > 0)
+                                @foreach ($results as $index => $result)
+                                    <x-dashboard_results_table :index="$index + 1" :result="$result" :hasDescription="false" />
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="6" class="text-center py-10">
+                                        <span class="text-base text-neutral-500 tracking-wider">No results.</span>
+                                    </td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -131,9 +147,17 @@
                         </tr>
                     </thead>
                     <tbody class="border-b text-neutral-600 text-sm">
-                        @foreach ($elections as $index => $election)
-                            <x-election_table :index="$index + 1" :election="$election" :today="$today" />
-                        @endforeach
+                        @if ($elections->count() > 0)
+                            @foreach ($elections as $index => $election)
+                                <x-election_table :index="$index + 1" :election="$election" :today="$today" />
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6" class="text-center py-10">
+                                    <span class="text-base text-neutral-500 tracking-wider">No elections.</span>
+                                </td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
