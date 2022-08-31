@@ -1052,9 +1052,6 @@ input[type="range"]::-ms-fill-lower {
 .-mt-5 {
   margin-top: -1.25rem;
 }
-.-ml-3 {
-  margin-left: -0.75rem;
-}
 .block {
   display: block;
 }

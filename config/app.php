@@ -185,6 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
+        FruitCake\Cors\CorsServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Snowfire\Beautymail\BeautymailServiceProvider::class,
