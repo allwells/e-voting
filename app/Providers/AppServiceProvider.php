@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 use ConsoleTVs\Charts\Registrar as Charts;
 
@@ -24,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Charts $charts, UrlGenerator $url)
     {
-        if(env('APP_ENV') !== 'local')
+        if(env('APP_ENV') === 'production')
         {
             $url->forceSchema('https');
         }
