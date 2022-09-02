@@ -17,6 +17,10 @@
     scroll-behavior: smooth;
 }
 
+input#file-upload-field:hover ~ label#img-upload-btn {
+    background-color: black;
+}
+
 #result-arrow-icon {
     transition-duration: 0.4s;
 }

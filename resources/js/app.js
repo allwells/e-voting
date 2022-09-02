@@ -106,15 +106,20 @@ function addCandidateRow() {
                                     placeholder="Enter candidate's party" required>
                             </div>
                         </td>
+                        <td class="py-2">
+                            <div class="flex justify-center items-center px-2 relative overflow-hidden">
+                                <input name="image[]" type="file" id="file-upload-field"
+                                    class="absolute z-10 opacity-0 w-[2.5rem] px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded-lg border-transparent h-8 outline-0 text-neutral-700 hover:border-neutral-300 focus:border-[#0000FF] focus:ring-0">
+                                <label for="image" id="file-upload-btn" class="cursor-pointer text-neutral-600 hover:text-neutral-900 p-2 rounded-md bg-neutral-100 hover:bg-neutral-200 focus:bg-neutral-300/80 active:scale-90">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                                </label>
+                            </div>
+                        </td>
                         <td class="py-2 text-center">
                             <div class="w-full h-12 flex justify-center items-center">
                                 <button type="button"
-                                    class="text-white rounded bg-rose-600 hover:bg-rose-700 focus:bg-rose-700 focus:ring focus:ring-rose-400/30 remove-row">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M20 12H4"></path>
-                                    </svg>
+                                    class="text-white p-0.5 rounded bg-rose-600 hover:bg-rose-700 focus:bg-rose-700 focus:ring focus:ring-rose-400/30 remove-row">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                 </button>
                             </div>
                         </td>

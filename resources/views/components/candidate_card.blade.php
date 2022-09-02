@@ -26,7 +26,7 @@ $realWinnerId = (int)0;
     <div class="flex items-center justify-center gap-3">
         <div class="overflow-hidden rounded-full">
             <a href="#" class="overflow-hidden w-fit h-fit">
-                <img src="{{ asset('images/profile.jpg') }}" alt="profile picture"
+                <img src="{{ $candidate->image }}" alt="profile picture"
                     class="rounded-full md:h-20 md:w-20 md:min-h-[80px] md:min-w-[80px] md:max-h-[80px] md:max-w-[80px] h-16 w-16 min-h-[64px] min-w-[64px] max-h-[64px] max-w-[64px] {{ $hasEnded && !$isWinner ? 'opacity-40' : null }}"
                     title="View Profile" />
             </a>

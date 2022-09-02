@@ -62,7 +62,7 @@ $years2 = $startDate->diffInYears($now);
                     @endif
                 </div>
 
-                @if (auth()->user()->privilege == 'admin')
+                @if (auth()->user()->privilege === 'admin' && $today->lt($election->start_date))
                     <div class="w-full flex justify-end items-center px-3">
                         <a href="{{ route('elections.edit', $election) }}" title="Edit this election"
                             class="hover:bg-white/20 rounded-md text-white p-1 mb-3">

@@ -38,7 +38,7 @@ $years2 = $startDate->diffInYears($now);
             <div class="flex flex-col relative items-start justify-start w-full min-h-[218px] h-[218px] bg-black/50">
                 <div class="absolute mt-3 ml-3">
                     <a href="{{ url()->previous() }}"
-                        class="flex justify-center items-center text-white font-bold text-xs p-1 rounded-md hover:bg-white/20">
+                        class="flex items-center justify-center p-1 text-xs font-bold text-white rounded-md hover:bg-white/20">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
@@ -49,7 +49,7 @@ $years2 = $startDate->diffInYears($now);
                 </div>
 
                 <div class="flex flex-col items-center justify-center w-full h-full text-white">
-                    <h1 class="font-bold text-center md:text-4xl text-2xl">{{ $election->title }}</h1>
+                    <h1 class="text-2xl font-bold text-center md:text-4xl">{{ $election->title }}</h1>
                     <p class="mt-1 text-sm font-normal text-center">
                         {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->start_date, 0, 10)))) }} -
                         {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->end_date, 0, 10)))) }}
@@ -62,10 +62,10 @@ $years2 = $startDate->diffInYears($now);
                     @endif
                 </div>
 
-                @if (auth()->user()->privilege == 'superuser')
-                    <div class="w-full flex justify-end items-center px-3">
+                @if (auth()->user()->privilege === 'superuser' && $today->lt($election->start_date))
+                    <div class="flex items-center justify-end w-full px-3">
                         <a href="{{ route('elections.edit', $election) }}" title="Edit this election"
-                            class="hover:bg-white/20 rounded-md text-white p-1 mb-3">
+                            class="p-1 mb-3 text-white rounded-md hover:bg-white/20">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
@@ -80,7 +80,7 @@ $years2 = $startDate->diffInYears($now);
                 <div class="z-10 -mt-12 ml-3.5">
                     <button type="button" id="electionInfoButton" data-dropdown-toggle="electionInfo"
                         data-dropdown-placement="right"
-                        class="hover:bg-white/10 focus:bg-white/20 text-white transition duration-300 rounded-full p-1">
+                        class="p-1 text-white transition duration-300 rounded-full hover:bg-white/10 focus:bg-white/20">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -90,37 +90,37 @@ $years2 = $startDate->diffInYears($now);
 
                     <div id="electionInfo"
                         class="hidden z-10 w-full min-w-[17rem] max-w-[17rem] bg-white rounded-xl shadow-lg">
-                        <div class="p-4 text-sm text-neutral-700 w-full flex flex-col gap-3 justify-start items-start"
+                        <div class="flex flex-col items-start justify-start w-full gap-3 p-4 text-sm text-neutral-700"
                             aria-labelledby="electionInfoButton">
-                            <div class="flex gap-2 justify-start items-center">
+                            <div class="flex items-center justify-start gap-2">
                                 <span>Created:</span>
                                 <span>{{ date('d F, Y', strtotime(str_replace('-', '', substr($election->created_at, 0, 10)))) }}</span>
                             </div>
 
-                            <div class="flex gap-2 justify-start items-center">
+                            <div class="flex items-center justify-start gap-2">
                                 <span>Election Type:</span>
                                 @if ($election->type == 'private')
-                                    <span class="text-xs uppercase font-bold text-red-600">private</span>
+                                    <span class="text-xs font-bold text-red-600 uppercase">private</span>
                                 @endif
 
                                 @if ($election->type == 'public')
-                                    <span class="text-xs uppercase font-bold text-green-600">public</span>
+                                    <span class="text-xs font-bold text-green-600 uppercase">public</span>
                                 @endif
                             </div>
 
-                            <div class="flex gap-2 justify-start items-center">
+                            <div class="flex items-center justify-start gap-2">
                                 <span>Election Code:</span>
                                 <span class="text-[#0000FF] font-bold">{{ $election->accessCode }}</span>
                             </div>
 
-                            <div class="flex gap-2 justify-start items-center">
+                            <div class="flex items-center justify-start gap-2">
                                 <span>Code Status:</span>
                                 @if ($election->codeStatus == 'active')
                                     <span
-                                        class="text-green-700 text-xs uppercase font-bold">{{ $election->codeStatus }}</span>
+                                        class="text-xs font-bold text-green-700 uppercase">{{ $election->codeStatus }}</span>
                                 @else
                                     <span
-                                        class="text-red-700 text-xs uppercase font-bold">{{ $election->codeStatus }}</span>
+                                        class="text-xs font-bold text-red-700 uppercase">{{ $election->codeStatus }}</span>
                                 @endif
 
                                 <form action="{{ route('activation', $election) }}" method="POST">
@@ -129,10 +129,10 @@ $years2 = $startDate->diffInYears($now);
                                     <button type="submit">
                                         @if ($election->codeStatus == 'active')
                                             <span
-                                                class="text-white text-xs bg-red-700 font-bold rounded p-1">Deactivate</span>
+                                                class="p-1 text-xs font-bold text-white bg-red-700 rounded">Deactivate</span>
                                         @else
                                             <span
-                                                class="text-white text-xs bg-green-700 font-bold rounded p-1">Activate</span>
+                                                class="p-1 text-xs font-bold text-white bg-green-700 rounded">Activate</span>
                                         @endif
                                     </button>
                                 </form>
@@ -146,7 +146,7 @@ $years2 = $startDate->diffInYears($now);
         <div class="w-full px-3 md:px-5">
             <p class="text-xs">{{ $election->description }}</p>
 
-            <div class="flex items-start justify-start sm:justify-end w-full gap-5 mt-3">
+            <div class="flex items-start justify-start w-full gap-5 mt-3 sm:justify-end">
                 <div class="text-[#0000FF] w-fit h-fit flex flex-col items-center justify-start">
                     <p class="text-xs font-semibold">Votes</p>
                     <p class="text-2xl font-bold">{{ $votes->count() }}</p>
@@ -214,15 +214,15 @@ $years2 = $startDate->diffInYears($now);
         @if ($election->type == 'private' && auth()->user()->privilege == 'superuser')
             @if ($today->lt($election->start_date))
                 <div class="w-full sm:p-6">
-                    <label class="text-neutral-700 font-bold sm:block hidden text-base">Send Invite</label>
+                    <label class="hidden text-base font-bold text-neutral-700 sm:block">Send Invite</label>
 
-                    <div class="w-full relative sm:border sm:rounded-xl sm:p-6 mt-3">
-                        <label class="text-neutral-700 font-bold text-sm uppercase">Send invite manually</label>
+                    <div class="relative w-full mt-3 sm:border sm:rounded-xl sm:p-6">
+                        <label class="text-sm font-bold uppercase text-neutral-700">Send invite manually</label>
 
                         <form action="{{ route('invite', $election) }}" method="POST">
                             @csrf
 
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                            <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
                                 <div class="w-full">
                                     <input type="text" name="fname" id="fname" placeholder="First name"
                                         class="mt-1 w-full text-sm px-3 transition duration-300 border border-transparent rounded-lg h-11 outline-0 bg-white md:bg-neutral-100 text-neutral-600 hover:border-neutral-300 focus:ring-0 focus:border-[#0000FF]"
@@ -242,7 +242,7 @@ $years2 = $startDate->diffInYears($now);
                                 </div>
                             </div>
 
-                            <div class="flex justify-end items-center mt-5">
+                            <div class="flex items-center justify-end mt-5">
                                 <button type="submit"
                                     class="w-full sm:w-fit py-2.5 px-5 text-sm font-bold text-white rounded-md bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-[#0000FF]/30 flex justify-center items-center gap-1">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -256,34 +256,34 @@ $years2 = $startDate->diffInYears($now);
                             </div>
                         </form>
 
-                        <div class="w-full flex justify-between items-center gap-3 mt-8 mb-4">
-                            <div class="border-b border-dashed flex-grow border-neutral-300"></div>
+                        <div class="flex items-center justify-between w-full gap-3 mt-8 mb-4">
+                            <div class="flex-grow border-b border-dashed border-neutral-300"></div>
                             <span class="text-lg font-bold uppercase text-neutral-400">Or</span>
-                            <div class="border-b border-dashed flex-grow border-neutral-300"></div>
+                            <div class="flex-grow border-b border-dashed border-neutral-300"></div>
                         </div>
 
-                        <label class="text-neutral-700 font-bold text-sm uppercase mb-5">
+                        <label class="mb-5 text-sm font-bold uppercase text-neutral-700">
                             Upload list of users to send invites
                         </label>
 
                         <div class="w-full mb-3">
-                            <h3 class="text-neutral-800 text-sm">
+                            <h3 class="text-sm text-neutral-800">
                                 File Format: <span class="font-bold">.csv</span>, <span class="font-bold">.xlsx</span>,
                                 and
                                 <span class="font-bold">.xls</span> only.
                             </h3>
 
                             <div class="mt-3">
-                                <h3 class="font-semibold text-neutral-700 text-sm">
+                                <h3 class="text-sm font-semibold text-neutral-700">
                                     Valid Inputs:
                                 </h3>
-                                <ul class="mb-3 list-disc pl-4 text-sm text-neutral-700">
+                                <ul class="pl-4 mb-3 text-sm list-disc text-neutral-700">
                                     <li>First Name</li>
                                     <li>Last Name</li>
                                     <li>Email</li>
                                 </ul>
 
-                                <h3 class="mb-2 text-neutral-700 text-sm">
+                                <h3 class="mb-2 text-sm text-neutral-700">
                                     The user inputs are extracted as shown in the image below.
                                 </h3>
                                 <img src="{{ asset('images/file_upload_format.png') }}" alt="file upload format image"
@@ -292,7 +292,7 @@ $years2 = $startDate->diffInYears($now);
                         </div>
 
                         <form action="{{ route('users.file-import') }}" method="POST" enctype="multipart/form-data"
-                            class="flex flex-col justify-start items-start gap-2 mt-6">
+                            class="flex flex-col items-start justify-start gap-2 mt-6">
                             @csrf
 
                             <label for="imported_file" class="text-sm font-medium text-neutral-600">
@@ -300,7 +300,7 @@ $years2 = $startDate->diffInYears($now);
                                 <span class="text-rose-500">*</span>
                             </label>
 
-                            <div class="flex justify-end items-center flex-grow w-full">
+                            <div class="flex items-center justify-end flex-grow w-full">
                                 <input type="file" name="imported_file" id="imported_file"
                                     class="w-full px-3 flex-grow text-sm transition duration-300 border cursor-pointer border-neutral-100 rounded-lg placeholder-neutral-400 bg-white md:bg-neutral-100 h-10 outline-0 text-neutral-600 hover:border-neutral-400 focus:border-[#0000FF] focus:ring-0"
                                     required />

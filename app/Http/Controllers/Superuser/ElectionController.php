@@ -18,6 +18,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
+use Cloudinary\Configuration\Configuration;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ElectionController extends Controller
 {
@@ -360,6 +362,21 @@ class ElectionController extends Controller
 
     }
 
+    private function uploadCandidateImage($filePath)
+    {
+        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+
+        if($isUnauthorizedUser)
+        {
+            return back()->with('error', 'Unauthorized action.');
+        }
+
+        $options = [ 'folder' => "e-voting" ];
+        $path = cloudinary()->upload($filePath, $options)->getSecurePath();
+
+        return $path;
+    }
+
     public function create(Request $request, Election $election)
     {
         $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
@@ -397,7 +414,6 @@ class ElectionController extends Controller
             ];
 
             $query = DB::table('elections')->insert($electionValues);
-
             $election = Election::where('created_at', $electionValues['created_at'])->where('updated_at', $electionValues['updated_at'])->first();
 
             // if input is manual then do this
@@ -408,6 +424,7 @@ class ElectionController extends Controller
                     $candidate->election_id = $election->id;
                     $candidate->name = $candidateName;
                     $candidate->party = $request->party[$key];
+                    $candidate->image = $request->image[$key] ? $this->uploadCandidateImage($request->image[$key]->getRealPath()) : null;
                     $candidate->save();
                 }
             }
@@ -419,7 +436,7 @@ class ElectionController extends Controller
 
             if($query > 0)
             {
-                return back()->with('success', 'Election created successfully!');
+                return \redirect->route('elections.show', $election)->with('success', 'Election created successfully!');
             }
         }
 

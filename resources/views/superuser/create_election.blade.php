@@ -84,7 +84,7 @@
 
                 <div class="flex flex-col justify-center w-full gap-2 sm:gap-5 form-input-group md:flex-row">
                     <div class="w-full md:w-6/12">
-                        <label for="type" class="text-xs font-medium sm:text-sm text-neutral-500 dark:text-neutral-400">
+                        <label for="location" class="text-xs font-medium sm:text-sm text-neutral-500 dark:text-neutral-400">
                             Location
                         </label>
 
@@ -130,9 +130,10 @@
                             <tr class="border-y">
                                 <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Candidate Name</th>
                                 <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Candidate Party</th>
-                                <th class="w-12">
+                                <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600 w-[3rem]">Image</th>
+                                <th class="w-14">
                                     <button type="button"
-                                        class="w-fit text-white rounded bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-indigo-600/40 add-candidate-btn">
+                                        class="w-fit p-0.5 text-white rounded bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-indigo-600/40 add-candidate-btn">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
