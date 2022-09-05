@@ -1,9 +1,13 @@
 @props(['notification' => $notification])
 
+@php
+$election = \App\Models\Election::where('id', $notification->election_id)->first();
+@endphp
+
 <a href="#"
     class="flex justify-between items-start py-3 px-4 hover:bg-neutral-100 @if (!$notification->isRead) bg-neutral-100/50 @endif">
     <div class="flex-shrink-0">
-        <img class="w-10 h-10 rounded-full" src="{{ asset('images/profile.jpg') }}" alt="Jese image">
+        <img class="w-10 h-10 rounded-full" src="{{ $election->cover ? $election->cover : asset('images/profile-bg.jpg') }}" alt="election cover photo">
     </div>
 
     <div class="pl-3 flex-grow @if (!$notification->isRead) text-neutral-800 @endif">

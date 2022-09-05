@@ -12,23 +12,29 @@ $candidateVotes = App\Models\Vote::where('election_id', $election->id)
     ->where('candidate_id', $candidate->id)
     ->get();
 
-$realWinnerId = (int)0;
-    foreach ($winner as $key => $numberOfVotes)
-    {
+$realWinnerId = (int) 0;
+foreach ($winner as $key => $numberOfVotes)
+{
     $realWinnerId = $key;
     break;
-    }
+}
 
-    $isWinner = $candidate->id == $realWinnerId;
+$isWinner = $candidate->id == $realWinnerId;
 @endphp
 
 <div class="flex items-center justify-between px-4 py-3">
     <div class="flex items-center justify-center gap-3">
         <div class="overflow-hidden rounded-full">
             <a href="#" class="overflow-hidden w-fit h-fit">
-                <img src="{{ asset('images/profile.jpg') }}" alt="profile picture"
+                @if ($candidate->image)
+                <img src="{{ $candidate->image }}" alt="profile picture"
                     class="rounded-full md:h-20 md:w-20 md:min-h-[80px] md:min-w-[80px] md:max-h-[80px] md:max-w-[80px] h-16 w-16 min-h-[64px] min-w-[64px] max-h-[64px] max-w-[64px] {{ $hasEnded && !$isWinner ? 'opacity-40' : null }}"
                     title="View Profile" />
+                @else
+                <span class=" {{ $hasEnded && !$isWinner ? 'opacity-40' : null }}">
+                    <svg class="rounded-full md:w-[80px] md:h-[80px] h-[64px] w-[64px] md:min-w-[80px] md:min-h-[80px] min-h-[64px] min-w-[64px] md:max-w-[80px] md:max-h-[80px] max-h-[64px] max-w-[64px]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
+                @endif
+                </span>
             </a>
         </div>
 
@@ -41,9 +47,11 @@ $realWinnerId = (int)0;
                 <a href="#">{{ $candidate->name }}</a>
             </h2>
 
-            <p class="text-sm font-light capitalize {{ $hasEnded && !$isWinner ? 'opacity-40' : null }}">
-                {{ $candidate->party }}
-            </p>
+            @if ($candidate->party)
+                <p class="text-sm font-light capitalize {{ $hasEnded && !$isWinner ? 'opacity-40' : null }}">
+                    {{ $candidate->party }}
+                </p>
+            @endif
 
             @if ($hasEnded)
                     @if ($isWinner)

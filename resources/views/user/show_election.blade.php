@@ -33,7 +33,7 @@ $years2 = $startDate->diffInYears($now);
         </div>
 
         <div class="w-full min-h-[218px] flex justify-start items-start flex-col overflow-hidden rounded-2xl"
-            style="background-image: url('{{ asset('images/profile-bg.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            style="background-image: url('{{ $election->cover ? $election->cover : asset('images/profile-bg.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
             <div class="flex flex-col relative items-start justify-start w-full h-full bg-black/50">
                 <div class="absolute mt-3 ml-3">
@@ -62,7 +62,7 @@ $years2 = $startDate->diffInYears($now);
                     @endif
                 </div>
 
-                @if (auth()->user()->privilege == 'admin')
+                @if (auth()->user()->privilege === 'admin' && $today->lt($election->start_date))
                     <div class="w-full flex justify-end items-center px-3">
                         <a href="{{ route('elections.edit', $election) }}" title="Edit this election"
                             class="hover:bg-white/20 rounded-md text-white p-1 mb-3">

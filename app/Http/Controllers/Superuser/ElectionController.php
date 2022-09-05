@@ -18,6 +18,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
+use Cloudinary\Configuration\Configuration;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ElectionController extends Controller
 {
@@ -351,13 +353,89 @@ class ElectionController extends Controller
 
         foreach($uploadedData[0] as $candidates)
         {
-            $candidate = new Candidate();
-            $candidate->election_id = $election->id;
-            $candidate->name = $candidates['candidate_name'];
-            $candidate->party = $candidates['candidate_party'];
-            $candidate->save();
+            if($candidates['candidate_email'])
+            {
+                $user = User::where('email', $candidates['candidate_email'])->first();
+
+                if($user)
+                {
+                    $newNotification = [
+                        'user_id' => $user->id,
+                        'election_id' => $election->id,
+                        'message' => 'You have been nominated for this election: "' . $election->title . '"',
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ];
+
+                    DB::table('notifications')->insert($newNotification);
+                }
+
+                $preferredName = $user ? $user->fname : $candidates['candidate_name'];
+                $this->notifyCandidates($preferredName, $candidates['candidate_email'], $election);
+
+                $candidate = new Candidate();
+                $candidate->election_id = $election->id;
+                $candidate->name = $candidates['candidate_name'];
+                $candidate->email = $candidates['candidate_email'];
+                $candidate->party = $candidates['candidate_party'];
+                $candidate->image = $user ? $user->image : null;
+                $candidate->save();
+
+            } else {
+               return back()->with('info', 'Ensure that all candidates\' email are inputed correctly!');
+            }
+
         }
 
+    }
+
+    private function uploadCandidateImage($filePath)
+    {
+        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+
+        if($isUnauthorizedUser)
+        {
+            return back()->with('error', 'Unauthorized action.');
+        }
+
+        $options = [ 'folder' => "e-voting/profile-photos" ];
+        $path = cloudinary()->upload($filePath, $options)->getSecurePath();
+
+        return $path;
+    }
+
+    private function uploadElectionCover($filePath)
+    {
+        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+
+        if($isUnauthorizedUser)
+        {
+            return back()->with('error', 'Unauthorized action.');
+        }
+
+        $options = [ 'folder' => "e-voting/election-cover-photos" ];
+        $path = cloudinary()->upload($filePath, $options)->getSecurePath();
+
+        return $path;
+    }
+
+    private function notifyCandidates($firstName, $email, $election)
+    {
+        $mailData = [
+            'recipient' => $firstName,
+            'from' => config('mail.from.address'),
+            'name' => config('app.name'),
+            'subject' => "Nominated for an election",
+            'election' => $election
+        ];
+
+        $beautyMail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+        $beautyMail->send('mail.nominee', $mailData, function($message) use ($mailData, $email)
+        {
+            $message->to($email)
+                    ->from($mailData['from'], $mailData['name'])
+                    ->subject($mailData['subject']);
+        });
     }
 
     public function create(Request $request, Election $election)
@@ -369,6 +447,7 @@ class ElectionController extends Controller
             return back()->with('error', 'Unauthorized action.');
         }
 
+
         // validate user input
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:100',
@@ -376,17 +455,18 @@ class ElectionController extends Controller
             'type' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
+            'cover' => 'mimes:jpeg,svg,png|size:5000',
         ]);
 
         if(!$validator->passes()) {
-            return back()->with('warn', 'Oop! Something\'s not right. Check your inputs and try again.');
+            return back()->with('warn', 'Oops! Something\'s not right. Check your inputs and try again.');
         } else {
             $accessCode = Str::random(10);
-
             $electionValues = [
                     'user_id' => $request->user()->id,
                     'title' => $request->title,
                     'description' => $request->description,
+                    'cover' => $request->electionCover ? $this->uploadElectionCover($request->electionCover->getRealPath()) : null,
                     'type' => $request->type != 'private' && $request->type != 'public' ? 'public' : $request->type,
                     'location' => $request->location ? $request->location : null,
                     'accessCode' => $accessCode,
@@ -397,18 +477,37 @@ class ElectionController extends Controller
             ];
 
             $query = DB::table('elections')->insert($electionValues);
-
             $election = Election::where('created_at', $electionValues['created_at'])->where('updated_at', $electionValues['updated_at'])->first();
 
             // if input is manual then do this
-            if($request->name)
+            if($request->name && $request->email)
             {
                 foreach($request->name as $key => $candidateName) {
                     $candidate = new Candidate;
                     $candidate->election_id = $election->id;
                     $candidate->name = $candidateName;
-                    $candidate->party = $request->party[$key];
+                    $candidate->party = array_key_exists($key, $request->party) ? $request->party[$key] : null;
+                    $candidate->email = $request->email[$key];
+                    $candidate->image = array_key_exists($key, $request->image) ? $this->uploadCandidateImage($request->image[$key]->getRealPath()) : null;
                     $candidate->save();
+
+                    $user = User::where('email', $request->email[$key])->first();
+
+                    if($user)
+                    {
+                        $newNotification = [
+                            'user_id' => $user->id,
+                            'election_id' => $election->id,
+                            'message' => 'You have been nominated for this election: "' . $election->title . '"',
+                            'created_at' => date('Y-m-d H:i:s'),
+                            'updated_at' => date('Y-m-d H:i:s')
+                        ];
+
+                        DB::table('notifications')->insert($newNotification);
+                    }
+
+                    $preferredName = $user ? $user->fname : $candidateName;
+                    $this->notifyCandidates($preferredName, $request->email[$key], $election);
                 }
             }
 
@@ -419,7 +518,7 @@ class ElectionController extends Controller
 
             if($query > 0)
             {
-                return back()->with('success', 'Election created successfully!');
+                return \redirect()->route('elections.show', $election)->with('success', 'Election created successfully!');
             }
         }
 
