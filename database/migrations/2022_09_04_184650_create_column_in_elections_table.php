@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('candidates', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('election_id')->references('id')->on('elections')->onDelete('cascade');
-            $table->string('name');
-            $table->string('party')->nullable();
-            $table->string('image')->nullable();
-            $table->timestamps();
+        Schema::table('elections', function (Blueprint $table) {
+            $table->string('cover')->nullable()->after('description');
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidates');
+        Schema::table('elections', function (Blueprint $table) {
+            $table->dropColumn('cover');
+        });
     }
 };

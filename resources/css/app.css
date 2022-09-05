@@ -17,8 +17,14 @@
     scroll-behavior: smooth;
 }
 
-input#file-upload-field:hover ~ label#img-upload-btn {
-    background-color: black;
+#file-upload-field:active #file-upload-btn {
+    transform: scale(0.9);
+    background-color: #d4d4d4cc !important;
+}
+
+#file-upload-field:hover #file-upload-btn {
+    color: #171717;
+    background-color: #e5e5e5 !important;
 }
 
 #result-arrow-icon {

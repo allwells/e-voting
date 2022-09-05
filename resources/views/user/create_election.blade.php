@@ -5,7 +5,7 @@
 @section('home-page')
     <div class="flex flex-col w-full gap-5 p-4 bg-white rounded-xl sm:px-5 sm:py-6 min-h-fit">
         <div>
-            <h2 class="text-xl md:text-3xl text-[#0000FF] font-bold mb-1 -ml-1">Create Election</h2>
+            <label class="text-sm font-bold text-neutral-600 sm:text-base">Create Election</label>
             <x-breadcrumbs previousPage="Elections" currentPage="Create Election" link="elections.view" />
         </div>
 
@@ -82,7 +82,7 @@
 
                 <div class="flex flex-col justify-center w-full gap-2 sm:gap-5 form-input-group md:flex-row">
                     <div class="w-full md:w-6/12">
-                        <label for="type" class="text-xs font-medium sm:text-sm text-neutral-500 dark:text-neutral-400">
+                        <label for="location" class="text-xs font-medium sm:text-sm text-neutral-500 dark:text-neutral-400">
                             Location
                         </label>
 
@@ -117,6 +117,32 @@
                         @enderror
                     </div>
                 </div>
+
+                <div class="flex flex-col justify-start items-start w-full">
+                    <label for="location"
+                        class="text-xs mb-3 mt-2 font-medium sm:text-sm text-neutral-500 dark:text-neutral-400">
+                        Election Cover
+                    </label>
+
+                    <label for="dropzone-file"
+                        class="flex flex-col justify-center items-center w-full h-64 bg-neutral-50 rounded-lg border-2 border-neutral-300 border-dashed cursor-pointer hover:bg-neutral-100">
+                        <div class="flex flex-col justify-center items-center pt-5 pb-6">
+                            <svg aria-hidden="true" class="mb-3 w-10 h-10 text-neutral-400" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                </path>
+                            </svg>
+                            <p class="mb-2 text-sm text-neutral-500">
+                                <span class="font-semibold"> Click to upload</span> or drag and drop
+                            </p>
+                            <p class="text-xs text-neutral-500">
+                                SVG, PNG, JPG or GIF (MAX. 2MB)
+                            </p>
+                        </div>
+                        <input id="dropzone-file" name="electionCover" type="file" class="hidden" />
+                    </label>
+                </div>
             </div>
 
             <div class="flex flex-col gap-2 p-0 sm:px-5 sm:py-6 sm:border rounded-xl sm:gap-5">
@@ -128,9 +154,10 @@
                             <tr class="border-y">
                                 <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Candidate Name</th>
                                 <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Candidate Party</th>
-                                <th class="w-12">
+                                <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600 w-[3rem]">Image</th>
+                                <th class="w-14">
                                     <button type="button"
-                                        class="w-fit text-white rounded bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-indigo-600/40 add-candidate-btn">
+                                        class="w-fit p-0.5 text-white rounded bg-[#0000FF] hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-indigo-600/40 add-candidate-btn">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -155,7 +182,8 @@
                 <label class="text-sm font-bold text-neutral-600">Upload File (candidate data only)</label>
 
                 <div class="w-full">
-                    <p class="text-sm text-neutral-700 mb-2">Candidate data should be inputed in the format shown below:</p>
+                    <p class="text-sm text-neutral-700 mb-2">Candidate data should be inputed in the format shown below:
+                    </p>
                     <img src="{{ asset('images/candidate_upload_format.png') }}" alt="file upload format image"
                         height="100" />
                 </div>

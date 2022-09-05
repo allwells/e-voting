@@ -7,7 +7,7 @@ $candidates = App\Models\Candidate::where('election_id', $election->id)->get();
 
 <div class="flex justify-between items-start gap-3 rounded-lg overflow-hidden">
     <a href='{{ route('elections.show', $election) }}'
-        style="background-image: url({{ asset('images/profile-bg.jpg') }}); background-repeat: no-repeat; background-position: center; background-size: cover;"
+        style="background-image: url({{ $election->cover ? $election->cover : asset('images/profile-bg.jpg') }}); background-repeat: no-repeat; background-position: center; background-size: cover;"
         class="min-h-[4rem] min-w-[4rem] rounded-md">
     </a>
 

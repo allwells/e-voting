@@ -96,21 +96,28 @@ function addCandidateRow() {
                             <div class="flex justify-center items-center px-2">
                                 <input name="name[]" type="text" id="name"
                                     class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded-lg border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-[#0000FF] focus:ring-0"
-                                    placeholder="Enter candidate's full name" required>
+                                    placeholder="Candidate's full name" required>
+                            </div>
+                        </td>
+                        <td class="py-2">
+                            <div class="flex justify-center items-center px-2">
+                                <input name="email[]" type="email" id="email"
+                                    class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded-lg border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-[#0000FF] focus:ring-0"
+                                    placeholder="Candidate's email" required>
                             </div>
                         </td>
                         <td class="py-2">
                             <div class="flex justify-center items-center px-2">
                                 <input name="party[]" type="text" id="party"
                                     class="w-full px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded-lg border-transparent h-11 outline-0 text-neutral-600 placeholder-neutral-400 hover:border-neutral-300 focus:border-[#0000FF] focus:ring-0"
-                                    placeholder="Enter candidate's party" required>
+                                    placeholder="Candidate's party">
                             </div>
                         </td>
                         <td class="py-2">
-                            <div class="flex justify-center items-center px-2 relative overflow-hidden">
-                                <input name="image[]" type="file" id="file-upload-field"
-                                    class="absolute z-10 opacity-0 w-[2.5rem] px-3 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded-lg border-transparent h-8 outline-0 text-neutral-700 hover:border-neutral-300 focus:border-[#0000FF] focus:ring-0">
-                                <label for="image" id="file-upload-btn" class="cursor-pointer text-neutral-600 hover:text-neutral-900 p-2 rounded-md bg-neutral-100 hover:bg-neutral-200 focus:bg-neutral-300/80 active:scale-90">
+                            <div id="file-upload-field" class="flex justify-center items-center px-2 relative overflow-hidden">
+                                <input name="image[]" type="file" id="image"
+                                    class="absolute z-10 opacity-0 w-10 mt-1 text-sm transition duration-300 bg-neutral-100 border rounded-lg border-transparent h-10 outline-0 text-neutral-700 hover:border-neutral-300 focus:border-[#0000FF] focus:ring-0">
+                                <label for="image" id="file-upload-btn" class="cursor-pointer text-neutral-600 p-2 rounded-md bg-neutral-100">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                                 </label>
                             </div>
@@ -191,7 +198,9 @@ $(document).ready(function () {
 
             // open nav
             $(document).find("div.mobile-nav-menu").css("display", "flex");
-            $(document).find("div.mobile-nav-menu").css("flex-direction", "column");
+            $(document)
+                .find("div.mobile-nav-menu")
+                .css("flex-direction", "column");
 
             showNav = !showNav;
         } else {

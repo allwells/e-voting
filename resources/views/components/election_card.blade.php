@@ -39,32 +39,41 @@ $months2 = $startDate->diffInMonths($now);
 $years2 = $startDate->diffInYears($now);
 @endphp
 
-<div class="rounded-2xl overflow-hidden flex flex-col justify-start items-start text-white"
-    style="background-image:url('{{ asset('images/profile-bg.jpg') }}'); background-position:bottom; background-size:cover;">
-    <div class="bg-black/40 w-full h-fit md:h-80 flex flex-col justify-between items-start">
-        <div class="flex justify-between items-start w-full p-3 md:p-5">
+<div class="flex flex-col items-start justify-start overflow-hidden text-white rounded-2xl"
+    style="background-image:url('{{ $election->cover ? $election->cover : asset('images/profile-bg.jpg') }}'); background-position:bottom; background-size:cover;">
+    <div class="flex flex-col items-start justify-between w-full bg-black/40 h-fit md:h-80">
+        <div class="flex items-start justify-between w-full p-3 md:p-5">
             <div>
-                <h2 class="m-0 md:text-2xl text-xl text-left font-bold">{{ $election->title }}</h2>
-                <p class="text-sm font-normal mt-1">
+                <h2 class="m-0 text-xl font-bold text-left md:text-2xl">{{ $election->title }}</h2>
+                <p class="mt-1 text-sm font-normal">
                     {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->start_date, 0, 10)))) }} -
                     {{ date('d F, Y', strtotime(str_replace('-', '', substr($election->end_date, 0, 10)))) }}
                 </p>
             </div>
         </div>
 
-        <div class="flex flex-col justify-end items-start w-full md:mt-0 mt-3">
-            <div class="flex mb-5 -space-x-2 md:-space-x-4 px-3 md:px-5">
+        <div class="flex flex-col items-start justify-end w-full mt-3 md:mt-0">
+            <div class="flex mb-5 -space-x-1 md:-space-x-2.5 px-3 md:px-5">
                 @foreach ($candidates as $candidate)
                     @if ($election->id === $candidate->election_id)
-                        <img class="md:w-10 md:h-10 w-6 h-6 rounded-full border-2 border-white"
-                            src="{{ asset('images/profile.jpg') }}" alt="candidates profile">
+                        @if ($candidate->image)
+                            <img src="{{ $candidate->image }}" alt="{{ $candidate->name }}"
+                                class="w-6 h-6 border-2 rounded-full md:w-10 md:h-10 border-neutral-300" />
+                        @else
+                            <svg class="bg-black border-2 border-black rounded-full md:w-10 md:h-10 w-7 h-7"
+                                fill="currentColor" viewBox="2.2 2.2 15.6 15.6" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        @endif
                     @endif
                 @endforeach
             </div>
 
             <div class="bg-[#0000FF] h-auto w-full flex justify-start items-center px-3 md:px-5 pt-1 pb-2 md:py-3">
-                <div class="flex flex-col justify-start items-start w-full">
-                    <span class="flex justify-start items-center gap-3">
+                <div class="flex flex-col items-start justify-start w-full">
+                    <span class="flex items-center justify-start gap-3">
                         <svg style="width:14px; height: 9.26px;" viewBox="0 0 15 10" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -76,7 +85,7 @@ $years2 = $startDate->diffInYears($now);
                         </span>
                     </span>
 
-                    <span class="flex justify-start items-center gap-3 text-sm">
+                    <span class="flex items-center justify-start gap-3 text-sm">
                         <svg class="w-[15px] h-[14.17px]" viewBox="0 0 15 15" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
