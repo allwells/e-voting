@@ -1,11 +1,12 @@
 module.exports = {
-    darkMode: 'class',
+    darkMode: "class",
     content: [
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        './resources/**/*.blade.php',
-        './resources/**/*.js',
-        './resources/**/*.vue',
+        "./node_modules/flowbite/**/*.js",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
     ],
     theme: {
@@ -15,8 +16,8 @@ module.exports = {
         extend: {},
     },
     plugins: [
-        require('flowbite/plugin'),
-        require('@tailwindcss/line-clamp'),
-        require('tailwind-scrollbar-hide')
+        require("flowbite/plugin"),
+        require("@tailwindcss/line-clamp"),
+        require("tailwind-scrollbar-hide"),
     ],
-}
+};

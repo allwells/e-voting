@@ -12,14 +12,6 @@
     <!-- Page Title -->
     <title>@yield('title') | {{ config('app.name') }}</title>
 
-    <!-- Styles -->
-    <!-- Google fonts -->
-    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-        rel="stylesheet"> --}}
-
     @if (env('APP_ENV') == 'production')
         <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
     @else
@@ -50,16 +42,11 @@
             <x-footer />
         @endguest
 
-        {{-- REMOVE COMMENTS BEFORE DEPLOYMENT --}}
-        {{-- <script src="{{ secure_asset('js/app.js') }}"></script> --}}
-
-        {{-- For localhost - COMMENT THIS BEFORE DEPLOYMENT --}}
-        <script src="{{ asset('js/app.js') }}"></script>
-
-        <!-- Flowbite library -->
-        {{-- <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script> --}}
-        <!-- Flowbite Datepicker library -->
-        {{-- <script src="https://unpkg.com/flowbite@1.4.5/dist/datepicker.js"></script> --}}
+        @if (env('APP_ENV') == 'production')
+            <script src="{{ secure_asset('js/app.js') }}"></script>
+        @else
+            <script src="{{ asset('js/app.js') }}"></script>
+        @endif
     </main>
 </body>
 

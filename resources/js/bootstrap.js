@@ -12,6 +12,7 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 window.$ = require("jquery");
 require("chart.js");
 require("@chartisan/chartjs");
+require("flowbite");
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
