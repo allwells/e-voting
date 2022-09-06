@@ -17,6 +17,7 @@ class Option extends Model
      */
     protected $fillable = [
         'poll_id',
+        'value',
     ];
 
     public function responses()

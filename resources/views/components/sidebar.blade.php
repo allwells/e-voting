@@ -97,6 +97,18 @@
                                         View Elections
                                     </a>
                                 </li>
+                                <li>
+                                    <a id="@yield('create-polls-sub-tab')" href="{{ route('polls.create') }}"
+                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                        Create Polls
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="@yield('view-polls-sub-tab')" href="{{ route('polls.view') }}"
+                                        class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                        View Polls
+                                    </a>
+                                </li>
                             </ul>
                         @endif
                     </li>

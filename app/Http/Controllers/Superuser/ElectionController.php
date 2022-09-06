@@ -447,7 +447,6 @@ class ElectionController extends Controller
             return back()->with('error', 'Unauthorized action.');
         }
 
-
         // validate user input
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:100',

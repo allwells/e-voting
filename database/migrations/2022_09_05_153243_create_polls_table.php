@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('polls', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('cover')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->timestamps();
         });
     }

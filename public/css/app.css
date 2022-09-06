@@ -1093,6 +1093,9 @@ input:checked + .toggle-bg {
 .-mt-5 {
   margin-top: -1.25rem;
 }
+.mt-1\.5 {
+  margin-top: 0.375rem;
+}
 .block {
   display: block;
 }
@@ -1220,6 +1223,9 @@ input:checked + .toggle-bg {
 }
 .h-2 {
   height: 0.5rem;
+}
+.h-20 {
+  height: 5rem;
 }
 .max-h-\[0\.5rem\] {
   max-height: 0.5rem;
@@ -1354,6 +1360,12 @@ input:checked + .toggle-bg {
 .w-2 {
   width: 0.5rem;
 }
+.w-32 {
+  width: 8rem;
+}
+.w-\[10rem\] {
+  width: 10rem;
+}
 .min-w-\[4rem\] {
   min-width: 4rem;
 }
@@ -1374,6 +1386,9 @@ input:checked + .toggle-bg {
 }
 .min-w-\[64px\] {
   min-width: 64px;
+}
+.min-w-\[10rem\] {
+  min-width: 10rem;
 }
 .max-w-\[61\.8rem\] {
   max-width: 61.8rem;
@@ -1428,6 +1443,9 @@ input:checked + .toggle-bg {
 }
 .max-w-sm {
   max-width: 24rem;
+}
+.max-w-\[10rem\] {
+  max-width: 10rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -2038,6 +2056,10 @@ input:checked + .toggle-bg {
   padding-top: 0px;
   padding-bottom: 0px;
 }
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .pt-2 {
   padding-top: 0.5rem;
 }
@@ -2100,6 +2122,9 @@ input:checked + .toggle-bg {
 }
 .pt-1 {
   padding-top: 0.25rem;
+}
+.pl-2 {
+  padding-left: 0.5rem;
 }
 .text-left {
   text-align: left;
@@ -2865,6 +2890,12 @@ footer {
     }
 }
 
+.hover\:scale-95:hover {
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .hover\:cursor-default:hover {
   cursor: default;
 }
@@ -3025,6 +3056,18 @@ footer {
   background-color: rgb(209 250 229 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-black\/10:hover {
+  background-color: rgb(0 0 0 / 0.1);
+}
+
+.hover\:bg-red-600\/20:hover {
+  background-color: rgb(224 36 36 / 0.2);
+}
+
+.hover\:bg-red-600\/10:hover {
+  background-color: rgb(224 36 36 / 0.1);
+}
+
 .hover\:text-gray-900:hover {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
@@ -3100,6 +3143,11 @@ footer {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.hover\:text-red-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(224 36 36 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -3123,6 +3171,10 @@ footer {
 
 .focus\:z-10:focus {
   z-index: 10;
+}
+
+.focus\:border-0:focus {
+  border-width: 0px;
 }
 
 .focus\:border-\[\#0000FF\]:focus {
@@ -3244,6 +3296,10 @@ footer {
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.focus\:outline-0:focus {
+  outline-width: 0px;
 }
 
 .focus\:ring-2:focus {
@@ -3369,6 +3425,12 @@ footer {
 
 .focus\:ring-rose-400\/30:focus {
   --tw-ring-color: rgb(251 113 133 / 0.3);
+}
+
+.active\:scale-95:active {
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .active\:bg-gray-100:active {
@@ -3941,6 +4003,11 @@ footer {
   .sm\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .sm\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .sm\:pt-20 {

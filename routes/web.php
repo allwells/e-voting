@@ -75,6 +75,10 @@ Route::middleware(['admin'])->group(function() {
     Route::delete('/elections/manage/{election:id}/delete', 'App\Http\Controllers\Superuser\ElectionController@destroy')->name('elections.delete');
     Route::post('/elections/manage/{election:id}/activation', 'App\Http\Controllers\Superuser\ElectionController@codeActivation')->name('activation');
 
+    // POLLS ROUTE
+    Route::get('/elections/manage/poll/create', 'App\Http\Controllers\PollController@show')->name('polls.create');
+    Route::post('/elections/manage/poll/create', 'App\Http\Controllers\PollController@create');
+
     // PARTICIPANT ROUTE
     Route::delete('/elections/{election}/kickout/{participant}', 'App\Http\Controllers\ParticipantController@destroy')->name('participant.destroy');
 
