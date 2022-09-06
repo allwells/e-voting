@@ -16,3 +16,4 @@ yarn-error.log
 *.todo
 
 /public/js/app.js
+/public/js/app2.js
