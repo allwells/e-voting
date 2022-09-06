@@ -16,14 +16,18 @@ class PollController extends Controller
      */
     public function index()
     {
+        $polls = Poll::all();
+        $options = Option::all();
+        $responses = Response::all();
+
+        $data = [ 'polls' => $polls, 'options' => $options, 'responses' => $responses ];
+
         if(auth()->user()->privilege != 'superuser')
         {
-            $polls = Poll::all();
-            $options = Option::all();
-            $responses = Response::all();
-
-            return view('user.polls', [ 'polls' => $polls, 'options' => $options, 'responses' => $responses ]);
+            return view('user.polls', $data);
         }
+
+        return view('superuser.polls', $data);
     }
 
     /**
