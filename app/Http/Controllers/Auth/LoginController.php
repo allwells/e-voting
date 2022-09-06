@@ -20,7 +20,6 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-
     /**
      * Validate the user input and authenticate the user.
      * Get the path the path the user should be redirected to after a successful login.

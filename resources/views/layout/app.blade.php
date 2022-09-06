@@ -57,9 +57,9 @@
         <script src="{{ asset('js/app.js') }}"></script>
 
         <!-- Flowbite library -->
-        <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+        {{-- <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script> --}}
         <!-- Flowbite Datepicker library -->
-        <script src="https://unpkg.com/flowbite@1.4.5/dist/datepicker.js"></script>
+        {{-- <script src="https://unpkg.com/flowbite@1.4.5/dist/datepicker.js"></script> --}}
     </main>
 </body>
 

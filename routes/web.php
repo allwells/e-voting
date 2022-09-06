@@ -33,6 +33,10 @@ Route::middleware(['auth'])->group(function() {
     Route::delete('/election/{election:id}/{candidate:id}', 'App\Http\Controllers\Superuser\ElectionController@removeVote')->name('elections.vote.remove');
     Route::post('/elections/verify', 'App\Http\Controllers\Superuser\ElectionController@codeVerification')->name('elections.verify');
 
+    // POLLS ROUTE
+    Route::get('/polls', 'App\Http\Controllers\PollController@index')->name('polls.view');
+    Route::post('/polls/{poll:id}/{option:id}', 'App\Http\Controllers\PollController@store')->name('polls.respond');
+
     // RESULTS ROUTE
     Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');
     Route::get('/results/{election:id}', 'App\Http\Controllers\ResultController@show')->name('results.view');

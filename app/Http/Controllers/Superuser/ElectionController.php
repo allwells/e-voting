@@ -39,8 +39,8 @@ class ElectionController extends Controller
 
         foreach($privateElections as $privateElection)
         {
-            $electionId = $participants->pluck('election_id')->toArray();
-            if(in_array($privateElection->id , $electionId))
+            $electionIds = $participants->pluck('election_id')->toArray();
+            if(in_array($privateElection->id , $electionIds))
             {
                 $elections->push($privateElection);
             }
@@ -48,8 +48,8 @@ class ElectionController extends Controller
 
         foreach($publicElections as $publicElection)
         {
-            $electionId = $votes->pluck('election_id')->toArray();
-            if(in_array($publicElection->id , $electionId))
+            $electionIds = $votes->pluck('election_id')->toArray();
+            if(in_array($publicElection->id , $electionIds))
             {
                 $elections->push($publicElection);
             }
