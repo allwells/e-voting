@@ -14,7 +14,7 @@ $unreadNotifications = \DB::table('notifications')
 @endphp
 
 <nav
-    class="md:shadow-lg z-50 shadow-black/10 w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 flex items-center jusitify-between md:py-2 md:px-5 gap-5">
+    class="md:shadow-lg z-50 shadow-black/10 max-w-[1500px] w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 flex items-center jusitify-between md:py-2 md:px-5 gap-5">
     <div
         class="lg:max-w-[210px] flex-grow md:block flex justify-between items-center md:bg-transparent bg-white md:py-0 py-4 md:px-0 px-5">
         <div class="md:hidden flex justify-center items-center">

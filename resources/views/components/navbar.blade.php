@@ -1,5 +1,5 @@
 <nav id="navbar-container"
-    class="fixed z-50 w-full h-auto py-4 bg-white/50 backdrop-blur-sm @yield('nav-border') border-b sm:border-b-0 border-neutral-300">
+    class="fixed z-50 max-w-[1500px] w-full h-auto py-4 bg-white/50 backdrop-blur-sm @yield('nav-border') border-b sm:border-b-0 border-neutral-300">
     <div
         class="justify-start sm:justify-between px-20 items-start sm:items-center nav-contents flex flex-col sm:flex-row w-full">
 
