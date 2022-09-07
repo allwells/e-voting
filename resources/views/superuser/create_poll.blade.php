@@ -19,6 +19,79 @@
                 <x-error_message />
                 <x-warning_message />
 
+                <div class="w-full flex flex-col lg:flex-row items-center justify-center">
+                    <div class="lg:hidden w-full flex justify-start items-center mb-1">
+                        <p class="text-left text-sm font-bold text-neutral-600">Start Date</p>
+                    </div>
+
+                    <div class="flex-grow w-full relative flex justify-start items-center gap-5">
+                        <div date-rangepicker class="relative flex-grow">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-neutral-500" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input datepicker datepicker-format="yyyy-mm-dd" type="text" name="start_date"
+                                class="border border-neutral-200 text-neutral-700 sm:text-sm rounded-lg w-full pl-10 p-2.5"
+                                placeholder="Select start date" autocomplete="off" required>
+                        </div>
+
+                        <div class="relative flex-grow">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-neutral-500" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input name="start_time" type="time"
+                                class="border border-neutral-100 text-neutral-800 sm:text-sm rounded-lg outline-0 focus:ring-[#0000FF] w-full pl-10 p-2.5"
+                                placeholder="Select start time" autocomplete="off" required>
+                        </div>
+                    </div>
+
+                    <span class="mx-4 text-neutral-500 font-bold lg:block hidden">to</span>
+
+
+                    <div class="lg:hidden w-full flex justify-start items-center mb-1 mt-5">
+                        <p class="text-left text-sm font-bold text-neutral-600">End Date</p>
+                    </div>
+
+                    <div class="flex-grow w-full relative flex justify-start items-center gap-5">
+                        <div date-rangepicker class="relative flex-grow">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-neutral-500" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input datepicker datepicker-format="yyyy-mm-dd" type="text" name="end_date"
+                                class="border border-neutral-200 text-neutral-700 sm:text-sm rounded-lg focus:ring-[#0000FF] w-full pl-10 p-2.5"
+                                placeholder="Select end date" autocomplete="off" required>
+                        </div>
+
+                        <div class="relative flex-grow">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-neutral-500" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input name="end_time" type="time"
+                                class="border border-neutral-100 text-neutral-800 sm:text-sm rounded-lg outline-0 focus:ring-[#0000FF] w-full pl-10 p-2.5"
+                                placeholder="Select start time" autocomplete="off" required>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flex flex-col justify-center w-full gap-2 sm:gap-5 form-input-group md:flex-row">
                     <input name="title" type="text" id="title"
                         class="w-full mt-1 text-xl md:text-3xl font-bold border-0 px-1 focus:ring-0 h-20 outline-0 text-neutral-700 placeholder-neutral-400"
@@ -53,7 +126,7 @@
                                             <span class="text-xl font-bold mt-1.5">-</span>
                                             <input name="options[]" type="text" id="option"
                                                 class="w-full mt-1 text-base sm:text-lg border-0 h-14 focus:ring-0 outline-0 text-neutral-700 placeholder-neutral-400"
-                                                placeholder="Option" required>
+                                                placeholder="Option" autocomplete="off" required>
                                         </div>
                                     </td>
 
@@ -67,7 +140,7 @@
                                             <span class="text-xl font-bold mt-1.5">-</span>
                                             <input name="options[]" type="text" id="option"
                                                 class="w-full mt-1 text-base sm:text-lg border-0 h-14 focus:ring-0 outline-0 text-neutral-700 placeholder-neutral-400"
-                                                placeholder="Option" required>
+                                                placeholder="Option" autocomplete="off" required>
                                         </div>
                                     </td>
 

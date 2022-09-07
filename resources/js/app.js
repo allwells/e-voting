@@ -142,7 +142,7 @@ function addPollOptionRow() {
                                     <span class="text-xl font-bold mt-1.5">-</span>
                                         <input name="options[]" type="text" id="option"
                                             class="w-full mt-1 text-base sm:text-lg border-0 h-14 focus:ring-0 outline-0 text-neutral-700 placeholder-neutral-400"
-                                            placeholder="Option" required>
+                                            placeholder="Option" autocomplete="off" required>
                                     </div>
                                 </td>
 
