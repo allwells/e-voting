@@ -92,10 +92,12 @@
                     </div>
                 </div>
 
+                <div class="border-t"></div>
+
                 <div class="flex flex-col justify-center w-full gap-2 sm:gap-5 form-input-group md:flex-row">
                     <input name="title" type="text" id="title"
                         class="w-full mt-1 text-xl md:text-3xl font-bold border-0 px-1 focus:ring-0 h-20 outline-0 text-neutral-700 placeholder-neutral-400"
-                        placeholder="Poll question" required>
+                        placeholder="Enter poll question here..." required>
                 </div>
 
                 <div class="flex flex-col gap-2 sm:gap-5">
@@ -163,6 +165,7 @@
                         Create Poll
                     </button>
                 </div>
+            </div>
         </form>
     </div>
 @endsection

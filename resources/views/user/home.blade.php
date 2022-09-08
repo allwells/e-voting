@@ -5,8 +5,8 @@
 
 @section('views')
     <div
-        class="flex items-start justify-between w-full min-h-screen gap-4 p-4 pt-5 bg-white sm:p-5 md:gap-5 md:bg-transparent">
-        <div class="hidden h-full pt-16 md:block">
+        class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full min-h-screen gap-4 p-4 pt-5 bg-white sm:p-5 md:gap-5 md:bg-transparent">
+        <div class="hidden h-full pt-16 md:block md:col-start-1 md:col-end-2">
             <div class="bg-transparent h-fit w-fit md:w-48 rounded-2xl">
                 <ul style="color: #0000FF;" class="flex flex-col items-start justify-start gap-4 text-lg">
                     <li class="w-full">
@@ -58,7 +58,7 @@
 
         {{-- post feed section --}}
         <div
-            class="flex flex-col items-start justify-start flex-grow h-full gap-5 pt-16 overflow-y-auto rounded-2xl scrollbar-hide scroll-smooth">
+            class="flex flex-col items-start justify-start col-start-1 col-span-full md:col-start-2 lg:col-end-12 md:col-end-13 flex-grow h-full gap-5 pt-16 overflow-y-auto rounded-2xl scrollbar-hide scroll-smooth">
 
             @yield('home-page')
 
@@ -68,7 +68,7 @@
 
         {{-- profile and lastest activity section --}}
         <div
-            class="h-full rounded-2xl gap-5 w-[352px] min-w-[352px] max-w-[352px] lg:flex hidden flex-col overflow-y-auto scrollbar-hide scroll-smooth justify-start items-start pt-16 pb-28">
+            class="h-full rounded-2xl gap-5 w-[352px] min-w-[300px] max-w-[352px] lg:col-start-12 lg:col-end-13 lg:flex hidden flex-col overflow-y-auto scrollbar-hide scroll-smooth justify-start items-start pt-16 pb-28">
             <div class="flex flex-col items-start justify-start flex-grow w-full h-full gap-5 text-white rounded-2xl">
                 <div class="w-full rounded-2xl"
                     style="background-image:url('{{ asset('images/profile-bg.jpg') }}'); background-position:bottom; background-size:cover; min-height: 219px !important; max-height: 219px !important; height: 219px;">

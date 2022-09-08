@@ -13,10 +13,12 @@ $unreadNotifications = \DB::table('notifications')
     ->get();
 @endphp
 
+{{-- <nav
+    class="md:shadow-lg z-50 shadow-black/10 max-w-[1500px] w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 flex items-center jusitify-between md:py-2 md:px-5 gap-5"> --}}
 <nav
-    class="md:shadow-lg z-50 shadow-black/10 max-w-[1500px] w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 flex items-center jusitify-between md:py-2 md:px-5 gap-5">
+    class="md:shadow-lg z-50 shadow-black/10 max-w-[1500px] w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 md:py-2 md:px-5 gap-5 grid md:grid-cols-3">
     <div
-        class="lg:max-w-[210px] flex-grow md:block flex justify-between items-center md:bg-transparent bg-white md:py-0 py-4 md:px-0 px-5">
+        class="flex-grow md:block flex justify-between items-center md:bg-transparent bg-white md:py-0 py-4 md:px-0 px-5 md:col-start-1 md:col-end-2">
         <div class="md:hidden flex justify-center items-center">
             <button type="button">
                 <svg class="w-8 h-8 text-[#0000FF]" fill="currentColor" viewBox="0 0 20 20"
@@ -75,7 +77,7 @@ $unreadNotifications = \DB::table('notifications')
         </div>
     </div>
 
-    <div class="flex-grow md:flex hidden">
+    <div class="flex-grow md:flex hidden md:col-start-2 md:col-end-12">
         <form action="#" method="POST" class="flex justify-start items-center w-full">
             <svg class="w-4 h-4 z-10 absolute ml-4 text-white" viewBox="0 0 18 18" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +93,8 @@ $unreadNotifications = \DB::table('notifications')
         </form>
     </div>
 
-    <div class="lg:max-w-[370px] md:w-full md:flex md:justify-end items-center hidden">
+    <div
+        class="md:w-full md:flex md:justify-end items-center hidden flex-grow lg:w-[352px] lg:min-w-[352px] lg:max-w-[352px] md:col-start-12 md:col-end-13">
         <ul class="flex justify-end items-center gap-6 overflow-visible">
             <li class=" flex justify-center items-center rounded-full">
 
