@@ -1,6 +1,8 @@
 @extends('layout.layout')
 
 @section('title', 'Polls')
+@section('election-tab', auth()->user()->theme == 'dark' ? 'active-dark-election' : 'active-election')
+@section('view-polls-sub-tab', 'view-polls-sub-tab')
 
 @section('views')
     <div class="flex flex-col w-full gap-5 px-2 bg-white rounded-2xl sm:p-5">

@@ -19,7 +19,7 @@ $response = array_count_values($responses->pluck('option_id')->toArray());
 // Get list of all response for this poll,
 // reverse the collection and then pluck user_id from each into an array,
 // and finally, get the first 3 elements of the array.
-$responders = \App\Models\Response::where('poll_id', 1)
+$responders = \App\Models\Response::where('poll_id', $poll->id)
     ->latest()
     ->take(3)
     ->get()
@@ -55,7 +55,7 @@ $years = $endDate->diffInYears($now); // get the difference in years between the
 @endphp
 
 <div class="md:border w-full md:p-5 relative rounded-2xl">
-    <h1 class="text-lg font-medium text-neutral-700">What programming language are you proficient in?</h1>
+    <h1 class="text-lg font-medium text-neutral-700">{{ $poll->title }}</h1>
 
     <div class="flex flex-col justify-start items-start relative w-full mt-3 gap-3">
         @if ($options->count() > 0)
@@ -130,13 +130,15 @@ $years = $endDate->diffInYears($now); // get the difference in years between the
     </div>
 
     <div class="mt-3 text-sm text-neutral-500 flex justify-start items-center gap-2">
-        <div class="flex justify-start items-center -space-x-3">
-            @foreach ($users as $user)
-                <div style="background-image: url('{{ $user->image ? $user->image : asset('icons/default_user.svg') }}'); background-repeat: no-repeat; background-size: cover; background-position: center;"
-                class="border-2 border-white min-h-[2rem] min-w-[2rem] h-[2rem] w-[2rem] rounded-full">
-                </div>
-            @endforeach
-        </div>
+        @if ($users->count() > 0)
+            <div class="flex justify-start items-center -space-x-3">
+                @foreach ($users as $user)
+                    <div style="background-image: url('{{ $user->image ? $user->image : asset('icons/default_user.svg') }}'); background-repeat: no-repeat; background-size: cover; background-position: center;"
+                    class="border-2 border-white min-h-[2rem] min-w-[2rem] h-[2rem] w-[2rem] rounded-full">
+                    </div>
+                @endforeach
+            </div>
+        @endif
 
         <span>
             Total Responses:

@@ -156,7 +156,7 @@ $years2 = $startDate->diffInYears($now);
                 </div>
 
                 <a href="{{ route('elections.show', $election) }}"
-                    class="py-1.5 px-5 rounded-lg hover:bg-white text-base bg-white/90 text-[#0000FF] h-[36.45px] border border-transparent font-semibold focus:ring focus:ring-white/50 focus:bg-white">
+                    class="py-1.5 px-5 rounded-xl hover:bg-white text-base bg-white/90 text-[#0000FF] h-[36.45px] border border-transparent font-semibold focus:ring focus:ring-white/50 focus:bg-white">
                     @if ($exists)
                         Voted
                     @else

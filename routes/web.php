@@ -67,20 +67,24 @@ Route::middleware(['auth'])->group(function() {
 // ADMINS ROUTE
 Route::middleware(['admin'])->group(function() {
     // ELECTIONS ROUTE
-    Route::get('/elections/manage/create', 'App\Http\Controllers\Superuser\ElectionController@showCreate')->name('elections.create');
-    Route::post('/elections/manage/create', 'App\Http\Controllers\Superuser\ElectionController@create');
-    Route::post('/elections/manage/{election:id}/close', 'App\Http\Controllers\Superuser\ElectionController@close')->name('elections.close');
-    Route::get('/elections/manage/{election:id}/edit', 'App\Http\Controllers\Superuser\ElectionController@showEdit')->name('elections.edit');
-    Route::post('/elections/manage/{election:id}/edit', 'App\Http\Controllers\Superuser\ElectionController@edit');
-    Route::delete('/elections/manage/{election:id}/delete', 'App\Http\Controllers\Superuser\ElectionController@destroy')->name('elections.delete');
-    Route::post('/elections/manage/{election:id}/activation', 'App\Http\Controllers\Superuser\ElectionController@codeActivation')->name('activation');
+    Route::get('/event/election/create', 'App\Http\Controllers\Superuser\ElectionController@showCreate')->name('elections.create');
+    Route::post('/event/election/create', 'App\Http\Controllers\Superuser\ElectionController@create');
+    Route::post('/event/election/{election:id}/close', 'App\Http\Controllers\Superuser\ElectionController@close')->name('elections.close');
+    Route::get('/event/election/{election:id}/edit', 'App\Http\Controllers\Superuser\ElectionController@showEdit')->name('elections.edit');
+    Route::post('/event/election/{election:id}/edit', 'App\Http\Controllers\Superuser\ElectionController@edit');
+    Route::delete('/event/election/{election:id}/delete', 'App\Http\Controllers\Superuser\ElectionController@destroy')->name('elections.delete');
+    Route::post('/event/election/{election:id}/activation', 'App\Http\Controllers\Superuser\ElectionController@codeActivation')->name('activation');
+
+    // POLLS ROUTE
+    Route::get('/event/poll/create', 'App\Http\Controllers\PollController@show')->name('polls.create');
+    Route::post('/event/poll/create', 'App\Http\Controllers\PollController@create');
 
     // PARTICIPANT ROUTE
     Route::delete('/elections/{election}/kickout/{participant}', 'App\Http\Controllers\ParticipantController@destroy')->name('participant.destroy');
 
     // CSV AND EXCEL SPREADSHEET ROUTES
-    Route::post('/elections/manage/{election:id}/invite', 'App\Http\Controllers\Superuser\ElectionController@sendInviteManually')->name('invite');
-    Route::post('/elections/manage/{election:id}/import', 'App\Http\Controllers\Superuser\ElectionController@fileImport')->name('import.file');
+    Route::post('/event/election/{election:id}/invite', 'App\Http\Controllers\Superuser\ElectionController@sendInviteManually')->name('invite');
+    Route::post('/event/election/{election:id}/import', 'App\Http\Controllers\Superuser\ElectionController@fileImport')->name('import.file');
 });
 
 // SUPERUSER ROUTE

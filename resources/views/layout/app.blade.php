@@ -21,9 +21,7 @@
     {{-- Font awesome --}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
         integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
 </head>
 
 <body class="flex justify-center items-start w-full overflow-y-auto scrollbar-hide scroll-smooth">
@@ -44,8 +42,10 @@
 
         @if (env('APP_ENV') == 'production')
             <script src="{{ secure_asset('js/app.js') }}"></script>
+            <script src="{{ secure_asset('js/datepicker.js') }}"></script>
         @else
             <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('js/datepicker.js') }}"></script>
         @endif
     </main>
 </body>

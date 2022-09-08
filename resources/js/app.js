@@ -135,6 +135,30 @@ function addCandidateRow() {
     $("tbody.candidates-table").append(tableRow);
 }
 
+function addPollOptionRow() {
+    const optionsTableRow = `<tr>
+                                <td>
+                                    <div class="flex justify-start items-center px-2">
+                                    <span class="text-xl font-bold mt-1.5">-</span>
+                                        <input name="options[]" type="text" id="option"
+                                            class="w-full mt-1 text-base sm:text-lg border-0 h-14 focus:ring-0 outline-0 text-neutral-700 placeholder-neutral-400"
+                                            placeholder="Option" autocomplete="off" required>
+                                    </div>
+                                </td>
+
+                                <td class="w-[10rem] text-center">
+                                    <div class="flex justify-end items-center">
+                                        <button type="button"
+                                            class="flex justify-center items-center font-bold text-xs gap-1 text-red-500 p-2 rounded-md hover:text-red-700 hover:bg-red-600/10 remove-option-row active:scale-95">
+                                            Remove
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>`;
+
+    $("tbody.options-table").append(optionsTableRow);
+}
+
 function copyToClipboard(elementId) {
     var $temp = $("<input>");
     $("body").append($temp);
@@ -220,6 +244,15 @@ $(document).ready(function () {
     });
 
     $("tbody").on("click", "button.remove-row", function () {
+        $(this).parent().parent().parent().remove();
+    });
+
+    $("button.add-option-btn").on("click", function (event) {
+        event.preventDefault();
+        addPollOptionRow();
+    });
+
+    $("tbody").on("click", "button.remove-option-row", function () {
         $(this).parent().parent().parent().remove();
     });
 
