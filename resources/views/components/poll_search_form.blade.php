@@ -5,7 +5,7 @@
 
         <input type="search" id="default-search"
             class="block w-full pl-4 placeholder-neutral-400 text-sm text-neutral-600 h-12 bg-neutral-100 border border-neutral-100 hover:border-neutral-300 focus:border-[#0000FF] rounded-lg transition duration-300 focus:ring-0 outline-0"
-            placeholder="Search users..." required>
+            placeholder="Search polls..." required>
 
         <button type="submit"
             class="absolute right-1.5 bg-neutral-100 hover:bg-neutral-200 border border-transparent transition duration-300 outline-0 text-neutral-600 focus:border-[#0000FF] focus:bg-neutral-200 rounded-md p-2">

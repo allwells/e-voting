@@ -182,7 +182,7 @@ class ElectionController extends Controller
             $newNotification = [
                 'user_id' => $preferredUserId,
                 'election_id' => $election->id,
-                'message' => 'You are invited to participate in a private election titled "' . $election->title . '"',
+                'message' => 'You are invited to participate in a private election: <strong>' . $election->title . '</strong></a>',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ];
@@ -286,7 +286,7 @@ class ElectionController extends Controller
                 $newNotification = [
                     'user_id' => $preferredUserId,
                     'election_id' => $election->id,
-                    'message' => 'You are invited to participate in a private election titled "' . $election->title . '"',
+                    'message' => 'You are invited to participate in a private election: <strong>' . $election->title . '</strong>',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ];
@@ -362,7 +362,7 @@ class ElectionController extends Controller
                     $newNotification = [
                         'user_id' => $user->id,
                         'election_id' => $election->id,
-                        'message' => 'You have been nominated for this election: "' . $election->title . '"',
+                        'message' => 'You have been nominated for an election: <strong>' . $election->title . '</strong>',
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s')
                     ];
@@ -497,7 +497,7 @@ class ElectionController extends Controller
                         $newNotification = [
                             'user_id' => $user->id,
                             'election_id' => $election->id,
-                            'message' => 'You have been nominated for this election: "' . $election->title . '"',
+                            'message' => 'You have been nominated for an election: <strong>' . $election->title . '</strong>',
                             'created_at' => date('Y-m-d H:i:s'),
                             'updated_at' => date('Y-m-d H:i:s')
                         ];
@@ -517,6 +517,22 @@ class ElectionController extends Controller
 
             if($query > 0)
             {
+                $superusers = User::where('privilege', 'superuser')->get();
+                $ownerOfPost = User::where('id', $election->user_id)->first();
+
+                foreach($superusers as $superuser)
+                {
+                    $newNotification = [
+                        'user_id' => $superuser->id,
+                        'election_id' => $election->id,
+                        'message' => '<strong>'. ($ownerOfPost ? "$ownerOfPost->fname $ownerOfPost->lname" : "Deleted User") .'</strong> created a poll: <strong>' . $election->title . '</strong>',
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ];
+
+                    DB::table('notifications')->insert($newNotification);
+                }
+
                 return \redirect()->route('elections.show', $election)->with('success', 'Election created successfully!');
             }
         }
