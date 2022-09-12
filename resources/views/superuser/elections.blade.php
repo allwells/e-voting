@@ -9,7 +9,7 @@
         {{-- FOR SUPERUSER ELECTION PAGE --}}
         @if (auth()->user()->privilege == 'superuser')
             <div class="flex items-center justify-between">
-                <div class="flex flex-col justify-start items-start w-full">
+                <div class="flex flex-col items-start justify-start w-full">
                     <label class="text-sm font-bold text-neutral-600 sm:text-base">View Elections</label>
 
                     <x-error_message />
@@ -27,6 +27,10 @@
                         </svg>
                     </a>
                 @endif
+            </div>
+
+            <div class="flex items-center justify-center w-full">
+                <x-election_search_form />
             </div>
 
             <div class="overflow-x-auto">
@@ -55,7 +59,7 @@
                         </tr>
                     </thead>
                     @if ($elections->count() > 0)
-                        <tbody class="border-b">
+                        <tbody id="elections-content" class="border-b">
                             @foreach ($elections as $index => $election)
                                 <x-election_table :index="$index + 1" :election="$election" :today="$today" />
                             @endforeach

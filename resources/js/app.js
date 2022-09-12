@@ -167,9 +167,37 @@ function copyToClipboard(elementId) {
     $temp.remove();
 }
 
+// Search data in database tables
+function search(table) {
+    $(`#${table}-search`).on('keyup', function() {
+        $slug = $(this).val();
+
+        $.ajax({
+            type: "get",
+            url: `/search/${table}`,
+            data: {'slug': $slug},
+            success: function (data) {
+                $(`#${table}-content`).html(data);
+            }
+        });
+    })
+}
+
 let showMenu = true;
 let showNav = true;
 $(document).ready(function () {
+    // search users' table
+    search("users");
+
+    // search elections' table
+    search("elections");
+
+    // search results' table
+    search("results");
+
+    // search polls' table
+    search("polls");
+
     // create user account
     createAccount();
 

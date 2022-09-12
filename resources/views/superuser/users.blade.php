@@ -54,7 +54,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody class="text-sm border-b text-neutral-600">
+                <tbody id="users-content" class="text-sm border-b text-neutral-600">
                     @foreach ($users as $index => $user)
                         <x-users_table :index="$index + 1" :user="$user" />
                     @endforeach

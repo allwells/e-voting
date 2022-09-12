@@ -30,7 +30,7 @@
                 </thead>
 
                 @if ($elections->count() > 0)
-                    <tbody class="text-neutral-600">
+                    <tbody id="results-content" class="text-neutral-600">
                         @foreach ($elections as $index => $election)
                             <x-dashboard_results_table :index="$index + 1" :result="$election" :hasDescription="true" />
                         @endforeach

@@ -98,7 +98,13 @@ Route::middleware(['superuser'])->group(function() {
     Route::delete('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@destroy')->name('users.destroy');
     Route::post('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@privilege')->name('users.privilege');
 
-    // POLLS ROUTE
+    // SEARCH ROUTES
+    Route::get('/search/users', 'App\Http\Controllers\Superuser\UserController@search');
+    Route::get('/search/elections', 'App\Http\Controllers\Superuser\ElectionController@search');
+    Route::get('/search/polls', 'App\Http\Controllers\PollController@search');
+    Route::get('/search/results', 'App\Http\Controllers\ResultController@search');
+
+     // POLLS ROUTE
     Route::get('/polls/{poll}', 'App\Http\Controllers\PollController@view')->name('polls.show');
 
     // redirects to dashboard route

@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 @if ($polls->count() > 0)
-                    <tbody class="text-sm border-b text-neutral-600">
+                    <tbody id="polls-content" class="text-sm border-b text-neutral-600">
                         @foreach ($polls as $index => $poll)
                             <x-polls_table :index="$index + 1" :poll="$poll" :today="$today" />
                         @endforeach
