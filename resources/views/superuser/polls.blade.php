@@ -36,7 +36,7 @@
                 <thead>
                     <tr class="text-xs uppercase border-y text-neutral-700">
                         <th class="px-2 py-4 text-center">S/N</th>
-                        <th class="px-2 py-4 text-left">Poll Question</th>
+                        <th class="px-2 py-4 text-left">@sortablelink('title', 'Poll Question')</th>
                         <th class="px-2 py-4 text-center">Total Responses</th>
                         <th class="px-2 py-4 text-center">Action</th>
                     </tr>
@@ -48,11 +48,17 @@
                         @endforeach
                     </tbody>
                 @else
-                    <td class="text-sm border-b text-neutral-600">
-                        No polls.
+                <tr class="text-base text-center cursor-default text-neutral-500">
+                    <td colspan="6" class="pt-10 pb-5">
+                        Nothing to show.
                     </td>
+                </tr>
                 @endif
             </table>
+
+            <div class="px-3 pt-2.5">
+                {!! $polls->appends(\Request::except('page'))->render() !!}
+            </div>
         </div>
     </div>
 @endsection

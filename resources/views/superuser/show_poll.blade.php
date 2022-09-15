@@ -5,12 +5,12 @@
 
 @section('views')
     <div
-        class="flex flex-col relative items-start justify-start w-full gap-5 text-justify md:bg-white min-h-fit rounded-2xl">
+        class="relative flex flex-col items-start justify-start w-full gap-5 text-justify md:bg-white min-h-fit rounded-2xl">
 
-        <div class="md:border w-full md:p-5 relative rounded-2xl">
+        <div class="relative w-full md:border md:p-5 rounded-2xl">
             <h1 class="text-lg font-medium text-neutral-700">{{ $poll->title }}</h1>
 
-            <div class="flex flex-col justify-start items-start relative w-full mt-3 gap-3">
+            <div class="relative flex flex-col items-start justify-start w-full gap-3 mt-3">
                 @if ($options->count() > 0)
                     @foreach ($options as $option)
                         @if ($option->poll_id === $poll->id)
@@ -21,7 +21,7 @@
                                     @csrf
 
                                     <div
-                                        class="w-full border border-neutral-300 flex justify-start items-center overflow-hidden rounded-lg">
+                                        class="flex items-center justify-start w-full overflow-hidden border rounded-lg border-neutral-300">
                                         <button type="submit"
                                             class="text-left text-sm font-medium text-neutral-700 w-full rounded-lg p-3.5 hover:bg-neutral-100 transition duration-200">
                                             {{ $option->value }}
@@ -30,14 +30,14 @@
                                 </form>
                             @else
                                 <div
-                                    class="w-full relative flex justify-start items-center rounded-lg overflow-hidden border border-neutral-300">
+                                    class="relative flex items-center justify-start w-full overflow-hidden border rounded-lg border-neutral-300">
                                     <button type="button"
                                         style="width: {{ array_key_exists($option->id, $response) ? round(($response[$option->id] / $totalResponses) * 100) : 0 }}%;"
                                         class="bg-neutral-300 cursor-default text-left transition duration-1000 text-neutral-700 flex justify-start items-start border-0 outline-0 w-full min-h-[2.5rem]">
                                         <span class="absolute w-full min-h-[2.5rem] flex justify-between items-center px-3">
-                                            <span class="relative flex justify-start items-center gap-1 font-medium text-sm">
+                                            <span class="relative flex items-center justify-start gap-1 text-sm font-medium">
                                                 @if ($responseExists->option_id === $option->id)
-                                                    <span class="w-fit h-fit relative">
+                                                    <span class="relative w-fit h-fit">
                                                         <svg class="w-6 h-6" fill="none" stroke="currentColor"
                                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -57,12 +57,12 @@
                             @endif
                             @else
                             <div
-                            class="w-full relative flex justify-start items-center rounded-lg overflow-hidden border border-neutral-300">
+                            class="relative flex items-center justify-start w-full overflow-hidden border rounded-lg border-neutral-300">
                             <button type="button"
                                 style="width: {{ array_key_exists($option->id, $response) ? round(($response[$option->id] / $totalResponses) * 100) : 0 }}%;"
                                 class="bg-neutral-300 cursor-default text-left transition duration-1000 text-neutral-700 flex justify-start items-start border-0 outline-0 w-full min-h-[2.5rem]">
                                 <span class="absolute w-full min-h-[2.5rem] flex justify-between items-center px-3">
-                                    <span class="relative flex justify-start items-center gap-1 font-medium text-sm">
+                                    <span class="relative flex items-center justify-start gap-1 text-sm font-medium">
                                         {{ $option->value }}
                                     </span>
 
@@ -76,15 +76,15 @@
                         @endif
                     @endforeach
                 @else
-                    <div class="py-5 text-center flex justify-center items-center text-sm text-neutral-600 w-full relative">
+                    <div class="relative flex items-center justify-center w-full py-5 text-sm text-center text-neutral-600">
                         No options for this poll.
                     </div>
                 @endif
             </div>
 
-            <div class="mt-3 text-sm text-neutral-500 flex justify-start items-center gap-2">
+            <div class="flex items-center justify-start gap-2 mt-3 text-sm text-neutral-500">
                 @if ($users->count() > 0)
-                    <div class="flex justify-start items-center -space-x-3">
+                    <div class="flex items-center justify-start -space-x-3">
                         @foreach ($users as $user)
                             <div style="background-image: url('{{ $user->image ? $user->image : asset('icons/default_user.svg') }}'); background-repeat: no-repeat; background-size: cover; background-position: center;"
                             class="border-2 border-white min-h-[2rem] min-w-[2rem] h-[2rem] w-[2rem] rounded-full">

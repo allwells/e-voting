@@ -22,6 +22,10 @@ $candidates = App\Models\Candidate::where('election_id', $result->id)->get();
         </td>
     @endif
 
+    <td class="py-3 text-center text-[10px] uppercase font-bold">
+        <span class="{{ $result->type === 'public' ? 'text-green-600' : 'text-red-600' }}">{{ $result->type }}</span>
+    </td>
+
     <td class="px-2 py-2 text-center">
         {{ $candidates->count() }}
     </td>

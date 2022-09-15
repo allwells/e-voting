@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Superuser;
 
-use Mail;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Vote;
@@ -13,13 +12,10 @@ use App\Models\Participant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Snowfire\Beautymail\Beautymail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
-use Cloudinary\Configuration\Configuration;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ElectionController extends Controller
 {
@@ -64,7 +60,7 @@ class ElectionController extends Controller
 
         return view('superuser.elections', [
             'today' => $today,
-            'elections' => Election::all(),
+            'elections' => Election::sortable()->paginate(25),
         ]);
     }
 
@@ -82,7 +78,7 @@ class ElectionController extends Controller
             $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed';
 
             $result.=
-                '<tr class="hover:bg-neutral-50">
+                '<tr class="hover:bg-neutral-50 text-xs">
                     <td class="px-3 text-center cursor-default w-fit">
                         ' . $index + 1 . '
                     </td>
@@ -92,79 +88,79 @@ class ElectionController extends Controller
                     </td>
 
                     <td class="px-2 py-3 text-left">
-                    ' . $election->description . '
+                        <div class="w-full max-w-xl line-clamp-1">
+                            ' . $election->description . '
+                        </div>
+                    </td>
+
+                    <td class="py-3 text-center text-[10px] uppercase font-bold">
+                        <span class="' . ($election->type === "public" ? 'text-green-600'  : 'text-red-600') . '">' . $election->type .'</span>
                     </td>
 
                     <td class="py-3 text-xs font-bold text-left uppercase">
-                        @if ($isNotStarted)
-                            <span class="text-[#0000FF]">upcoming</span>
-                        @elseif ($isStarted)
-                            <span class="text-green-600">started</span>
-                        @elseif($isEnded)
-                            <span class="text-red-600">ended</span>
-                        @endif
+                        ' . ($isNotStarted ? '<span class="text-[#0000FF]">upcoming</span>' : null) . '
+                        ' . ($isStarted ? '<span class="text-green-600">started</span>' : null) . '
+                        ' . ($isEnded ? '<span class="text-red-600">ended</span>' : null) . '
                     </td>
 
-                    // <td class="text-center capitalize cursor-default">
-                    //     <button id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart-{{ $election->id }}"
-                    //         data-dropdown-placement="left-start"
-                    //         class="p-1 rounded hover:bg-neutral-200 hover:text-neutral-900 focus:bg-neutral-300 focus:text-neutral-900">
-                    //         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    //             <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
-                    //             </path>
-                    //         </svg>
-                    //     </button>
+                    <td class="text-center capitalize cursor-default">
+                        <button id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart-' . $election->id . '"
+                            data-dropdown-placement="left-start"
+                            class="p-1 rounded hover:bg-neutral-200 hover:text-neutral-900 focus:bg-neutral-300 focus:text-neutral-900">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
+                                </path>
+                            </svg>
+                        </button>
 
-                    //     <div id="dropdownLeftStart-{{ $election->id }}"
-                    //         class="absolute z-10 hidden bg-white rounded-lg shadow-lg right-4 w-44 dark:bg-neutral-700">
-                    //         <ul class="flex flex-col gap-1 p-1.5 text-sm text-neutral-500" aria-labelledby="dropdownLeftStartButton">
-                    //             <li>
-                    //                 <a href="{{ route("elections.show", $election->id) }}"
-                    //                     class="flex items-center justify-start w-full gap-2 px-3 py-2 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
-                    //                     View
-                    //                 </a>
-                    //             </li>
+                        <div id="dropdownLeftStart-' . $election->id . '"
+                            class="absolute z-10 hidden bg-white rounded-lg shadow-lg right-4 w-44 dark:bg-neutral-700">
+                            <ul class="flex flex-col gap-1 p-1.5 text-sm text-neutral-500" aria-labelledby="dropdownLeftStartButton">
+                                <li>
+                                    <a href="' . route("elections.show", $election->id) . '"
+                                        class="flex items-center justify-start w-full gap-2 px-3 py-2 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
+                                        View
+                                    </a>
+                                </li>
 
-                    //             @if ($isNotStarted)
-                    //                 <li>
-                    //                     <form action="{{ route("elections.edit", $election->id) }}" method="GET">
-                    //                         @csrf
+                                ' . ($isNotStarted ?
+                                    '<li>
+                                        <form action="' . route("elections.edit", $election->id) . '" method="GET">
+                                            ' . \csrf_field() . '
 
-                    //                         <button type="submit"
-                    //                             class="flex items-center justify-start w-full gap-2 px-3 py-2 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
-                    //                             Edit
-                    //                         </button>
-                    //                     </form>
-                    //                 </li>
-                    //             @endif
+                                            <button type="submit"
+                                                class="flex items-center justify-start w-full gap-2 px-3 py-2 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
+                                                Edit
+                                            </button>
+                                        </form>
+                                    </li>' : null) . '
 
-                    //             @if ($isStarted)
-                    //                 <li>
-                    //                     <form action="{{ route("elections.close", $election->id) }}" method="POST">
-                    //                         @csrf
+                                ' . ($isStarted ?
+                                    '<li>
+                                        <form action="' . route("elections.close", $election->id) . '" method="POST">
+                                            @csrf
 
-                    //                         <button type="submit"
-                    //                             class="flex items-center justify-start w-full gap-2 px-3 py-2 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
-                    //                             Close
-                    //                         </button>
-                    //                     </form>
-                    //                 </li>
-                    //             @endif
+                                            <button type="submit"
+                                                class="flex items-center justify-start w-full gap-2 px-3 py-2 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
+                                                Close
+                                            </button>
+                                        </form>
+                                    </li>' : null) . '
 
-                    //             <li>
-                    //                 <form action="{{ route("elections.delete", $election->id) }}" method="POST">
-                    //                     @csrf
-                    //                     @method("DELETE")
+                                <li>
+                                    <form action="' . route("elections.delete", $election->id) . '" method="POST">
+                                        @csrf
+                                        @method("DELETE")
 
-                    //                     <button type="submit"
-                    //                         class="flex items-center justify-start w-full gap-2 px-3 py-2 text-left transition duration-300 rounded-lg text-rose-600 hover:bg-neutral-100">
-                    //                         Delete
-                    //                     </button>
-                    //                 </form>
-                    //             </li>
-                    //         </ul>
-                    //     </div>
-                    // </td>
+                                        <button type="submit"
+                                            class="flex items-center justify-start w-full gap-2 px-3 py-2 text-left transition duration-300 rounded-lg text-rose-600 hover:bg-neutral-100">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>';
         }
 
@@ -284,7 +280,7 @@ class ElectionController extends Controller
         {
             $newNotification = [
                 'user_id' => $preferredUserId,
-                'election_id' => $election->id,
+                'event_id' => $election->id,
                 'message' => 'You are invited to participate in a private election: <strong>' . $election->title . '</strong></a>',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
@@ -388,7 +384,7 @@ class ElectionController extends Controller
             {
                 $newNotification = [
                     'user_id' => $preferredUserId,
-                    'election_id' => $election->id,
+                    'event_id' => $election->id,
                     'message' => 'You are invited to participate in a private election: <strong>' . $election->title . '</strong>',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
@@ -464,7 +460,7 @@ class ElectionController extends Controller
                 {
                     $newNotification = [
                         'user_id' => $user->id,
-                        'election_id' => $election->id,
+                        'event_id' => $election->id,
                         'message' => 'You have been nominated for an election: <strong>' . $election->title . '</strong>',
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s')
@@ -541,7 +537,7 @@ class ElectionController extends Controller
         });
     }
 
-    public function create(Request $request, Election $election)
+    public function create(Request $request)
     {
         $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
 
@@ -560,8 +556,8 @@ class ElectionController extends Controller
             'cover' => 'mimes:jpeg,svg,png|size:5000',
         ]);
 
-        if(!$validator->passes()) {
-            return back()->with('warn', 'Oops! Something\'s not right. Check your inputs and try again.');
+        if($validator->fails()) {
+            return back()->with('info', 'Oops! Something\'s not right. Check your inputs and try again.');
         } else {
             $accessCode = Str::random(10);
             $electionValues = [
@@ -599,7 +595,7 @@ class ElectionController extends Controller
                     {
                         $newNotification = [
                             'user_id' => $user->id,
-                            'election_id' => $election->id,
+                            'event_id' => $election->id,
                             'message' => 'You have been nominated for an election: <strong>' . $election->title . '</strong>',
                             'created_at' => date('Y-m-d H:i:s'),
                             'updated_at' => date('Y-m-d H:i:s')
@@ -627,8 +623,8 @@ class ElectionController extends Controller
                 {
                     $newNotification = [
                         'user_id' => $superuser->id,
-                        'election_id' => $election->id,
-                        'message' => '<strong>'. ($ownerOfPost ? "$ownerOfPost->fname $ownerOfPost->lname" : "Deleted User") .'</strong> created a poll: <strong>' . $election->title . '</strong>',
+                        'event_id' => $election->id,
+                        'message' => '<strong>'. ($ownerOfPost ? "$ownerOfPost->fname $ownerOfPost->lname" : "Deleted User") .'</strong> created an election: <strong>' . $election->title . '</strong>',
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s')
                     ];
@@ -661,6 +657,13 @@ class ElectionController extends Controller
 
         $allVotes = Vote::where('election_id', $election->id)->get()->pluck('candidate_id')->toArray();
         $winner = array_count_values($allVotes);
+
+        $notification = DB::table('notifications')->where('user_id', $request->user()->id)->where('event_id', $election->id)->where('isRead', 0)->first();
+
+        if($notification)
+        {
+            DB::table('notifications')->where('user_id', $request->user()->id)->where('event_id', $election->id)->where('isRead', 0)->update([ 'isRead' => 1]);
+        }
 
         if(auth()->user()->privilege != 'superuser')
         {
@@ -786,7 +789,7 @@ class ElectionController extends Controller
             'end_date' => 'required',
         ]);
 
-        if(!$validator->passes()) {
+        if($validator->fails()) {
             return back()->with('error', 'Oops! Something\'s not right. Check your inputs and try again.');
         } else {
             $electionValues = [

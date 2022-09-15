@@ -189,6 +189,7 @@ return [
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Snowfire\Beautymail\BeautymailServiceProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
 
         /*
          * Application Service Providers...

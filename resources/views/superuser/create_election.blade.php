@@ -20,6 +20,7 @@
 
                 <x-success_message />
                 <x-error_message />
+                <x-info_message />
 
                 <div class="flex flex-col justify-center w-full gap-2 sm:gap-5 form-input-group md:flex-row">
                     <div class="w-full md:w-6/12">

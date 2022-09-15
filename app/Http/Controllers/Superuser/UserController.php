@@ -24,9 +24,9 @@ class UserController extends Controller
             return back()->with('error', 'Unauthorized action.');
         }
 
-        return view('superuser.users', [
-            'users' => User::where('privilege', '!=', 'superuser')->paginate(25),
-        ]);
+        $users = User::where('privilege', '!=', 'superuser')->sortable()->paginate(25);
+
+        return view('superuser.users', compact('users'));
     }
 
     public function search(Request $request)
@@ -146,11 +146,12 @@ class UserController extends Controller
             'email' => 'required|email|unique:users|max:120',
         ]);
 
-        if(!$validator->passes()) {
+        if($validator->fails()) {
             return back()->with('warn', 'Something went wrong! Check your inputs and try again.');
         } else {
             $genPassword = Str()->random(32);
             $passwordHash = Hash::make($genPassword);
+
             $user = [
                 'fname' => $request->fname,
                 'lname' => $request->lname,

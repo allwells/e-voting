@@ -37,23 +37,27 @@
                 <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">
                     <thead class="text-xs uppercase text-neutral-700 border-y">
                         <tr>
-                            <th scope="col" class="px-3 text-center">
+                            <th scope="col" class="px-3 w-14 text-center">
                                 S/N
                             </th>
 
-                            <th scope="col" class="py-4 text-left">
-                                Title
+                            <th scope="col" class="py-4 pl-3 text-left">
+                                @sortablelink('title', 'Title')
                             </th>
 
-                            <th scope="col" class="py-4 text-left">
+                            <th scope="col" class="py-4 pl-3 text-left">
                                 Description
                             </th>
 
-                            <th scope="col" class="py-4 text-left">
+                            <th scope="col" class="py-4 w-14 text-center">
+                                @sortablelink('type', 'Type')
+                            </th>
+
+                            <th scope="col" class="py-4 w-20 text-center">
                                 Status
                             </th>
 
-                            <th scope="col" class="px-1 text-center">
+                            <th scope="col" class="px-1 w-16 text-center">
                                 Action
                             </th>
                         </tr>
@@ -72,6 +76,10 @@
                         </tr>
                     @endif
                 </table>
+
+                <div class="px-3 pt-2.5">
+                    {!! $elections->appends(\Request::except('page'))->render() !!}
+                </div>
             </div>
         @endif
     </div>

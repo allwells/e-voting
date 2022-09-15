@@ -183,9 +183,43 @@ function search(table) {
     })
 }
 
+// fetch responses
+function fetchResponse() {
+    $.ajax({
+        type: "GET",
+        url: "/response",
+        dataType: "json",
+        success: function(res) {
+            console.log(res)
+        }
+    })
+}
+
+// respond to polling
+function respond() {
+    $(document).on("submit", "#response-form", function (event) {
+        event.preventDefault();
+        let dataString = $(this).serialize();
+
+        $.ajax({
+            type: $(this).attr("method"),
+            url: $(this).attr("action"),
+            data: dataString,
+            success: function (res) {
+                console.log(res);
+            },
+        });
+    });
+}
+
 let showMenu = true;
 let showNav = true;
 $(document).ready(function () {
+    // fetchResponse();
+
+    // respond to polling
+    // respond();
+
     // search users' table
     search("users");
 

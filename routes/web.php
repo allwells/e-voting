@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function() {
 
     // POLLS ROUTE
     Route::get('/polls', 'App\Http\Controllers\PollController@index')->name('polls.view');
+    Route::get('/response', 'App\Http\Controllers\PollController@getResponse');
     Route::post('/polls/{poll:id}/{option:id}', 'App\Http\Controllers\PollController@store')->name('polls.respond');
 
     // RESULTS ROUTE
