@@ -21,8 +21,9 @@
                 <thead>
                     <tr class="text-xs uppercase border-y text-neutral-700">
                         <th class="py-4 text-center w-14">S/N</th>
-                        <th class="px-2 py-4 text-left">Election Title</th>
-                        <th class="px-2 py-4 text-left">Election Description</th>
+                        <th class="px-2 py-4 text-left">@sortablelink('title', 'Title')</th>
+                        <th class="px-2 py-4 text-left">Description</th>
+                        <th class="px-2 py-4 text-center w-20">@sortablelink('type', 'Privacy')</th>
                         <th class="px-2 py-4 text-center w-24">Candidates</th>
                         <th class="px-2 py-4 text-center w-16">Votes</th>
                         <th class="px-2 py-4 text-center w-16">Action</th>
@@ -30,7 +31,7 @@
                 </thead>
 
                 @if ($elections->count() > 0)
-                    <tbody class="text-neutral-600">
+                    <tbody id="results-content" class="text-neutral-600">
                         @foreach ($elections as $index => $election)
                             <x-dashboard_results_table :index="$index + 1" :result="$election" :hasDescription="true" />
                         @endforeach

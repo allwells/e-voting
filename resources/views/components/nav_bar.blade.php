@@ -98,8 +98,8 @@ $unreadNotifications = \DB::table('notifications')
         <ul class="flex justify-end items-center gap-6 overflow-visible">
             <li class=" flex justify-center items-center rounded-full">
 
-                <a href="{{ route('notifications') }}" class="hover:underline text-sm">
-                    <x-icons.bell_icon style="height: 23.33px; width: 20px;" class="text-white" />
+                <a href="{{ route('notifications') }}" title="Notifications" class="w-fit h-fit rounded-full p-1.5 hover:bg-white/40 transition duration-200 active:scale-90">
+                    <x-icons.bell_icon style="height: 23px; width: 23px;" class="text-white" />
                     @if ($unreadNotifications->count() > 0)
                         <span
                             class="w-[14px] h-[14px] absolute bg-red-600 rounded-full border-2 border-[#0000FF] -mt-7 ml-2.5"></span>
@@ -186,19 +186,25 @@ $unreadNotifications = \DB::table('notifications')
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="{{ route('elections.view') }}" class="w-fit h-fit rounded-full p-2">
+                <a href="{{ route('elections.view') }}" title="Previous elections" class="w-fit h-fit rounded-full p-2 hover:bg-white/40 transition duration-200 active:scale-90">
                     <x-icons.election_icon style="height: 20px; width: 20px;" class="text-white" />
                 </a>
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="{{ route('results') }}" class="w-fit h-fit rounded-full p-2">
+                <a href="{{ route('polls.view') }}" title="Polls" class="w-fit h-fit rounded-full p-1.5 hover:bg-white/40 transition duration-200 active:scale-90">
+                    <x-icons.polling_icon class="text-white w-6 h-6" />
+                </a>
+            </li>
+
+            <li class=" flex justify-center items-center rounded-full">
+                <a href="{{ route('results') }}" title="Results" class="w-fit h-fit rounded-full p-2 hover:bg-white/40 transition duration-200 active:scale-90">
                     <x-icons.chart_icon style="height: 19px; width: 19px;" class="text-white" />
                 </a>
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="{{ route('settings') }}" class="w-fit h-fit rounded-full p-2">
+                <a href="{{ route('settings') }}" title="Settings" class="w-fit h-fit rounded-full p-1.5 hover:bg-white/40 transition duration-200 active:scale-90">
                     <x-icons.settings_icon style="height: 25px; width: 25px;" class="text-white" />
                 </a>
             </li>

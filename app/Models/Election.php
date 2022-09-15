@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Models\Candidate;
-use App\Models\Participant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use Kyslik\ColumnSortable\Sortable;
+
 class Election extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +24,8 @@ class Election extends Model
         'start_date',
         'end_date',
     ];
+
+    public $sortable = ['title', 'type', 'start_date', 'end_date'];
 
     protected $casts = [
         'participants' => 'array'

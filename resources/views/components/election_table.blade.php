@@ -11,17 +11,25 @@ $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)
         {{ $index }}
     </td>
 
-    <td class="py-3 text-left">
+    <td class="py-3 pl-3 text-left">
         {{ $election->title }}
     </td>
 
-    <td class="py-3 text-left">
+    <td class="py-3 pl-3 text-left">
         <div class="w-full max-w-xl line-clamp-1">
             {{ $election->description }}
         </div>
     </td>
 
-    <td class="py-3 text-left text-xs uppercase font-bold">
+    <td class="py-3 text-center text-[10px] uppercase font-bold">
+        @if ($election->type === 'public')
+            <span class="text-green-600">{{ $election->type }}</span>
+        @elseif ($election->type === 'private')
+            <span class="text-red-600">{{ $election->type }}</span>
+        @endif
+    </td>
+
+    <td class="py-3 text-center text-[10px] uppercase font-bold">
         @if ($isNotStarted)
             <span class="text-[#0000FF]">upcoming</span>
         @elseif ($isStarted)

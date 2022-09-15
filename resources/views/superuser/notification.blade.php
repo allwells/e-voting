@@ -34,6 +34,7 @@
                             </button>
                         </form>
                     </li>
+
                     <li>
                         <a href="#"
                             class="flex justify-start items-center gap-1 rounded-lg px-3 py-2 hover:bg-neutral-100">
@@ -60,9 +61,8 @@
             </div>
         @else
             <div class="flex w-full justify-center items-center h-32">
-                <p class="text-sm md:text-base text-neutral-500 font-normal text-center tracking-wide">No notifications at
-                    the
-                    moment.
+                <p class="text-sm md:text-base text-neutral-500 font-normal text-center tracking-wide">
+                    No notifications at the moment.
                 </p>
             </div>
         @endif

@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function() {
 
     // POLLS ROUTE
     Route::get('/polls', 'App\Http\Controllers\PollController@index')->name('polls.view');
+    Route::get('/response', 'App\Http\Controllers\PollController@getResponse');
     Route::post('/polls/{poll:id}/{option:id}', 'App\Http\Controllers\PollController@store')->name('polls.respond');
 
     // RESULTS ROUTE
@@ -78,6 +79,7 @@ Route::middleware(['admin'])->group(function() {
     // POLLS ROUTE
     Route::get('/event/poll/create', 'App\Http\Controllers\PollController@show')->name('polls.create');
     Route::post('/event/poll/create', 'App\Http\Controllers\PollController@create');
+    Route::delete('/polls/{poll}', 'App\Http\Controllers\PollController@destroy')->name('polls.destroy');
 
     // PARTICIPANT ROUTE
     Route::delete('/elections/{election}/kickout/{participant}', 'App\Http\Controllers\ParticipantController@destroy')->name('participant.destroy');
@@ -96,6 +98,15 @@ Route::middleware(['superuser'])->group(function() {
     Route::post('/users/manage/import', 'App\Http\Controllers\Superuser\UserController@fileImport')->name('users.file-import');
     Route::delete('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@destroy')->name('users.destroy');
     Route::post('/users/{user:id}', 'App\Http\Controllers\Superuser\UserController@privilege')->name('users.privilege');
+
+    // SEARCH ROUTES
+    Route::get('/search/users', 'App\Http\Controllers\Superuser\UserController@search');
+    Route::get('/search/elections', 'App\Http\Controllers\Superuser\ElectionController@search');
+    Route::get('/search/polls', 'App\Http\Controllers\PollController@search');
+    Route::get('/search/results', 'App\Http\Controllers\ResultController@search');
+
+     // POLLS ROUTE
+    Route::get('/polls/{poll}', 'App\Http\Controllers\PollController@view')->name('polls.show');
 
     // redirects to dashboard route
     // Route::get('/', function() { return redirect()->route('dashboard'); });

@@ -22,9 +22,9 @@
                 <thead>
                     <tr class="text-xs uppercase border-y text-neutral-700">
                         <th class="px-2 py-4 text-center">S/N</th>
-                        <th class="px-2 py-4 text-left">First Name</th>
-                        <th class="px-2 py-4 text-left">Last Name</th>
-                        <th class="px-2 py-4 text-left">Email</th>
+                        <th class="px-2 py-4 text-left">@sortablelink('fname', 'First Name')</th>
+                        <th class="px-2 py-4 text-left">@sortablelink('lname', 'Last Name')</th>
+                        <th class="px-2 py-4 text-left">@sortablelink('email')</th>
                         <th class="px-2 py-4 text-left">Privilege</th>
 
                         <th scope="col w-14">
@@ -54,7 +54,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody class="text-sm border-b text-neutral-600">
+                <tbody id="users-content" class="text-sm border-b text-neutral-600">
                     @foreach ($users as $index => $user)
                         <x-users_table :index="$index + 1" :user="$user" />
                     @endforeach
@@ -62,7 +62,7 @@
             </table>
 
             <div class="px-3 pt-2.5">
-                {{ $users->links() }}
+                {!! $users->appends(\Request::except('page'))->render() !!}
             </div>
         </div>
     </div>

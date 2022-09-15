@@ -6,9 +6,11 @@ use App\Models\Option;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use Kyslik\ColumnSortable\Sortable;
+
 class Poll extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +22,8 @@ class Poll extends Model
         'cover',
         'user_id',
     ];
+
+    public $sortable = ['title'];
 
     public function options()
     {

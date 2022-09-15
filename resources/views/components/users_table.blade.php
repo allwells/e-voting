@@ -1,7 +1,7 @@
 @props(['index' => $index, 'user' => $user])
 
 <tr class="hover:bg-neutral-50">
-    <td class="text-center cursor-default w-fit px-3">
+    <td class="px-3 text-center cursor-default w-fit">
         {{ $index }}
     </td>
 
@@ -24,7 +24,7 @@
     <td class="text-center capitalize cursor-default">
         <button id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart-{{ $user->id }}"
             data-dropdown-placement="left-start"
-            class="p-1 hover:bg-neutral-200 rounded focus:bg-neutral-300 focus:text-neutral-900">
+            class="p-1 rounded hover:bg-neutral-200 focus:bg-neutral-300 focus:text-neutral-900">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
                 </path>
@@ -53,7 +53,7 @@
                     <form action="{{ route('users.block', $user->id) }}" method="POST">
                         @csrf
                         <button type="submit"
-                            class="flex items-center justify-start text-left w-full gap-2 p-3 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
+                            class="flex items-center justify-start w-full gap-2 p-3 text-left transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
                             Block user
                         </button>
                     </form>
@@ -64,7 +64,7 @@
                         @method('DELETE')
 
                         <button type="submit"
-                            class="flex items-center justify-start text-left w-full gap-2 p-3 transition duration-300 rounded-lg text-rose-600 hover:bg-neutral-100">
+                            class="flex items-center justify-start w-full gap-2 p-3 text-left transition duration-300 rounded-lg text-rose-600 hover:bg-neutral-100">
                             Delete
                         </button>
                     </form>

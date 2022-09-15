@@ -1,7 +1,16 @@
+@php
+$hasNotification = \Illuminate\Support\Facades\DB::table('notifications')
+    ->where('user_id', auth()->user()->id)
+    ->where('isRead', 0)
+    ->get()
+    ->count();
+@endphp
+
+
 <div
-    class="bg-white w-72 sm:relative fixed h-full sidebar-menu py-4 hidden md:flex justify-between items-start px-3.5 sm:px-5 flex-col z-50">
-    <div class="flex flex-col h-full justify-between">
-        <div class="w-full">
+    class="bg-white min-w-[17rem] sm:relative fixed h-full sidebar-menu py-4 hidden md:flex justify-between items-start px-3.5 sm:px-5 flex-col z-50">
+    <div class="flex flex-col justify-between w-full h-full overflow-y-auto scrollbar-hide scroll-smooth">
+        <div class="w-full overflow-y-auto scrollbar-hide scroll-smooth">
             <div class="items-center justify-start hidden tracking-wider sm:flex">
                 <a href="{{ route('home') }}" class="text-2xl font-bold home-btn sm:text-3xl">
                     <span class="text-neutral-700 dark:text-neutral-200">
@@ -98,9 +107,11 @@
                         </ul>
                     </li>
 
-                    <li class="w-full">
-                        {{-- <span
-                            class="min-h-[0.5rem] min-w-[0.5rem] max-h-[0.5rem] max-w-[0.5rem] h-2 w-2 bg-red-600 rounded-full"></span> --}}
+                    <li class="relative w-full">
+                        @if ($hasNotification > 0)
+                            <span
+                                class="min-h-[0.6rem] absolute z-10 top-[0.6rem] left-[0.65rem] min-w-[0.6rem] max-h-[0.6rem] max-w-[0.6rem] h-[0.6rem] w-[0.6rem] bg-red-600 rounded-full"></span>
+                        @endif
 
                         <a href="{{ route('notifications') }}" id="@yield('notifications-tab')"
                             class="flex items-start w-full gap-2 p-3 text-lg font-normal transition duration-300 rounded-md hover:bg-neutral-200/80 hover:text-neutral-900">
@@ -168,6 +179,6 @@
             </div>
         </div>
 
-        <x-profile_card />
+        {{-- <x-profile_card /> --}}
     </div>
 </div>

@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Vote;
 use App\Models\Election;
-use Jorenvh\Share\Share;
 use App\Models\Candidate;
-use App\Models\Participant;
 use Chartisan\PHP\Chartisan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ResultController extends Controller
 {
@@ -38,6 +35,58 @@ class ResultController extends Controller
         }
 
         return view('superuser.result', ['elections' => $closedElections]);
+    }
+
+    public function search(Request $request)
+    {
+        $result = "";
+        $elections = Election::where('title', 'Like', '%' . $request->slug . '%')->get();
+
+        foreach($elections as $index => $election)
+        {
+            $votes = Vote::where('election_id', $election->id)->get();
+            $candidates = Candidate::where('election_id', $election->id)->get();
+
+            $result.=
+                '<tr class="hover:bg-neutral-50 text-xs">
+                    <td class="px-3 text-center cursor-default w-fit">
+                        ' . $index + 1 . '
+                    </td>
+
+                    <td class="px-2 py-3 text-left">
+                        ' . $election->title . '
+                    </td>
+
+                    <td class="px-2 py-2 text-left">
+                        <div class="line-clamp-1 max-w-5xl w-full">
+                            ' . $election->description . '
+                        </div>
+                    </td>
+
+                    <td class="px-2 py-3 text-left">
+                        ' . $candidates->count() . '
+                    </td>
+
+                    <td class="px-2 py-3 text-left">
+                        ' . $votes->count() . '
+                    </td>
+
+                    <td class="px-2 py-2 text-left">
+                        <div class="text-[#0000FF] flex justify-center items-center">
+                            <a href="' . route('results.view', $election) . '" title="View Results"
+                                class="hover:bg-neutral-800/10 rounded-md p-1 focus:bg-neutral-800/20">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                    </td>
+                 </tr>';
+        }
+
+        return response($result);
     }
 
     // Send email to all participants of this election about the results being out.
