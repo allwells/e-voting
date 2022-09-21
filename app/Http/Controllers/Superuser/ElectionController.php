@@ -497,7 +497,7 @@ class ElectionController extends Controller
             return back()->with('error', 'Unauthorized action.');
         }
 
-        $options = [ 'folder' => "e-voting/profile-photos" ];
+        $options = [ 'folder' => "e_voting/Profile_Photos" ];
         $path = cloudinary()->upload($filePath, $options)->getSecurePath();
 
         return $path;
@@ -512,7 +512,7 @@ class ElectionController extends Controller
             return back()->with('error', 'Unauthorized action.');
         }
 
-        $options = [ 'folder' => "e-voting/election-cover-photos" ];
+        $options = [ 'folder' => "e_voting/Election_Cover_Photos" ];
         $path = cloudinary()->upload($filePath, $options)->getSecurePath();
 
         return $path;
@@ -835,6 +835,11 @@ class ElectionController extends Controller
         {
             return back()->with('error', 'Unauthorized action.');
         }
+
+        $notifications = DB::table('notifications')->where('event_id', $election->id)->get();
+        $notificationIds = $notifications->pluck('id')->toArray();
+
+        DB::table('notifications')->whereIn('event_id', $notificationIds)->delete();
 
         $election->delete();
 

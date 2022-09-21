@@ -1,4 +1,4 @@
-@props(['index' => $index, 'election' => $election, 'today' => $today])
+@props(['index' => $index, 'election' => $election, 'today' => $today, 'hasDescription' => $hasDescription])
 
 @php
 $isStarted = $today->gt($election->start_date) && $today->lt($election->end_date) && $election->status != 'closed';
@@ -6,8 +6,8 @@ $isNotStarted = $today->lt($election->start_date) && $today->lt($election->end_d
 $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed';
 @endphp
 
-<tr class="hover:bg-neutral-50 text-xs">
-    <td class="text-center cursor-default w-fit px-3">
+<tr class="text-xs hover:bg-neutral-50">
+    <td class="px-3 text-center cursor-default w-fit">
         {{ $index }}
     </td>
 
@@ -15,11 +15,13 @@ $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)
         {{ $election->title }}
     </td>
 
-    <td class="py-3 pl-3 text-left">
-        <div class="w-full max-w-xl line-clamp-1">
-            {{ $election->description }}
-        </div>
-    </td>
+    @if ($hasDescription)
+        <td class="py-3 pl-3 text-left">
+            <div class="w-full max-w-xl line-clamp-1">
+                {{ $election->description }}
+            </div>
+        </td>
+    @endif
 
     <td class="py-3 text-center text-[10px] uppercase font-bold">
         @if ($election->type === 'public')
@@ -42,7 +44,7 @@ $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)
     <td class="text-center capitalize cursor-default">
         <button id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart-{{ $election->id }}"
             data-dropdown-placement="left-start"
-            class="p-1 hover:bg-neutral-200 rounded hover:text-neutral-900 focus:bg-neutral-300 focus:text-neutral-900">
+            class="p-1 rounded hover:bg-neutral-200 hover:text-neutral-900 focus:bg-neutral-300 focus:text-neutral-900">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
                 </path>
@@ -91,7 +93,7 @@ $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)
                         @method('DELETE')
 
                         <button type="submit"
-                            class="flex items-center justify-start text-left w-full gap-2 px-3 py-2 transition duration-300 rounded-lg text-rose-600 hover:bg-neutral-100">
+                            class="flex items-center justify-start w-full gap-2 px-3 py-2 text-left transition duration-300 rounded-lg text-rose-600 hover:bg-neutral-100">
                             Delete
                         </button>
                     </form>

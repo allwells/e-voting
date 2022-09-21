@@ -3,14 +3,100 @@
 @tailwind utilities;
 
 @font-face {
+    font-family: "Gilroy Black";
+    src: url("../fonts/gilroy/fonts/Gilroy-Black.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gilroy Bold";
+    src: url("../fonts/gilroy/fonts/Gilroy-Bold.otf") format("opentype");
+}
+
+@font-face {
     font-family: "Gilroy Extra Bold";
-    src: url("../fonts/gilroy/Gilroy-FREE/Gilroy-ExtraBold.otf")
+    src: url("../fonts/gilroy/fonts/Gilroy-ExtraBold.otf")
         format("opentype");
 }
 
 @font-face {
+    font-family: "Gilroy Heavy";
+    src: url("../fonts/gilroy/fonts/Gilroy-Heavy.otf") format("opentype");
+}
+
+@font-face {
     font-family: "Gilroy Light";
-    src: url("../fonts/gilroy/Gilroy-FREE/Gilroy-Light.otf") format("opentype");
+    src: url("../fonts/gilroy/fonts/Gilroy-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gilroy Light Italic";
+    src: url("../fonts/gilroy/fonts/Gilroy-LightItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gilroy Medium";
+    src: url("../fonts/gilroy/fonts/Gilroy-Medium.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gilroy Regular";
+    src: url("../fonts/gilroy/fonts/Gilroy-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gilroy Regular Italic";
+    src: url("../fonts/gilroy/fonts/Gilroy-RegularItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gilroy Thin";
+    src: url("../fonts/gilroy/fonts/Gilroy-Thin.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gilroy Thin Italic";
+    src: url("../fonts/gilroy/fonts/Gilroy-ThinItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gilroy Ultra Light";
+    src: url("../fonts/gilroy/fonts/Gilroy-UltraLight.otf") format("opentype");
+}
+
+.font-extralight {
+    font-weight: 100 !important;
+}
+
+.font-light {
+    font-weight: 200 !important;
+}
+
+.font-semilight {
+    font-weight: 300 !important;
+}
+
+.font-normal {
+    font-weight: 400 !important;
+}
+
+.font-medium {
+    font-weight: 500 !important;
+}
+
+.font-semibold {
+    font-weight: 600 !important;
+}
+
+.font-bold {
+    font-weight: 700 !important;
+}
+
+.font-extrabold {
+    font-weight: 800 !important;
+}
+
+.font-black {
+    font-weight: 900 !important;
 }
 
 * {
@@ -35,20 +121,13 @@
     margin-right: -0.7rem;
 }
 
-.font-normal {
-    font-weight: 400 !important;
+#notification-card #notification-action-btn {
+    transition-duration: 0.4s;
 }
 
-.font-medium {
-    font-weight: 500 !important;
-}
-
-.font-semibold {
-    font-weight: 700 !important;
-}
-
-.font-bold {
-    font-weight: 900 !important;
+#notification-card:hover #notification-action-btn {
+    opacity: 1;
+    visibility: visible;
 }
 
 body {

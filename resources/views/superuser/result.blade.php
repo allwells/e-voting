@@ -23,23 +23,23 @@
                         <th class="py-4 text-center w-14">S/N</th>
                         <th class="px-2 py-4 text-left">@sortablelink('title', 'Title')</th>
                         <th class="px-2 py-4 text-left">Description</th>
-                        <th class="px-2 py-4 text-center w-20">@sortablelink('type', 'Privacy')</th>
-                        <th class="px-2 py-4 text-center w-24">Candidates</th>
-                        <th class="px-2 py-4 text-center w-16">Votes</th>
-                        <th class="px-2 py-4 text-center w-16">Action</th>
+                        <th class="w-20 px-2 py-4 text-center">@sortablelink('type', 'Privacy')</th>
+                        <th class="w-24 px-2 py-4 text-center">Candidates</th>
+                        <th class="w-16 px-2 py-4 text-center">Votes</th>
+                        <th class="w-16 px-2 py-4 text-center">Action</th>
                     </tr>
                 </thead>
 
                 @if ($elections->count() > 0)
                     <tbody id="results-content" class="text-neutral-600">
                         @foreach ($elections as $index => $election)
-                            <x-dashboard_results_table :index="$index + 1" :result="$election" :hasDescription="true" />
+                            <x-dashboard_results_table :index="$index + 1" :result="$election" :hasDescription="true" :hasPrivacy="true" />
                         @endforeach
                     </tbody>
                 @else
                     <tr>
-                        <td colspan="6" class="text-center py-10">
-                            <span class="text-base text-neutral-500 tracking-wider">No results.</span>
+                        <td colspan="6" class="py-10 text-center">
+                            <span class="text-base tracking-wider text-neutral-500">No results.</span>
                         </td>
                     </tr>
                 @endif

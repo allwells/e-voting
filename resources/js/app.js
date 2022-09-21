@@ -1,3 +1,4 @@
+const axios = require("axios");
 require("./bootstrap");
 
 function getPage(selector, url) {
@@ -169,45 +170,149 @@ function copyToClipboard(elementId) {
 
 // Search data in database tables
 function search(table) {
-    $(`#${table}-search`).on('keyup', function() {
+    $(`#${table}-search`).on("keyup", function () {
         $slug = $(this).val();
 
         $.ajax({
             type: "get",
             url: `/search/${table}`,
-            data: {'slug': $slug},
+            data: { slug: $slug },
             success: function (data) {
                 $(`#${table}-content`).html(data);
-            }
+            },
         });
-    })
+    });
 }
 
-// fetch responses
-function fetchResponse() {
+// retrieve responses
+function getResponses() {
+    let responses = [];
+
     $.ajax({
         type: "GET",
-        url: "/response",
+        url: "/api/responses",
         dataType: "json",
-        success: function(res) {
-            console.log(res)
-        }
-    })
+        success: function (response) {
+            response.map((data) => {
+                responses.push(data);
+            });
+        },
+    });
+
+    return responses;
 }
 
-// respond to polling
-function respond() {
-    $(document).on("submit", "#response-form", function (event) {
-        event.preventDefault();
-        let dataString = $(this).serialize();
+// create response
+function createResponse() {
+    axios.get("/api/options").then((response) => {
+        response.data.map((data) => {
+            $(`#option-form-${data.id}`).on("submit", function (e) {
+                e.preventDefault();
 
-        $.ajax({
-            type: $(this).attr("method"),
-            url: $(this).attr("action"),
-            data: dataString,
-            success: function (res) {
-                console.log(res);
-            },
+                const url = $(this).attr("action");
+                const method = $(this).attr("method");
+
+                const formData = {
+                    _token: $("#token").val(),
+                    user_id: Number($("#userId").val()),
+                    poll_id: Number($("#pollId").val()),
+                    option_id: data.id,
+                };
+
+                $.ajax({
+                    type: method,
+                    url: url,
+                    data: formData,
+                    success: function (res) {
+                        $("#poll-options").empty();
+
+                        // check is total responses of is in thousands, millions, billions or trillions
+                        const isThousand =
+                            res.totalResponses > 1000 &&
+                            res.totalResponses < 1000000;
+                        const isMillion =
+                            res.totalResponses > 1000000 &&
+                            res.totalResponses < 1000000000;
+                        const isBillion =
+                            res.totalResponses > 1000000000 &&
+                            res.totalResponses < 1000000000000;
+                        const isTrillion =
+                            res.totalResponses > 1000000000000 &&
+                            res.totalResponses < 1000000000000000;
+
+                        $("#total-responses").empty();
+
+                        if (isThousand) {
+                            $("#total-responses").text(
+                                parseFloat(res.totalResponses / 1000).toFixed(1)
+                            );
+                        } else if (isMillion) {
+                            $("#total-responses").text(
+                                parseFloat(
+                                    res.totalResponses / 1000000
+                                ).toFixed(1)
+                            );
+                        } else if (isBillion) {
+                            $("#total-responses").text(
+                                parseFloat(
+                                    res.totalResponses / 1000000000
+                                ).toFixed(1)
+                            );
+                        } else if (isTrillion) {
+                            $("#total-responses").text(
+                                parseFloat(
+                                    res.totalResponses / 1000000000000
+                                ).toFixed(1)
+                            );
+                        } else {
+                            $("#total-responses").text(res.totalResponses);
+                        }
+
+                        res.options.map((result) => {
+                            const percentage =
+                                result.id in res.response
+                                    ? Math.round(
+                                          (res.response[result.id] /
+                                              res.totalResponses) *
+                                              100
+                                      )
+                                    : 0;
+
+                            const checker = `
+                                <span class="relative w-fit h-fit">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </span>`;
+
+                            const selected =
+                                result.id in res.responses ? checker : "";
+
+                            const output = `
+                                <div class="relative flex items-center justify-start w-full overflow-hidden border rounded-lg border-neutral-300">
+                                    <button type="button"
+                                        style="width: ${percentage}%;"
+                                        class="bg-neutral-300 cursor-default text-left transition duration-1000 text-neutral-700 flex justify-start items-start border-0 outline-0 w-full min-h-[2.5rem]">
+                                        <span class="absolute w-full min-h-[2.5rem] flex justify-between items-center px-3">
+                                            <span class="relative flex items-center justify-start gap-1 text-sm font-medium">
+                                                ${selected}
+                                                ${result.value}
+                                            </span>
+
+                                            <span class="text-sm font-bold text-neutral-800">
+                                                ${percentage}%
+                                            </span>
+                                        </span>
+                                    </button>
+                                </div>`;
+
+                            $("#poll-options").append(output);
+                        });
+                    },
+                });
+            });
         });
     });
 }
@@ -215,10 +320,7 @@ function respond() {
 let showMenu = true;
 let showNav = true;
 $(document).ready(function () {
-    // fetchResponse();
-
-    // respond to polling
-    // respond();
+    createResponse();
 
     // search users' table
     search("users");
