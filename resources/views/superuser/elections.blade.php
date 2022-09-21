@@ -37,7 +37,7 @@
                 <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">
                     <thead class="text-xs uppercase text-neutral-700 border-y">
                         <tr>
-                            <th scope="col" class="px-3 w-14 text-center">
+                            <th scope="col" class="px-3 text-center w-14">
                                 S/N
                             </th>
 
@@ -49,15 +49,15 @@
                                 Description
                             </th>
 
-                            <th scope="col" class="py-4 w-14 text-center">
+                            <th scope="col" class="py-4 text-center w-14">
                                 @sortablelink('type', 'Type')
                             </th>
 
-                            <th scope="col" class="py-4 w-20 text-center">
+                            <th scope="col" class="w-20 py-4 text-center">
                                 Status
                             </th>
 
-                            <th scope="col" class="px-1 w-16 text-center">
+                            <th scope="col" class="w-16 px-1 text-center">
                                 Action
                             </th>
                         </tr>
@@ -65,7 +65,7 @@
                     @if ($elections->count() > 0)
                         <tbody id="elections-content" class="border-b">
                             @foreach ($elections as $index => $election)
-                                <x-election_table :index="$index + 1" :election="$election" :today="$today" />
+                                <x-election_table :index="$index + 1" :election="$election" :today="$today" :hasDescription="true" />
                             @endforeach
                         </tbody>
                     @else

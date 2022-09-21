@@ -5,19 +5,18 @@
 
 @section('views')
     <div class="flex flex-col items-start justify-start h-full">
-        <div class="grid sm:grid-cols-3 grid-cols-1 gap-5 w-full">
+        <div class="grid w-full grid-cols-1 gap-5 sm:grid-cols-3">
             <x-analysis_card :data="$totalAdmins" title="Admins" icon="fas fa-user-tie" />
             <x-analysis_card :data="$totalUsers" title="Total Users" icon="fas fa-users" />
             <x-analysis_card :data="$totalElections" title="Elections" icon="fas fa-box" />
         </div>
 
-
-        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2">
             <div class="w-full h-full overflow-x-auto">
-                <div class="flex justify-between items-center w-full mt-8">
-                    <label class="text-neutral-700 font-bold text-base">Users</label>
+                <div class="flex items-center justify-between w-full mt-8">
+                    <label class="text-base font-bold text-neutral-700">Users</label>
                     <a href="{{ route('users') }}"
-                        class="hover:underline text-xs font-bold uppercase flex justify-center items-center text-neutral-500 hover:text-neutral-900">
+                        class="flex items-center justify-center text-xs font-bold uppercase hover:underline text-neutral-500 hover:text-neutral-900">
                         See all
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -29,11 +28,11 @@
                 <div class="overflow-x-auto">
                     <table class="w-full mt-2 bg-white border">
                         <thead>
-                            <tr class="border-b text-neutral-700 text-xs uppercase">
+                            <tr class="text-xs uppercase border-b text-neutral-700">
                                 <th class="py-4 text-center w-14">S/N</th>
-                                <th class="py-4 px-2 text-left">Name</th>
-                                <th class="py-4 px-2 text-left">Email</th>
-                                <th class="py-4 px-2 text-left">Privilege</th>
+                                <th class="px-2 py-4 text-left">Name</th>
+                                <th class="px-2 py-4 text-left">Email</th>
+                                <th class="px-2 py-4 text-left">Privilege</th>
 
                                 <th scope="col" class="px-1 text-center w-14">
                                     <span class="flex items-center justify-center">
@@ -63,15 +62,15 @@
                             </tr>
                         </thead>
                         @if ($users->count() > 0)
-                            <tbody class="border-b text-neutral-600 text-sm">
+                            <tbody class="text-sm border-b text-neutral-600">
                                 @foreach ($users as $index => $user)
                                     <x-dashboard_users_table :index="$index + 1" :user="$user" />
                                 @endforeach
                             </tbody>
                         @else
                             <tr>
-                                <td colspan="6" class="text-center py-10">
-                                    <span class="text-base text-neutral-500 tracking-wider">No users.</span>
+                                <td colspan="6" class="py-10 text-center">
+                                    <span class="text-base tracking-wider text-neutral-500">No users.</span>
                                 </td>
                             </tr>
                         @endif
@@ -80,10 +79,10 @@
             </div>
 
             <div class="w-full h-full overflow-x-auto">
-                <div class="flex justify-between items-center w-full mt-8">
-                    <label class="text-neutral-700 font-bold text-base">Results</label>
+                <div class="flex items-center justify-between w-full mt-8">
+                    <label class="text-base font-bold text-neutral-700">Results</label>
                     <a href="{{ route('results') }}"
-                        class="hover:underline text-xs font-bold uppercase flex justify-center items-center text-neutral-500 hover:text-neutral-900">
+                        class="flex items-center justify-center text-xs font-bold uppercase hover:underline text-neutral-500 hover:text-neutral-900">
                         See all
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -95,23 +94,23 @@
                 <div class="overflow-x-auto">
                     <table class="w-full mt-2 bg-white border">
                         <thead>
-                            <tr class="border-b text-neutral-700 text-xs uppercase">
-                                <th class="py-4 px-2 text-center w-14">S/N</th>
-                                <th class="py-4 px-2 text-left">Election Title</th>
-                                <th class="py-4 px-2 text-center w-24">Candidates</th>
-                                <th class="py-4 px-2 text-center w-16">Votes</th>
-                                <th class="py-4 px-2 text-center w-16">Action</th>
+                            <tr class="text-xs uppercase border-b text-neutral-700">
+                                <th class="px-2 py-4 text-center w-14">S/N</th>
+                                <th class="px-2 py-4 text-left">Election Title</th>
+                                <th class="w-24 px-2 py-4 text-center">Candidates</th>
+                                <th class="w-16 px-2 py-4 text-center">Votes</th>
+                                <th class="w-16 px-2 py-4 text-center">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="border-b text-neutral-600 text-sm">
+                        <tbody class="text-sm border-b text-neutral-600">
                             @if ($results->count() > 0)
                                 @foreach ($results as $index => $result)
-                                    <x-dashboard_results_table :index="$index + 1" :result="$result" :hasDescription="false" />
+                                    <x-dashboard_results_table :index="$index + 1" :result="$result" :hasPrivacy="false" :hasDescription="false" />
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="6" class="text-center py-10">
-                                        <span class="text-base text-neutral-500 tracking-wider">No results.</span>
+                                    <td colspan="6" class="py-10 text-center">
+                                        <span class="text-base tracking-wider text-neutral-500">No results.</span>
                                     </td>
                                 </tr>
                             @endif
@@ -122,11 +121,12 @@
         </div>
 
 
-        <div class="w-full">
-            <div class="flex justify-between items-center w-full mt-8">
-                <label class="text-neutral-700 font-bold text-base">Elections</label>
+        <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2">
+            <div class="w-full h-full overflow-x-auto">
+            <div class="flex items-center justify-between w-full mt-8">
+                <label class="text-base font-bold text-neutral-700">Elections</label>
                 <a href="{{ route('elections.view') }}"
-                    class="hover:underline text-xs font-bold uppercase flex justify-center items-center text-neutral-500 hover:text-neutral-900">
+                    class="flex items-center justify-center text-xs font-bold uppercase hover:underline text-neutral-500 hover:text-neutral-900">
                     See all
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -135,32 +135,72 @@
                 </a>
             </div>
 
-            <div class="overflow-x-auto mt-2">
+            <div class="mt-2 overflow-x-auto">
                 <table class="w-full bg-white border">
                     <thead>
-                        <tr class="border-b text-neutral-700 text-xs uppercase">
-                            <th class="py-4 px-2 text-center w-14">S/N</th>
-                            <th class="py-4 text-left">Election Title</th>
-                            <th class="py-4 text-left">Description</th>
-                            <th class="py-4 text-left">Status</th>
-                            <th class="py-4 text-left">Action</th>
+                        <tr class="text-xs uppercase border-b text-neutral-700">
+                            <th class="px-2 py-4 text-center w-14">S/N</th>
+                            <th class="py-4 pl-3 text-left">Election Title</th>
+                            <th class="w-16 py-4 text-center">Privacy</th>
+                            <th class="w-16 py-4 text-center">Status</th>
+                            <th class="w-16 py-4 text-center">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="border-b text-neutral-600 text-sm">
+                    <tbody class="text-sm border-b text-neutral-600">
                         @if ($elections->count() > 0)
                             @foreach ($elections as $index => $election)
-                                <x-election_table :index="$index + 1" :election="$election" :today="$today" />
+                                <x-election_table :index="$index + 1" :election="$election" :today="$today" :hasDescription="false" />
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="6" class="text-center py-10">
-                                    <span class="text-base text-neutral-500 tracking-wider">No elections.</span>
+                                <td colspan="6" class="py-10 text-center">
+                                    <span class="text-base tracking-wider text-neutral-500">No elections.</span>
                                 </td>
                             </tr>
                         @endif
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class="w-full h-full overflow-x-auto">
+            <div class="flex items-center justify-between w-full mt-8">
+                <label class="text-base font-bold text-neutral-700">Polls</label>
+                <a href="{{ route('polls.view') }}"
+                    class="flex items-center justify-center text-xs font-bold uppercase hover:underline text-neutral-500 hover:text-neutral-900">
+                    See all
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="mt-2 overflow-x-auto">
+                <table class="w-full bg-white border">
+                    <thead>
+                        <tr class="text-xs uppercase border-b text-neutral-700">
+                            <th class="px-2 py-4 text-center w-14">S/N</th>
+                            <th class="py-4 pl-3 text-left">Title</th>
+                            <th class="w-16 py-4 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm border-b text-neutral-600">
+                        @if ($polls->count() > 0)
+                            @foreach ($polls as $index => $poll)
+                                <x-polls_table :index="$index + 1" :poll="$poll" :today="$today" />
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6" class="py-10 text-center">
+                                    <span class="text-base tracking-wider text-neutral-500">No elections.</span>
+                                </td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
         </div>
     </div>
 @endsection

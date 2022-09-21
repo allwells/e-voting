@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -37,15 +38,15 @@ class RegisterController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
 
-        if(!$validator->passes()) {
-            return back()->with('warn', 'Oops! There\'s a problem. Check your inputs and try again.');
+        if($validator->fails()) {
+            return back()->with('error', 'Oops! There\'s a problem. Check your inputs and try again.');
         } else {
             $values = [
                 'fname' => $request->fname,
                 'lname' => $request->lname,
                 'email' => $request->email,
                 'dob' => $request->dob,
-                'password' => \Hash::make($request->password),
+                'password' => Hash::make($request->password),
             ];
 
             User::create($values);

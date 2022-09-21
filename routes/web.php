@@ -20,7 +20,10 @@ Route::middleware(['auth'])->group(function() {
 
     // NOTIFICATIONS ROUTE
     Route::get('/notifications', 'App\Http\Controllers\NotificationController@index')->name('notifications');
-    Route::post('/notifications', 'App\Http\Controllers\NotificationController@markAsRead')->name('notifications.mark-all');
+    Route::get('/event/{id}', 'App\Http\Controllers\NotificationController@show')->name('notifications.show');
+    Route::post('/notifications/{id}', 'App\Http\Controllers\NotificationController@mark')->name('notifications.mark');
+    Route::post('/notifications', 'App\Http\Controllers\NotificationController@markAll')->name('notifications.mark-all');
+    Route::delete('/event/{id}', 'App\Http\Controllers\NotificationController@destroy')->name('notifications.destroy');
 
     // PROFILE ROUTE
     Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile');
@@ -35,8 +38,12 @@ Route::middleware(['auth'])->group(function() {
 
     // POLLS ROUTE
     Route::get('/polls', 'App\Http\Controllers\PollController@index')->name('polls.view');
-    Route::get('/response', 'App\Http\Controllers\PollController@getResponse');
-    Route::post('/polls/{poll:id}/{option:id}', 'App\Http\Controllers\PollController@store')->name('polls.respond');
+    Route::post('/polls/{poll:id}', 'App\Http\Controllers\PollController@store')->name('polls.respond');
+
+    // APIs
+    Route::get('/api/responses', 'App\Http\Controllers\ResponseController@getResponse');
+    Route::get('/api/polls', 'App\Http\Controllers\PollController@getPolls');
+    Route::get('/api/options', 'App\Http\Controllers\OptionController@getOptions');
 
     // RESULTS ROUTE
     Route::get('/results', 'App\Http\Controllers\ResultController@index')->name('results');

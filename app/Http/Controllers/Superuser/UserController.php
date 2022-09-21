@@ -247,8 +247,6 @@ class UserController extends Controller
             $user->password = $passwordHash;
             $user->save();
 
-            $userId = $user->id;
-
             $recipient = $users['email'];
 
             $mailData = [

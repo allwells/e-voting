@@ -4,15 +4,10 @@
 $totalResponses = \App\Models\Response::where('poll_id', $poll->id)
     ->get()
     ->count();
-
-// $isStarted = $today->gt($poll->start_date) && $today->lt($poll->end_date);
-// $isNotStarted = $today->lt($poll->start_date) && $today->lt($poll->end_date);
-// $isEnded = ($today->gt($poll->start_date) && $today->gt($poll->end_date));
-
 @endphp
 
 <tr class="hover:bg-neutral-50">
-    <td class="text-center cursor-default w-fit px-3">
+    <td class="px-3 text-center cursor-default w-fit">
         {{ $index }}
     </td>
 
@@ -27,7 +22,7 @@ $totalResponses = \App\Models\Response::where('poll_id', $poll->id)
     <td class="text-center capitalize cursor-default">
         <button id="dropdownLeftStartButton" data-dropdown-toggle="dropdownLeftStart-{{ $poll->id }}"
             data-dropdown-placement="left-start"
-            class="p-1 hover:bg-neutral-200 rounded focus:bg-neutral-300 focus:text-neutral-900">
+            class="p-1 rounded hover:bg-neutral-200 focus:bg-neutral-300 focus:text-neutral-900">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
                 </path>
@@ -49,7 +44,7 @@ $totalResponses = \App\Models\Response::where('poll_id', $poll->id)
                         @csrf
 
                         <button type="submit"
-                            class="flex items-center justify-start text-left w-full gap-2 p-3 transition duration-300 rounded-lg text-rose-600 hover:bg-neutral-100">
+                            class="flex items-center justify-start w-full gap-2 p-3 text-left transition duration-300 rounded-lg text-rose-600 hover:bg-neutral-100">
                             Delete
                         </button>
                     </form>

@@ -5,8 +5,14 @@
 
 @section('views')
     <div class="md:bg-white w-full md:p-5 min-h-fit rounded-2xl text-justify flex flex-col gap-4 pb-16">
-        <div class="flex justify-between items-center w-full">
+        <div class="flex justify-between items-center w-full relative">
             <h2 class="text-lg text-neutral-800 font-semibold">Notifications</h2>
+
+            <div class="absolute w-full">
+                <x-info_message />
+                <x-success_message />
+                <x-error_message />
+            </div>
 
             <button id="notificationsOptionDropDown" data-dropdown-toggle="notifications-dropdown"
                 class="hover:bg-neutral-100 focus:ring focus:ring-black/10 text-[#0000FF] p-1 rounded-full">

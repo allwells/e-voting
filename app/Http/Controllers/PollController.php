@@ -97,18 +97,16 @@ class PollController extends Controller
     }
 
     /**
-     * Get all responses
+     * Get all polls
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function getResponse()
+    public function getPolls()
     {
-        $responses = Response::all();
+        $polls = Poll::all();
 
-        return response()->json([
-            'responses' => $responses
-        ]);
+        return response()->json($polls);
     }
 
     /**
@@ -119,17 +117,29 @@ class PollController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = $request->user()->id;
-        $pollId = (int) $request->poll;
-        $optionId = (int) $request->option;
+        $newResponse = [
+            'user_id' => $request->user_id,
+            'poll_id' => $request->poll_id,
+            'option_id' => $request->option_id,
+        ];
 
-        Response::create([
-            'user_id' => $userId,
-            'poll_id' => $pollId,
-            'option_id' => $optionId,
+        Response::create($newResponse);
+
+        $options = Option::where('poll_id', $request->poll_id)->get();
+        $responses = array_count_values(Response::where('poll_id', $request->poll_id)->where('user_id', $request->user_id)->pluck('option_id')->toArray());
+
+        // Get total number of responses for each options for this poll.
+        $response = array_count_values(Response::all()->pluck('option_id')->toArray());
+
+        // Get total responses for this poll
+        $totalResponses = Response::where('poll_id', $request->poll_id)->count();
+
+        return response()->json([
+            'options' => $options,
+            'response' => $response,
+            'responses' => $responses,
+            'totalResponses' => $totalResponses
         ]);
-
-        return back();
     }
 
     /**
@@ -318,6 +328,25 @@ class PollController extends Controller
 
     public function destroy(Poll $poll)
     {
+        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
 
+        if($isUnauthorizedUser)
+        {
+            return back()->with('error', 'Unauthorized action.');
+        }
+
+        // get all notifications that has this event_id
+        $notifications = DB::table('notifications')->where('event_id', $poll->id)->get();
+
+        // extract the id of the retrieved notifications into an array
+        $notificationIds = $notifications->pluck('id')->toArray();
+
+        // delete notification if id is in $noticationIds array
+        DB::table('notifications')->whereIn('id', $notificationIds)->delete();
+
+        // Delete poll
+        $poll->delete();
+
+        return back()->with('success', 'Poll deleted!');
     }
 }

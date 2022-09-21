@@ -10,14 +10,14 @@
             <div class="bg-transparent h-fit w-fit md:w-48 rounded-2xl">
                 <ul style="color: #0000FF;" class="flex flex-col items-start justify-start gap-4 text-lg">
                     <li class="w-full">
-                        <a href="/explore" class="flex items-center justify-start gap-2 w-fit">
+                        <a href="https://voices.i-amvocal.org" target="_blank" class="flex items-center justify-start gap-2 w-fit">
                             <x-icons.home_icon style="width: 18px;" class="flex-shrink-0 h-5" />
                             Voices Home
                         </a>
                     </li>
 
                     <li class="w-full">
-                        <a href="#" class="flex items-center justify-start gap-2 w-fit">
+                        <a href="https://voices.i-amvocal.org/about" target="_blank" rel="noreferrer" class="flex items-center justify-start gap-2 w-fit">
                             <x-icons.information_icon style="width: 22px; height: 22px;" class="flex-shrink-0" />
                             About
                         </a>
