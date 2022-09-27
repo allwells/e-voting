@@ -11,21 +11,20 @@
             <div class="flex items-end justify-start gap-2 details">
                 {{-- profile picture --}}
                 <div class="border-4 border-neutral-100 profile-img dark:border-neutral-800"
-                    style="background-image: url('{{ asset('images/profile.jpg') }}');"></div>
+                    style="background-image: url('{{ $user->avatar }}');"></div>
 
                 {{-- name and email --}}
                 <div class="pb-4 name">
                     <h2 class="text-xl flex gap-1 font-semibold cursor-default text-neutral-800 dark:text-neutral-300">
-                        {{ $user->fname }}
-                        {{ $user->lname }}
+                        {{ $user->name }}
                     </h2>
-                    <span class="text-sm font-normal cursor-default text-neutral-500">{{ $user->email }}</span>
+                    <span class="text-sm font-normal cursor-default text-neutral-500 font-light text-sm"s>{{ $user->username }}</span>
                 </div>
 
             </div>
         </div>
 
-        <div class="flex justify-center mb-10 profile-details">
+        <div class="flex justify-center mb-10  profile-details">
             <div class="flex flex-col gap-4 w-full">
 
                 {{-- first name and last name inputs --}}
@@ -33,22 +32,22 @@
                     {{-- first name input --}}
                     <div class="lg:w-6/12 md:w-full">
                         <label for="fname"
-                            class="block mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">First
+                            class="block mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
                             Name</label>
-                        <input name="fname" type="text" id="fname"
+                        <input name="name" type="text" id="name"
                             class="bg-neutral-50 border hover:border-neutral-500 text-neutral-600 transition duration-300 border-neutral-300 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-                            value="{{ $user->fname }}" disabled>
+                            value="{{ $user->name }}" disabled>
                     </div>
 
-                    {{-- last name input --}}
+                    {{-- last name input--}}
                     <div class="lg:w-6/12 md:w-full">
-                        <label for="lname"
-                            class="block mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">Last
-                            Name</label>
-                        <input name="lname" type="text" id="lname"
+                        <label for="username"
+                            class="block mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                            UserName</label>
+                        <input name="username" type="text" id="username"
                             class="bg-neutral-50 border hover:border-neutral-500 text-neutral-600 transition duration-300 border-neutral-300 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
-                            value="{{ $user->lname }}" disabled>
-                    </div>
+                            value="{{ $user->username }}" disabled>
+                    </div> 
                 </div>
 
                 {{-- email and phone input --}}

@@ -12,6 +12,7 @@ class FeedsController extends Controller
     public function index()
     {
         $count = 0;
+        $user = auth()->user();
         $votes = Vote::all();
         $candidates = Candidate::all();
         $elections = Election::where('type', 'public')->get()->reverse();
@@ -20,6 +21,7 @@ class FeedsController extends Controller
         {
             return view('user.feeds', [
                 'count' => $count,
+                'user' => $user,
                 'votes' => $votes,
                 'elections' => $elections,
                 'candidates' => $candidates,
@@ -28,6 +30,7 @@ class FeedsController extends Controller
 
         return view('dashboard', [
             'count' => $count,
+            'user' => $user,
             'votes' => $votes,
             'elections' => $elections,
             'candidates' => $candidates,

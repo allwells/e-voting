@@ -23,6 +23,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "maatwebsite/excel": "^3.1",
+        "overtrue/laravel-follow": "^5.0",
         "pelago/emogrifier": "^6.0",
         "phpoffice/phpspreadsheet": "1.23.0",
         "snowfire/beautymail": "dev-master",

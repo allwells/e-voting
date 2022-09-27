@@ -71,17 +71,25 @@
             class="h-full rounded-2xl gap-5 w-[352px] min-w-[300px] max-w-[352px] lg:col-start-12 lg:col-end-13 lg:flex hidden flex-col overflow-y-auto scrollbar-hide scroll-smooth justify-start items-start pt-16 pb-28">
             <div class="flex flex-col items-start justify-start flex-grow w-full h-full gap-5 text-white rounded-2xl">
                 <div class="w-full rounded-2xl"
-                    style="background-image:url('{{ asset('images/profile-bg.jpg') }}'); background-position:bottom; background-size:cover; min-height: 219px !important; max-height: 219px !important; height: 219px;">
+                @if ($user->avatar == Null)
+                style="background-image:url('https://res.cloudinary.com/iamvocal/image/upload/v1624506860/Voices_AssetArtboard_1_copy_9_b6h4f6.png'); background-position:bottom; background-size:cover; min-height: 219px !important; max-height: 219px !important; height: 219px;"  
+                @else
+                style="background-image:url('{{$user->header}}'); background-position:bottom; background-size:cover; min-height: 219px !important; max-height: 219px !important; height: 219px;"  
+                @endif>
                     <div class="flex items-end justify-center w-full h-full p-3 pb-5 bg-black/50 rounded-2xl">
                         <div class="flex items-center justify-center gap-5">
                             <div class="flex flex-col items-center justify-center">
-                                <h1 class="text-lg font-semibold">123k</h1>
+                                @if ($user->followers == Null)
+                                <h1 class="text-lg font-semibold">0</h1>
+                                @else
+                                <h1 class="text-lg font-semibold">{{ count($user->followers) }}</h1>
+                                @endif
                                 <span class="text-xs font-normal">Followers</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center">
-                                @if (auth()->user()->image)
-                                    <img src="{{ auth()->user()->image }}" alt="{{ auth()->user()->name }}"
+                                @if (auth()->user()->avatar)
+                                    <img src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}"
                                         class="flex-shrink-0 rounded-full shadow-lg shadow-black/30 md:h-24 md:w-24" />
                                 @else
                                     <svg class="flex-shrink-0 bg-black border-2 border-black rounded-full shadow-lg shadow-black/30 md:h-24 md:w-24"
@@ -91,12 +99,16 @@
                                             clip-rule="evenodd"></path>
                                     </svg>
                                 @endif
-                                <h1 class="mt-1 text-base font-semibold">Tim Cook</h1>
-                                <span style="font-size: 10px;" class="hover:underline hover:cursor-pointer">@tim202</span>
+                                <h1 class="mt-1 text-base font-semibold">{{Auth::user()->name}}</h1>
+                                <span style="font-size: 10px;" class="hover:underline hover:cursor-pointer">{{Auth::user()->username}}</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center">
-                                <h1 class="text-lg font-semibold">4k</h1>
+                                @if ($user->followings == Null)
+                                <h1 class="text-lg font-semibold">0</h1>
+                                @else
+                                <h1 class="text-lg font-semibold">{{ count($user->followings) }}</h1>
+                                @endif
                                 <span class="text-xs font-normal">Following</span>
                             </div>
                         </div>
