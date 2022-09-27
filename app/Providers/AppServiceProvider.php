@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
-use ConsoleTVs\Charts\Registrar as Charts;
+//use ConsoleTVs\Charts\Registrar as Charts;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Charts $charts, UrlGenerator $url)
+    /* public function boot(Charts $charts, UrlGenerator $url)
     {
         if(env('APP_ENV') === 'production')
         {
@@ -33,5 +33,5 @@ class AppServiceProvider extends ServiceProvider
         $charts->register([
             \App\Charts\ResultChart::class
         ]);
-    }
+    }*/
 }

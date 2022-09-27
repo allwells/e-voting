@@ -11,6 +11,10 @@ use Kyslik\ColumnSortable\Sortable;
 
 class User extends Authenticatable
 {
+    
+    /* Selected the voices database */
+    protected $connection = 'mysql2';
+
     use HasApiTokens, HasFactory, Notifiable, Sortable;
 
     /**
