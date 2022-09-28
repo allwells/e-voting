@@ -49,6 +49,7 @@ class LoginController extends Controller
             return back()->with('error', 'Invalid email or password!');
         }
 
+
         // $token = \Str::random(64);
 
         // DB::table('password_resets')->insert([
@@ -82,4 +83,5 @@ class LoginController extends Controller
         // redirect user to intended page
         return redirect()->intended('');
     }
+
 }
