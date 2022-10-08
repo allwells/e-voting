@@ -99,7 +99,7 @@ $unreadNotifications = \DB::table('notifications')
                     class="flex justify-start items-center gap-4 w-fit h-fit relative">
                     <x-icons.bell_icon style="height: 23px; width: 23px;" class="text-white" />
                     Notifications
-                    @if (!$unreadNotifications->count() > 0)
+                    @if ($unreadNotifications->count() > 0)
                         <span
                             class="w-[14px] h-[14px] absolute bg-red-600 border-2 border-[#0000FF] rounded-full -mt-5 ml-2.5"></span>
                     @endif

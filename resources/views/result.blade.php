@@ -4,7 +4,7 @@
 
 @section('home-page')
     <div class="flex flex-col w-full gap-5 p-4 bg-white rounded-xl sm:p-5">
-        <h2 class="text-xl md:text-3xl text-[#0000FF] font-bold">Election Results</h2>
+        <h2 class="text-2xl md:text-3xl text-[#0000FF] font-bold">Election Results</h2>
         @if ($elections->count() > 0)
             <div class="flex flex-col w-full gap-5">
                 @foreach ($elections as $election)
@@ -12,8 +12,8 @@
                 @endforeach
             </div>
         @else
-            <div class="w-full py-5 flex justify-center items-center">
-                <span class="text-base text-neutral-500 tracking-wider">No results.</span>
+            <div class="w-full md:py-5 py-10 flex justify-center items-center">
+                <span class="text-base text-neutral-500 font-semibold">No results.</span>
             </div>
         @endif
     </div>

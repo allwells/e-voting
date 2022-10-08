@@ -5,7 +5,7 @@
 @section('home-page')
     <div class="md:bg-white w-full md:p-5 min-h-fit rounded-2xl text-justify flex flex-col gap-4 lg:max-w-3xl pb-16">
         <div class="flex justify-between items-center w-full relative">
-            <h2 style="color: #0000FF;" class="text-3xl font-semibold">Notifications</h2>
+            <h2 class="text-2xl text-[#0000FF] md:text-3xl font-semibold">Notifications</h2>
 
             <div class="absolute w-full">
                 <x-info_message />
@@ -14,7 +14,7 @@
             </div>
 
             <button id="notificationsOptionDropDown" data-dropdown-toggle="notifications-dropdown"
-                class="hover:bg-neutral-100 focus:ring focus:ring-black/10 text-[#0000FF] p-1 rounded-full">
+                class="hover:bg-neutral-100 focus:ring focus:ring-black/10 text-[#0000FF] p-1 rounded-md mr-1">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
                     </path>
@@ -65,9 +65,8 @@
             </div>
         @else
             <div class="flex w-full justify-center items-center h-32">
-                <p class="text-sm md:text-base text-neutral-500 font-normal text-center tracking-wide">No notifications at
-                    the
-                    moment.
+                <p class="text-sm md:text-base text-neutral-500 font-semibold text-center tracking-wide">
+                    No notifications.
                 </p>
             </div>
         @endif
