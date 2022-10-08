@@ -14,8 +14,7 @@
 
 @font-face {
     font-family: "Gilroy Extra Bold";
-    src: url("../fonts/gilroy/fonts/Gilroy-ExtraBold.otf")
-        format("opentype");
+    src: url("../fonts/gilroy/fonts/Gilroy-ExtraBold.otf") format("opentype");
 }
 
 @font-face {
@@ -45,7 +44,8 @@
 
 @font-face {
     font-family: "Gilroy Regular Italic";
-    src: url("../fonts/gilroy/fonts/Gilroy-RegularItalic.otf") format("opentype");
+    src: url("../fonts/gilroy/fonts/Gilroy-RegularItalic.otf")
+        format("opentype");
 }
 
 @font-face {
@@ -65,42 +65,56 @@
 
 .font-extralight {
     font-weight: 100 !important;
+    font-family: "Gilroy Ultra Light" !important;
 }
 
 .font-light {
     font-weight: 200 !important;
+    font-family: "Gilroy Thin" !important;
 }
 
 .font-semilight {
     font-weight: 300 !important;
+    font-family: "Gilroy Light" !important;
 }
 
 .font-normal {
     font-weight: 400 !important;
+    font-family: "Gilroy Regular" !important;
 }
 
 .font-medium {
     font-weight: 500 !important;
+    font-family: "Gilroy Medium" !important;
 }
 
 .font-semibold {
     font-weight: 600 !important;
+    font-family: "Gilroy Heavy" !important;
 }
 
 .font-bold {
     font-weight: 700 !important;
+    font-family: "Gilroy Bold" !important;
 }
 
 .font-extrabold {
     font-weight: 800 !important;
+    font-family: "Gilroy Extra Bold" !important;
 }
 
 .font-black {
     font-weight: 900 !important;
+    font-family: "Gilroy Black" !important;
 }
 
 * {
     scroll-behavior: smooth;
+}
+
+.hamburger-menu {
+    z-index: 100 !important;
+    transition-duration: 0.5s !important;
 }
 
 #file-upload-field:active #file-upload-btn {

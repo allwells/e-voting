@@ -17,14 +17,14 @@ class UserController extends Controller
 {
     public function index()
     {
-        $isUnauthorizedUser = auth() && auth()->user()->privilege != 'superuser';
+        $isUnauthorizedUser = Auth::user()->role != 'super admin';
 
         if($isUnauthorizedUser)
         {
             return back()->with('error', 'Unauthorized action.');
         }
 
-        $users = User::where('privilege', '!=', 'superuser')->sortable()->paginate(25);
+        $users = User::where('role', '!=', 'super admin')->sortable()->paginate(25);
 
         return view('superuser.users', compact('users'));
     }
@@ -37,7 +37,7 @@ class UserController extends Controller
 
         foreach($users as $index => $user)
         {
-            if($user->privilege !== 'superuser')
+            if($user->role !== 'super admin')
             {
                 $result.=
                     '<tr class="hover:bg-neutral-50">
@@ -58,7 +58,7 @@ class UserController extends Controller
                     </td>
 
                     <td class="px-2 py-3 text-left">
-                    ' . $user->privilege . '
+                    ' . $user->role . '
                     </td>
 
                     <td class="text-center capitalize cursor-default">
@@ -75,13 +75,13 @@ class UserController extends Controller
                             class="absolute z-10 hidden bg-white divide-y rounded-lg shadow-lg right-4 divide-neutral-100 w-52 dark:bg-neutral-700">
                             <ul class="flex flex-col gap-1 p-1 text-sm text-neutral-500" aria-labelledby="dropdownLeftStartButton">
                                 <li>
-                                    <form action="{{ route(' . 'users.privilege' . ', ' . $user->id . ') }}" method="POST">
+                                    <form action="{{ route(' . 'users.role' . ', ' . $user->id . ') }}" method="POST">
                                         @csrf
 
                                         <button type="submit"
                                             class="flex items-center justify-start w-full gap-2 p-3 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
-                                            @if (' . $user->privilege . ' == "admin")
-                                                Remove admin privilege
+                                            @if (' . $user->role . ' == "admin")
+                                                Remove admin role
                                             @else
                                                 Make admin
                                             @endif
@@ -120,7 +120,7 @@ class UserController extends Controller
 
     public function getAddUser()
     {
-        $isUnauthorizedUser = auth() && auth()->user()->privilege != 'superuser';
+        $isUnauthorizedUser = Auth::user()->role != 'super admin';
 
         if($isUnauthorizedUser)
         {
@@ -132,7 +132,7 @@ class UserController extends Controller
 
     public function addUser(Request $request)
     {
-        $isUnauthorizedUser = auth() && auth()->user()->privilege != 'superuser';
+        $isUnauthorizedUser = Auth::user()->role != 'super admin';
 
         if($isUnauthorizedUser)
         {
@@ -186,31 +186,31 @@ class UserController extends Controller
         }
     }
 
-    public function privilege(User $user)
+    public function role(User $user)
     {
-        $isUnauthorizedUser = auth() && auth()->user()->privilege != 'superuser';
+        $isUnauthorizedUser = Auth::user()->role != 'super admin';
 
         if($isUnauthorizedUser)
         {
             return back()->with('error', 'Unauthorized action.');
         }
 
-        if($user->privilege == 'user')
+        if($user->role == 'user')
         {
             User::where('id', $user->id)->update([
-                'privilege' => 'admin',
+                'role' => 'admin',
             ]);
 
             return back()->with('success', $user->fname . ' ' . $user->lname . ' is now an admin.');
         }
 
-        if($user->privilege == 'admin')
+        if($user->role == 'admin')
         {
             User::where('id', $user->id)->update([
-                'privilege' => 'user',
+                'role' => 'user',
             ]);
 
-            return back()->with('success', 'Admin privilege revoked from ' . $user->fname . ' ' . $user->lname);
+            return back()->with('success', 'Admin role revoked from ' . $user->fname . ' ' . $user->lname);
         }
 
         return back()->with('error', 'Oops! Something went wrong. Try again.');
@@ -218,7 +218,7 @@ class UserController extends Controller
 
     public function fileImport(Request $request)
     {
-        $isUnauthorizedUser = auth() && auth()->user()->privilege != 'superuser';
+        $isUnauthorizedUser = Auth::user()->role != 'super admin';
 
         if($isUnauthorizedUser)
         {
@@ -271,7 +271,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $isUnauthorizedUser = auth() && auth()->user()->privilege !== 'superuser';
+        $isUnauthorizedUser = Auth::user()->role !== 'super admin';
 
         if($isUnauthorizedUser)
         {

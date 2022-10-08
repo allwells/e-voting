@@ -7,11 +7,11 @@ foreach ($votes as $vote) {
     }
 }
 
-$hasVoted = App\Models\Vote::where('user_id', auth()->user()->id)
+$hasVoted = App\Models\Vote::where('user_id', Auth::user()->id)
     ->where('election_id', (int) $election->id)
     ->first();
 
-$exists = $hasVoted ? $hasVoted->user_id == auth()->user()->id : null;
+$exists = $hasVoted ? $hasVoted->user_id == Auth::user()->id : null;
 @endphp
 
 @php

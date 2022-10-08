@@ -25,7 +25,7 @@
 </head>
 
 <body class="flex justify-center items-start w-full overflow-y-auto scrollbar-hide scroll-smooth">
-    <main class="max-w-[1500px] w-full @auth bg-neutral-100 @endauth dark:bg-neutral-800 border-x">
+    <main class="max-w-[1500px] w-full @auth bg-neutral-100 @endauth dark:bg-neutral-800">
 
         {{-- Navbar for non-authenticated users --}}
         @guest

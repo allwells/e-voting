@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
@@ -30,8 +31,8 @@ class ElectionController extends Controller
         $publicElections = Election::where('type', 'public')->orderBy('start_date')->get();
         $privateElections = Election::where('type', 'private')->orderBy('start_date')->get();
         $latestElection = Election::where('created_at', '>=', $todayMinusOneWeek)->latest()->take(5)->get();
-        $participants = Participant::where('user_id', auth()->user()->id)->get();
-        $votes = Vote::where('user_id', auth()->user()->id)->get();
+        $participants = Participant::where('user_id', Auth::user()->id)->get();
+        $votes = Vote::where('user_id', Auth::user()->id)->get();
 
         foreach($privateElections as $privateElection)
         {
@@ -51,7 +52,7 @@ class ElectionController extends Controller
             }
         }
 
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role != 'super admin')
         {
             return view('user.elections', [
                 'elections' => $elections,
@@ -178,13 +179,13 @@ class ElectionController extends Controller
             if($isActive)
             {
                 $participant = [
-                    'user_id' => auth()->user()->id,
+                    'user_id' => Auth::user()->id,
                     'election_id' => $election->id,
-                    'name' => auth()->user()->fname . " " . auth()->user()->lname,
-                    'email' => auth()->user()->email,
+                    'name' => Auth::user()->fname . " " . Auth::user()->lname,
+                    'email' => Auth::user()->email,
                 ];
 
-                $participantExists = Participant::where('user_id', auth()->user()->id)->where('election_id',  $election->id)->first();
+                $participantExists = Participant::where('user_id', Auth::user()->id)->where('election_id',  $election->id)->first();
 
                 if($participantExists)
                 {
@@ -202,7 +203,7 @@ class ElectionController extends Controller
 
     public function codeActivation(Request $request, Election $election)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -224,16 +225,16 @@ class ElectionController extends Controller
         return back()->with('error', 'Oops! There was an error.');
     }
 
-    public function showCreate()
+    public function showCreate(Request $request)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
             return back()->with('error', 'Unauthorized action.');
         }
 
-        if(auth()->user()->privilege == 'admin')
+        if(Auth::user()->role == 'admin')
         {
             return view('user.create_election');
         } else {
@@ -243,7 +244,7 @@ class ElectionController extends Controller
 
     public function sendInviteManually(Request $request, Election $election)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -335,7 +336,7 @@ class ElectionController extends Controller
 
     public function fileImport(Request $request, Election $election)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -490,7 +491,7 @@ class ElectionController extends Controller
 
     private function uploadCandidateImage($filePath)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -505,7 +506,7 @@ class ElectionController extends Controller
 
     private function uploadElectionCover($filePath)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -539,7 +540,7 @@ class ElectionController extends Controller
 
     public function create(Request $request)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -549,15 +550,15 @@ class ElectionController extends Controller
         // validate user input
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:100',
-            'description' => 'max:300',
+            'description' => 'max:500',
             'type' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'cover' => 'mimes:jpeg,svg,png|size:5000',
+            'electionCover' => 'mimes:jpeg,svg,png|size:5000',
         ]);
 
         if($validator->fails()) {
-            return back()->with('info', 'Oops! Something\'s not right. Check your inputs and try again.');
+            return back()->with('error', 'Oops! Something\'s not right. Check your inputs and try again.');
         } else {
             $accessCode = Str::random(10);
             $electionValues = [
@@ -616,7 +617,7 @@ class ElectionController extends Controller
 
             if($query > 0)
             {
-                $superusers = User::where('privilege', 'superuser')->get();
+                $superusers = User::where('role', 'super admin')->get();
                 $ownerOfPost = User::where('id', $election->user_id)->first();
 
                 foreach($superusers as $superuser)
@@ -665,7 +666,7 @@ class ElectionController extends Controller
             DB::table('notifications')->where('user_id', $request->user()->id)->where('event_id', $election->id)->where('isRead', 0)->update([ 'isRead' => 1]);
         }
 
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role != 'super admin')
         {
             return view('user.show_election', [
                 'votes' => $votes,
@@ -695,7 +696,7 @@ class ElectionController extends Controller
 
     public function addVote(Request $request)
     {
-        $userId = auth()->user()->id;
+        $userId = Auth::user()->id;
         $electionId = (int) $request->election;
         $candidateId = (int) $request->candidate;
 
@@ -717,7 +718,7 @@ class ElectionController extends Controller
 
     public function removeVote(Request $request)
     {
-        $userId = auth()->user()->id;
+        $userId = Auth::user()->id;
         $electionId = (int) $request->election;
         $candidateId = (int) $request->candidate;
 
@@ -734,7 +735,7 @@ class ElectionController extends Controller
 
     public function close(Election $election)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -750,14 +751,14 @@ class ElectionController extends Controller
 
     public function showEdit(Election $election)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
             return back()->with('error', 'Unauthorized action.');
         }
 
-        if(auth()->user()->privilege == 'admin')
+        if(Auth::user()->role == 'admin')
         {
             return view('user.edit_election', [
                 'election' => $election,
@@ -773,7 +774,7 @@ class ElectionController extends Controller
 
     public function edit(Request $request, Election $election)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -829,7 +830,7 @@ class ElectionController extends Controller
 
     public function destroy(Election $election)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {

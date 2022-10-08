@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="main-layout" class="flex items-start justify-between h-screen user-dashboard">
-        @if (auth()->user()->privilege == 'superuser')
+        @if (Auth::user()->role === 'super admin')
             <x-sidebar />
             <x-mobile_menu />
 
@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        @if (auth()->user()->privilege != 'superuser')
+        @if (Auth::user()->role !== 'super admin')
             <div id="layout" class="flex flex-col justify-start items-start w-full h-full bg-neutral-100/30">
                 <x-nav_bar />
 
