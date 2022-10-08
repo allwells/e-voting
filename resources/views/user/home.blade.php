@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('title', 'Home')
-@section('home-tab', auth()->user()->theme == 'dark' ? 'active-dark-home' : 'active-home')
+@section('home-tab', Auth::user()->theme == 'dark' ? 'active-dark-home' : 'active-home')
 
 @section('views')
     <div
@@ -10,14 +10,16 @@
             <div class="bg-transparent h-fit w-fit md:w-48 rounded-2xl">
                 <ul style="color: #0000FF;" class="flex flex-col items-start justify-start gap-4 text-lg">
                     <li class="w-full">
-                        <a href="https://voices.i-amvocal.org" target="_blank" class="flex items-center justify-start gap-2 w-fit">
+                        <a href="https://voices.i-amvocal.org" target="_blank"
+                            class="flex items-center justify-start gap-2 w-fit">
                             <x-icons.home_icon style="width: 18px;" class="flex-shrink-0 h-5" />
                             Voices Home
                         </a>
                     </li>
 
                     <li class="w-full">
-                        <a href="https://voices.i-amvocal.org/about" target="_blank" rel="noreferrer" class="flex items-center justify-start gap-2 w-fit">
+                        <a href="https://voices.i-amvocal.org/about" target="_blank" rel="noreferrer"
+                            class="flex items-center justify-start gap-2 w-fit">
                             <x-icons.information_icon style="width: 22px; height: 22px;" class="flex-shrink-0" />
                             About
                         </a>
@@ -71,43 +73,42 @@
             class="h-full rounded-2xl gap-5 w-[352px] min-w-[300px] max-w-[352px] lg:col-start-12 lg:col-end-13 lg:flex hidden flex-col overflow-y-auto scrollbar-hide scroll-smooth justify-start items-start pt-16 pb-28">
             <div class="flex flex-col items-start justify-start flex-grow w-full h-full gap-5 text-white rounded-2xl">
                 <div class="w-full rounded-2xl"
-                @if ($user->avatar == Null)
-                style="background-image:url('https://res.cloudinary.com/iamvocal/image/upload/v1624506860/Voices_AssetArtboard_1_copy_9_b6h4f6.png'); background-position:bottom; background-size:cover; min-height: 219px !important; max-height: 219px !important; height: 219px;"  
+                    @if (Auth::user()->avatar == null) style="background-image:url('https://res.cloudinary.com/iamvocal/image/upload/v1624506860/Voices_AssetArtboard_1_copy_9_b6h4f6.png'); background-position:bottom; background-size:cover; min-height: 219px !important; max-height: 219px !important; height: 219px;"
                 @else
-                style="background-image:url('{{$user->header}}'); background-position:bottom; background-size:cover; min-height: 219px !important; max-height: 219px !important; height: 219px;"  
-                @endif>
+                style="background-image:url('{{ Auth::user()->header }}'); background-position:bottom; background-size:cover; min-height: 219px !important; max-height: 219px !important; height: 219px;" @endif>
                     <div class="flex items-end justify-center w-full h-full p-3 pb-5 bg-black/50 rounded-2xl">
                         <div class="flex items-center justify-center gap-5">
                             <div class="flex flex-col items-center justify-center">
-                                @if ($user->followers == Null)
-                                <h1 class="text-lg font-semibold">0</h1>
+                                @if (Auth::user()->followers == null)
+                                    <h1 class="text-lg font-semibold">0</h1>
                                 @else
-                                <h1 class="text-lg font-semibold">{{ count($user->followers) }}</h1>
+                                    <h1 class="text-lg font-semibold">{{ count(Auth::user()->followers) }}</h1>
                                 @endif
                                 <span class="text-xs font-normal">Followers</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center">
-                                @if (auth()->user()->avatar)
-                                    <img src="{{ auth()->user()->avatar }}" alt="{{ auth()->user()->name }}"
+                                @if (Auth::user()->avatar)
+                                    <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
                                         class="flex-shrink-0 rounded-full shadow-lg shadow-black/30 md:h-24 md:w-24" />
                                 @else
-                                    <svg class="flex-shrink-0 bg-black border-2 border-black rounded-full shadow-lg shadow-black/30 md:h-24 md:w-24"
+                                    <svg class="flex-shrink-0 bg-[#0000FF] border-2 border-[#0000FF] rounded-full shadow-lg shadow-black/30 md:h-24 md:w-24"
                                         fill="currentColor" viewBox="2.2 2.2 15.6 15.6" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
                                             clip-rule="evenodd"></path>
                                     </svg>
                                 @endif
-                                <h1 class="mt-1 text-base font-semibold">{{Auth::user()->name}}</h1>
-                                <span style="font-size: 10px;" class="hover:underline hover:cursor-pointer">{{Auth::user()->username}}</span>
+                                <h1 class="mt-1 text-base font-semibold">{{ Auth::user()->name }}</h1>
+                                <span style="font-size: 10px;"
+                                    class="hover:underline hover:cursor-pointer">{{ Auth::user()->username }}</span>
                             </div>
 
                             <div class="flex flex-col items-center justify-center">
-                                @if ($user->followings == Null)
-                                <h1 class="text-lg font-semibold">0</h1>
+                                @if (Auth::user()->followings == null)
+                                    <h1 class="text-lg font-semibold">0</h1>
                                 @else
-                                <h1 class="text-lg font-semibold">{{ count($user->followings) }}</h1>
+                                    <h1 class="text-lg font-semibold">{{ count(Auth::user()->followings) }}</h1>
                                 @endif
                                 <span class="text-xs font-normal">Following</span>
                             </div>

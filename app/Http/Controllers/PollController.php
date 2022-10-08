@@ -9,6 +9,7 @@ use App\Models\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PollController extends Controller
@@ -27,7 +28,7 @@ class PollController extends Controller
 
         $data = [ 'polls' => $polls, 'options' => $options, 'responses' => $responses, 'today' => $today ];
 
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role != 'super admin')
         {
             return view('user.polls', $data);
         }
@@ -149,14 +150,14 @@ class PollController extends Controller
      */
     public function show()
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = auth() && (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
             return back()->with('error', 'Unauthorized action.');
         }
 
-        if(auth()->user()->privilege === 'admin')
+        if(Auth::user()->role === 'admin')
         {
             return view('user.create_poll');
         } else {
@@ -172,7 +173,7 @@ class PollController extends Controller
      */
     public function create(Request $request)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = auth() && (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {
@@ -210,7 +211,7 @@ class PollController extends Controller
                 $options->save();
             }
 
-            $superusers = User::where('privilege', 'superuser')->get();
+            $superusers = User::where('role', 'super admin')->get();
             $user = User::where('id', $poll->user_id)->first();
 
             foreach($superusers as $superuser)
@@ -226,7 +227,7 @@ class PollController extends Controller
                 DB::table('notifications')->insert($newNotification);
             }
 
-            if($request->user()->privilege === 'superuser')
+            if($request->user()->role === 'super admin')
             {
                 return \redirect()->route('polls.show', $poll)->with('success', 'You successfully created a poll!');
             } else {
@@ -243,7 +244,7 @@ class PollController extends Controller
         $responses = Response::all();
 
         // get logged in user id
-        $userId = auth()->user()->id;
+        $userId = Auth::user()->id;
 
         // check if current logged in user's id exists in response
         $responseExists = $responses
@@ -328,7 +329,7 @@ class PollController extends Controller
 
     public function destroy(Poll $poll)
     {
-        $isUnauthorizedUser = auth() && (auth()->user()->privilege != 'superuser') && (auth()->user()->privilege != 'admin');
+        $isUnauthorizedUser = auth() && (Auth::user()->role != 'super admin') && (Auth::user()->role != 'admin');
 
         if($isUnauthorizedUser)
         {

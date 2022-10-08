@@ -1,26 +1,26 @@
 @php
 // get all notifications
 $notifications = \DB::table('notifications')
-    ->where('user_id', auth()->user()->id)
+    ->where('user_id', Auth::user()->id)
     ->paginate(10)
     ->reverse()
     ->values();
 
 // Get notifications that have not been read
 $unreadNotifications = \DB::table('notifications')
-    ->where('user_id', auth()->user()->id)
+    ->where('user_id', Auth::user()->id)
     ->where('isRead', false)
     ->get();
 @endphp
 
-{{-- <nav
-    class="md:shadow-lg z-50 shadow-black/10 max-w-[1500px] w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 flex items-center jusitify-between md:py-2 md:px-5 gap-5"> --}}
 <nav
     class="md:shadow-lg z-50 shadow-black/10 max-w-[1500px] w-full h-auto bg-[#0000FF] absolute text-white md:border-b md:border-neutral-100 md:py-2 md:px-5 gap-5 grid md:grid-cols-3">
+
+    {{-- MOBILE VIEW --}}
     <div
         class="flex-grow md:block flex justify-between items-center md:bg-transparent bg-white md:py-0 py-4 md:px-0 px-5 md:col-start-1 md:col-end-2">
         <div class="md:hidden flex justify-center items-center">
-            <button type="button">
+            <button type="button" class="hamburger-btn">
                 <svg class="w-8 h-8 text-[#0000FF]" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -76,6 +76,9 @@ $unreadNotifications = \DB::table('notifications')
             </div>
         </div>
     </div>
+    {{-- MOBILE VIEW - END --}}
+
+    <x-hamburger_menu />
 
     <div class="flex-grow md:flex hidden md:col-start-2 md:col-end-12">
         <form action="#" method="POST" class="flex justify-start items-center w-full">
@@ -98,7 +101,8 @@ $unreadNotifications = \DB::table('notifications')
         <ul class="flex justify-end items-center gap-6 overflow-visible">
             <li class=" flex justify-center items-center rounded-full">
 
-                <a href="{{ route('notifications') }}" title="Notifications" class="w-fit h-fit rounded-full p-1.5 hover:bg-white/40 transition duration-200 active:scale-90">
+                <a href="{{ route('notifications') }}" title="Notifications"
+                    class="w-fit h-fit rounded-full p-1.5 hover:bg-white/40 transition duration-200 active:scale-90">
                     <x-icons.bell_icon style="height: 23px; width: 23px;" class="text-white" />
                     @if ($unreadNotifications->count() > 0)
                         <span
@@ -186,25 +190,29 @@ $unreadNotifications = \DB::table('notifications')
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="{{ route('elections.view') }}" title="Previous elections" class="w-fit h-fit rounded-full p-2 hover:bg-white/40 transition duration-200 active:scale-90">
+                <a href="{{ route('elections.view') }}" title="Previous elections"
+                    class="w-fit h-fit rounded-full p-2 hover:bg-white/40 transition duration-200 active:scale-90">
                     <x-icons.election_icon style="height: 20px; width: 20px;" class="text-white" />
                 </a>
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="{{ route('polls.view') }}" title="Polls" class="w-fit h-fit rounded-full p-1.5 hover:bg-white/40 transition duration-200 active:scale-90">
+                <a href="{{ route('polls.view') }}" title="Polls"
+                    class="w-fit h-fit rounded-full p-1.5 hover:bg-white/40 transition duration-200 active:scale-90">
                     <x-icons.polling_icon class="text-white w-6 h-6" />
                 </a>
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="{{ route('results') }}" title="Results" class="w-fit h-fit rounded-full p-2 hover:bg-white/40 transition duration-200 active:scale-90">
+                <a href="{{ route('results') }}" title="Results"
+                    class="w-fit h-fit rounded-full p-2 hover:bg-white/40 transition duration-200 active:scale-90">
                     <x-icons.chart_icon style="height: 19px; width: 19px;" class="text-white" />
                 </a>
             </li>
 
             <li class=" flex justify-center items-center rounded-full">
-                <a href="{{ route('settings') }}" title="Settings" class="w-fit h-fit rounded-full p-1.5 hover:bg-white/40 transition duration-200 active:scale-90">
+                <a href="{{ route('settings') }}" title="Settings"
+                    class="w-fit h-fit rounded-full p-1.5 hover:bg-white/40 transition duration-200 active:scale-90">
                     <x-icons.settings_icon style="height: 25px; width: 25px;" class="text-white" />
                 </a>
             </li>

@@ -35,9 +35,9 @@ class SuperuserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $superuser = $request->user()->privilege === 'superuser';
+        $superAdmin = $request->user()->role === 'super admin';
 
-        if (!$superuser) {
+        if (!$superAdmin) {
             abort(403, 'You do not have access to this page.');
         }
 

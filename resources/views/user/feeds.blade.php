@@ -3,9 +3,9 @@
 @section('title', 'Explore')
 
 @section('home-page')
-    <div class="md:bg-white w-full md:p-5 min-h-fit rounded-2xl text-justify flex flex-col gap-5 md:pb-7 pb-16">
+    <div class="md:bg-white w-full md:p-5 min-h-fit rounded-2xl relative text-justify flex flex-col gap-5 md:pb-7 pb-16">
 
-        <div class="absolute w-full top-20 max-w-[41.4rem] flex-grow">
+        <div class="absolute w-full top-0 right-0 left-0 flex-grow">
             <x-error_message />
             <x-info_message />
             <x-success_message />
@@ -13,7 +13,7 @@
 
         <div class="flex flex-col gap-3 justify-center items-center w-full">
             <div class="flex justify-between items-center  w-full">
-                <h2 class="text-xl md:text-3xl font-semibold text-[#0000FF]">Elections</h2>
+                <h2 class="text-2xl md:text-3xl font-bold text-[#0000FF]">Elections</h2>
 
                 <div class="flex justify-end items-center gap-2">
                     <button type="button" data-modal-toggle="election-code-modal"
@@ -27,7 +27,7 @@
                     </button>
                     <x-election_code_modal />
 
-                    @if (auth()->user()->privilege == 'admin')
+                    @if (Auth::user()->role == 'admin')
                         <button id="eventOptionDropDown" data-dropdown-toggle="eventFeeds"
                             class="bg-neutral-100 hover:bg-neutral-200/80 focus:bg-neutral-200/50 border border-neutral-200/60 hover:border-neutral-300/80 focus:border-[#0000FF] focus:ring-0 p-1.5 rounded-xl text-[#0000FF]">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                         </svg>
-                                        <span class="hidden md:block">Create Election</span>
+                                        <span>Create Election</span>
                                     </a>
                                 </li>
                                 <li>
@@ -59,7 +59,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                         </svg>
-                                        <span class="hidden md:block">Create Poll</span>
+                                        <span>Create Poll</span>
                                     </a>
                                 </li>
                             </ul>

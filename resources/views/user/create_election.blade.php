@@ -18,6 +18,7 @@
 
                 <x-success_message />
                 <x-error_message />
+                <x-info_message />
 
                 <div class="flex flex-col justify-center w-full gap-2 sm:gap-5 form-input-group md:flex-row">
                     <div class="w-full md:w-6/12">
@@ -125,9 +126,14 @@
                     </label>
 
                     <label for="dropzone-file"
-                    class="flex flex-col justify-center items-center w-full h-40 bg-neutral-100 rounded-lg border-neutral-300 border-dashed cursor-pointer hover:bg-neutral-200">
+                        class="flex flex-col justify-center items-center w-full h-40 bg-neutral-100 rounded-lg border-neutral-300 border-dashed cursor-pointer hover:bg-neutral-200">
                         <div class="flex flex-col justify-center items-center pt-5 pb-6">
-                            <svg aria-hidden="true" class="mb-3 w-10 h-10 text-neutral-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg>
+                            <svg aria-hidden="true" class="mb-3 w-10 h-10 text-neutral-500" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
                         </div>
                         <input id="dropzone-file" name="electionCover" type="file" class="hidden" />
                     </label>
@@ -141,8 +147,9 @@
                     <table class="w-full candidates-table">
                         <thead>
                             <tr class="border-y">
-                                <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Candidate Name</th>
-                                <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Candidate Party</th>
+                                <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Name</th>
+                                <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Email</th>
+                                <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600">Party</th>
                                 <th class="px-2 py-4 text-xs text-left uppercase text-neutral-600 w-[3rem]">Image</th>
                                 <th class="w-14">
                                     <button type="button"
