@@ -2046,6 +2046,10 @@ input:checked + .toggle-bg {
   padding-left: 0.875rem;
   padding-right: 0.875rem;
 }
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
 .pt-2 {
   padding-top: 0.5rem;
 }
@@ -4240,6 +4244,11 @@ footer {
   .md\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .md\:py-5 {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
   }
 
   .md\:pb-7 {

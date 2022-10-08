@@ -56,11 +56,17 @@ $years = $endDate->diffInYears($now); // get the difference in years between the
 
 <div class="relative w-full md:border md:p-5 rounded-2xl">
     <div class="flex items-center justify-between">
-        <h1 class="text-xl font-bold text-neutral-700">{{ $poll->title }}</h1>
+        <h1 class="text-lg font-semibold text-neutral-700">{{ $poll->title }}</h1>
         @if (auth()->user()->privilege === 'admin')
             <div class="w-fit h-fit">
-                <button type="button" id="pollsOptionDropDown{{ $poll->id }}" data-dropdown-toggle="polls-dropdown" class="flex items-center justify-center p-1 transition duration-200 rotate-90 rounded-full hover:bg-black/10 focus:ring ring-black/20 text-neutral-800">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                <button type="button" id="pollsOptionDropDown{{ $poll->id }}" data-dropdown-toggle="polls-dropdown"
+                    class="flex items-center justify-center p-1 transition duration-200 rotate-90 rounded-full hover:bg-black/10 focus:ring ring-black/20 text-neutral-800">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z">
+                        </path>
+                    </svg>
                 </button>
 
                 <div id="polls-dropdown" class="hidden z-10 min-w-[11rem] bg-white rounded-xl shadow-lg border">
@@ -73,7 +79,12 @@ $years = $endDate->diffInYears($now); // get the difference in years between the
 
                                 <button type="submit"
                                     class="flex items-center justify-start w-full gap-1 px-3 py-2 text-sm font-bold transition duration-300 rounded-lg hover:text-red-700 hover:bg-red-100">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
                                     Delete
                                 </button>
                             </form>
@@ -88,10 +99,10 @@ $years = $endDate->diffInYears($now); // get the difference in years between the
         @if ($options->count() > 0)
             @foreach ($options as $option)
                 @if ($option->poll_id === $poll->id)
-                    @if($now->lt($endDate))
+                    @if ($now->lt($endDate))
                         @if (!$responseExists)
-                            <form id="option-form-{{ $option->id }}" action="{{ route('polls.respond', $poll->id) }}" method="POST"
-                                class="w-full">
+                            <form id="option-form-{{ $option->id }}" action="{{ route('polls.respond', $poll->id) }}"
+                                method="POST" class="w-full">
                                 @csrf
 
                                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}" />
@@ -114,7 +125,8 @@ $years = $endDate->diffInYears($now); // get the difference in years between the
                                     style="width: {{ array_key_exists($option->id, $response) ? round(($response[$option->id] / $totalResponses) * 100) : 0 }}%;"
                                     class="bg-neutral-300 cursor-default text-left transition duration-1000 text-neutral-700 flex justify-start items-start border-0 outline-0 w-full min-h-[2.5rem]">
                                     <span class="absolute w-full min-h-[2.5rem] flex justify-between items-center px-3">
-                                        <span class="relative flex items-center justify-start gap-1 text-sm font-medium">
+                                        <span
+                                            class="relative flex items-center justify-start gap-1 text-sm font-medium">
                                             @if ($responseExists->option_id === $option->id)
                                                 <span class="relative w-fit h-fit">
                                                     <svg class="w-6 h-6" fill="none" stroke="currentColor"
@@ -136,7 +148,7 @@ $years = $endDate->diffInYears($now); // get the difference in years between the
                         @endif
                     @else
                         <div
-                        class="relative flex items-center justify-start w-full overflow-hidden border rounded-lg border-neutral-300">
+                            class="relative flex items-center justify-start w-full overflow-hidden border rounded-lg border-neutral-300">
                             <button type="button"
                                 style="width: {{ array_key_exists($option->id, $response) ? round(($response[$option->id] / $totalResponses) * 100) : 0 }}%;"
                                 class="bg-neutral-300 cursor-default text-left transition duration-1000 text-neutral-700 flex justify-start items-start border-0 outline-0 w-full min-h-[2.5rem]">
@@ -166,13 +178,13 @@ $years = $endDate->diffInYears($now); // get the difference in years between the
             <div class="flex items-center justify-start -space-x-3">
                 @foreach ($users as $user)
                     <div style="background-image: url('{{ $user->image ? $user->image : asset('icons/default_user.svg') }}'); background-repeat: no-repeat; background-size: cover; background-position: center;"
-                    class="border-2 border-white min-h-[2rem] min-w-[2rem] h-[2rem] w-[2rem] rounded-full">
+                        class="border-2 border-white min-h-[2rem] min-w-[2rem] h-[2rem] w-[2rem] rounded-full">
                     </div>
                 @endforeach
             </div>
         @endif
 
-        <span>
+        <span class="font-medium">
             Total Responses:
             <span id="total-responses" class="font-bold">
                 @if ($isThousand)
@@ -189,11 +201,11 @@ $years = $endDate->diffInYears($now); // get the difference in years between the
             </span>
         </span>
 
-        <span class="text-2xl">•</span>
+        <span class="text-xl font-bold">•</span>
 
         @if ($now->lt($endDate))
             @if ($years > 0)
-            <span class="font-bold">{{ $years }} {{ $years === 1 ? 'year' : 'years' }} left</span>
+                <span class="font-bold">{{ $years }} {{ $years === 1 ? 'year' : 'years' }} left</span>
             @elseif ($months > 0)
                 <span class="font-bold">{{ $months }} {{ $months === 1 ? 'month' : 'months' }} left</span>
             @elseif ($days > 0)
