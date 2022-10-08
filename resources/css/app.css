@@ -63,17 +63,17 @@
     src: url("../fonts/gilroy/fonts/Gilroy-UltraLight.otf") format("opentype");
 }
 
-.font-extralight {
+.font-thin {
     font-weight: 100 !important;
+    font-family: "Gilroy Thin" !important;
+}
+
+.font-extralight {
+    font-weight: 200 !important;
     font-family: "Gilroy Ultra Light" !important;
 }
 
 .font-light {
-    font-weight: 200 !important;
-    font-family: "Gilroy Thin" !important;
-}
-
-.font-semilight {
     font-weight: 300 !important;
     font-family: "Gilroy Light" !important;
 }
@@ -90,22 +90,22 @@
 
 .font-semibold {
     font-weight: 600 !important;
-    font-family: "Gilroy Heavy" !important;
+    font-family: "Gilroy Bold" !important;
 }
 
 .font-bold {
     font-weight: 700 !important;
-    font-family: "Gilroy Bold" !important;
+    font-family: "Gilroy Extra Bold" !important;
 }
 
 .font-extrabold {
     font-weight: 800 !important;
-    font-family: "Gilroy Extra Bold" !important;
+    font-family: "Gilroy Black" !important;
 }
 
 .font-black {
     font-weight: 900 !important;
-    font-family: "Gilroy Black" !important;
+    font-family: "Gilroy Heavy" !important;
 }
 
 * {
@@ -287,7 +287,6 @@ div#nav-profile-image {
 
 /* Hero background */
 .hero-background {
-    min-height: 90vh;
     background-image: url("../../public/images/background-spot.svg");
     background-size: contain;
     background-position: top;
