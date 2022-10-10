@@ -1,5 +1,5 @@
 <div
-    class="relative flex justify-center overflow-hidden align-top bg-white hero-background sm:min-h-[90rem] min-h-[60vh] items-center sm:pt-20">
+    class="relative flex justify-center overflow-hidden align-top bg-white hero-background sm:min-h-[90vh] min-h-[60vh] items-center sm:pt-20">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex flex-col justify-start mt-16 align-middle sm:text-center lg:text-left">
             <div class="flex justify-center">
