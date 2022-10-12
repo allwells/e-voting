@@ -8,7 +8,7 @@ $hasNotification = \Illuminate\Support\Facades\DB::table('notifications')
 
 
 <div
-    class="bg-white min-w-[17rem] sm:relative fixed h-full sidebar-menu py-4 hidden md:flex justify-between items-start px-3.5 sm:px-5 flex-col z-50">
+    class="bg-white sm:relative fixed h-full sidebar-menu py-4 invisible w-0 opacity-0 md:visible md:w-[17rem] md:min-w-[17rem] md:opacity-100 md:flex justify-between items-start px-3.5 sm:px-5 flex-col z-50 border-r">
     <div class="flex flex-col justify-between w-full h-full overflow-y-auto scrollbar-hide scroll-smooth">
         <div class="w-full overflow-y-auto scrollbar-hide scroll-smooth">
             <div class="items-center justify-start hidden tracking-wider sm:flex">
@@ -148,28 +148,28 @@ $hasNotification = \Illuminate\Support\Facades\DB::table('notifications')
                             class="hidden ml-5 border-l-2 mt-2 border-neutral-200 pl-3 space-y-3 py-2.5">
                             {{-- <li>
                                 <a id="@yield('profile-settings-sub-tab')" href="{{ route('settings.profile') }}"
-                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/80">
                                     Edit Profile
                                 </a>
                             </li> --}}
 
                             <li>
                                 <a id="@yield('email-settings-sub-tab')" href="{{ route('settings.email') }}"
-                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/80">
                                     Change Email
                                 </a>
                             </li>
 
                             <li>
                                 <a id="@yield('password-settings-sub-tab')" href="{{ route('settings.password') }}"
-                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/80">
                                     Change Password
                                 </a>
                             </li>
 
                             <li>
                                 <a id="@yield('notification-settings-sub-tab')" href="{{ route('settings.notification') }}"
-                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/8">
+                                    class="flex items-center px-2 py-1 text-sm font-normal transition duration-200 rounded-lg w-fit hover:bg-neutral-100 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/80">
                                     Notifications
                                 </a>
                             </li>
@@ -180,5 +180,20 @@ $hasNotification = \Illuminate\Support\Facades\DB::table('notifications')
         </div>
 
         {{-- <x-profile_card /> --}}
+        <form action="{{ route('logout') }}" method="POST" class="w-full">
+            @csrf
+            <button type="submit"
+                class="flex items-center justify-start w-full gap-2 px-2 py-3 text-sm text-neutral-700 font-normal transition duration-300 rounded-md hover:bg-neutral-100 hover:text-neutral-900 hover:bg-neutral-200/80">
+                <span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                        </path>
+                    </svg>
+                </span>
+                <span>Logout</span>
+            </button>
+        </form>
     </div>
 </div>

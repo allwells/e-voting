@@ -18,7 +18,7 @@
                     <h2 class="text-xl flex gap-1 font-semibold cursor-default text-neutral-800 dark:text-neutral-300">
                         {{ $user->name }}
                     </h2>
-                    <span class="text-sm font-normal cursor-default text-neutral-500 font-light text-sm"s>{{ $user->username }}</span>
+                    <span class="text-sm font-normal cursor-default text-neutral-500"s>{{ $user->username }}</span>
                 </div>
 
             </div>
@@ -31,23 +31,21 @@
                 <div class="flex flex-col justify-center gap-4 form-input-group lg:flex-row">
                     {{-- first name input --}}
                     <div class="lg:w-6/12 md:w-full">
-                        <label for="fname"
-                            class="block mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                        <label for="fname" class="block mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
                             Name</label>
                         <input name="name" type="text" id="name"
                             class="bg-neutral-50 border hover:border-neutral-500 text-neutral-600 transition duration-300 border-neutral-300 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
                             value="{{ $user->name }}" disabled>
                     </div>
 
-                    {{-- last name input--}}
+                    {{-- user input --}}
                     <div class="lg:w-6/12 md:w-full">
-                        <label for="username"
-                            class="block mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                            UserName</label>
+                        <label for="username" class="block mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                            Username</label>
                         <input name="username" type="text" id="username"
                             class="bg-neutral-50 border hover:border-neutral-500 text-neutral-600 transition duration-300 border-neutral-300 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:hover:border-neutral-400 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
                             value="{{ $user->username }}" disabled>
-                    </div> 
+                    </div>
                 </div>
 
                 {{-- email and phone input --}}

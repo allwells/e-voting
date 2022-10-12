@@ -1,6 +1,7 @@
 @extends('layout.layout')
 
 @section('title', 'Results for ' . $election->title)
+@section('results-tab', Auth::user()->theme == 'dark' ? 'active-dark-results' : 'active-results')
 
 @section('views')
     <div class="w-full bg-white flex flex-col gap-5 rounded-2xl px-4 sm:px-5 py-5 sm:py-6">

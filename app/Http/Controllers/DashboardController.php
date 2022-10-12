@@ -9,6 +9,7 @@ use App\Models\Election;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -25,7 +26,7 @@ class DashboardController extends Controller
 
             if($diffInDate === 1)
             {
-                $superusers = User::where('privilege', 'superuser')->get();
+                $superusers = User::where('role', 'super admin')->get();
                 $ownerOfPost = User::where('id', $election->user_id)->first();
 
                 foreach($superusers as $superuser)
@@ -49,9 +50,9 @@ class DashboardController extends Controller
 
         $totalElections = Election::all();
         $elections = Election::all()->take(5);
-        $totalAdmins = User::where('privilege', 'admin')->get();
-        $totalUsers = User::where('privilege','!=', 'superuser')->get();
-        $users = User::where('privilege','!=', 'superuser')->take(5)->get();
+        $totalAdmins = User::where('role', 'admin')->get();
+        $totalUsers = User::where('role','!=', 'super admin')->get();
+        $users = User::where('role','!=', 'super admin')->take(5)->get();
         $polls = Poll::all()->take(5);
 
         $results = collect();
@@ -65,7 +66,7 @@ class DashboardController extends Controller
             }
         }
 
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role != 'super admin')
         {
             return back()->with('error', 'Error: The page requested was not found!');
         }

@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('title', 'Users')
-@section('users-tab', auth()->user()->theme == 'dark' ? 'active-dark-users' : 'active-users')
+@section('users-tab', Auth::user()->theme == 'dark' ? 'active-dark-users' : 'active-users')
 @section('view-users-sub-tab', 'view-users-sub-tab')
 
 @section('views')
@@ -22,10 +22,10 @@
                 <thead>
                     <tr class="text-xs uppercase border-y text-neutral-700">
                         <th class="px-2 py-4 text-center">S/N</th>
-                        <th class="px-2 py-4 text-left">@sortablelink('fname', 'First Name')</th>
-                        <th class="px-2 py-4 text-left">@sortablelink('lname', 'Last Name')</th>
+                        <th class="px-2 py-4 text-left">@sortablelink('name', 'Name')</th>
+                        <th class="px-2 py-4 text-left">@sortablelink('username', 'Username')</th>
                         <th class="px-2 py-4 text-left">@sortablelink('email')</th>
-                        <th class="px-2 py-4 text-left">Privilege</th>
+                        <th class="px-2 py-4 text-left">Role</th>
 
                         <th scope="col w-14">
                             <span class="flex items-center justify-center">

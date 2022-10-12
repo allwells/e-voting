@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('title', 'Add User')
-@section('users-tab', auth()->user()->theme == 'dark' ? 'active-dark-users' : 'active-users')
+@section('users-tab', Auth::user()->theme == 'dark' ? 'active-dark-users' : 'active-users')
 @section('add-users-sub-tab', 'add-users-sub-tab')
 
 @section('views')
@@ -19,7 +19,7 @@
                 <div class="w-full flex sm:flex-row flex-col gap-5">
                     <div class="w-full sm:w-6/12">
                         <label for="fname" class="text-sm font-medium text-neutral-600">
-                            First Name
+                            Name
                             <span class="text-rose-500">*</span>
                         </label>
 
@@ -30,7 +30,7 @@
 
                     <div class="w-full sm:w-6/12">
                         <label for="lname" class="text-sm font-medium text-neutral-600">
-                            Last Name
+                            Username
                         </label>
 
                         <input type="text" name="lname" id="lname" placeholder="Enter your last name"

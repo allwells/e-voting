@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('title', 'Dashboard')
-@section('dashboard-tab', auth()->user()->theme == 'dark' ? 'active-dark-dashboard' : 'active-dashboard')
+@section('dashboard-tab', Auth::user()->theme == 'dark' ? 'active-dark-dashboard' : 'active-dashboard')
 
 @section('views')
     <div class="flex flex-col items-start justify-start h-full">
@@ -32,7 +32,7 @@
                                 <th class="py-4 text-center w-14">S/N</th>
                                 <th class="px-2 py-4 text-left">Name</th>
                                 <th class="px-2 py-4 text-left">Email</th>
-                                <th class="px-2 py-4 text-left">Privilege</th>
+                                <th class="px-2 py-4 text-center">Role</th>
 
                                 <th scope="col" class="px-1 text-center w-14">
                                     <span class="flex items-center justify-center">
@@ -105,7 +105,8 @@
                         <tbody class="text-sm border-b text-neutral-600">
                             @if ($results->count() > 0)
                                 @foreach ($results as $index => $result)
-                                    <x-dashboard_results_table :index="$index + 1" :result="$result" :hasPrivacy="false" :hasDescription="false" />
+                                    <x-dashboard_results_table :index="$index + 1" :result="$result" :hasPrivacy="false"
+                                        :hasDescription="false" />
                                 @endforeach
                             @else
                                 <tr>
@@ -123,84 +124,87 @@
 
         <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2">
             <div class="w-full h-full overflow-x-auto">
-            <div class="flex items-center justify-between w-full mt-8">
-                <label class="text-base font-bold text-neutral-700">Elections</label>
-                <a href="{{ route('elections.view') }}"
-                    class="flex items-center justify-center text-xs font-bold uppercase hover:underline text-neutral-500 hover:text-neutral-900">
-                    See all
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
+                <div class="flex items-center justify-between w-full mt-8">
+                    <label class="text-base font-bold text-neutral-700">Elections</label>
+                    <a href="{{ route('elections.view') }}"
+                        class="flex items-center justify-center text-xs font-bold uppercase hover:underline text-neutral-500 hover:text-neutral-900">
+                        See all
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
 
-            <div class="mt-2 overflow-x-auto">
-                <table class="w-full bg-white border">
-                    <thead>
-                        <tr class="text-xs uppercase border-b text-neutral-700">
-                            <th class="px-2 py-4 text-center w-14">S/N</th>
-                            <th class="py-4 pl-3 text-left">Election Title</th>
-                            <th class="w-16 py-4 text-center">Privacy</th>
-                            <th class="w-16 py-4 text-center">Status</th>
-                            <th class="w-16 py-4 text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm border-b text-neutral-600">
-                        @if ($elections->count() > 0)
-                            @foreach ($elections as $index => $election)
-                                <x-election_table :index="$index + 1" :election="$election" :today="$today" :hasDescription="false" />
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="6" class="py-10 text-center">
-                                    <span class="text-base tracking-wider text-neutral-500">No elections.</span>
-                                </td>
+                <div class="mt-2 overflow-x-auto">
+                    <table class="w-full bg-white border">
+                        <thead>
+                            <tr class="text-xs uppercase border-b text-neutral-700">
+                                <th class="px-2 py-4 text-center w-14">S/N</th>
+                                <th class="py-4 pl-3 text-left">Election Title</th>
+                                <th class="w-16 py-4 text-center">Privacy</th>
+                                <th class="w-16 py-4 text-center">Status</th>
+                                <th class="w-16 py-4 text-center">Action</th>
                             </tr>
-                        @endif
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="text-sm border-b text-neutral-600">
+                            @if ($elections->count() > 0)
+                                @foreach ($elections as $index => $election)
+                                    <x-election_table :index="$index + 1" :election="$election" :today="$today"
+                                        :hasDescription="false" />
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="6" class="py-10 text-center">
+                                        <span class="text-base tracking-wider text-neutral-500">No elections.</span>
+                                    </td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <div class="w-full h-full overflow-x-auto">
-            <div class="flex items-center justify-between w-full mt-8">
-                <label class="text-base font-bold text-neutral-700">Polls</label>
-                <a href="{{ route('polls.view') }}"
-                    class="flex items-center justify-center text-xs font-bold uppercase hover:underline text-neutral-500 hover:text-neutral-900">
-                    See all
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
+            <div class="w-full h-full overflow-x-auto">
+                <div class="flex items-center justify-between w-full mt-8">
+                    <label class="text-base font-bold text-neutral-700">Polls</label>
+                    <a href="{{ route('polls.view') }}"
+                        class="flex items-center justify-center text-xs font-bold uppercase hover:underline text-neutral-500 hover:text-neutral-900">
+                        See all
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
 
-            <div class="mt-2 overflow-x-auto">
-                <table class="w-full bg-white border">
-                    <thead>
-                        <tr class="text-xs uppercase border-b text-neutral-700">
-                            <th class="px-2 py-4 text-center w-14">S/N</th>
-                            <th class="py-4 pl-3 text-left">Title</th>
-                            <th class="w-16 py-4 text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm border-b text-neutral-600">
-                        @if ($polls->count() > 0)
-                            @foreach ($polls as $index => $poll)
-                                <x-polls_table :index="$index + 1" :poll="$poll" :today="$today" />
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="6" class="py-10 text-center">
-                                    <span class="text-base tracking-wider text-neutral-500">No elections.</span>
-                                </td>
+                <div class="mt-2 overflow-x-auto">
+                    <table class="w-full bg-white border">
+                        <thead>
+                            <tr class="text-xs uppercase border-b text-neutral-700">
+                                <th class="px-2 py-4 text-center w-14">S/N</th>
+                                <th class="py-4 pl-3 text-left">Title</th>
+                                <th class="w-16 py-4 text-center">Action</th>
                             </tr>
-                        @endif
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="text-sm border-b text-neutral-600">
+                            @if ($polls->count() > 0)
+                                @foreach ($polls as $index => $poll)
+                                    <x-polls_table :index="$index + 1" :poll="$poll" :today="$today" />
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="6" class="py-10 text-center">
+                                        <span class="text-base tracking-wider text-neutral-500">No elections.</span>
+                                    </td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 @endsection

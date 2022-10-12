@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
@@ -20,7 +21,7 @@ class SettingController extends Controller
 
     public function emailSetting()
     {
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role !== 'super admin')
         {
             return view('user.settings.change_email');
         }
@@ -30,7 +31,7 @@ class SettingController extends Controller
 
     public function passwordSetting()
     {
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role !== 'super admin')
         {
             return view('user.settings.change_password');
         }
@@ -40,7 +41,7 @@ class SettingController extends Controller
 
     public function notificationSetting()
     {
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role !== 'super admin')
         {
             return view('user.settings.notification');
         }
@@ -48,16 +49,16 @@ class SettingController extends Controller
         return view('superuser.settings.notification');
     }
 
-    public function theme(Request $request)
-    {
-        if($request->theme != 'dark' && $request->theme != 'light') {
-            return back()->with('error', 'Oops! Invalid theme.');
-        }
+    // public function theme(Request $request)
+    // {
+    //     if($request->theme != 'dark' && $request->theme != 'light') {
+    //         return back()->with('error', 'Oops! Invalid theme.');
+    //     }
 
-        User::where('id', auth()->user()->id)->update([ 'theme' => $request->theme ]);
+    //     User::where('id', Auth::user()->id)->update([ 'theme' => $request->theme ]);
 
-        return back()->with('success', 'Theme updated!');
-    }
+    //     return back()->with('success', 'Theme updated!');
+    // }
 
     // public function editProfile(Request $request)
     // {
@@ -72,7 +73,7 @@ class SettingController extends Controller
     //         return back()->with('warn', 'Read the message under each input field and try again.');
     //     }
 
-    //     User::where('id', auth()->user()->id)->update([
+    //     User::where('id', Auth::user()->id)->update([
     //         'fname' => $request->fname,
     //         'lname' => $request->lname,
     //         'dob' => $request->dob,
@@ -97,7 +98,7 @@ class SettingController extends Controller
         $email = $request->email;
         $confirmEmail = $request->email_confirmation;
 
-        if($email != $confirmEmail)
+        if($email !== $confirmEmail)
         {
             return back()->with('error', 'Emails do not match!');
         }
@@ -108,7 +109,7 @@ class SettingController extends Controller
             return back()->with('error', 'User with this email already exits!');
         }
 
-        User::where('id', auth()->user()->id)->update([ 'email' => $request->email ]);
+        User::where('id', Auth::user()->id)->update([ 'email' => $request->email ]);
 
         return back()->with('success', 'Email updated successfully!');
     }
@@ -131,7 +132,7 @@ class SettingController extends Controller
         $newPassword = $request->password;
         $confirmNewPassword = $request->password_confirmation;
 
-        if(!(\Hash::check($currentPassword, auth()->user()->password)))
+        if(!(\Hash::check($currentPassword, Auth::user()->password)))
         {
             return back()->with('error', 'The password you entered is incorrect!');
         }
@@ -141,7 +142,7 @@ class SettingController extends Controller
             return back()->with('warn', 'Password mismatch: See \'New Password\' and \'Confirm Password\' fields.');
         }
 
-        User::where('id', auth()->user()->id)->update([ 'password' => \Hash::make($newPassword) ]);
+        User::where('id', Auth::user()->id)->update([ 'password' => \Hash::make($newPassword) ]);
 
         return back()->with('success', 'Your password has been updated!');
     }
@@ -150,13 +151,13 @@ class SettingController extends Controller
     {
         if($request->email_notification == null)
         {
-            User::where('id', auth()->user()->id)->update([ 'email_notifications' => 'off' ]);
+            User::where('id', Auth::user()->id)->update([ 'email_notifications' => 'off' ]);
             return back()->with('success', 'You have successfully unsubscribed from email notifications.');
         }
 
         if($request->email_notification == 'on')
         {
-            User::where('id', auth()->user()->id)->update([ 'email_notifications' => $request->email_notification ]);
+            User::where('id', Auth::user()->id)->update([ 'email_notifications' => $request->email_notification ]);
             return back()->with('success', 'You have successfully subscribed to email notifications.');
         }
 

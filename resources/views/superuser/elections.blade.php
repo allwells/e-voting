@@ -1,13 +1,13 @@
 @extends('layout.layout')
 
 @section('title', 'View Elections')
-@section('election-tab', auth()->user()->theme == 'dark' ? 'active-dark-election' : 'active-election')
+@section('election-tab', Auth::user()->theme == 'dark' ? 'active-dark-election' : 'active-election')
 @section('view-elections-sub-tab', 'view-elections-sub-tab')
 
 @section('views')
     <div class="flex flex-col w-full gap-5 p-4 bg-white rounded-xl sm:p-5">
         {{-- FOR SUPERUSER ELECTION PAGE --}}
-        @if (auth()->user()->privilege == 'superuser')
+        @if (Auth::user()->role === 'super admin')
             <div class="flex items-center justify-between">
                 <div class="flex flex-col items-start justify-start w-full">
                     <label class="text-sm font-bold text-neutral-600 sm:text-base">View Elections</label>
@@ -16,7 +16,7 @@
                     <x-success_message />
                 </div>
 
-                @if (auth()->user()->privilege == 'admin')
+                @if (Auth::user()->role === 'admin')
                     <a href={{ route('elections.create') }}
                         class="flex items-center justify-center gap-3 p-1 text-white bg-[#0000FF] rounded shadow-lg hover:bg-[#0000DD] focus:bg-[#0000DD] focus:ring focus:ring-indigo-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -35,7 +35,7 @@
 
             <div class="overflow-x-auto">
                 <table class="w-full mb-8 text-sm text-left text-neutral-500 dark:text-neutral-400">
-                    <thead class="text-xs uppercase text-neutral-700 border-y">
+                    <thead class="text-sm font-medium uppercase text-neutral-700 border-y">
                         <tr>
                             <th scope="col" class="px-3 text-center w-14">
                                 S/N

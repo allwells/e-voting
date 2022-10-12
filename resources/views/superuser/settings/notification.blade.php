@@ -1,7 +1,7 @@
 @extends('layout.layout')
 @section('title', 'Change Email')
 @section('notification-settings-sub-tab', 'notification-settings-sub-tab')
-@section('settings-tab', auth()->user()->theme == 'dark' ? 'active-dark-settings' : 'active-settings')
+@section('settings-tab', Auth::user()->theme == 'dark' ? 'active-dark-settings' : 'active-settings')
 
 @section('views')
     <form action="{{ route('settings.notification') }}" method="POST"
@@ -26,7 +26,7 @@
                         <div>
                             <input type="checkbox" name="email_notification" id="email_notification"
                                 class="w-5 h-5 text-[#0000FF] border rounded border-neutral-400 focus:ring-[#0000FF]/50 focus:ring-2"
-                                @if (auth()->user()->email_notifications == 'on') @checked(true) @endif />
+                                @if (Auth::user()->email_notifications == 'on') @checked(true) @endif />
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                         <div>
                             <input type="checkbox" name="email_notification" id="email_notification"
                                 class="w-5 h-5 text-[#0000FF] border rounded border-neutral-400 focus:ring-[#0000FF]/50 focus:ring-2"
-                                @if (auth()->user()->email_notifications == 'on') @checked(true) @endif />
+                                @if (Auth::user()->email_notifications == 'on') @checked(true) @endif />
                         </div>
                     </div> --}}
                 </div>

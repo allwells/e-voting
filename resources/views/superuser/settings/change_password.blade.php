@@ -1,7 +1,7 @@
 @extends('layout.layout')
 @section('title', 'Change Password')
 @section('password-settings-sub-tab', 'password-settings-sub-tab')
-@section('settings-tab', auth()->user()->theme == 'dark' ? 'active-dark-settings' : 'active-settings')
+@section('settings-tab', Auth::user()->theme == 'dark' ? 'active-dark-settings' : 'active-settings')
 
 @section('views')
     <form action="{{ route('settings.password') }}" method="POST"

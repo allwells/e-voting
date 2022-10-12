@@ -96,7 +96,7 @@
 
                 <div class="flex flex-col justify-center w-full gap-2 sm:gap-5 form-input-group md:flex-row">
                     <input name="title" type="text" id="title"
-                        class="w-full mt-1 text-xl md:text-3xl font-bold border-0 px-1 focus:ring-0 h-20 outline-0 text-neutral-700 placeholder-neutral-400"
+                        class="w-full mt-1 text-xl md:text-4xl font-semibold border-0 px-1 focus:ring-0 h-20 outline-0 text-neutral-700 placeholder-neutral-400"
                         placeholder="Enter poll question here..." required>
                 </div>
 
@@ -105,11 +105,11 @@
                         <table class="w-full options-table">
                             <thead class="border-y">
                                 <tr>
-                                    <th class="text-base text-left font-bold text-neutral-700 pl-1">Poll Options</th>
+                                    <th class="text-base text-left font-semibold text-neutral-700 pl-1">Poll Options</th>
                                     <th class="w-[10rem] py-3">
                                         <div class="flex relative justify-end items-center">
                                             <button type="button"
-                                                class="w-fit p-2 text-neutral-500 hover:text-neutral-800 hover:bg-black/10 text-xs font-bold flex justify-center items-center rounded-md add-option-btn active:scale-95">
+                                                class="w-fit p-2 text-neutral-500 hover:text-neutral-800 hover:bg-black/10 text-xs font-semibold flex justify-center items-center rounded-md add-option-btn active:scale-95">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" stroke-width="0.1"
                                                     stroke="currentColor" fill="currentColor" viewBox="0 0 24 24">
                                                     <path

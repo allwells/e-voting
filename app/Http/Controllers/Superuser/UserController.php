@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Snowfire\Beautymail\Beautymail;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
@@ -33,7 +34,7 @@ class UserController extends Controller
     {
         $result = "";
 
-        $users = User::where('fname', 'Like', '%' . $request->slug . '%')->orWhere('lname', 'Like', '%' . $request->slug . '%')->orWhere('email', 'Like', '%' . $request->slug . '%')->get();
+        $users = User::where('name', 'Like', '%' . $request->slug . '%')->orWhere('username', 'Like', '%' . $request->slug . '%')->orWhere('email', 'Like', '%' . $request->slug . '%')->get();
 
         foreach($users as $index => $user)
         {
@@ -46,11 +47,11 @@ class UserController extends Controller
                     </td>
 
                     <td class="px-2 py-3 text-left">
-                        ' . $user->fname . '
+                        ' . $user->name . '
                     </td>
 
                     <td class="px-2 py-3 text-left">
-                    ' . $user->lname . '
+                    ' . $user->username . '
                     </td>
 
                     <td class="px-2 py-3 text-left">
@@ -80,7 +81,7 @@ class UserController extends Controller
 
                                         <button type="submit"
                                             class="flex items-center justify-start w-full gap-2 p-3 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
-                                            @if (' . $user->role . ' == "admin")
+                                            @if (' . $user->role . ' === "admin")
                                                 Remove admin role
                                             @else
                                                 Make admin

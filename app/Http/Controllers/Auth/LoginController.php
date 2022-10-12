@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Stevebauman\Location\Facades\Location;
 
 class LoginController extends Controller
@@ -45,10 +46,9 @@ class LoginController extends Controller
         /**
          * Authenticate user and @return error message if authentication fails.
          */
-        if(!auth()->attempt($request->only('email', 'password'), $request->remember)) {
+        if(!Auth::attempt($request->only('email', 'password'), $request->remember)) {
             return back()->with('error', 'Invalid email or password!');
         }
-
 
         // $token = \Str::random(64);
 
