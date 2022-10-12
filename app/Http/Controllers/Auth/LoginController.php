@@ -50,11 +50,6 @@ class LoginController extends Controller
             return back()->with('error', 'Invalid email or password!');
         }
 
-        if(Auth::user()->role === "super admin") {
-            return redirect()->route('dashboard');
-        }
-
-
         // $token = \Str::random(64);
 
         // DB::table('password_resets')->insert([

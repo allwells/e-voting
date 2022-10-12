@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,8 +69,8 @@ Route::middleware(['auth'])->group(function() {
     // DASHBOARD ROUTE
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
-    Route::get('/', function() { return auth()->user()->privilege != 'superuser' ? redirect()->route('explore') : redirect()->route('dashboard'); });
-    Route::get('/home', function() { return auth()->user()->privilege != 'superuser' ? redirect()->route('explore') : redirect()->route('dashboard'); });
+    Route::get('/', function() { return Auth::user()->role !== 'super admin' ? redirect()->route('explore') : redirect()->route('dashboard'); });
+    Route::get('/home', function() { return Auth::user()->role !== 'super admin' ? redirect()->route('explore') : redirect()->route('dashboard'); });
 });
 
 // ADMINS ROUTE
