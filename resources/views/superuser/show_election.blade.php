@@ -56,13 +56,13 @@ $years2 = $startDate->diffInYears($now);
                     </p>
 
                     @if ($election->location)
-                        <h3 class="text-base font-bold text-center mt-7">
+                        <h3 class="text-base font-medium text-center mt-7">
                             {{ $election->location }}
                         </h3>
                     @endif
                 </div>
 
-                @if (auth()->user()->privilege === 'superuser' && $today->lt($election->start_date))
+                @if (Auth::user()->role === 'super admin' && $today->lt($election->start_date))
                     <div class="flex items-center justify-end w-full px-3">
                         <a href="{{ route('elections.edit', $election) }}" title="Edit this election"
                             class="p-1 mb-3 text-white rounded-md hover:bg-white/20">
@@ -76,7 +76,7 @@ $years2 = $startDate->diffInYears($now);
                 @endif
             </div>
 
-            @if (auth()->user()->privilege == 'superuser' && $election->type == 'private')
+            @if (Auth::user()->role === 'super admin' && $election->type === 'private')
                 <div class="z-10 -mt-12 ml-3.5">
                     <button type="button" id="electionInfoButton" data-dropdown-toggle="electionInfo"
                         data-dropdown-placement="right"
@@ -108,35 +108,37 @@ $years2 = $startDate->diffInYears($now);
                                 @endif
                             </div>
 
-                            <div class="flex items-center justify-start gap-2">
-                                <span>Election Code:</span>
-                                <span class="text-[#0000FF] font-bold">{{ $election->accessCode }}</span>
-                            </div>
+                            @if ($election->accessCode)
+                                <div class="flex items-center justify-start gap-2">
+                                    <span>Election Code:</span>
+                                    <span class="text-[#0000FF] font-bold">{{ $election->accessCode }}</span>
+                                </div>
 
-                            <div class="flex items-center justify-start gap-2">
-                                <span>Code Status:</span>
-                                @if ($election->codeStatus == 'active')
-                                    <span
-                                        class="text-xs font-bold text-green-700 uppercase">{{ $election->codeStatus }}</span>
-                                @else
-                                    <span
-                                        class="text-xs font-bold text-red-700 uppercase">{{ $election->codeStatus }}</span>
-                                @endif
+                                <div class="flex items-center justify-start gap-2">
+                                    <span>Code Status:</span>
+                                    @if ($election->codeStatus == 'active')
+                                        <span
+                                            class="text-xs font-bold text-green-700 uppercase">{{ $election->codeStatus }}</span>
+                                    @else
+                                        <span
+                                            class="text-xs font-bold text-red-700 uppercase">{{ $election->codeStatus }}</span>
+                                    @endif
 
-                                <form action="{{ route('activation', $election) }}" method="POST">
-                                    @csrf
+                                    <form action="{{ route('activation', $election) }}" method="POST">
+                                        @csrf
 
-                                    <button type="submit">
-                                        @if ($election->codeStatus == 'active')
-                                            <span
-                                                class="p-1 text-xs font-bold text-white bg-red-700 rounded">Deactivate</span>
-                                        @else
-                                            <span
-                                                class="p-1 text-xs font-bold text-white bg-green-700 rounded">Activate</span>
-                                        @endif
-                                    </button>
-                                </form>
-                            </div>
+                                        <button type="submit">
+                                            @if ($election->codeStatus == 'active')
+                                                <span
+                                                    class="p-1 text-xs font-bold text-white bg-red-700 rounded">Deactivate</span>
+                                            @else
+                                                <span
+                                                    class="p-1 text-xs font-bold text-white bg-green-700 rounded">Activate</span>
+                                            @endif
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -144,7 +146,7 @@ $years2 = $startDate->diffInYears($now);
         </div>
 
         <div class="w-full px-3 md:px-5">
-            <p class="text-xs">{{ $election->description }}</p>
+            <p class="text-base text-normal mb-3">{{ $election->description }}</p>
 
             <div class="flex items-start justify-start w-full gap-5 mt-3 sm:justify-end">
                 <div class="text-[#0000FF] w-fit h-fit flex flex-col items-center justify-start">
@@ -211,7 +213,7 @@ $years2 = $startDate->diffInYears($now);
             </div>
         </div>
 
-        @if ($election->type == 'private' && auth()->user()->privilege == 'superuser')
+        @if ($election->type == 'private' && Auth::user()->role == 'super admin')
             @if ($today->lt($election->start_date))
                 <div class="w-full sm:p-6">
                     <label class="hidden text-base font-bold text-neutral-700 sm:block">Send Invite</label>

@@ -79,7 +79,7 @@ class ElectionController extends Controller
             $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed';
 
             $result.=
-                '<tr class="hover:bg-neutral-50 text-xs">
+                '<tr class="hover:bg-neutral-50 text-sm font-normal">
                     <td class="px-3 text-center cursor-default w-fit">
                         ' . $index + 1 . '
                     </td>
@@ -94,11 +94,11 @@ class ElectionController extends Controller
                         </div>
                     </td>
 
-                    <td class="py-3 text-center text-[10px] uppercase font-bold">
+                    <td class="py-3 text-center text-xs uppercase font-semibold">
                         <span class="' . ($election->type === "public" ? 'text-green-600'  : 'text-red-600') . '">' . $election->type .'</span>
                     </td>
 
-                    <td class="py-3 text-xs font-bold text-left uppercase">
+                    <td class="py-3 text-xs font-semibold text-center uppercase">
                         ' . ($isNotStarted ? '<span class="text-[#0000FF]">upcoming</span>' : null) . '
                         ' . ($isStarted ? '<span class="text-green-600">started</span>' : null) . '
                         ' . ($isEnded ? '<span class="text-red-600">ended</span>' : null) . '

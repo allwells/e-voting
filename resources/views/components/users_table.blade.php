@@ -1,24 +1,25 @@
 @props(['index' => $index, 'user' => $user])
 
-<tr class="hover:bg-neutral-50">
+<tr class="hover:bg-neutral-50 text-normal">
     <td class="px-3 text-center cursor-default w-fit">
         {{ $index }}
     </td>
 
     <td class="px-2 py-3 text-left">
-        {{ $user->fname }}
+        {{ $user->name }}
     </td>
 
     <td class="px-2 py-3 text-left">
-        {{ $user->lname }}
+        {{ $user->username }}
     </td>
 
     <td class="px-2 py-3 text-left">
         {{ $user->email }}
     </td>
 
-    <td class="px-2 py-3 text-left">
-        {{ $user->privilege }}
+    <td
+        class="px-2 py-3.5 text-left uppercase text-[11px] font-semibold {{ $user->role === 'admin' ? 'text-green-600' : 'text-blue-600' }}">
+        {{ $user->role }}
     </td>
 
     <td class="text-center capitalize cursor-default">
@@ -40,8 +41,8 @@
                         @csrf
 
                         <button type="submit"
-                            class="flex items-center justify-start w-full gap-2 p-3 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
-                            @if ($user->privilege == 'admin')
+                            class="flex items-center justify-start font-normal w-full gap-2 p-3 transition duration-300 rounded-lg hover:bg-neutral-100 hover:text-neutral-900">
+                            @if ($user->role === 'admin')
                                 Remove admin privilege
                             @else
                                 Make admin

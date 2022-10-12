@@ -5,7 +5,7 @@ $votes = App\Models\Vote::where('election_id', $result->id)->get();
 $candidates = App\Models\Candidate::where('election_id', $result->id)->get();
 @endphp
 
-<tr class="text-xs hover:bg-neutral-50">
+<tr class="text-sm font-normal hover:bg-neutral-50">
     <td class="px-3 text-center cursor-default w-fit">
         {{ $index }}
     </td>

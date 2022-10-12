@@ -6,7 +6,7 @@ $totalResponses = \App\Models\Response::where('poll_id', $poll->id)
     ->count();
 @endphp
 
-<tr class="hover:bg-neutral-50">
+<tr class="hover:bg-neutral-50 text-sm font-normal">
     <td class="px-3 text-center cursor-default w-fit">
         {{ $index }}
     </td>

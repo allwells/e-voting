@@ -1,7 +1,7 @@
 @extends('layout.layout')
 @section('title', 'Change Email')
 @section('email-settings-sub-tab', 'email-settings-sub-tab')
-@section('settings-tab', auth()->user()->theme == 'dark' ? 'active-dark-settings' : 'active-settings')
+@section('settings-tab', Auth::user()->theme == 'dark' ? 'active-dark-settings' : 'active-settings')
 
 @section('views')
     <form action="{{ route('settings.email') }}" method="POST"

@@ -6,7 +6,7 @@
 @section('views')
     <div class="md:bg-white w-full md:p-5 min-h-fit rounded-2xl text-justify flex flex-col gap-4 pb-16">
         <div class="flex justify-between items-center w-full relative">
-            <h2 class="text-lg text-neutral-800 font-semibold">Notifications</h2>
+            <h2 class="text-lg text-neutral-800 font-medium">Notifications</h2>
 
             <div class="absolute w-full">
                 <x-info_message />

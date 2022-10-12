@@ -8,6 +8,7 @@ use App\Models\Election;
 use App\Models\Candidate;
 use Chartisan\PHP\Chartisan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResultController extends Controller
 {
@@ -17,7 +18,7 @@ class ResultController extends Controller
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
         $closedElections = Election::where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
-        $votes = Vote::where('user_id', auth()->user()->id)->get();
+        $votes = Vote::where('user_id', Auth::user()->id)->get();
         $elections = collect();
 
         foreach($closedElections as $closedElection)
@@ -29,7 +30,7 @@ class ResultController extends Controller
             }
         }
 
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role !== 'super admin')
         {
             return view('result', ['elections' => $elections]);
         }
@@ -48,7 +49,7 @@ class ResultController extends Controller
             $candidates = Candidate::where('election_id', $election->id)->get();
 
             $result.=
-                '<tr class="hover:bg-neutral-50 text-xs">
+                '<tr class="hover:bg-neutral-50 text-sm font-normal">
                     <td class="px-3 text-center cursor-default w-fit">
                         ' . $index + 1 . '
                     </td>
@@ -61,6 +62,10 @@ class ResultController extends Controller
                         <div class="line-clamp-1 max-w-5xl w-full">
                             ' . $election->description . '
                         </div>
+                    </td>
+
+                    <td class="py-3 text-center text-[10px] uppercase font-bold">
+                        <span class="' . ($election->type === "public" ? "text-green-600" : "text-red-600") . '">' . $election->type . '</span>
                     </td>
 
                     <td class="px-2 py-3 text-left">
@@ -96,7 +101,7 @@ class ResultController extends Controller
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today);
 
         $closedElections = Election::where('start_date', '<', $today)->where('end_date', '<', $today)->orWhere('status', '=', 'closed')->get();
-        $votes = Vote::where('user_id', auth()->user()->id)->get();
+        $votes = Vote::where('user_id', Auth::user()->id)->get();
         $elections = collect();
 
         foreach($closedElections as $closedElection)
@@ -130,7 +135,7 @@ class ResultController extends Controller
         $votes = Vote::all();
         $elections = Election::whereId((int) $request->election)->first();
         $candidates = Candidate::where('election_id', (int) $request->election)->get();
-        $hasVoted = Vote::where('user_id', auth()->user()->id)->where('election_id', $elections->id)->first();
+        $hasVoted = Vote::where('user_id', Auth::user()->id)->where('election_id', $elections->id)->first();
 
         $share = \Share::page(
             $request->url(),
@@ -142,7 +147,7 @@ class ResultController extends Controller
         ->whatsapp();
 
 
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role != 'super admin')
         {
             return view('show_results', [
                 'votes' => $votes,

@@ -6,7 +6,7 @@ $isNotStarted = $today->lt($election->start_date) && $today->lt($election->end_d
 $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)) || $election->status == 'closed';
 @endphp
 
-<tr class="text-xs hover:bg-neutral-50">
+<tr class="text-sm font-normal hover:bg-neutral-50">
     <td class="px-3 text-center cursor-default w-fit">
         {{ $index }}
     </td>
@@ -23,7 +23,7 @@ $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)
         </td>
     @endif
 
-    <td class="py-3 text-center text-[10px] uppercase font-bold">
+    <td class="py-3 text-center text-xs uppercase font-semibold">
         @if ($election->type === 'public')
             <span class="text-green-600">{{ $election->type }}</span>
         @elseif ($election->type === 'private')
@@ -31,7 +31,7 @@ $isEnded = ($today->gt($election->start_date) && $today->gt($election->end_date)
         @endif
     </td>
 
-    <td class="py-3 text-center text-[10px] uppercase font-bold">
+    <td class="py-3 text-center text-xs uppercase font-semibold">
         @if ($isNotStarted)
             <span class="text-[#0000FF]">upcoming</span>
         @elseif ($isStarted)

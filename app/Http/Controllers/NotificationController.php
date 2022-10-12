@@ -6,6 +6,7 @@ use App\Models\Poll;
 use App\Models\Election;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -13,22 +14,22 @@ class NotificationController extends Controller
     {
         // get all notifications
         $notifications = DB::table('notifications')
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', Auth::user()->id)
             ->get()->reverse()->values();
 
         // get notifications that have been read by the user
         $readNotifications = DB::table('notifications')
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', Auth::user()->id)
             ->where('isRead', true)
             ->get();
 
         // Get notifications that have not been read
         $unreadNotifications = DB::table('notifications')
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', Auth::user()->id)
             ->where('isRead', false)
             ->get();
 
-        if(auth()->user()->privilege != 'superuser')
+        if(Auth::user()->role !== 'super admin')
         {
             return view('user.notification',
                 [
@@ -50,7 +51,7 @@ class NotificationController extends Controller
 
     public function mark(Request $request)
     {
-        $userId = auth()->user()->id;
+        $userId = Auth::user()->id;
         $notificationId = (int) $request->id;
 
         $notification = DB::table('notifications')->whereId($notificationId)->where('user_id', $userId)->first();
@@ -68,7 +69,7 @@ class NotificationController extends Controller
 
     public function markAll()
     {
-        DB::table('notifications')->where('user_id', auth()->user()->id)->where('isRead', 0)->update([ 'isRead' => 1 ]);
+        DB::table('notifications')->where('user_id', Auth::user()->id)->where('isRead', 0)->update([ 'isRead' => 1 ]);
         return back();
     }
 

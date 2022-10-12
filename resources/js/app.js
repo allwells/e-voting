@@ -362,7 +362,12 @@ $(document).ready(function () {
             $(document).find("svg.close-menu-icon").css("display", "block");
 
             // open side menu
-            $(document).find("div.sidebar-menu").css("display", "block");
+            $(document).find("div.sidebar-menu").css("opacity", "1");
+            $(document).find("div.sidebar-menu").css("width", "17rem");
+            $(document).find("div.sidebar-menu").css("visibility", "visible");
+            $(document)
+                .find("div.sidebar-menu")
+                .css("transition-duration", "0.4s");
 
             showMenu = !showMenu;
         } else {
@@ -370,7 +375,12 @@ $(document).ready(function () {
             $(document).find("svg.close-menu-icon").css("display", "none");
 
             // close side menu
-            $(document).find("div.sidebar-menu").css("display", "none");
+            $(document).find("div.sidebar-menu").css("opacity", "0");
+            $(document).find("div.sidebar-menu").css("width", "0");
+            $(document).find("div.sidebar-menu").css("visibility", "hidden");
+            $(document)
+                .find("div.sidebar-menu")
+                .css("transition-duration", "0.1s");
 
             showMenu = !showMenu;
         }
